@@ -1,0 +1,67 @@
+=== Administration
+The Administration page provides administrators with a portal to create, edit, and remove users and groups in Mobi. From this module, you can also assign high level access control for common actions within the application.
+
+To reach the Administration page, click on btn:[Administration] in the left menu. This option is not available to non-administrators.
+
+.Administration link
+image::user-management/administration_link.png[width=50%,pdfwidth=50%,align=center]
+
+There are four main tabs of the Administration page:
+
+* <<Users>>
+* <<Groups>>
+* <<Permissions>>
+* <<Application Settings>>
+
+==== Users
+The Users tab allows you to create, edit, and remove users from the application.
+
+.Users Tab
+image::user-management/users_tab.png[]
+
+The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user's information into the right side of the section.
+
+NOTE: The default Admin user can not be deleted.
+
+The middle of the Users tab contains the username of the selected user, a block for viewing and editing the user's profile information, and a block for resetting the user's password. Resetting a user's password cannot be undone.
+
+The right side of the tab contains blocks for viewing and editing the selected user's permissions and viewing the user's groups. Clicking on the title of a group will open it in the <<Groups, Groups section>>.
+
+To create a user, click btn:[Create User] and the Create User overlay will appear. The [underline]#Username# field (required) must be unique within the application. The [underline]#Password# fields (required) allow you to enter in the password for the new user. The [underline]#First Name#, [underline]#Last Name#, and [underline]#Email# fields are not required, but allow you to enter in basic profile information for the new user. The last section contains a checkbox for setting whether the new user is an administrator. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create a new user with the entered information.
+
+.Create User Overlay
+image::user-management/create_user_overlay.png[width=50%,pdfwidth=50%,align=center]
+
+==== Groups
+The Groups tab allows you to create, edit, and remove groups from the application. Groups allow you to associate users with one another and apply the same permissions and roles to all members.
+
+.Groups Tab
+image::user-management/groups_tab.png[]
+
+The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group's information into the right side of the section.
+
+The right side of the tab contains the selected group's title and two rows of blocks. The top row contains blocks that allow you to edit the group's description and permissions. If a group has the "Admin" role, all members within that group are considered administrators.
+
+The bottom row contains a block that allows you to view, add, and remove the group's members. To add another user to the group, click btn:[Add Member] and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. Selecting a user in this drop down will automatically add them to the group. To remove a user from the table, click on the corresponding delete button at the end of the row. Any changes in this table will immediately be applied. Clicking on a username in this table will open that user's information in the <<Users, Users section>>.
+
+To create a group, click btn:[Create Group] and the Create Group overlay will appear. The [underline]#Group Title# field (required) allows you to specify a name for the group. The [underline]#Description# field allows you to enter in a description about what the group represents. At the bottom of the overlay is a table for adding users to the group. Your user account will be added automatically. To add others to the group, click btn:[Add Member] and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. To remove a user from the table, click on the corresponding delete button at the end of the row. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create a new group with the entered information and add the listed users to it.
+
+.Create group overlay
+image::user-management/create_group_overlay.png[width=50%,pdfwidth=50%,align=center]
+
+==== Permissions
+The Permissions tab allows you to set high level access control for common actions in the application, such as creating Ontology Records and querying the system repository.  Permissions can be set to allow all authenticated users (the [underline]#Everyone# slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the [underline]#Everyone# permission, find a user or group in the search box underneath the appropriate box, and select it. To remove a user or group from the permission, click the `X` button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.
+
+NOTE: More permissions coming soon!
+
+.Permissions Tab
+image::user-management/permissions_tab.png[]
+
+==== Application Settings
+The Application Settings tab enables you to alter/maintain system-wide settings. Below are descriptions of the settings currently available in the application.
+
+NOTE: More Application Settings coming soon!
+
+Default Ontology Namespace:: The namespace to be used when generating default IRIs for new ontologies/vocabularies in the <<ontology-editor-guide,Ontology Editor>>.
+
+image::user-management/application_settings_tab.png[]

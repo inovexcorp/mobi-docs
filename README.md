@@ -1,0 +1,2 @@
+# Mobi Documentation
+This documentation is generated using [Asciidoctor](http://asciidoctor.org/) and GitHub Actions to create a GitHub Pages site. For syntax details, refer to Asciidoctor's [Writer's Guide](http://asciidoctor.org/docs/asciidoc-writers-guide/). For more in-depth details, see Asciidoctor's [User Manual](http://asciidoctor.org/docs/user-manual/).

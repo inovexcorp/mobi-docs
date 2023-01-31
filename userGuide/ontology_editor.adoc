@@ -1,0 +1,441 @@
+[[ontology-editor-guide]]
+=== Ontology Editor
+The Mobi web-based ontology editor provides a Distributed Ontology Management System (DOMS) for local and community development of Web Ontology Language (https://www.w3.org/TR/owl2-overview/[OWL]) ontologies. The DOMS features a customizable user interface, knowledge capture, collaboration, access policy management, ontology reuse, and extensibility.
+
+NOTE: The community distribution of ontologies in Mobi is coming soon!
+
+To reach the ontology editor, click on the link in the left menu.
+
+.The Ontology Editor
+image::ontology-editor/full_editor_initial_view.png["The Ontology Editor"]
+
+The initial view of the Ontology Editor shows the Ontologies page. The center of the page contains a paginated list of all ontologies in the local Mobi repository. Each ontology in the list displays ontology metadata and an action menu. The action menu allows you to delete the ontology. Deleting an ontology from this location will delete the ontology and associated ontology record and change history from the local catalog. Clicking an ontology will open it in the editor.
+
+When opening an ontology, the editor will load the previous branch and commit you were viewing. If you have not previously opened the ontology or the branch you were viewing no longer exists, then the editor will load the HEAD commit of the ontology's master branch. For an explanation of commits and branches see the section on
+<<Ontology Versioning>>.
+
+From this screen you can also filter the ontology list, <<Creating New Ontologies,create new ontologies>>, or
+<<Uploading Existing Ontologies,upload existing ones>>.
+
+==== Creating New Ontologies
+To create a new ontology, select the btn:[New Ontology] button on the main ontology editor view. In the creation dialog, you are required to provide an ontology IRI and title. You can also optionally provide a description and keywords. This metadata is used to describe the ontology in the local catalog.
+
+.New Ontology Form
+image::ontology-editor/new_ontology_form.png[width=50%,pdfwidth=50%,align=center]
+
+The [underline]#Ontology IRI# is the unique identifier for the new ontology. The editor pre-populates this field with a default namespace and a local name generated from the [underline]#Title# field. You can always override this behavior. The [underline]#Title# field populates the `dcterms:title` annotations of both the new ontology record and the ontology object within the new ontology. The [underline]#Description# field populates the `dcterms:description` annotations of both the new ontology record and the ontology object within the new ontology. The [underline]#Keywords# field will attach the entered values as keywords to the new ontology record.
+
+==== Uploading Existing Ontologies
+To upload an existing ontology, you can either click the btn:[Upload Ontology] button and use the browser's native file browser or drag and drop files onto the main ontologies view.
+
+When uploading a file or files, a dialog box will prompt you for metadata entry for the ontology record (title, description, keywords). This metadata is used to describe the ontology in the local catalog. By default, the application will set the record title using the filename. Metadata for each ontology can be entered and submitted separately, or default metadata can be entered for all records using the btn:[Submit All] button.
+
+.Ontology upload metadata form.
+image::ontology-editor/upload_metadata_form.png[width=50%,pdfwidth=50%,align=center]
+
+Once all metadata has been submitted, a panel will be shown in the bottom right of the page which shows the status for each upload. Any errors will be detailed for each file. To refresh the main ontologies list with the new files, close the upload panel.
+
+.Ontology upload results.
+image::ontology-editor/upload_ontology_results.png[width=50%,pdfwidth=50%,align=center]
+
+Supported ontology file types are `.owl`, `.ttl`, `.xml`, `.jsonld`, `.owx`, `.trig`, `.json`, `.n3`, `.nq`, `.nt`, `.rdf`, `.txt`, `.json`, `.ofn`, `.omn` , `.owx`, and `.rdfs`. The [underline]#Title# field populates the `dcterms:title` annotation of the new ontology record. The [underline]#Description# field populates the `dcterms:description` annotation of the new ontology record. The [underline]#Keywords# field will attach the entered values as keywords to the new ontology record. The file extension is used to guess the appropriate RDF Format to parse the file contents. If a parsing error occurs, the snackbar will display the error message relevant to guessed RDF Format.  
+
+==== Editing an Ontology
+
+The Ontology Editor provides an interface for developing https://www.w3.org/TR/owl2-overview/[OWL 2] ontologies with additional features directed towards developing Simple Knowledge Organization System (https://www.w3.org/2004/02/skos/[SKOS]) vocabularies and extensions thereof, including support for (https://www.w3.org/TR/skos-reference/skos-xl.html[SKOS-XL])
+
+TIP: To learn more about OWL ontologies, see the https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/[W3C Specification]. To learn more about SKOS vocabularies, see the https://www.w3.org/TR/skos-reference/[W3C Specification]
+
+The Ontology Editor contains various tabs supporting activities for ontology development, search, and version control.
+
+.Ontology Editor
+image::ontology-editor/full_editor_ontology_view.png[]
+
+This section will describe the tools related to ontology development activities. These include:
+
+* the <<Ontology Project Tab>>
+* the <<Overview Tab>>
+* the <<Classes Tab>>
+* the <<Properties Tab>>
+* the <<Individuals Tab>>
+* the optional <<Schemes Tab>>
+* the optional <<Concepts Tab>>
+* the <<Search Tab>>
+* the <<Visualization Tab>>
+
+The <<Schemes Tab>> and <<Concepts Tab>> will appear if the editor detects that the opened ontology contains SKOS classes and properties. The easiest way to have access to these tabs is to import the SKOS ontology (http://www.w3.org/2004/02/skos/core).
+
+For a detailed description of the versioning components, refer to the <<Ontology Versioning>> section.
+
+===== Ontology Project Tab
+The Ontology Project Tab displays high-level information about the ontology. This includes the ontology annotations and properties, ontology imports, and a preview of the serialized ontology RDF.
+
+.Ontology Editor Project Tab
+image::ontology-editor/ontology_editor_tab_project.png[]
+
+The top of this tab contains the title of the ontology and its IRI. The IRI shown is the Version IRI, Ontology IRI, or a blank node identifier. The IRI can be copied quickly by clicking on it.
+
+On the upper left side of this tab is a section containing a list of all the applied OWL Ontology Properties and Annotations. There are controls included to add, remove, and edit these properties.
+
+On the lower left side of this tab is a section containing a list of all direct and indirect ontology imports. If an imported ontology could not be resolved, it will appear red. To add a new imported ontology, click on the plus button and either enter the IRI of an ontology available on the web or select an ontology within Mobi. To refresh the cached versions of the imported ontologies and attempt to resolve any unresolved imports, click on the refresh button.
+
+On the right of this tab is a card used to generate a preview of the ontology as RDF. There is a drop down with several different RDF serializations to choose from. Clicking btn:[Refresh] will generate a preview of the saved state of the ontology in the specified RDF format in the area below. The preview will be limited to the first 5000 results. Additionally, there is a button for downloading the ontology in the selected format.
+
+TIP: The serialized ontology is a representation of data stored in the repository and will not include unsaved changes.
+
+===== Overview Tab
+The Overview Tab provides quick access to classes and their associated properties as compared to the <<Classes Tab,Classes>> and <<Properties Tab,Properties>> tabs. Properties are associated to classes through the use of `rdfs:domain`.
+
+.Ontology Editor Overview Tab
+image::ontology-editor/ontology_editor_tab_overview.png[]
+
+The left side of this tab contains the list of all classes and their associated properties, including imports. Any properties that have no `rdfs:domain` are grouped into a folder in the hierarchy called "Properties". You can expand a class to view its properties by clicking the "+" icon or double-clicking the class name. Properties are displayed with a symbol representing the data type of the range property. If an entity has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the entity name. Imported classes and properties will appear grey and italicized.
+The list also includes a search bar that will filter the list to classes/properties with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported entities from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all entities annotated with the owl:deprecated property.
+Clicking on an item in the tree will load that entity's information into the other sections in this tab.
+
+The title of the selected class or property, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the entity and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The middle sections in this tab allow you to add, remove, and edit Annotations and Axioms for the selected class or property. Imported classes and properties cannot be edited.
+
+If you selected a property, a section with checkboxes for adding different characteristics to the selected property is shown in the top right of the Overview Tab.
+
+TIP: See the https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/[W3C Specification] for the definitions of property characteristics.
+
+The last section on the right displays all the locations where the selected entity is used within the saved state of the ontology. For classes, this is anywhere the selected class is used as the object of a statement. For properties, this is anywhere the selected property is used as the predicate or object of a statement. Usages are grouped by the predicate of the statement and can be collapsed by clicking on the predicate title. Links in the usages section, as with links in various other components of the editor, can be clicked to navigate to that entity. If the number of usages exceeds 100, a button to load the next 100 is shown at the bottom of the section.
+
+===== Classes Tab
+The Classes Tab allows you to view, create, and delete classes in the opened ontology.
+
+.Ontology Editor Classes Tab
+image::ontology-editor/ontology_editor_tab_classes.png[]
+
+The left side of the tab contains a hierarchical view of the classes, including imports, nested according to their `rdfs:subClassOf` property. That is, a class's children are classes which are defined as subclasses of the particular class. Since classes can be defined as a subclass of multiple classes, they may appear several times within the hierarchy. If a class has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the class name. Imported classes will appear grey and italicized.
+The list also includes a search bar that will filter the list to classes with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported classes from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all classes annotated with the owl:deprecated property.
+Clicking on an item in the hierarchy will load that class's information into the other sections in this tab. Double clicking on a class with children will toggle the display of the children.
+
+The title of the selected class, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the class and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The middle sections in this tab allow you to add, remove, and edit Annotations and Axioms for the selected class. Imported classes cannot be edited.
+
+The section on the right of the Classes Tab displays all the locations where the selected class is used within the saved state of the ontology. That is, anywhere the selected class is used as the object of a statement. Usages are grouped by the predicate of the statement and can be collapsed by clicking on the predicate title. Links in the usages section, as with links in various other components of the editor, can be clicked to navigate to that entity. If the number of usages exceeds 100, a button to load the next 100 is shown at the bottom of the section.
+
+===== Properties Tab
+The Properties Tab allows you to view, create, and delete properties in the opened ontology.
+
+.Ontology Editor Properties Tab
+image::ontology-editor/ontology_editor_tab_properties.png[]
+
+The left side of the tab contains a hierarchical view of the data, object, and annotation properties, including imports. The data, object, and annotation properties are grouped into three separate folders within the hierarchy that will open and close when clicked. Properties are nested according to their `rdfs:subPropertyOf` property. That is, a property's children are properties which are defined as subproperties of the particular property. Properties are displayed with a symbol representing the data type of the range property. If a property has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the property name.  Imported properties will appear grey and italicized.
+The list also includes a search bar that will filter the list to properties with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported properties from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all properties annotated with the owl:deprecated property.
+Clicking on an item in the hierarchy will load that property's information into the other sections in this tab. Double clicking on a property with children will toggle the display of the children.
+
+The title of the selected property, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the property and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The middle sections in this tab change depending on whether you have selected a data, object, or annotation property. If the selected property is a data or object property, the sections for adding, removing, and editing Annotations and Axioms are shown. If the selected property is an annotation property, only the Annotation sections is shown. Imported properties cannot be edited.
+
+If the selected property is a data or object property, a block with checkboxes for adding different characteristics to the selected property is shown in the top right of the Properties Tab. Imported properties cannot be edited.
+
+.Object Property View
+image::ontology-editor/object_property_tab.png[]
+
+TIP: See the https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/[W3C Specification] for the definitions of property characteristics.
+
+The last section on the right of the tab displays all the locations where the selected property is used within the saved state of the ontology. That is, anywhere the selected property is used as the predicate or object of a statement. Usages are grouped by the predicate of the statement and can be collapsed by clicking on the predicate title. Links in the usages section, as with links in various other components of the editor, can be clicked to navigate to that entity. If the number of usages exceeds 100, a button to load the next 100 is shown at the bottom of the section.
+
+===== Individuals Tab
+The Individuals Tab allows you to view, edit, create, and delete individuals in the opened ontology.
+
+.Ontology Editor Individuals Tab
+image::ontology-editor/ontology_editor_tab_individuals.png[]
+
+The left side of the tab contains a view of all individuals, including imports, nested under their classes based on the `rdfs:subClassOf` property. If an individual has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the individual name. Imported individuals will appear grey and italicized.
+The list also includes a search bar that will filter the list to individuals with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported individuals from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all individual annotated with the owl:deprecated property.
+Clicking on an item in the list will load that individual's information into the other sections in this tab.
+
+The title of the selected individual, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the individual and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The section to the center and right of the tab allow you to add, remove, and edit Data, Object, and Annotation Properties for the selected individual. The options for Data and Object Properties are populated from the ontology and its imports. Imported individuals cannot be edited.
+
+The types of an individual are editable by clicking the pencil icon at the end of the types list. The overlay allows you to add and remove types from the ontology and its imports. The "Named Individual" type is required.
+
+.Edit Individual Types Overlay
+image::ontology-editor/edit_individual_types.png[width=50%,pdfwidth=50%,align=center]
+
+===== Schemes Tab
+The Schemes Tab will appear if the editor detects the opened ontology is a SKOS vocabulary. It displays information about all the concept schemes and their directly related concepts defined in the opened vocabulary.
+
+.Ontology Editor Schemes Tab
+image::ontology-editor/ontology_editor_tab_schemes.png[]
+
+The left side of the tab contains a hierarchical view of the concept schemes, including imports. The top level items are the concept schemes, or subclasses of `skos:ConceptScheme`, and their children are all concepts, or subclasses of `skos:Concept`, within that scheme. This could be defined through the `skos:hasTopConcept`, `skos:topConceptOf`, or `skos:inScheme` properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concept schemes and concepts will appear grey and italicized.
+The list also includes a search bar that will filter the list to concepts/schemes with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported schemes from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all schemes annotated with the owl:deprecated property.
+Clicking on an item in the hierarchy will load that concept scheme's or concept's information in the other sections in this tab. Double clicking on a concept scheme with children will toggle the display of the children.
+
+The title of the selected concept scheme or concept, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the entity and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The middle sections in this tab allow you to add, remove, and edit Annotations, Data Properties, and Object Properties for the selected concept scheme or concept. Imported concept schemes and concepts cannot be edited.
+
+The third section on the right of the Schemes Tab displays all the locations where the selected concept scheme or concept is used within the saved state of the vocabulary. This is anywhere the selected concept scheme or concept is used as the object of a statement. Usages are grouped by the predicate of the statement and can be collapsed by clicking on the predicate title. Links in the usages section, as with links in various other components of the editor, can be clicked to navigate to that entity. If the number of usages exceeds 100, a button to load the next 100 is shown at the bottom of the section.
+
+===== Concepts Tab
+The Concepts Tab will appear if the editor detects the opened ontology is a SKOS vocabulary. The Concepts Tab displays information about all the concepts defined in the opened vocabulary.
+
+.Ontology Editor Concepts Tab
+image::ontology-editor/ontology_editor_tab_concepts.png[]
+
+The left side of the tab contains a hierarchical view of the concepts, including imports. The concept hierarchy is determined using all of the SKOS broader and narrower properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concepts will appear grey and italicized.
+The list also includes a search bar that will filter the list to concepts with annotations or local names containing your search query and the ability to apply one or more filters.
+The btn:[Hide unused imports] filter will remove all imported concepts from the list that are not used by any of the entities defined in the ontology.
+The btn:[Hide deprecated entities] filter will remove all concepts annotated with the owl:deprecated property.
+Clicking on an item in the hierarchy will load that concept's information in the other sections in this tab. Double clicking on a concept with children will toggle the display of the children.
+
+The title of the selected concept, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the concept and view its change history (see <<Entity History>>). The IRI can be copied quickly by clicking on it. The middle blocks in this tab allow you to add, remove, and edit Annotations, Data Properties, and Object Properties for the selected concept. Imported concepts cannot be edited.
+
+The third section on the right of the Concepts Tab displays all the locations where the selected concept is used within the saved state of the vocabulary. This is anywhere the selected concept is used as the object of a statement. Usages are grouped by the predicate of the statement and can be collapsed by clicking on the predicate title. Links in the usages section, as with links in various other components of the editor, can be clicked to navigate to that entity. If the number of usages exceeds 100, a button to load the next 100 is shown at the bottom of the section.
+
+===== Search Tab
+The Search Tab allows you to perform a keyword search through all the entities within the saved state of the opened ontology and its imports.
+
+.Ontology Editor Search Tab
+image::ontology-editor/ontology_editor_tab_search.png[]
+
+The left side of the tab contains a simple search bar and a list of search results. To perform a search, type a string into the search bar and press the kbd:[ENTER] key. The results are separated by type headers which are collapsible. Each result is displayed with its display name. Properties are displayed with a symbol representing the data type of the range property. Clicking on a result will load that entity's information into the right section of this tab. The right section displays the entity's display name, IRI, types, and properties. The parts of the property values that match the search text will be highlighted. The right section also includes a btn:[Go To] button that will open the entity in the appropriate tab. Double clicking on an entity in the list will also open that entity in the appropriate tab.
+
+===== Visualization Tab
+
+The Visualization Tab depicts the ontology in a force-directed graph layout. Each node represents a class, with dotted lines symbolizing the relationship between parent class and subclass, and solid lines representing the object properties.
+
+.Pizza Ontology Graph
+image::ontology-editor/visualization/pizza_graph.png[]
+
+The ontology visualization feature enables users to easily understand data within an Ontology by allowing them to navigate across the classes and their relationships. The feature allows users to zoom, pan, select, drag, hover, and click nodes and links.
+
+The number of classes displayed is limited to 500. Any in progress changes you have will not be rendered until they are committed. After initial graph calculation, the state of the graph will persist while users keep the Ontology open. The graph will only be re-rendered when there is a new commit.
+
+.Uncommited changes state
+image::ontology-editor/visualization/warning_commit_inprogress.png[]
+
+.Over the limit state
+image::ontology-editor/visualization/warning_over_node_limit.png[]
+
+The side panel of the Visualization tab displays a searchable list of all the classes in the import closure (i.e. direct and imported) grouped by parent ontology. The checkboxes next to each class indicate whether a class is currently shown in the visualization and can be toggled to customize the displayed graph. Selecting a class in the side panel will highlight the node in the graph if displayed. Selecting a node in the graph will also highlight in the side panel. The side panel also includes a "Filter" dropdown with three options to help find the classes of interest in the list.
+
+* “All” which is the default. When selected, the list of classes contains both classes declared in the opened ontology and imported classes
+* “Local” which will filter the list of classes to only those declared in the opened ontology when selected
+* “Imported” which will filter the list of classes to only those from imported ontologies
+
+.Side Panel: classes grouped by parent ontology
+image::ontology-editor/visualization/sidebard_imported_open.png[]
+
+The side panel can be hidden or shown with a button.
+
+.Side Panel Close Button
+image::ontology-editor/visualization/sidepanel_close_button.png[]
+
+.Side Panel Open Button
+image::ontology-editor/visualization/sidepanel_open_button.png[]
+
+====== Imported Ontologies
+
+The rendered graph will include every ontology within the imports closure. The classes in the graph are rendered with different colors based on which ontology within the imports closure they belong to. If a change to an imported Ontology is made, the changes will not be rendered until a manual refresh is triggered which will reset the Ontology cache or until a new commit is made.
+
+.Imported Ontologies
+image::ontology-editor/visualization/imported_ontology.png[]
+
+.Refresh import
+image::ontology-editor/visualization/update_imports.png[]
+
+==== Ontology Versioning
+Each ontology in Mobi is versioned in a manner similar to the https://git-scm.com/[Git] Version Control System, whereby all changes to an ontology are collected into a chain "commits" which form a commit history called a "branch". Thus, every version in the history of an ontology can be generated by selecting a commit and applying all the changes in the branch back to the initial commit.
+
+Every ontology is initialized with a MASTER branch that contains the initial commit. Work can be done on this MASTER branch or can be split out into separate branches. Work done on these branches occur in isolation until they are merged back into the MASTER branch, joining any other changes committed in the meantime. When merging two branches, the ontology editor does its best to combine any changes made on both branches. If a conflict occurs, the editor allows the user to resolve them manually. More information on merging branches can be found in the section on <<Merging Branches>>.
+
+===== Checking Out Branches/Tags/Commits
+The check out select box located underneath the selected ontology in the left display, provides a list of all the available branches and tags on the ontology. To checkout a branch or tag, simply select the branch in the drop-down menu. Checking out a tag will open the ontology at the tagged commit in read-only mode. If you have checked out a commit from the <<Commits Tab>>, the commit will be in the dropdown list and show as selected. Note that the select box will be disabled if you have any uncommitted changes on the current branch. To edit a branch name or description, click on the edit icon next to the branch in the drop-down menu. You cannot edit the master branch of an ontology.
+
+[frame=none,border=none,grid=none,stripe=none,role=center]
+|===
+
+| image:ontology-editor/check_out_select.png[] | image:ontology-editor/check_out_select_commit.png[]
+
+|===
+
+.Ontology checked out at a tag
+image::ontology-editor/check_out_tag.png[]
+
+To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.
+
+===== Viewing Saved Changes
+Every edit made to an entity within an ontology is automatically saved and an indicator is shown in the top right if the most recent changes have been saved successfully. The Changes Tab displays all saved and uncommitted changes in the opened ontology. Saving changes without committing allows a user to edit an ontology through a number of browser sessions before making any commits to the commit history. These changes are unique to the user, and are available to other users once a commit is performed.  They are grouped by individual entity and display the triples on the entity grouped by property.  When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity.
+
+.Ontology Editor Changes Tab
+image::ontology-editor/ontology_editor_tab_changes.png[]
+
+Within each collapsible block in the list are the added and deleted triples for a particular entity IRI. If there are no changes to the ontology, this page will be empty. To commit these changes, select the btn:[Commit Changes] button in the <<Button Stack>>. To remove these changes, click btn:[Remove All Changes].
+
+If new commits have been made to the branch by other users while you are editing or viewing an ontology, a warning symbol will be displayed in the section title and a message will be displayed in the section notifying you that there are new commits on the branch. If you have no saved changes, there will be a link to update the current ontology by pulling in the latest changes. If you have saved changes, there will be a message notifying you to either commit your changes or remove them. If you choose to commit your changes, you can still continue working and there will be a link to pull in the latest changes and re-sync with the branch.
+
+.Pull in latest changes message
+image::ontology-editor/pull_latest_changes.png[]
+
+.Behind the head with saved changes
+image::ontology-editor/behind_head.png[]
+
+===== Merging Branches
+The Ontology Editor also supports merging the head commit of the branch you are currently viewing into the head commit of another branch. Two branches can only be merged if there are no conflicts between the head commits of each branch. To perform a merge, select the green btn:[Merge Branches] button in the button stack.
+
+The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether or not you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.
+
+.Merge branches view
+image::ontology-editor/merge_view.png[]
+
+Clicking btn:[Submit] will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.
+
+Conflicts arise when the application cannot determine how to automatically merge specific changes to entities between two branches. If conflicts exist between the two branches, the merge process will be halted and the screen will update to notify you of those conflicts and provide you a way to resolve them. Each conflict is listed by entity within the ontology and with a marker indicating whether or not it has been resolved. Click on a conflict in the list to start resolving them.
+
+.List of all merge conflicts
+image::ontology-editor/merge_conflicts_main.png[]
+
+When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the btn:[Back to List] button to go back to the list of all the conflicts or the btn:[Previous] or btn:[Next] buttons to iterate through the list of conflicts.
+
+NOTE: Currently the editor only supports accepting entire changes. We are working on improvements to give more flexibility in resolving conflicts during a merge operation.
+
+.Merge conflict resolution view.
+image::ontology-editor/merge_conflicts_resolution.png[]
+
+Once all conflicts have been resolved, the btn:[Submit with Resolutions] button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.
+
+===== Commits Tab
+The Commits Tab provides a table and graph of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the table. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. To view more information about a particular commit in the history, such as the added and deleted statements, click on its id or associated circle in the graph. The table also includes buttons for "checking out" a commit in the history. Clicking a btn:[View] button will open the ontology at that commit in read-only mode. This is useful for creating tags to indicate versions on the ontology (see <<Button Stack>> and <<Checking Out Branches/Tags/Commits>>).
+
+.Commit history table of a branch
+image::ontology-editor/commit_history_table.png[]
+
+===== Entity History
+Clicking on a btn:[See History] button next to a selected entity in one of the tabs will open a view containing the change history of that specific entity in the ontology. The view is split into two columns. The left side contains a dropdown containing all the commits where that entity was changed and defaults to the latest commit. Any added triples will be green and any deleted triples will be red. The right side contains a table of all the commits where that entity was changed. The table behaves the same as the table in the <<Commits Tab>>, just without the graph. To return to the main editor, click the back button in the top left.
+
+.Entity History view
+image::ontology-editor/entity_history.png[]
+
+==== Ontology Editor Reference
+
+===== Edit IRI Overlay
+The Edit IRI overlay provides the user with a simple way to edit and create valid IRIs. The [underline]#Begins with# field (required) is the beginning of the IRI. This is more commonly known as the namespace. When editing the IRI of entities within an ontology, this value is typically the ontology IRI. The [underline]#Then# field (required) is the next character in the IRI. This value can be thought of the separator between the namespace and local name (described below). The provided values for the [underline]#Then# field are "&#35;", "/", and ":". The [underline]#Ends with# field (required) is the last part of the IRI. This value is commonly known as the local name. It is used in the drop down lists in this application as the easiest way to identify what the IRI references. Clicking the refresh button on the left will reset the three fields to their original values. You cannot create/save an edited IRI that already exists within the ontology. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will save the IRI with the entered values for the selected entity and update the ontology.
+
+.Edit IRI overlay
+image::ontology-editor/edit_iri_overlay.png[]
+
+===== Axiom Overlay
+The Axiom Overlay is how you add new axioms to entities in your ontology. The [underline]#Axiom# dropdown provides a list of common axioms for the type of entity you have selected. Once selected, there are two ways to add a value. The first is choosing from a list of entities within the ontology and its imports. The second is writing out a class expression or restriction in https://www.w3.org/TR/owl2-manchester-syntax/[Manchester Syntax] in the Editor. Entities are referenced by their local name and must be present in the ontology or its imports.
+
+.Axiom Overlay Editor with an example
+image::ontology-editor/axiom_value_editor.png[width=50%,pdfwidth=50%,align=center]
+
+===== Property Value Displays
+Property Value Displays are a common way Mobi displays multiple values for a property on an entity. These properties could be data properties, object properties, annotations, axioms, etc. The display consists of the title section and the values section. The title section includes a bold title and the property IRI. The values section lists all the values set for the displayed property along with the type, if the value is a literal, and edit and delete buttons when you hover over the value. The functionality of the edit and delete buttons for values differ depending on where the Property Value Display is being used. If a value of a property is a class restriction or expression, it will be represented in a simplified format or https://www.w3.org/TR/owl2-manchester-syntax/[Manchester Syntax] if it is supported. These values can be deleted, but not edited.
+
+TIP: See the https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/[W3C Specification] for information about blank nodes, class/property restrictions, and class/property expressions.
+
+.A property value display with multiple values
+image::ontology-editor/property_value_display.png[]
+
+===== Button Stack
+The Button Stack is visible in any Ontology tab in the bottom right hand corner of the screen and holds a variety of buttons that are shown when the stack is hovered over.
+
+.Collapsed button stack
+image::ontology-editor/button_stack.png[]
+
+To add a new entity to the ontology, click on the main btn:[Create Entity] button in the stack. This will open an overlay with options for what kind of entity to create and once you have selected an option, an appropriate overlay will be shown for creating that type of entity. After creating the entity, a snackbar will appear at the bottom allowing you to navigate directly to your new entity.
+
+.Create Entity button
+image::ontology-editor/create_entity_button.png[]
+
+.New Entity snackbar
+image::ontology-editor/new_snackbar.png[]
+
+If you have made changes to an ontology, the btn:[Commit Changes] button will become active. Clicking on this button will bring up the Add Commit overlay.
+
+.Commit button
+image::ontology-editor/commit_changes_button.png[]
+
+The Add Commit overlay provides a textarea for you to enter in a [underline]#Comment# that will be associated with that commit. This commit usually specifies what changes where made in the commit so that others can read the message and understand what happened at that point in time. You can still commit your changes if you are not currently viewing the head commit of the current branch. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will add all your saved changes to a new commit object whose parent is the commit you were viewing and close the overlay.
+
+.Add commit overlay
+image::ontology-editor/add_commit_overlay.png[width=50%,pdfwidth=50%,align=center]
+
+See the <<Merging Branches>> section for details on how the merging branches works.
+
+.Merge Branch button
+image::ontology-editor/merge_branch_button.png[]
+
+The btn:[Create Branch] button allows you to create a new branch from the commit and branch you are viewing, including past commits. This action can be performed even if you have unsaved or saved changes. Clicking on the button will bring up the Create New Branch overlay.
+
+.Create Branch button
+image::ontology-editor/create_branch_button.png[]
+
+The Create New Branch overlay provides fields for entering information about the branch as a whole. The [underline]#Title# field (required) will set the `dcterms:title` of the branch. The [underline]#Description# field will set the `dcterms:description` of the branch. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create a new branch with the entered information whose head commit was the commit you were viewing and close the overlay.
+
+.Create new branch overlay
+image::ontology-editor/create_branch_overlay.png[width=50%,pdfwidth=50%,align=center]
+
+The btn:[Create Tag] button allows you to create a human readable and persistent pointer to the commit you are currently viewing. Clicking this button will bring up an overlay where you can type in the title for the Tag and customize it's IRI. Once the Tag is created, the ontology will open the ontology in read-only mode at the tagged commit.
+
+.Create Tag button
+image::ontology-editor/create_tag_button.png[]
+
+The btn:[Upload Changes] button allows you to upload a new version of your ontology from a file and apply the changes. Clicking this button will bring up an overlay where you can select the file with the changed ontology. Uploaded changes will not be automatically committed, but will allow you to review changes before making a new Commit.
+
+.Upload Changes button
+image::ontology-editor/upload_changes_button.png[]
+
+===== Extension Mappings
+The table below describes which file extensions are mapped to which RDF Formats when an ontology file is uploaded to Mobi. In the event more than one RDF Format is possible for a single extension, all RDF Formats are attempted.
+
+.Table Extension to RDF Formats
+|===
+|Extension |RDF Format Name
+
+|.json
+|RDF/JSON, JSON-LD
+
+|.jsonld
+|JSON-LD
+
+|.ttl
+|Turtle
+
+|.xml
+|Rio OWL XML, RDF/XML
+
+|.ofn
+|Rio Functional Syntax
+
+|.omn
+|Rio Manchester Syntax
+
+|.owx
+|Rio OWL XML
+
+|.rdf
+|RDF/XML
+
+|.rdfs
+|RDF/XML
+
+|.owl
+|RDF/XML, Rio OWL XML
+
+|.trig
+|TriG
+
+|.nt
+|N-Triples
+
+|.nq
+|N-Quads
+
+|.obo
+|Open Biological and Biomedical Ontologies
+|===
+
+
