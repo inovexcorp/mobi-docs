@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Mapping Tool</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="mapping-tool-guide">Mapping Tool</h3>
+<div class="paragraph">
+<p>The Mobi web-based Mapping Tool allows users to define custom, ontology-driven definitions to control and execute input data transformations to the Resource Description Framework (<a href="https://www.w3.org/RDF/">RDF</a>) semantic data model. User-defined mappings load semantic data into the Mobi store for analysis, sharing and linking.</p>
+</div>
+<div class="paragraph">
+<p>To reach the Mapping Tool, click on the link in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
+</div>
+<div class="title">Figure 1. Mapping Tool button</div>
+</div>
+<div class="paragraph">
+<p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
+</div>
+<div class="paragraph">
+<p>The initial view of the Mapping Tool shows the Mapping Select Page which contains a searchable paginated list of the mappings within the local Mobi repository. Each mapping is displayed with a portion of its metadata along with a dropdown menu with buttons to preview, <a href="#_duplicating_a_mapping">duplicating</a>, <a href="#_editing_a_mapping">editing</a>, <a href="#_running_a_mapping">running</a>, download, and delete the mapping. The Preview button will bring up a display of the classes and properties it maps along with the title of the source ontology. If the selected source ontology no longer exists in the local Mobi repository, you will not be able to edit, run, or duplicate the mapping. Click btn:[New Mapping] to <a href="#_creating_a_mapping">create</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_mapping">Creating a Mapping</h4>
+<div class="paragraph">
+<p>To create a new mapping, click btn:[Create Mapping] on the Mapping Select Page. The creation overlay requires you to enter a <span class="underline">Title</span> which will populate the <code>dcterms:title</code> annotation of the new mapping record. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new mapping record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new mapping record.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
+</div>
+<div class="title">Figure 2. Create Mapping Overlay</div>
+</div>
+<div class="paragraph">
+<p>Clicking btn:[Submit] brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking btn:[Continue] brings you to the Edit Mapping Page.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
+</div>
+<div class="title">Figure 3. File Upload Page for Creating a Mapping</div>
+</div>
+<div class="paragraph">
+<p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with each class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To learn about the structure of a mapping, refer to the <a href="#Mobi Mappings">[Mobi Mappings]</a> Appendix.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
+</div>
+<div class="title">Figure 4. Edit Mapping Page Edit Tab</div>
+</div>
+<div class="paragraph">
+<p>When creating a mapping, the first thing you will see is the <a href="#_source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking btn:[Add Class] opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
+</div>
+<div class="paragraph">
+<p>The <span class="underline">IRI Template</span> section displays the template Mobi will use when generating IRIs for the created class instances from the selected class mapping. The value within the <code>${}</code> indicates what will be used for the local name of each class instance&#8217;s IRI. "UUID" means that a unique identifier will be generated for each class instance. An integer means that Mobi will grab the value from the column with that index (zero-based) for each row and use each value with all white space removed as the local name for the class instance. This template can be edited by clicking the pencil button next to the section title and filling in the fields in the <a href="#_iri_template_overlay">IRI Template Overlay</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <span class="underline">Properties</span> section lists all the property mappings for the selected class mapping with a button to add a new property mapping. Object property mappings are displayed with the name of the class mapping whose instances will be used as the range of the property. Data or Annotation property mappings are displayed with the name of the column whose values will be used as the range of the property, a preview of what the first value would be, the datatype for the mapped value, and the language for the values if specified. Each property mapping also provides a button to edit and delete. If a data property mapping is invalid, meaning it points to a column that does not exist in the delimited file, it must be handled before the mapping can be saved or run.</p>
+</div>
+<div class="paragraph">
+<p>Clicking btn:[Add Property] opens an overlay where you can select a property in the imports closure of the source ontology that has not been deprecated or a common annotation. The common annotations that can be mapped are <code>rdfs:label</code>, <code>rdfs:comment</code>, <code>dcterms:title</code>, and <code>dcterms:description</code>. If you select a data property or an annotation, a select box appears containing identifiers for each column in the delimited file along with a preview of the first value of the selected column. At this point, you can also specify a manual datatype override which the mapper will use over the range of the property if set. You can also specify the language for the property values by selecting <code>rdfs:langString</code> as the type and then a language select will appear underneath. If you select an object property, a select box appears containing the titles of all class mappings of the appropriate type along with an option to create a new class mapping.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
+</div>
+<div class="title">Figure 5. Create Property Mapping Overlay for a Data/Annotation Property</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
+</div>
+<div class="title">Figure 6. Create Property Mapping Overlay for an Object Property</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
+</div>
+<div class="title">Figure 7. Language Selection for a Data/Annotation Property</div>
+</div>
+<div class="paragraph">
+<p>Clicking the main btn:[Save] button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the btn:[Save] button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking btn:[Submit] in an overlay will save the current state of the mapping and run it.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">Datasets Manager</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For more information about running a mapping into an ontology, refer to <a href="#_mapping_into_an_ontology">Mapping into an Ontology</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/save_run_options.png" alt="save run options">
+</div>
+<div class="title">Figure 8. Options for saving and running a mapping</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_editing_a_mapping">Editing a Mapping</h4>
+<div class="paragraph">
+<p>To edit a mapping, click btn:[Edit] on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to use as a standard for the mapping. If the delimited file you choose does not contain enough columns for the mapping’s data property mappings, a list of the missing columns are displayed under the file select. However, you can still edit the mapping as long as those data properties are fixed. From there, editing the mapping works the same as <a href="#_creating_a_mapping">creating a mapping</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
+</div>
+<div class="title">Figure 9. File Upload Page for Editing a Mapping</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
+</div>
+<div class="title">Figure 10. File Upload Page for Editing a Mapping with missing columns</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_duplicating_a_mapping">Duplicating a Mapping</h4>
+<div class="paragraph">
+<p>To duplicate a mapping, click btn:[Duplicate] on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, the Create Mapping overlay will appear allowing you to choose new values for the <span class="underline">Title</span>, <span class="underline">Description</span>, and <span class="underline">Keywords</span>. The rest of the process is the same as <a href="#_editing_a_mapping">editing a mapping</a> including how missing columns are handled.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_a_mapping">Running a Mapping</h4>
+<div class="paragraph">
+<p>To run a mapping against delimited data without editing it, click btn:[Run] on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to be used when generating RDF data. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. The classes and properties that will be created using the mapping are displayed under the file select. The columns that must be present in the delimited file are highlighted in the table on the right. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table. If the delimited file you choose does not contain enough columns for the mapping’s data property mappings, the properties that are missing columns turn red and you will not be able to run the mapping.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">Datasets Manager</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
+</div>
+<div class="title">Figure 11. File Upload Page for Running a Mapping</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
+</div>
+<div class="title">Figure 12. File Upload Page for Running a Mapping with missing columns</div>
+</div>
+<div class="paragraph">
+<p>Clicking btn:[Run Mapping] will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For more information about running a mapping into an ontology, refer to <a href="#_mapping_into_an_ontology">Mapping into an Ontology</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/mapping-tool/run_options.png" alt="run options">
+</div>
+<div class="title">Figure 13. Options for saving and running a mapping</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_reference">Mapping Tool Reference</h4>
+<div class="sect4">
+<h5 id="_source_ontology_overlay">Source Ontology Overlay</h5>
+<div class="paragraph">
+<p>The Source Ontology Overlay allows you to select the source ontology for the mapping from all uploaded ontologies in the local Mobi repository.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
+</div>
+<div class="title">Figure 14. Source Ontology Overlay</div>
+</div>
+<div class="paragraph">
+<p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. Class mappings and property mappings are incompatible if the class or property that is referenced no longer exists in the imports closure of the source ontology. Property mappings are also incompatible if they are a different type or have a different range.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_iri_template_overlay">IRI Template Overlay</h5>
+<div class="paragraph">
+<p>The IRI Template overlay provides you a way to edit each portion of the IRI template of a class mapping. The template will be used to generate the IRIs for each instance created by a class mapping.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/iri_template_overlay.png" alt="iri template overlay" width="50%">
+</div>
+</div>
+<div class="paragraph">
+<p>The <span class="underline">Begins with</span> field (required) is the beginning of the IRI. This is more commonly known as the namespace. The <span class="underline">Then</span> field (required) is the next character in the IRI. This value can be thought of the separator between the namespace and local name (described below). The provided values for the <span class="underline">Then</span> field are "&#35;", "/", and ":". The <span class="underline">Ends with</span> dropdown field (required) is the last part of the IRI. This value is commonly known as the local name. The values in this dropdown are "UUID", which represents generating a unique identifier as the local name for each generated instance of each row, and the title of each column, which represents using the value of that column as the local name for each generated instance of each row. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will save the IRI template.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_into_an_ontology">Mapping into an Ontology</h5>
+<div class="paragraph">
+<p>The overlay for mapping into an ontology contains several configurations on how the mapping result data will be committed. First, you must select the <span class="underline">Ontology</span> and <span class="underline">Branch</span> that will receive the new commit. After that, there are radio buttons that will determine how the mapping result data will be treated when the commit is made. The first option will treat all the mapping result data as new data, meaning no existing data in the ontology branch will be removed. The second option will treat all the mapping result data as changes to the existing data on the ontology branch. This means that if there are entities or properties on entities in the ontology that are not present in the mapping result data, they will be removed.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/mapping-tool/map_into_ontology.png" alt="map into ontology" width="50%">
+</div>
+</div>
+<div class="paragraph">
+<p>A sample workflow using this tool would be to create an ontology in the <a href="#ontology-editor-guide">Ontology Editor</a> and create a branch that will received all mapped data commits. Then run your mapping from the Mapping Tool, committing to the new branch as additions. Finally in the Ontology Editor, merge that branch with the mapped data commit into the MASTER branch. Then any subsequent runs of the mapping with updated data would be committed as changes to the mapped data branch and merged into the MASTER branch.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

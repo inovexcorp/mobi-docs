@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Merge Requests</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="merge-requests-guide">Merge Requests</h3>
+<div class="paragraph">
+<p>The Mobi Merge Requests module allows users to create long lived representations of a merge between two branches of a record to provide checks and balances before including changes into the object the record represents. Each merge request is connected to a particular Record in the local Catalog and specifies a "source" and "target" branch. The request represents what would occur if the "source" branch were merged into the "target" branch.</p>
+</div>
+<div class="paragraph">
+<p>To reach the Merge Requests module, click on the link in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
+</div>
+<div class="title">Figure 1. The Merge Requests module</div>
+</div>
+<div class="paragraph">
+<p>The initial view of the Merge Requests module displays a list of all currently open merge requests within the application sorted by created date descending along with a button to <a href="#_create_a_merge_request">create a merge request</a>. To view all accepted merge requests, change the selected filter next to the search bar. Each merge request in the list displays a preview of the request metadata and a button to delete the request. Clicking on a merge request in the list opens a display of the individual merge request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/individual_request.png" alt="individual request">
+</div>
+<div class="title">Figure 2. An Individual Merge Request</div>
+</div>
+<div class="paragraph">
+<p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, and a button to go back to the main list of merge requests.</p>
+</div>
+<div class="paragraph">
+<p>The discussion tab allows users to comment and discuss the changes within the request to facilitates more collaboration in a distributed environment. You can create new comments to start new threads of communication or you can reply to existing comments and further the discussion. Comments can only be removed by the creators of the comment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The comment editor supports GitHub flavored Markdown which you can find more information about <a href="https://guides.github.com/features/mastering-markdown/">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The Changes tab displays the full difference of the source branch from the target branch. They are grouped by individual entity and display the triples on the entity grouped by property.  When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity.</p>
+</div>
+<div class="paragraph">
+<p>The metadata of a request can be edited by hovering over the area and clicking the pencil button. In the resulting overlay, you can change the <span class="underline">Title</span>, <span class="underline">Description</span>, target branch, <span class="underline">Assignees</span>, and whether the source branch should be removed on acceptance.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
+</div>
+<div class="title">Figure 3. Editing Merge Request Metadata</div>
+</div>
+<div class="sect3">
+<h4 id="_create_a_merge_request">Create a Merge Request</h4>
+<div class="paragraph">
+<p>To create a merge request, click btn:[New Request] on the initial view of the Merge Requests module. Creating a merge request is a three part process. The first step is to select which record in Mobi that request should be attached to by searching within the displayed paginated list of records. Once you have selected a record, click btn:[Next].</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+If the record a request is attached to is deleted, that request is removed. If the source branch of a request is removed, that request will also be removed.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/step1.png" alt="step1">
+</div>
+<div class="title">Figure 4. Creating a Merge Request: Step 1 - Select a Record</div>
+</div>
+<div class="paragraph">
+<p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click btn:[Next].</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/step2.png" alt="step2">
+</div>
+<div class="title">Figure 5. Creating a Merge Request: Step 2 - Select Branches</div>
+</div>
+<div class="paragraph">
+<p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click btn:[Submit] and a new Merge Request with your selections will be created.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/step3.png" alt="step3">
+</div>
+<div class="title">Figure 6. Creating a Merge Request: Step 3 - Request Metadata</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_accepting_a_merge_request">Accepting a Merge Request</h4>
+<div class="paragraph">
+<p>A merge request can be accepted only if there are no conflicts between the source and target branch and the user accepting the request has permission to modify the target (see <a href="#Ontology Managing">[Ontology Managing]</a>). If there are conflicts between the source and target branches, a notification will be shown with the option to resolve the conflicts from within the Merge Requests module. Resolving conflicts behaves the same as in the <a href="#Merging Branches">Ontology Editor</a>, except that the resolution will become a commit on the source branch.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/conflicts.png" alt="conflicts">
+</div>
+<div class="title">Figure 7. Conflicts on a Merge Request</div>
+</div>
+<div class="paragraph">
+<p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

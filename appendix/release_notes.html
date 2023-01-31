@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Release Notes</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_release_notes">Appendix A: Release Notes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_2_1">Release Notes for Mobi 2.1</h3>
+<div class="paragraph">
+<p>Mobi 2.1 released on December 16, 2022. This release includes more intuitive changes displays, multiple improvements for "solutioneers" building on top of Mobi, and a variety of performance enhancements and bug fixes.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve updated all displays of changed triples to be consistently formatted and introduced a new toggle to display all unchanged triples as well, enabling more context when reviewing</p>
+</li>
+<li>
+<p>We&#8217;ve moved all default policies and policy templates to a specific location in the installation directory so administrators can customize the default permissions for their Mobi instance</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded RDF4J to 4.2.1</p>
+</li>
+<li>
+<p>Upgraded Karaf to 4.4.2</p>
+</li>
+<li>
+<p>Created a folder in the installation directory to hold all policy templates used for new records and the default system policies (See <a href="#Mobi Security Policies">[Mobi Security Policies]</a>)</p>
+</li>
+<li>
+<p>Added a new command to the Mobi Karaf shell that will revert all system policies to the defaults specified in the new directory (See <a href="#Mobi Security Policies">[Mobi Security Policies]</a>)</p>
+</li>
+<li>
+<p>Enabled ability to reach the Swagger Documentation without specifying <code>/index.html</code> at the end of the URL</p>
+</li>
+<li>
+<p>(ENTERPRISE) Added ability to provide a custom relay state on SAML redirects to support custom solutions in the platform to use the Mobi SSO connectivity</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated all triple changes displays to display triples grouped by property and delineated with <code>++</code> and <code>--</code> symbols</p>
+</li>
+<li>
+<p>Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated all triple changes displays to display triples grouped by property and delineated with <code>++</code> and <code>--</code> symbols</p>
+</li>
+<li>
+<p>Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples</p>
+</li>
+<li>
+<p>Added logic to clean up user state associated with a deleted record</p>
+</li>
+<li>
+<p>Added success toast on commit</p>
+</li>
+<li>
+<p>Improved performance of hierarchy renders on first load</p>
+</li>
+<li>
+<p>Fixed issue where updates to an IRI used in a complex restriction were not reflected</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_link_enterprise">Link (ENTERPRISE)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where results were not shown for a new analysis if the previous analysis results were empty</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated all triple changes displays to display triples grouped by property and delineated with <code>++</code> and <code>--</code> symbols</p>
+</li>
+<li>
+<p>Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_shapes_editor">Shapes Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated all triple changes displays to display triples grouped by property and delineated with <code>++</code> and <code>--</code> symbols</p>
+</li>
+<li>
+<p>Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples</p>
+</li>
+<li>
+<p>Added logic to clean up user state associated with a deleted record</p>
+</li>
+<li>
+<p>Added success toast on commit</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated all triple changes displays to display triples grouped by property and delineated with <code>++</code> and <code>--</code> symbols</p>
+</li>
+<li>
+<p>Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_datasets">Datasets</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced restrictions on uploads to datasets to protect system graphs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administration">Administration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed the Permissions page to dynamically pull the list of system policies allowing new policies introduced to automatically appear in the list</p>
+</li>
+<li>
+<p>Fixed issue where deleting a group referenced in a policy would not allow that policy to be edited</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hotfixes">Hotfixes</h4>
+<div class="sect4">
+<h5 id="_version_2_1_1">Version 2.1.1</h5>
+<div class="paragraph">
+<p>Hotfix 2.1.1 was released on December 19, 2022.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reverted the Karaf version to 4.4.1 due to a bug with the <code>bin/client</code> script</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_2_0">Release Notes for Mobi 2.0</h3>
+<div class="paragraph">
+<p>Mobi 2.0 released on September 15, 2022. This major release includes major infrastructure updates throughout the platform along with a variety of performance enhancements and bug fixes. Most impactful changes are a new requirement for Java 17 and the entire web application is now built with Angular 6 and more consistent of an experience.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For those upgrading from 1.x to 2.0, follow our <a href="https://inovexirad.atlassian.net/servicedesk/customer/kb/view/2588246017">Migration Guide</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_2">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve upgraded our Karaf, Angular, RDF4J, and OSGi dependencies to take advantage of the latest stability and functionality improvements</p>
+</li>
+<li>
+<p>We&#8217;ve updated the required Java version to 17</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Mobi will now no longer start the Java version is older than 17. Please ensure your Java version is correct and the <code>$JAVA_HOME</code> environment is set properly as described in <a href="#Administration Guide">[Administration Guide]</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+With the latest version of Karaf, the password properties in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code> that enable custom SSL certificates have changed. See <a href="#Configure Custom SSL Certificates">[Configure Custom SSL Certificates]</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_2">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_2">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded Karaf to 4.4.1</p>
+</li>
+<li>
+<p>Upgraded Angular to 6.1.10 and removed all usages and references to AngularJS</p>
+</li>
+<li>
+<p>Upgraded RDF4J to 4.1.0</p>
+</li>
+<li>
+<p>Upgraded OSGi to 8</p>
+</li>
+<li>
+<p>Updated the required Java version to 17</p>
+</li>
+<li>
+<p>Updated the required NodeJS version for building the source to 14+</p>
+</li>
+<li>
+<p>Updated the required Maven version for building the source to 3.6+</p>
+</li>
+<li>
+<p>Replaced <code>osgi-jax-rs-connector</code> with Apache Aries Whiteboard Extender for all REST services</p>
+</li>
+<li>
+<p>Removed all Mobi API wrappers around RDF4J and switched to using the library directly for drastic performance improvements</p>
+</li>
+<li>
+<p>Removed the OWL API based implementation of our Ontology API</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_2">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where blank nodes would be detached on upload changes if the IRI of the parent node changed</p>
+</li>
+<li>
+<p>Fixed issue where blank node IDs with hyphens would be affected when previewing the ontology data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Removed the outdated and underutilized Search tab</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hotfixes_2">Hotfixes</h4>
+<div class="sect4">
+<h5 id="_version_2_0_3">Version 2.0.3</h5>
+<div class="paragraph">
+<p>Hotfix 2.0.3 was released on November 16, 2022.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where clicking on a search result in the Ontology Editor Search tab did not bring up a display of the entity</p>
+</li>
+<li>
+<p>Fixed an issue where the Ontology Editor would bring users to the Visualization tab after uploading changes instead of the Changes tab</p>
+</li>
+<li>
+<p>Fixed an issue where the page index of the list of Changes in the Ontology Editor and Shapes Editor did not reset when the changes were removed</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_version_2_0_2">Version 2.0.2</h5>
+<div class="paragraph">
+<p>Hotfix 2.0.2 was released on November 2, 2022.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(ENTERPRISE) Fixed issue where certain screens with a lot of content were not scrolling properly</p>
+</li>
+<li>
+<p>Fixed issue where final blank nodes in RDF Lists were left dangling on delete and were not rendered properly in changes displays</p>
+</li>
+<li>
+<p>Fixed issue where the btn:[Load More] buttons in the Ontology Editor and Shapes Editor merge previews did not render more content</p>
+</li>
+<li>
+<p>Fixed issue where failed upload changes processes in the Ontology Editor did not display any error messages</p>
+</li>
+<li>
+<p>Fixed issue where Mobi would not build or run on ARM based Machines</p>
+</li>
+<li>
+<p>Fixed issue where ontologies with mid to large size class hierarchies took a long time to open</p>
+</li>
+<li>
+<p>Fixed issue where IRIs of entities being created in the Ontology Editor could not be edited before being saved</p>
+</li>
+<li>
+<p>Fixed issue where the Schemes and Concepts tabs did not render immediately after SKOS was added to the imports closure</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_version_2_0_1">Version 2.0.1</h5>
+<div class="paragraph">
+<p>Hotfix 2.0.1 was released on October 16, 2022.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where Merge Requests could not be accepted</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_22">Release Notes for Mobi 1.22</h3>
+<div class="paragraph">
+<p>Mobi 1.22 released on June 22, 2022. This release includes extensive application of Dataset policies throughout the platform, full policy management in the Catalog, enhanced access control on Shapes Graph Records, and a prepackaged default trust store for secure SSL communications. It also includes various bug fixes and improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_3">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve consolidated access control management of all records into the Catalog</p>
+</li>
+<li>
+<p>We&#8217;ve included a default trust store with the platform to simplify the process to enable secure SSL communication with external sources</p>
+</li>
+<li>
+<p>We&#8217;ve introduced a new policy for controlling who can create Shapes Graph Records</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+All system level policies will be reset to their defaults on a restore into this version and will need to be updated to the desired state again.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_3">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_3">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced a new bundled trust store that is used throughout the platform when establishing connections to outside sources, including importing ontologies from the web</p>
+</li>
+<li>
+<p>Adjusted the <code>setenv</code> file to make setting the max and min memory usage more straightforward</p>
+</li>
+<li>
+<p>Fixed issue where un-encrypted configuration properties would be encrypted on restore even if auto-encryption was not enabled</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_2">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced new UI for editing the policy of any Record in the platform to centralize and simplify the functionality</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_3">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Removed the UI for managing ontology access in favor of the new consolidated experience in the Catalog</p>
+</li>
+<li>
+<p>Updated the backend SPARQL endpoints for querying ontologies to more closely align with the SPARQL 1.1 W3C specification and behave similarly to the overall SPARQL endpoint used for querying datasets and repositories</p>
+</li>
+<li>
+<p>Fixed issue where merges could be submitted even when there were no commits different between the source and target branches</p>
+</li>
+<li>
+<p>Fixed issue where entities with empty label values would prevent the ontology from being opened</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_2">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where merges could be submitted even when there were no commits different between the source and target branches</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_shapes_editor_2">Shapes Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced a new policy for managing who can create a Shapes Graph Record</p>
+</li>
+<li>
+<p>Improved user experience when a user&#8217;s access is limited within the editor</p>
+</li>
+<li>
+<p>Adjusted the defaults set when creating new Shapes Graph Records such that managing, deleting, and modifying the master branch are limited to the creator of the Record while viewing and general modification are enabled for everyone</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_2">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Adjusted the class select when creating a class mapping to dynamically pull the list from the source ontology and improve rendering time</p>
+</li>
+<li>
+<p>Adjusted process to map data into a Dataset to take into account the Dataset&#8217;s policy</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover_2">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Adjusted the Explore tool to take into account the Dataset&#8217;s policy and display appropriate feedback to the user</p>
+</li>
+<li>
+<p>Improved user experience in the Query tool when the user is unauthorized to submit</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_21">Release Notes for Mobi 1.21</h3>
+<div class="paragraph">
+<p>Mobi 1.21 released on February 15, 2022. This release features the full release of the Ontology Visualization feature in the Ontology Editor, access control policies on datasets, a UI for defining the default IRI when creating new ontologies, and a brand new beta release of a Shapes Editor for Shapes Constraint Language (SHACL) files. It also includes various bug fixes and improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_4">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve added a new beta module for editing SHACL Graphs called the <a href="#shapes-editor-guide">Shapes Editor</a></p>
+</li>
+<li>
+<p>We&#8217;ve expanded the Ontology Visualization feature out of beta with a host of usability improvements</p>
+</li>
+<li>
+<p>We&#8217;ve added a section to customize application-wide settings to the Administration page</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_4">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_4">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded AngularJS version to 1.8.2</p>
+</li>
+<li>
+<p>Upgraded Lodash version to 4.17.21</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_3">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where a publisher was not set on the MASTER branch when a new record was created</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_4">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Ontology Visualization feature to enable customization of the graph by hiding and showing classes and ontologies in a collapsible side panel</p>
+</li>
+<li>
+<p>Updated merge workflow to prevent merges into the same branch as the source</p>
+</li>
+<li>
+<p>Added application setting to customize the default IRI for new ontologies</p>
+</li>
+<li>
+<p>Fixed issue where tabbing quickly after typing a character into the title field when creating a class would not update the IRI properly</p>
+</li>
+<li>
+<p>Fixed issue where circular subclass relationships were not properly represented in the class hierarchy</p>
+</li>
+<li>
+<p>Fixed issue where IRIs with an invalid extra "#" were accepted when editing an IRI</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_3">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated merge workflow to prevent merges into the same branch as the source</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_shapes_editor_3">Shapes Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced brand new beta module for editing SHACL shapes graphs with full versioning support. Behaves like the Ontology Editor with commits, branches, and tags to facilitate collaborative development. See <a href="#shapes-editor-guide">Shapes Editor (BETA)</a> for more details</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_3">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved formatting of JSON-LD preview</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_datasets_2">Datasets</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced default access policies for Dataset Records. Default access only allows the creator to delete and manage record metadata</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administration_2">Administration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added a new section for managing Application Settings (see <a href="#Application Settings">[Application Settings]</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_20">Release Notes for Mobi 1.20</h3>
+<div class="paragraph">
+<p>Mobi 1.20 released on October 11, 2021. This release features a beta for Ontology Visualization in the Ontology Editor, updated <code>dct:modified</code> dates on Records, Record filtering by keyword in the Catalog, UPDATE query CLI support, and an extension to the Settings framework to support application wide settings. It also includes updates to policy handling, such as the filtering Records based on the user&#8217;s ability to view the Record. Additionally, this release includes SPARQL query endpoint compliance, a REST interface for ETL, Basic Authentication on REST endpoints, Reflexive/Irreflexive property support, and various bug fixes and improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_5">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve added a new beta feature for Ontology Visualization in the Ontology Editor</p>
+</li>
+<li>
+<p>We&#8217;ve added Record filtering by keywords in the Catalog</p>
+</li>
+<li>
+<p>We&#8217;ve introduced filtering Records based on the user&#8217;s ability to view the Record</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<code>Query System Repo</code> policy will be reset to support updated SPARQL compliant endpoints.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_5">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_5">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Removed deprecated OWLAPI Ontology Implementation bundle</p>
+</li>
+<li>
+<p>Added support for UPDATE queries to the <code>mobi:query</code> CLI command. Has the ability to perform a dry run of the query displaying what will change</p>
+</li>
+<li>
+<p>Created an experimental REST interface for automatically translating source files into RDF with an extracted ontology. Currently supports XML, JSON, and CSV files</p>
+</li>
+<li>
+<p>Added Basic Authentication support to REST endpoints</p>
+</li>
+<li>
+<p>Introduced POST support to SPARQL Query endpoint in order to be more aligned with the SPARQL query endpoint specification</p>
+</li>
+<li>
+<p>Extended Settings framework to add support for application wide system settings</p>
+</li>
+<li>
+<p>The User Management module in the frontend code have been converted from AngularJS to Angular</p>
+</li>
+<li>
+<p>Added a REST endpoint to retrieve a Provenance Activity by resource ID</p>
+</li>
+<li>
+<p>Fixed issue with system policies being evicted from the policy cache and updated API for easier loading of policies</p>
+</li>
+<li>
+<p>Fixed issue where dangling graphs would persist across backup/restores</p>
+</li>
+<li>
+<p>Fixed system policy to restrict permissions to do everything from anyone with the admin role to only the admin user</p>
+</li>
+<li>
+<p>Fixed issue with Swagger docs not displaying list parameters correctly</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_4">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the ability to filter Records based on keywords on the Record</p>
+</li>
+<li>
+<p>Updated <code>dct:modified</code> date of Records based on committing to a branch, adding/removing branches, editing branch metadata, and editing Record metadata</p>
+</li>
+<li>
+<p>Fixed issue where the markdown editor help text would be cut off by side component</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_5">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced a beta feature for Ontology Visualization that will render up to 500 classes as nodes in a network graph, using the subclass relationships and object properties as edges. Uses the source Ontology and its imports</p>
+</li>
+<li>
+<p>Added the source Ontology IRI when viewing an imported entity</p>
+</li>
+<li>
+<p>Added <code>owl:ReflexiveProperty</code> and <code>owl:IrreflexiveProperty</code> support to properties</p>
+</li>
+<li>
+<p>Introduced a notification to the user when Ontology state is updated on reopen of an Ontology</p>
+</li>
+<li>
+<p>Added the ability to see the full ontology title on hover when importing an Ontology on the server</p>
+</li>
+<li>
+<p>Updated query REST requests to stream results back to the frontend</p>
+</li>
+<li>
+<p>Fixed issue where failed imports did not truncate</p>
+</li>
+<li>
+<p>Fixed issue in the Search Tab where the warning message did not display for searches with more than 500 results</p>
+</li>
+<li>
+<p>Fixed issue when viewing an Entity&#8217;s history in a large Ontology would cause server slowdowns</p>
+</li>
+<li>
+<p>Fixed issue where a long imported Ontology IRI would extend past the confirm modal on deletion</p>
+</li>
+<li>
+<p>Fixed issue where a long imported Ontology IRI would extend past modal on addition</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_4">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where Classes from uncommitted changes on MASTER of source Ontologies appeared in Class selector</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover_3">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the display of syntax error messages in the Query tab when submitting invalid SPARQL queries to be more human-readable</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_my_account">My Account</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where updated names wouldn&#8217;t immediately reflect the change in the side panel</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administration_3">Administration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added handling for cleaning up User State when deleting a User</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_19">Release Notes for Mobi 1.19</h3>
+<div class="paragraph">
+<p>Mobi 1.19 released on May 7, 2021. This release includes improved performance for various actions within the Ontology editor, support for uploading compressed ontology files, and new features for an improved editing and viewing experience. It also features a new <a href="https://www.w3.org/TR/shacl/">SHACL</a> based framework for setting user preferences in the UI, fully interactive Swagger documentation for our extensive REST APIs, and numerous bug fixes and improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_6">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve added new Swagger-based REST API documentation where API calls can be tested live</p>
+</li>
+<li>
+<p>We&#8217;ve introduced a new framework for configuring and generating web forms for user preferences powered by <a href="https://www.w3.org/TR/shacl/">SHACL</a></p>
+</li>
+<li>
+<p>We&#8217;ve introduced performance improvements to the Ontology Editor to better support uploading large ontologies and viewing the change history of ontology entities</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_6">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_6">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Encryption of sensitive information stored within service configuration files is now enabled by default</p>
+</li>
+<li>
+<p>Changes to the master password used for service configuration encryption can be changed without having to restart the server</p>
+</li>
+<li>
+<p>Swagger REST API documentation is available on every running server (see documentation <a href="#Accessing Swagger REST API Documentation">here</a>)</p>
+</li>
+<li>
+<p>Enabled an experimental command-line feature for automatically translating source files into RDF with an extracted ontology. Currently supports XML, JSON, and CSV files</p>
+</li>
+<li>
+<p>Added full Java and REST API framework for storing, updating, and retrieving preferences based on <a href="https://www.w3.org/TR/shacl/">SHACL shape</a> definitions (see documentation <a href="#Preferences Framework">here</a>)</p>
+</li>
+<li>
+<p>Downgraded the jsonld-java library to fix issue where subjects could not be defined as a type of themselves</p>
+</li>
+<li>
+<p>Fixed issue where tags in an ontology were not included when exporting the record via the <code>mobi:export-record</code> command</p>
+</li>
+<li>
+<p>Fixed issue where icons did not load when not connected to the internet</p>
+</li>
+<li>
+<p>Fixed issue where logs viewed via the Karaf console did not display the Java Class names</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_5">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added ability to copy the full IRI of a commit when clicking on the hash in the commit info overlay</p>
+</li>
+<li>
+<p>Fixed issue where a new record "Overview" value would not immediately display after saving</p>
+</li>
+<li>
+<p>Fixed issue where In Progress Commits were not deleted from the repository when a Record was deleted</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_6">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed calculation of differences on upload changes to deterministically skolemize blank nodes to provide a more accurate difference</p>
+</li>
+<li>
+<p>Improved the performance of the See History view for individual entities in an ontology</p>
+</li>
+<li>
+<p>Improved the performance of caching an retrieving ontology data</p>
+</li>
+<li>
+<p>All ontology file uploads are automatically compressed before sending to the server for improved network performance</p>
+</li>
+<li>
+<p>Changed wording of info messages to be more helpful</p>
+</li>
+<li>
+<p>Combined the endpoints for uploading ontology JSON-LD and an ontology file such that the data and record metadata are both provided as form data parameters</p>
+</li>
+<li>
+<p>Added new filter to hierarchies to remove deprecated entities (i.e. items annotated with <code>owl:deprecated</code>)</p>
+</li>
+<li>
+<p>Added ability to upload zipped (<code>.zip</code>) and gzipped (<code>.gzip</code>) ontology files</p>
+</li>
+<li>
+<p>Added ability to copy the full IRI of a commit when clicking on the hash in the commit info overlay</p>
+</li>
+<li>
+<p>Added support for rendering SKOS-XL literal form as entity names in hierarchies and relationship labels</p>
+</li>
+<li>
+<p>Added support for <code>owl:TransitiveProperty</code> and <code>owl:SymmetricProperty</code> in Property Characteristics block</p>
+</li>
+<li>
+<p>Added ability to change the type of individuals in an ontology even if they do not contain the <code>owl:NamedIndividual</code> type</p>
+</li>
+<li>
+<p>Added support for creating qualified restrictions on a class where the class is another restriction. An example in Manchester Syntax looks like this: <code>isConnectedTo exactly 1 (Fin or Fuselage or Wing)</code></p>
+</li>
+<li>
+<p>Added display of syntax errors to the upload changes overlay</p>
+</li>
+<li>
+<p>Added prevention of trig upload which would cause unexpected behavior</p>
+</li>
+<li>
+<p>Fixed issue where the class hierarchy did not fully reset after a branch was created</p>
+</li>
+<li>
+<p>Fixed issue where uploading the same ontology as changes still created an In Progress Commit</p>
+</li>
+<li>
+<p>Fixed issue where uploading an ontology file with a non resolvable import threw an error</p>
+</li>
+<li>
+<p>Fixed issue where See History did not update when switching branches</p>
+</li>
+<li>
+<p>Fixed issue where a "IRI already exists" error would display for a split second when creating a new entity</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_4">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where long ontology names caused the second step of creating a Merge Request to horizontally scroll</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_5">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added ability to copy the full IRI of a commit when clicking on the hash in the commit info overlay</p>
+</li>
+<li>
+<p>Fixed issue where full mapping definition was not returned when downloading a mapping</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover_4">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where blank nodes defined as known classes caused errors in the Explore tool when viewing the class list and list of instances</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_my_account_2">My Account</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New Preferences tab that will populate with User Preference <a href="https://www.w3.org/TR/shacl/">SHACL</a> definitions from the repository (see documentation <a href="#Preferences">here</a>)</p>
+</li>
+<li>
+<p>Confirm password input in Password tab was converted to a single field with the ability to unmask the value for verification</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administration_4">Administration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Confirm password input in Reset Password overlay and Create User overlay was converted to a single field with the ability to unmask the value for verification</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_18">Release Notes for Mobi 1.18</h3>
+<div class="paragraph">
+<p>Mobi 1.18 released on November 3, 2020. This release includes improved performance when viewing the differences of a specific commit or between two commits. It also has a brand new SPARQL query editor that supports CONSTRUCT queries as well, expressive syntax error displays on ontology uploads, support for encrypting passwords stored in service configuration files, and updates to several underlying libraries between the backend and frontend.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_7">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve introduced performance improvements to the Ontology Editor, Merge Requests, and Catalog to support viewing extremely large collections of differences while also displaying the calculated name for each entity instead of the local name of the IRIs</p>
+</li>
+<li>
+<p>We&#8217;ve introduced a new SPARQL query editor in the Discover module with a better query editing experience, resizable editor and results areas, and support for CONSTRUCT SPARQL queries</p>
+</li>
+<li>
+<p>We&#8217;ve added the ability to view syntax errors when an ontology upload fails</p>
+</li>
+<li>
+<p>We&#8217;ve added configurable encryption of sensitive information stored within service configuration files</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_7">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_7">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated RDF4J version to 2.5.5</p>
+</li>
+<li>
+<p>New support for configuring a master encryption password used to protect plaintext property values stored within service configuration files</p>
+</li>
+<li>
+<p>The Login and Home modules in the frontend code have been converted from AngularJS to Angular</p>
+</li>
+<li>
+<p>Improved memory usage when iterating through large sets of RDF statements in the backend</p>
+</li>
+<li>
+<p>Fixed issue where users would see a "Problem Getting States" error when logging in</p>
+</li>
+<li>
+<p>Added security policy for Dataset creation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_6">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed the display of commit differences to load incrementally and display the calculated names of each entity instead of the local name of the IRI</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_7">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added support for <code>owl:versionInfo</code> and <code>owl:versionIRI</code></p>
+</li>
+<li>
+<p>Added more intelligent identification of the RDF format of a file when uploading ontologies</p>
+</li>
+<li>
+<p>Added display of syntax errors to the ontology upload snackbar</p>
+</li>
+<li>
+<p>Changed the display of commit differences to load incrementally and display the calculated names of each entity instead of the local name of the IRI</p>
+</li>
+<li>
+<p>Improved performance of the Concepts hierarchy by reworking a filter used within the Annotation, Data Property, and Object Property sections</p>
+</li>
+<li>
+<p>Improved performance of the query to fetch entity names within the ontology leading to faster open times</p>
+</li>
+<li>
+<p>Fixed issue where the endpoint for fetching the list of branches had no default sort value</p>
+</li>
+<li>
+<p>Fixed issue where search text was not properly highlighting matches within the list of ontologies</p>
+</li>
+<li>
+<p>Fixed issue where modals for creating entities within an ontology accepted invalid characters at the beginning of the IRI</p>
+</li>
+<li>
+<p>Fixed issue where modals for editing an IRI accepted invalid characters</p>
+</li>
+<li>
+<p>Fixed issue where editing an <code>owl:subPropertyOf</code> axiom would cause Concept tab to lose identification of imported concepts</p>
+</li>
+<li>
+<p>Fixed issue where the text of the selected data or object property in the "Add Datatype Property Value" modal would extend past the edge of the modal</p>
+</li>
+<li>
+<p>Fixed issue where changing the language of a skos:prefLabel value on a Concept Scheme or Concept would cause an "Invalid JSON-LD" error</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_5">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed the display of commit differences to load incrementally and display the calculated names of each entity instead of the local name of the IRI</p>
+</li>
+<li>
+<p>Fixed issue where ontology IRIs would extend past their cards in the first step of creating a merge request on Firefox</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_6">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed the display of commit differences to load incrementally</p>
+</li>
+<li>
+<p>Fixed issue where the selected property would not load when editing an existing property mapping</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover_5">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced new policy to control who can create Datasets within the system (available in the User Management module)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_discover_6">Discover</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactored Query submodule to re-skin <a href="http://yasgui.org/">YASGUI</a> for Mobi</p>
+</li>
+<li>
+<p>Introduced CONSTRUCT query support to both frontend Query editor and backend endpoints</p>
+</li>
+<li>
+<p>Changed JSON response for SELECT SPARQL queries to conform to the <a href="https://www.w3.org/TR/sparql11-results-json/">W3C specification</a></p>
+</li>
+<li>
+<p>Introduced utility Java class to support converting SELECT SPARQL query results to JSON, CSV, and TSV</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_17">Release Notes for Mobi 1.17</h3>
+<div class="paragraph">
+<p>Mobi 1.17 released on August 5, 2020. This release includes major performance improvements, allowing the ontology editor to support much larger ontologies than it could before. It also has a new "Active Entity" filter in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view, configurable token duration for account logins, a limit on the amount of data shown in the Preview Block of the Ontology Editor, and now defaults to using the Repository Implementation for the Ontology API.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_8">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve introduced performance improvements to the Ontology Editor to support extremely large ontologies with hundreds of thousands of entities as well increasing application response speed for various actions.</p>
+</li>
+<li>
+<p>We&#8217;ve introduced a new filter for the hierarchy in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view</p>
+</li>
+<li>
+<p>We&#8217;ve added configurable token duration for account logins</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_8">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_8">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added scaffolding that includes new packages and files to help facilitate the switch from angularJS to angular</p>
+</li>
+<li>
+<p>Application now defaults to using the Repository Implementation for the Ontology API</p>
+</li>
+<li>
+<p>New support for configurable token duration for account logins</p>
+</li>
+<li>
+<p>Added a line in the config specifying the default port for Mobi.</p>
+</li>
+<li>
+<p>Fixed issue where the username of the logged in user was replaced with "&#8230;&#8203;" if it was to long to fit in the navbar instead of truncating.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_8">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New "Active Entity" filter in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view</p>
+</li>
+<li>
+<p>Refactored the Ontology Editor to store only required data for rendering in the web application rather than the entire Ontology RDF</p>
+</li>
+<li>
+<p>New backend endpoint to retrieve full RDF for a specified entity along with it&#8217;s transitively attached blank nodes</p>
+</li>
+<li>
+<p>Modified the behavior on click of an entity in the hierarchy so that it retrieves the entity RDF from the new GET entity endpoint.</p>
+</li>
+<li>
+<p>Modified the GET ontology-stuff endpoint to include a map of entity IRIs in the imports closure to the values of properties used in calculating the display name</p>
+</li>
+<li>
+<p>Removed the GET ontology calls from the frontend to improve performance, especially when opening large ontologies</p>
+</li>
+<li>
+<p>Modified the GET commit endpoint to only retrieve commit metadata instead of full list of differences</p>
+</li>
+<li>
+<p>Modified the GET differences endpoint to make the target commit ID optional</p>
+</li>
+<li>
+<p>Improved performance of opening an Ontology</p>
+</li>
+<li>
+<p>Improved performance of switching branches</p>
+</li>
+<li>
+<p>Improved performance of retrieving ontology data after a new commit</p>
+</li>
+<li>
+<p>Improved performance of uploading an Ontology</p>
+</li>
+<li>
+<p>Improved the Ontology Editor module to support extremely large ontologies with hundreds of thousands of entities</p>
+</li>
+<li>
+<p>Added a limit to the amount of data displayed in the Preview block to improve performance of large ontologies</p>
+</li>
+<li>
+<p>Fixed issue where the ontology upload modal would stop appearing if the user accidentally clicked off of the ontology upload modal</p>
+</li>
+<li>
+<p>Fixed issue where imported ontologies without an Ontology IRI defined showed up blank in the Imports block of the Project tab</p>
+</li>
+<li>
+<p>Fixed issue where a long title for an ontology would expand the row on the Ontology List page too far horizontally and push the page content to the right along with it</p>
+</li>
+<li>
+<p>Fixed issue where a modal would close if you clicked on something in the modal, held the click, and released outside of the modal</p>
+</li>
+<li>
+<p>Fixed issue where application would run out of memory when merging large ontologies with merge conflicts</p>
+</li>
+<li>
+<p>Fixed issue where incorrect blank nodes were generated from certain Manchester Syntax strings</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_7">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where the graph in the Catalog Commit table overlapped with the Creator column</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_16">Release Notes for Mobi 1.16</h3>
+<div class="paragraph">
+<p>Mobi 1.16 released on October 7, 2019. This release includes a Webpack and Typescript frontend, a new implementation of the backend Ontology API, better SKOS and SKOS-XL vocabulary support, and various other performance improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_9">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve introduced a completely new implementation of the backend Ontology API that utilizes a triplestore for caching and querying information.</p>
+</li>
+<li>
+<p>We&#8217;ve changed the build process and language of the frontend code from Gulp and JavaScript to Webpack and TypeScript.</p>
+</li>
+<li>
+<p>We are continuing to create a more consistent look-and-feel across the application. To that end, we&#8217;ve included several UI updates to various tools.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_9">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_9">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Switched certain backend services to OSGi DS annotations instead of deprecated BND annotations</p>
+</li>
+<li>
+<p>Switched backup/restore methods to copy and replace all configuration files except for server specific files</p>
+</li>
+<li>
+<p>Switched backend library for generated JSON from net.sf to Jackson for improved performance</p>
+</li>
+<li>
+<p>New support for milliseconds for all stored xsd:dateTime values</p>
+</li>
+<li>
+<p>New backend support for users external to Mobi</p>
+</li>
+<li>
+<p>New support for committing mapped data to an ontology using the <code>mobi:transform</code> command</p>
+</li>
+<li>
+<p>Refactored how tokens are generated and verified in the backend</p>
+</li>
+<li>
+<p>New policy for controlling who can run a SPARQL query against the system repository</p>
+</li>
+<li>
+<p>Fixed issue with thread allocation in OWL API Ontology API implementation.</p>
+</li>
+<li>
+<p>Fixed issue where passwords with special characters could not be saved.</p>
+</li>
+<li>
+<p>Fixed issue where usernames were case sensitive.</p>
+</li>
+<li>
+<p>Fixed issue where restoring an older version of Mobi overwrote the version of the deployed bundles on a clean start</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_9">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New implementation of the backend Ontology API that allows for the uploading and opening of .OBO ontologies</p>
+</li>
+<li>
+<p>New implementation of the backend Ontology API that uses a repository for caching and querying</p>
+</li>
+<li>
+<p>New backend endpoint for retrieving the list of ontology IRIs in the imports closure</p>
+</li>
+<li>
+<p>Improved performance of opening and switching branches of large ontologies</p>
+</li>
+<li>
+<p>Improved performance of displaying a commit&#8217;s changes for large ontologies</p>
+</li>
+<li>
+<p>Improved performance of calculating conflicts between commits with a large number of changes</p>
+</li>
+<li>
+<p>Improved performance of the Changes when displaying a large number of changes</p>
+</li>
+<li>
+<p>Improved performance of uploading a large number of changes to an ontology</p>
+</li>
+<li>
+<p>Default the commit dropdown in the See History view to the latest commit</p>
+</li>
+<li>
+<p>New support for creating a branch when viewing a specific commit</p>
+</li>
+<li>
+<p>New support for displaying values of the SKOS-XL literalForm property as the display name for SKOS-XL Labels</p>
+</li>
+<li>
+<p>Reworked Concepts and Schemes tab to show all data and object properties</p>
+</li>
+<li>
+<p>Fixed issue where searches of large ontologies crashed the browser</p>
+</li>
+<li>
+<p>Fixed issue where imported concepts were not displayed underneath their parent concept schemes in the Schemes tab</p>
+</li>
+<li>
+<p>Fixed issue where a changed entity in a hierarchy would not update when a commit was made</p>
+</li>
+<li>
+<p>Fixed broken "go to" functionality in the Object Property section of the Individuals tab</p>
+</li>
+<li>
+<p>Fixed bug where JavaScript console errors appeared when closing an ontology with the new entity snackbar visible</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_8">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where updating record metadata would remove all other entities within the Record&#8217;s named graph (such as linked ontologies for Dataset Records)</p>
+</li>
+<li>
+<p>Fixed issue where commits would not display for a branch of a VersionedRDFRecord when switching which branch was open</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_6">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New backend support for editing comments on a merge request</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_datasets_3">Datasets</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New backend support for querying specific named graphs within a dataset using a Dataset Repository Connection</p>
+</li>
+<li>
+<p>Fixed issue where a SPARQL query in the form of <code>CONSTRUCT WHERE {&#8230;&#8203;}</code> against a Dataset would not be rewritten properly</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administration_5">Administration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where the list of groups would not update after one was created</p>
+</li>
+<li>
+<p>Fixed issue where the table of members of a group would not update after removing a member</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_15">Release Notes for Mobi 1.15</h3>
+<div class="paragraph">
+<p>Mobi 1.15 released on March 28, 2019. This release includes a redesigned Catalog, new ontology editor usability features, and several performance and API improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_10">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve completely reworked the Catalog to improve search and usability. We&#8217;ve added functionality for editing record metadata, including support for Markdown descriptions.</p>
+</li>
+<li>
+<p>We&#8217;ve implemented several new features in the ontology editor to improve user experience. Users can now filter hierarchies based on search terms and view the change history of individual entities. We&#8217;ve implemented "scroll-to" functionality for quickly navigating to deeply nested terms, and provide a more complete list of language tags when annotating strings.</p>
+</li>
+<li>
+<p>We&#8217;ve improved processing of large ontologies including better memory management and processing of complex hierarchies.</p>
+</li>
+<li>
+<p>We are continuing to create a more consistent look-and-feel across the application. To that end, we&#8217;ve included several UI updates to various tools.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_10">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_10">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded underlying RDF4J version to 2.4.3.</p>
+</li>
+<li>
+<p>Upgraded underlying AngularJS version to 1.7.7.</p>
+</li>
+<li>
+<p>Added support for SPARQL and HTTP backing repositories</p>
+</li>
+<li>
+<p>Added documentation on how to use IRIs with URL encoded symbols in Mobi CLI.</p>
+</li>
+<li>
+<p>Restructured web files to reduce nested directories and have a consistent naming scheme.</p>
+</li>
+<li>
+<p>Made improvements to frontend routing so redirects to the login page are more intuitive.</p>
+</li>
+<li>
+<p>Refactored the return structure of the users and groups REST endpoints to improve performance and correctly encode strings.</p>
+</li>
+<li>
+<p>Fixed issues with text overflow in several views.</p>
+</li>
+<li>
+<p>Fixed an issue where backups made with the Mobi CLI on Windows machines would not restore correctly on Unix or Linux machines.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_10">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New support for filtering hierarchies based on search text. Matches any annotations used for calculating the display name along with the local name.</p>
+</li>
+<li>
+<p>New support for viewing entity change history. Displays the list of commits where an entity was changed and what the entity looked like at each change.</p>
+</li>
+<li>
+<p>New support for opening a newly created entity via a snackbar and auto scrolling to its location in the list.</p>
+</li>
+<li>
+<p>New support for auto scrolling to an entity in the list when clicking "Go To" from the search tab.</p>
+</li>
+<li>
+<p>New support for a much larger list of language tags when creating annotations.</p>
+</li>
+<li>
+<p>In the Ontology API, refactored retrieval of hierarchical relationships to use the Ontology object rather than an in-memory repository.</p>
+</li>
+<li>
+<p>Refactored Ontology API to remove unused classes.</p>
+</li>
+<li>
+<p>Changed the processing of hierarchical relationships in the Ontology REST and frontend for faster processing.</p>
+</li>
+<li>
+<p>Fixed an issue where the list of entities in the search tab where not sorted.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_9">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New support for opening a record in its respective module from the catalog.</p>
+</li>
+<li>
+<p>New support for adding a Markdown description to records you have the permission to manage.</p>
+</li>
+<li>
+<p>New support for editing the title, description, and keywords of records you have the permission to manage.</p>
+</li>
+<li>
+<p>Developed new look and feel for the Catalog UI.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_7">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated UI components to be consistent with the rest of the application.</p>
+</li>
+<li>
+<p>Fixed an issue where Merge Requests were not properly deleted if they had reply comments.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dataset_manager">Dataset Manager</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed issue where invalid dataset IRIs spaces were accepted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_14">Release Notes for Mobi 1.14</h3>
+<div class="paragraph">
+<p>Mobi 1.14 released on January 18, 2019. This release includes several new features for ontology versioning, tools for creating better review and ingest workflows with merge requests and the mapping tool, and major performance improvements.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_11">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve developed new features for viewing older versions of an ontology in the ontology editor. You can now select commits from the Commits tab to open those versions in read-only mode. You can also tag any commit to create a human readable and persistent pointer to a particular commit to track multiple ontology versions.</p>
+</li>
+<li>
+<p>We&#8217;ve implemented several performance improvements across the application to improve user experience when uploading, opening, and editing large ontologies.</p>
+</li>
+<li>
+<p>We&#8217;ve added several new features to the Merge Request tool, including discussions, to help improve user experience for review workflows.</p>
+</li>
+<li>
+<p>In our previous release, we added capabilities for mapping data into ontologies. In this release we&#8217;ve improved this capability by adding features for de-duplicating committed data and for calculating differences between mapping results and existing data. These features should enable workflows for versioning externally managed ontologies and vocabularies.</p>
+</li>
+<li>
+<p>In order to ease the burden of upgrading Mobi to a new version, we&#8217;ve included Mobi command line tools for creating full system backups and restores. For instructions on upgrading from version 1.13 check out this <a href="https://inovexirad.atlassian.net/servicedesk/customer/kb/view/725581873">KB Article</a>.</p>
+</li>
+<li>
+<p>We are continuing to create a more consistent look-and-feel across the application. To that end, we&#8217;ve included several UI updates to various tools.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_11">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_11">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded underlying RDF4J version to 2.4.1.</p>
+</li>
+<li>
+<p>Modified the default repository indexing strategy to include named graph indexing by default. This should increase performance considerably on larger repository sizes.</p>
+</li>
+<li>
+<p>Added support for automatically compressing all web service responses.</p>
+</li>
+<li>
+<p>Added support for full system backup and restore through the Mobi CLI.</p>
+</li>
+<li>
+<p>Added support to the ORM framework for removing values of a functional property for an ORM Object.</p>
+</li>
+<li>
+<p>Refreshed User Management modal UI design to be more consistent with the rest of the application.</p>
+</li>
+<li>
+<p>Fixed an issue causing performance degradation when committing large sets of data to Versioned RDF Records.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_11">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New support for creating tags within an ontology. Tags are persistent identifiers for specific commits.</p>
+</li>
+<li>
+<p>New support for opening specific commits and tags. These commits and tags are opened in read-only mode.</p>
+</li>
+<li>
+<p>Added support for querying ontology data via web services and optionally including imported ontologies.</p>
+</li>
+<li>
+<p>Added support for editing the types of owl:NamedIndividuals.</p>
+</li>
+<li>
+<p>Added support for admins to bypass access control for ontology records.</p>
+</li>
+<li>
+<p>Refreshed the UI display for the Search and Changes tabs to be more consistent with the rest of the application.</p>
+</li>
+<li>
+<p>Added support for automatically updating the ontology list when a set of uploads completes.</p>
+</li>
+<li>
+<p>Reworked the ontology import selector to enable search and a better ontology selection experience.</p>
+</li>
+<li>
+<p>Fixed an issue where the ontology list was not properly loaded when filter queries were abnormally slow.</p>
+</li>
+<li>
+<p>Fixed an issue where ontology record was corrupted if the client connection was lost during upload.</p>
+</li>
+<li>
+<p>Fixed an issue preventing opening of an ontology that imports another ontology that has an identical ontology and version IRI.</p>
+</li>
+<li>
+<p>Fixed performance issues when rendering large entity hierarchies.</p>
+</li>
+<li>
+<p>Fixed an issue causing display of double scrollbars in some ontology editor panels.</p>
+</li>
+<li>
+<p>Fixed an issue where circular subclass relationships prevent ontology opening.</p>
+</li>
+<li>
+<p>Fixed an issue improperly displaying a success toast after closing access control management with no changes.</p>
+</li>
+<li>
+<p>Fixed an issue that improperly opened a modal when ontology upload is cancelled.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_8">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>New support added for creating and deleting comments and replies in merge requests to facilitate discussions.</p>
+</li>
+<li>
+<p>Added support for editing open merge requests.</p>
+</li>
+<li>
+<p>Added support for removing the source branch upon merge.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_7">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added support for committing mapped ontology entities to a specific branch rather than only the master branch.</p>
+</li>
+<li>
+<p>Added support for removing data from the mapping results that already exists on the target branch during ontology mapping.</p>
+</li>
+<li>
+<p>Added support for calculating differences between mapping results and data on the target branch during ontology mapping.</p>
+</li>
+<li>
+<p>Refreshed modal UI design to be more consistent with the rest of the application.</p>
+</li>
+<li>
+<p>Reworked the ontology selector to enable search and a better ontology selection experience.</p>
+</li>
+<li>
+<p>Fixed an issue with improperly processing empty rows in a CSV file in certain situations.</p>
+</li>
+<li>
+<p>Fixed an issue causing filename to improperly display when changing file selection in the Mapping Tool.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_catalog_10">Catalog</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added better support for rendering branches in a Versioned RDF Record view.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dataset_manager_2">Dataset Manager</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Reworked the ontology selector to enable search and a better ontology selection experience.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_13">Release Notes for Mobi 1.13</h3>
+<div class="paragraph">
+<p>Mobi 1.13 released on October 10, 2018. This release includes a completely refreshed user experience, ontology access control, new tools for creating ontologies and vocabularies, and enhanced features for ontology review workflows.</p>
+</div>
+<div class="sect3">
+<h4 id="_whats_new_12">What&#8217;s New</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve developed an entirely new look-and-feel for the Mobi application. This update includes a brand new Home Page and a redesigned Ontology Editor.</p>
+</li>
+<li>
+<p>We released the beginnings of our policy-based access control in 1.12 and have expanded that to all ontology records. You can now control which users and groups can create, read, modify, and delete ontologies.</p>
+</li>
+<li>
+<p>For those of you maintaining vocabularies in Excel files, you can now use the mapping tool to load those files into Mobi ontologies. Simply create a mapping based on SKOS or OWL and use the "Commit to Ontology" option.</p>
+</li>
+<li>
+<p>Merge requests are a great way to create ontology review workflows and we&#8217;ve added new features for assigning, editing, and accepting them.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_detailed_notes_12">Detailed Notes</h4>
+<div class="sect4">
+<h5 id="_general_improvements_and_fixes_12">General Improvements and Fixes</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Redesigned look and feel for the Mobi web application including new Home Page and Ontology Editor designs</p>
+</li>
+<li>
+<p>Refactored conflict checking to provide better support for a variety of merge scenarios</p>
+</li>
+<li>
+<p>Upgraded underlying Apache Karaf version to 4.2.0</p>
+</li>
+<li>
+<p>Developed a new extensible framework for managing catalog records including record type specific implementations for export, delete, and create</p>
+</li>
+<li>
+<p>Refactored file naming and storage strategy for Mobi Binary Store</p>
+</li>
+<li>
+<p>Refactored policy services to use the Mobi Binary Store for policy storage and retrieval</p>
+</li>
+<li>
+<p>Added support for managing access control for ontology records. Support includes user and group control for view, delete, record modification, and master branch modification.</p>
+</li>
+<li>
+<p>Added support for configuring default location for the Mobi Binary Store</p>
+</li>
+<li>
+<p>Added web service support for comparing differences between two commits on a Versioned RDF Record</p>
+</li>
+<li>
+<p>Added service support for sending email notifications</p>
+</li>
+<li>
+<p>Fixed an issue where passwords do not match error was not being properly cleared</p>
+</li>
+<li>
+<p>Fixed an issue where merging duplicate changes from two branches sometimes resulted in statements remaining that should have been deleted</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ontology_editor_12">Ontology Editor</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Properly implemented backend paging for the ontology list</p>
+</li>
+<li>
+<p>Redesigned entity creation in the ontology editor. Creation now happens through the editor button stack instead of within each individual tab.</p>
+</li>
+<li>
+<p>Prioritize rendering of english labels in hierarchy views</p>
+</li>
+<li>
+<p>Added support for horizontal scrolling in hierarchy views</p>
+</li>
+<li>
+<p>Added support for drag-and-drop upload of ontologies</p>
+</li>
+<li>
+<p>Added web service support for querying ontology versions with SPARQL</p>
+</li>
+<li>
+<p>Fixed an issue where adding and removing an import did not properly clean up the user&#8217;s in-progress commit</p>
+</li>
+<li>
+<p>Fixed an issue with an incorrect error message when uploading an empty ontology</p>
+</li>
+<li>
+<p>Fixed an issue with commit table rendering of long user names</p>
+</li>
+<li>
+<p>Fixed an issue where uploading ontologies with missing entities on restrictions resulted in Error Entities being displayed</p>
+</li>
+<li>
+<p>Fixed an issue where anonymous ontologies did not properly show the commit history</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_merge_requests_9">Merge Requests</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added support for assigning merge requests to users</p>
+</li>
+<li>
+<p>Added support for accepting merge requests</p>
+</li>
+<li>
+<p>Added support for resolving merge conflicts within a merge request. Request still available for review after conflict resolution.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mapping_tool_8">Mapping Tool</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Added support for mapping the same property to multiple columns of a tabular file</p>
+</li>
+<li>
+<p>Added support for Annotation Properties in property mappings</p>
+</li>
+<li>
+<p>Added support for selecting datatypes in property mappings</p>
+</li>
+<li>
+<p>Added support for selecting languages in property mappings</p>
+</li>
+<li>
+<p>Added support for committing mapping results to an ontology record</p>
+</li>
+<li>
+<p>Fixed an issue when mapping ontology properties for blank cells</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_12">Release Notes for Mobi 1.12</h3>
+<div class="paragraph">
+<p>Mobi 1.12 released on May 18, 2018. This release includes new features for collaborating and reviewing changes to ontologies as well as a new policy-based security architecture.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_13">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Released new, extensible service layer for managing hierarchical record types within the Mobi Catalog.</p>
+</li>
+<li>
+<p>Updated underlying RDF4J version to 2.2.4</p>
+</li>
+<li>
+<p>Updated underlying OWLAPI version to 5.1.4</p>
+</li>
+<li>
+<p>Fixed an issue in being unable to delete a record that had no associated provenance data.</p>
+</li>
+<li>
+<p>Fixed an issue affecting evaluation order of commits within branching commit chains for Versioned RDF Records.</p>
+</li>
+<li>
+<p>Fixed an issue preventing Windows machines from running the Mobi CLI client.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_security">Security</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Released new support for policy-based access control. New APIs and backend services support managing and evaluating security policies for controlling actions at all layers of the platform.</p>
+</li>
+<li>
+<p>Support added for controlling which users and groups can create ontologies.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_merge_requests_10">Merge Requests</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Released new module for managing merge requests. Merge requests are long lived components that enable reviewing changes between branches of a record before performing a merge.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_13">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Reworked behavior of ontology editor when making changes while behind the head of a branch. New notifications and seamless merging has been implemented to make this process more intuitive.</p>
+</li>
+<li>
+<p>Support added for viewing relevant commit list when merging two branches.</p>
+</li>
+<li>
+<p>Support added for saving state of in-progress merge actions when switching tabs.</p>
+</li>
+<li>
+<p>Fixed an issue where StackOverflowErrors were thrown when processing sufficiently deep class hierarchies.</p>
+</li>
+<li>
+<p>Fixed an issue where the ontology creation page did not retain state when switching between modules.</p>
+</li>
+<li>
+<p>Fixed an issue where exceptions during ontology upload still created a record.</p>
+</li>
+<li>
+<p>Fixed an issue where the owl:deprecated property was not properly being recognized as a boolean value.</p>
+</li>
+<li>
+<p>Fixed an issue where downloading an ontology while a mapping was being edited resulted in a page transition confirmation dialog.</p>
+</li>
+<li>
+<p>Fixed an issue with languages and datatypes not being properly displayed in ontology search results.</p>
+</li>
+<li>
+<p>Fixed an issue where failed ontology uploads were not being properly displayed in the ontology upload screen.</p>
+</li>
+<li>
+<p>Fixed an issue where ontology search results did not include matches for all literal types.</p>
+</li>
+<li>
+<p>Fixed an issue where the ontology commit table was showing the commit history for the entire branch even if the user was behind the head of that branch.</p>
+</li>
+<li>
+<p>Fixed an issue with improper overflow of text in the ontology imports panel.</p>
+</li>
+<li>
+<p>Fixed an issue allowing merge actions to be completed when a user has uncommitted changes.</p>
+</li>
+<li>
+<p>Fixed an issue where re-uploading an ontology improperly indicates success after initially indicating failure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_9">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where local ontology changes affected mappings being edited at the same time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discover_module">Discover Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where navigating away from editing an instance would automatically save changes instead of cancelling.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_11">Release Notes for Mobi 1.11</h3>
+<div class="paragraph">
+<p>Mobi 1.11 released on January 24, 2017. This release features improvements to ontology version control, data management and exploration, and numerous bug fixes and performance improvements across the platform.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_14">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for configuring Repositories based on standard SPARQL endpoints.</p>
+</li>
+<li>
+<p>Support added for copying values from RDF preview blocks.</p>
+</li>
+<li>
+<p>Support added for using minified web resources in production builds.</p>
+</li>
+<li>
+<p>Added link to the Mobi Help Center in the application help menu.</p>
+</li>
+<li>
+<p>Fixed an issue causing an intermittent "Application not found" error after the server has been unexpectedly shutdown.</p>
+</li>
+<li>
+<p>Fixed an issue causing slow load time for the Activity Log.</p>
+</li>
+<li>
+<p>Fixed an issue where triples were not properly being tracked if the same triple was added and removed in the same commit.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_14">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved branch merging process. Merges are now initiated through a button on the button stack. Commit changes are aggregated and shown beneath the branch selector. Finally, the conflicts view has been updated to improve readability of entity change conflicts. These improvements make it easier to review changes between branches before merging.</p>
+</li>
+<li>
+<p>Support added for tighter integration between the Individuals tab and Concepts tab when developing SKOS vocabularies.</p>
+</li>
+<li>
+<p>Support added for uploading multiple ontologies at once through file browser or drag-and-drop.</p>
+</li>
+<li>
+<p>Improved web-app performance when managing large lists of entities in an ontology.</p>
+</li>
+<li>
+<p>Support added for using inferences when suggesting relationships and creating new Concepts in the Concepts Tab.</p>
+</li>
+<li>
+<p>Fixed an issue that caused an intermittent gray screen in the ontology editor after logging out and back in.</p>
+</li>
+<li>
+<p>Fixed an issue causing incorrect overflow of long imported ontology labels.</p>
+</li>
+<li>
+<p>Fixed an issue where skos:narrower is not properly nesting Concepts in the Concepts tab.</p>
+</li>
+<li>
+<p>Fixed an issue where Top Concepts are not properly nested beneath Concept Schemes.</p>
+</li>
+<li>
+<p>Fixed an issue with dropdown item selection when entities are defined within an ontology and its imports.</p>
+</li>
+<li>
+<p>Fixed an issue where the property creation dialog box was cut-off on low resolution displays.</p>
+</li>
+<li>
+<p>Fixed an issue causing an error when a user&#8217;s ontology editor state suggested opening an ontology to a previously deleted branch.</p>
+</li>
+<li>
+<p>Fixed an issue where the ontology cache was not properly updated after deleting the source branch during a merge.</p>
+</li>
+<li>
+<p>Fixed an issue where Concepts could be related to themselves.</p>
+</li>
+<li>
+<p>Fixed an issue allowing users to add duplicate values for the same property to an ontology entity.</p>
+</li>
+<li>
+<p>Fixed an issue with class folders being added to the individuals tab incorrectly when creating subclass axioms.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dataset_manager_3">Dataset Manager</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for uploading RDF data files to a dataset through the Dataset Manager UI.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discover_module_2">Discover Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for using inferences when suggesting link targets while editing instances in the Explore tool.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_10">Release Notes for Mobi 1.10</h3>
+<div class="paragraph">
+<p>Mobi 1.10 released on November 27, 2017. This release features improvements to vocabulary editing, new instance management tools, and numerous bug fixes across the platform.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_15">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Incorporated new automated web testing framework for testing web UI components.</p>
+</li>
+<li>
+<p>Added many new backend services and features to support future distributed catalog capabilities.</p>
+</li>
+<li>
+<p>Added many new backend services and features to support future ETL workflow capabilities.</p>
+</li>
+<li>
+<p>Fixed an issue with ORM API causing ConcurrentModificationExceptions when editing functional properties with more than value assigned</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_15">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Completed a major overhaul of the vocabulary editor. The vocabulary editor features have now been rolled into the ontology editor and dynamically become available upon declaration or import of SKOS classes. Additionally, various display improvements have been made for the Schemes and Concepts views.</p>
+</li>
+<li>
+<p>Fixed an issue causing dropdowns with hundreds of items or more to become unresponsive. Dropdowns with large numbers of items now show a subset of items and allow searching.</p>
+</li>
+<li>
+<p>Fixed a variety of issues causing performance problems when loading large ontologies</p>
+</li>
+<li>
+<p>Fixed a variety of issues causing performance problems when loading ontologies with large import closures</p>
+</li>
+<li>
+<p>Fixed an issue where imported classes retrieved via REST endpoint contained some incorrect values</p>
+</li>
+<li>
+<p>Fixed an issue with the preview block not updating when switching ontology tabs</p>
+</li>
+<li>
+<p>Fixed an issue with the preview block not correctly grouping triples by subject</p>
+</li>
+<li>
+<p>Fixed an issue with missing ontology properties from the edit ontology properties block</p>
+</li>
+<li>
+<p>Fixed an issue causing display problems when switching between web modules</p>
+</li>
+<li>
+<p>Fixed an issue with poor display of long branch names in the branch select box</p>
+</li>
+<li>
+<p>Fixed an issue with inconsistent use of inferred ontology entities</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_10">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Mapping components (class and property mappings) now have associated titles so that they are more easily identified.</p>
+</li>
+<li>
+<p>Support added for creating multiple class mappings of the same type. This allows mapping different properties to the same class type.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dataset_manager_4">Dataset Manager</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added missing form label for ontologies list</p>
+</li>
+<li>
+<p>Fixed an issue where linked ontologies were not correctly retrieved</p>
+</li>
+<li>
+<p>Fixed an issue causing performance problems when importing large data files into a dataset</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discover_module_3">Discover Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for searching with property paths in the Search tool</p>
+</li>
+<li>
+<p>Support added for creating new instances of classes from the class page in the Explore tool</p>
+</li>
+<li>
+<p>Support added for showing labels of linked instances in the Explore tool</p>
+</li>
+<li>
+<p>Support added for showing labels of available instances for linking in the Explore tool</p>
+</li>
+<li>
+<p>Support added for deleting instances in the Explore tool</p>
+</li>
+<li>
+<p>Fixed an issue when customizing IRIs of new instances in the Explore tool</p>
+</li>
+<li>
+<p>Fixed an issue where editing an instance property did not correctly add datatypes in the Explore tool</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_9">Release Notes for Mobi 1.9</h3>
+<div class="paragraph">
+<p>Mobi 1.9 released on October 20, 2017. This release features new provenance, search, and visualization features as well as numerous bug fixes across the platform.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_16">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>New provenance features collect information about catalog record creation and deletion events, and provide an Activity Log in the web UI. This data collection joins existing capabilities tracking record modification to provide a detailed picture about how resources within Mobi are being created, used, and destroyed. Future improvements will provide more detailed visualization tools and collection capabilities to track all resources within Mobi at a detailed level.</p>
+</li>
+<li>
+<p>Updated the project source code to reflect the rebranding from MatOnto to Mobi</p>
+</li>
+<li>
+<p>New backend service capabilities added to manage ETL workflows. Future improvements will bring UI tools for creating and managing workflows that include ingest from relational database, XML, and directory-based data sources.</p>
+</li>
+<li>
+<p>New backend service capabilities added for managing files and file systems</p>
+</li>
+<li>
+<p>Fixed an issue where dates were not properly persisted with the xsd:dateTime datatype</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_16">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Improvements made in how the ontology editor handles blank node data within the browser</p>
+</li>
+<li>
+<p>Fixed an issue impeding the loading of ontologies with a large number of direct or indirect imports</p>
+</li>
+<li>
+<p>Fixed an issue that caused the new ontology tab to disappear intermittently</p>
+</li>
+<li>
+<p>Fixed an issue where commit change labels were not being properly rendered in some cases</p>
+</li>
+<li>
+<p>Fixed an issue where users were not always able to pull the latest changes from the server when behind the HEAD of a branch</p>
+</li>
+<li>
+<p>Fixed an issue where ontology entities were not being properly expanded and collapsed in entity trees</p>
+</li>
+<li>
+<p>Fixed an issue where new Concepts were not being dynamically nested based on SKOS relationships</p>
+</li>
+<li>
+<p>Fixed an issue where editing Concepts in the Scheme tab provided the wrong list of relationships</p>
+</li>
+<li>
+<p>Fixed an issue where deleted Concepts could not be made again</p>
+</li>
+<li>
+<p>Fixed an issue where searching on a newly created vocabulary resulted in many missing entities</p>
+</li>
+<li>
+<p>Fixed an issue where clicking a Concept link in the ontology editor did not correctly navigate to the Individuals tab</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_11">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where updating the ontology version was not properly saved to the mapping record</p>
+</li>
+<li>
+<p>Fixed an issue where mappings could not be run from the edit page unless changes were made</p>
+</li>
+<li>
+<p>Fixed an issue where dropdown boxes were not correctly populated after modifying the mapping ontology</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dataset_manager_5">Dataset Manager</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where pagination in dataset creation overlay did not work properly</p>
+</li>
+<li>
+<p>Fixed an issue with incorrect info messages on the Dataset Manager UI module</p>
+</li>
+<li>
+<p>Fixed an issue where selected ontologies were improperly displayed when editing a dataset</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_catalog_11">Catalog</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where catalog sorting options contained duplicate values</p>
+</li>
+<li>
+<p>Fixed an issue where the catalog module broke when a selected record was deleted</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_analytic_module">Analytic Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>New module added to support development of analytics and visualizations in the Mobi web application. This initial release includes features for developing dynamic tables based on user-managed ontologies. Future improvements will bring charting, dashboard, and reporting capabilities.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_federation_services">Federation Services</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Renamed services and data to reflect new federation naming scheme</p>
+</li>
+<li>
+<p>Fixed an issue where modifying service configurations did not immediately reconfigure federation services</p>
+</li>
+<li>
+<p>Fixed an issue where platform services were not able to start correctly if MAC address could not be determined</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cli">CLI</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for submitting SPARQL queries via the Mobi command-line client</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_mobi_1_8">Release Notes for Mobi 1.8</h3>
+<div class="paragraph">
+<p>Mobi 1.8 released on August 27, 2017. This release features the official rebranding of the MatOnto platform as Mobi. Key features include improved support for OWL Restrictions, new support for local ontology imports, new features for instance data editing and creation, and a new "Search" tool within the Discover Module.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_17">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>New support added for importing and exporting data from the Mobi console. Support includes importing data into an existing dataset and exporting dataset data and catalog records.</p>
+</li>
+<li>
+<p>Support added to the Mobi console for exporting named graphs from a repository</p>
+</li>
+<li>
+<p>Fixed several build errors related to running unit tests in Windows environments</p>
+</li>
+<li>
+<p>Fixed an issue where commit fragments were not being properly removed when a Versioned RDF Record was deleted</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_17">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved support for rendering OWL Restrictions including owl:oneOf and cardinalities</p>
+</li>
+<li>
+<p>Support added for owl:inverseOf and owl:AsymmetricProperty</p>
+</li>
+<li>
+<p>Support added for adding ontology imports from the local server</p>
+</li>
+<li>
+<p>Support added for identifying indirect ontology imports in the imports closure</p>
+</li>
+<li>
+<p>Support added for identifying missing ontology imports</p>
+</li>
+<li>
+<p>Support added for creating a commit by uploading a modified version of an ontology (enabling external ontology modification)</p>
+</li>
+<li>
+<p>Support added for applying owl:deprecated to ontology classes</p>
+</li>
+<li>
+<p>Refactored the vocabulary editor to split schemes and concepts into their own editor tabs</p>
+</li>
+<li>
+<p>Fixed an issue where SKOS relationships were not available within the vocabulary editor</p>
+</li>
+<li>
+<p>Fixed an issue where entity usages were not being properly displayed within the ontology editor</p>
+</li>
+<li>
+<p>Fixed an issue where IRI existence validation was improperly reporting errors</p>
+</li>
+<li>
+<p>Fixed an issue where especially long RDF lists within an ontology would cause stack overflow errors</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_12">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for properly respecting owl:deprecated on ontology classes</p>
+</li>
+<li>
+<p>Support added for versioning mapping records</p>
+</li>
+<li>
+<p>Support added for processing formulas within Excel files</p>
+</li>
+<li>
+<p>Fixed an issue where the mapping name was unmodifiable within the mapping editor</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discover_module_4">Discover Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>New "Search" tool added to the Discover Module. "Search" tool supports keyword, type, and data property search within a dataset.</p>
+</li>
+<li>
+<p>Support added to the "Explore" tool for viewing, editing, and creating instance data</p>
+</li>
+<li>
+<p>Support added to the "Explore" tool for applying properties to existing data through the use of reification</p>
+</li>
+<li>
+<p>Support added to the "Explore" tool for respecting required properties when creating and editing instance data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_datasets_4">Datasets</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for editing datasets from the Datasets Module</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_federation_services_2">Federation Services</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>New features added for creating federations of Mobi nodes as a first step toward enabling distributed collaboration</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_api_updates">API Updates</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved versioning services to properly version quads in addition to triples</p>
+</li>
+<li>
+<p>Support added to properly edit blank node resources by skolemizing blank nodes between the triplestore and the web application</p>
+</li>
+<li>
+<p>Fixed an issue for properly handling null values in DatasetConnection.remove(s, p, o, c)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_known_issues">Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>In the Vocabulary Editor, adding hierarchical relationships (e.g. broader and narrower) to concepts does not properly nest them in the concept tree until the vocabulary is reopened.</p>
+</li>
+<li>
+<p>There is a typo in the <code>etc/branding-ssh.properties</code> that causes the Karaf client to hang. This will be fixed in release 1.9.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_matonto_1_7">Release Notes for MatOnto 1.7</h3>
+<div class="paragraph">
+<p>MatOnto 1.7 released on June 5, 2017. This release includes many bug fixes and performance improvements for the ontology editor and mapping tool as well as a new Discover Module for exploring datasets.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_18">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where retrieving users with email addresses in the User Management tool caused an Internal Server Error</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_discover_module_5">Discover Module</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Replaced the existing SPARQL Editor Module with the new Discover Module</p>
+</li>
+<li>
+<p>Added "Explore" tool to the Discover Module to enable quick exploration of datasets. This new tool will show the user what types of data are stored in the dataset and provide data samples. Future updates to the tool will allow users to explore and modify instance properties, create new instances, and delete existing instances.</p>
+</li>
+<li>
+<p>Fixed an issue where comments were not allowed in SPARQL queries against datasets</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_18">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Improved parsing of entity local names with acronyms used for display values (e.g. <a href="http://example.com/ontology#ABCEntity" class="bare">http://example.com/ontology#ABCEntity</a> &#8594; "ABC Entity")</p>
+</li>
+<li>
+<p>Support added for directly adding a subClassOf or subPropertyOf axiom when creating a new class or property</p>
+</li>
+<li>
+<p>Fixed an issue allowing users to create multiple ontology entities with the same IRI</p>
+</li>
+<li>
+<p>Fixed an issue where some commit data was not removed when deleting an ontology</p>
+</li>
+<li>
+<p>Fixed an issue where the individuals tree was not updated correctly when the ontology class tree changed</p>
+</li>
+<li>
+<p>Fixed an issue where a user could not assign a ConceptScheme when creating a new Concept</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_13">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for applying datatypes to literals based on the selected ontology properties</p>
+</li>
+<li>
+<p>Support added for using basic rdfs and dcterms properties in a mapping</p>
+</li>
+<li>
+<p>Support added for mapping multiple properties to the same source data column</p>
+</li>
+<li>
+<p>Fixed an issue where modifying an ontology that was also being used in an active mapping broke the mapping ontology selector</p>
+</li>
+<li>
+<p>Fixed an issue where the Mapping Tool was not properly including ontology updates when selecting the latest ontology version</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_api_updates_2">API Updates</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactored public Catalog API to include path validation when performing operations such as creating commits and merging branches</p>
+</li>
+<li>
+<p>Significant performance improvements when retrieving commit data from the Catalog REST endpoints. Dramatically reduces load times for large ontologies.</p>
+</li>
+<li>
+<p>Support added for creating commits from external data. This capability will enable future support for applying commits from files and merging records.</p>
+</li>
+<li>
+<p>Various improvements to memory management when opening ontologies. Dramatically reduces memory usage when opening large ontologies.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_known_issues_2">Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>In the Vocabulary Editor, SKOS relationship properties are missing from the property selector when using subclasses of skos:Concept. This issue will be fixed in Release 1.8.</p>
+</li>
+<li>
+<p>Intermittent build errors occur in the Catalog REST bundle due to some shared resources. This issue will be fixed in Release 1.8.</p>
+</li>
+<li>
+<p>The Mapping improperly includes InProgressCommit data when loading ontology properties and classes. This issue will be fixed in Release 1.8.</p>
+</li>
+<li>
+<p>SPARQL queries against datasets that include SPARQL keywords as variable names cause a parsing exception. This issue will be fixed in a future release.</p>
+</li>
+<li>
+<p>Classes that subclass each other should result in an equivalence relationship. This is not properly rendered in the Ontology Editor and produces errors. This issue will be fixed in a future release.</p>
+</li>
+<li>
+<p>The Mapping Tool does not correctly handle mapping object properties with no range. The tool allows you to select the object property, but produces an error when trying to determine the target class type. This issue will be fixed in a future release.</p>
+</li>
+<li>
+<p>The Mapping Tool does not correctly save mappings that have had their name changed. This issue will be fixed in Release 1.8.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_matonto_1_6">Release Notes for MatOnto 1.6</h3>
+<div class="paragraph">
+<p>MatOnto 1.6 released on May 8, 2017. This release includes many bug fixes and performance improvements for the ontology editor as well as various improvements to the mapping tool and user management page.</p>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_19">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Google groups link added to help menu</p>
+</li>
+<li>
+<p>User management user list now displays full name if available</p>
+</li>
+<li>
+<p>Access to user management page restricted to admins only</p>
+</li>
+<li>
+<p>Support added to list a user&#8217;s groups in the profile page</p>
+</li>
+<li>
+<p>Fixed an issue where targeted spinner would lock up the application in several places</p>
+</li>
+<li>
+<p>Fixed an issue where admin tags were not displayed correctly in the user list of the user management page</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_19">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for a click-to-copy feature for ontology entity IRIs</p>
+</li>
+<li>
+<p>Support added to render complex class expressions and restrictions using Manchester Syntax in Axioms panel</p>
+</li>
+<li>
+<p>Support added to render complex class expressions and restrictions using Manchester Syntax in Search panel</p>
+</li>
+<li>
+<p>Support added to include imported entities in class, property, and individual list</p>
+</li>
+<li>
+<p>Support added to roll-up large number of entity usages into a link to increase performance</p>
+</li>
+<li>
+<p>Support added to render individuals of subtypes of skos:Concept in the concept hierarchy of the vocabulary editor</p>
+</li>
+<li>
+<p>Support added to implement virtual scrolling on all entity lists, dramatically improving performance for large ontologies</p>
+</li>
+<li>
+<p>Support added to render individuals as a tree based on their class hierarchy</p>
+</li>
+<li>
+<p>Support added to implement ontology caching, dramatically improving performance when loading and editing large ontologies</p>
+</li>
+<li>
+<p>Support added to immediately render icons associated with ranges of properties in the property hierarchy and overview tab</p>
+</li>
+<li>
+<p>Fixed an issue where deleting an ontology did not delete the underlying revision data</p>
+</li>
+<li>
+<p>Fixed an issue where creating and deleting classes sometimes resulted in incomplete class data remaining in the ontology</p>
+</li>
+<li>
+<p>Fixed an issue where import statements were not correctly displayed in the changes tab</p>
+</li>
+<li>
+<p>Fixed an issue where adding and deleting multiple imports did not correctly delete the specified import</p>
+</li>
+<li>
+<p>Fixed an issue where deleting individuals did not always remove them from the individuals list</p>
+</li>
+<li>
+<p>Fixed an issue where axiom values were not displayed properly in dropdowns</p>
+</li>
+<li>
+<p>Fixed an issue where the String datatype was being removed from an individual&#8217;s data property when committing</p>
+</li>
+<li>
+<p>Fixed an issue where modification badges would not be removed after performing a commit</p>
+</li>
+<li>
+<p>Fixed an issue where the project tab would not update on branch change</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_14">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for editing full IRI in IRI templates</p>
+</li>
+<li>
+<p>Support added to ignore property mappings for empty cells when mapping in delimited and excel files</p>
+</li>
+<li>
+<p>Support added to ignore class mappings for empty rows when mapping in delimited and excel files</p>
+</li>
+<li>
+<p>Support added to trim white space from values inserted into IRI templates</p>
+</li>
+<li>
+<p>Support added to show a preview of mapped data in the property mappings list</p>
+</li>
+<li>
+<p>Fixed an issue where the edit and delete buttons for property mappings would not work in Firefox</p>
+</li>
+<li>
+<p>Fixed an issue where the user could not create a new class mapping when editing a previously created mapping resource</p>
+</li>
+<li>
+<p>Fixed an issue where previewing mapping results intermittently did not display correctly</p>
+</li>
+<li>
+<p>Fixed an issue where using an ontology with the same class defined in the ontology and one of its imports resulted in an empty dropdown when adding a class mapping</p>
+</li>
+<li>
+<p>Fixed an issue where page leave confirmation message was displayed when downloading a mapped data</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_datasets_5">Datasets</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added to associate datasets with ontologies that describe the data within them</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes_for_matonto_1_5">Release Notes for MatOnto 1.5</h3>
+<div class="paragraph">
+<p>MatOnto 1.5 released on April 4, 2017. This release contains the first features for MatOnto datasets and many improvements to the Ontology Editor user experience.</p>
+</div>
+<div class="sect3">
+<h4 id="_datasets_6">Datasets</h4>
+<div class="paragraph">
+<p>A new feature in 1.5, MatOnto Datasets provide collections of RDF graphs that can be managed and queried independently of other data stored within MatOnto repositories.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Datasets consist of a collection of RDF graphs that act as default named graphs or named graphs per the SPARQL 1.1 recommendation for <a href="https://www.w3.org/TR/sparql11-query/#rdfDataset">RDF Datasets</a>.</p>
+</li>
+<li>
+<p>Java and REST services are now available for creating, managing, and querying datasets. The services ensure all operations on the Dataset are isolated to that specific set of RDF graphs.</p>
+</li>
+<li>
+<p>A new UI module provides capabilities for creating and managing datasets.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ontology_editor_20">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Support added for displaying and editing language tags on string literals.</p>
+</li>
+<li>
+<p>Support added for displaying and selecting if a property is functional.</p>
+</li>
+<li>
+<p>Support added for importing ontologies from a URL. When adding an import, the editor will confirm the URL is resolvable and reload the ontology with the imported entities.</p>
+</li>
+<li>
+<p>The <strong>Commits</strong> tab now renders a commit history chain with links to view the commit changes.</p>
+</li>
+<li>
+<p>Added support for loading spinners over specific UI components when waiting on asynchronous calls to load data. This can be seen in the entity usages block.</p>
+</li>
+<li>
+<p>All entity hierarchy trees are now sorted alphabetically.</p>
+</li>
+<li>
+<p>When rendering labels for entities in hierarchy trees or detail blocks, a "pretty-print" label is displayed using the <code>rdfs:label</code>, <code>dc:title</code>, or the local name of the IRI in that order.</p>
+</li>
+<li>
+<p>The editor now supports passive saving. When an ontology entity is modified, the ontology is automatically saved.</p>
+</li>
+<li>
+<p>Modified entities are now highlighted using a modification badge and bold formatting.</p>
+</li>
+<li>
+<p>Support added for creating custom Annotation Properties.</p>
+</li>
+<li>
+<p>Each entity now displays a list of its <code>rdf:type</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mapping_tool_15">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration with MatOnto Datasets provides the capability to upload transformed data to a Dataset.</p>
+</li>
+<li>
+<p>Removed the idea of a "Base Class" from the mapping configuration. You now select from a list of classes in an order to create class mappings.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sparql_query_editor">SPARQL Query Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration with MatOnto Datasets provides the capability to limit a query operation to a particular Dataset.</p>
+</li>
+<li>
+<p>Malformed queries now properly display a message describing the parsing error.</p>
+</li>
+<li>
+<p>New feature allows user to download the results of a SPARQL tuple query in CSV, TSV, or Excel format.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_general_improvements_and_fixes_20">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>User management tool now allows an admin to reset a user&#8217;s password.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_known_issues_3">Known Issues</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Double-clicking an entity in the Ontology Editor search results wil not remove the loading spinner. Reload the browser tab to clear this issue.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

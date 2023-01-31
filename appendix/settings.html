@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Settings Framework</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_settings_framework">Appendix A: Settings Framework</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Settings Framework was designed to allow the tracking and editing of Settings within Mobi.
+The framework was designed to be easily extensible such that a new setting can be added to the platform with only
+some RDF and a few code changes.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="#Preferences">Preferences Tab</a> is powered by the User Preference definitions stored within the system which can be
+tailored to populate different types of forms depending on the type of data to be stored.</p>
+</div>
+<div class="sect2">
+<h3 id="_setting_rdf_definition">Setting RDF Definition</h3>
+<div class="paragraph">
+<p>In order to introduce new Settings to Mobi, a developer must create an RDF representation of the
+Setting they want to add to the application. The Setting Framework uses <a href="https://www.w3.org/TR/shacl/">SHACL</a> to
+define settings. Setting RDF must consist of exactly one SHACL NodeShape and one SHACL PropertyShape in order to
+be recognized as a Setting by Mobi. Requirements for the structure of these SHACL shapes is
+outlined below.</p>
+</div>
+<div class="paragraph">
+<p>The following prefixes will be used in the rest of this appendix:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Prefix</th>
+<th class="tableblock halign-left valign-top">Namespace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2002/07/owl#" class="bare">http://www.w3.org/2002/07/owl#</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rdfs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2000/01/rdf-schema#" class="bare">http://www.w3.org/2000/01/rdf-schema#</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shacl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/ns/shacl#" class="bare">http://www.w3.org/ns/shacl#</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>setting:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://mobi.com/ontologies/setting#" class="bare">http://mobi.com/ontologies/setting#</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2001/XMLSchema#" class="bare">http://www.w3.org/2001/XMLSchema#</a></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For an explanation of what each SHACL class and property represent, read the descriptions given here:
+<code><a href="https://www.w3.org/TR/shacl/" class="bare">https://www.w3.org/TR/shacl/</a></code>. The following are descriptions of Mobi specific properties.</p>
+</div>
+<div class="sect3">
+<h4 id="_settingpreference">setting:Preference</h4>
+<div class="paragraph">
+<p>The <code>setting:Preference</code> class acts as the parent class of all preferences within Mobi. Mobi preferences always
+have an <code>rdfs:subClassOf</code> <code>setting:Preference</code> and are also of type <code>sh:NodeShape</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingapplicationsetting">setting:ApplicationSetting</h4>
+<div class="paragraph">
+<p>The <code>setting:ApplicationSetting</code> class acts as the parent class of all application settings within Mobi.
+Mobi application settings always have an <code>rdfs:subClassOf</code> <code>setting:ApplicationSetting</code> and are also of type <code>sh:NodeShape</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+From here on, when referring to either <code>setting:Preference</code> or <code>setting:ApplicationSetting</code> the phrase setting subType
+may be used.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingpreferencegroup">setting:PreferenceGroup</h4>
+<div class="paragraph">
+<p>Every Mobi preference must have a <code>setting:inGroup</code> of a instance of <code>setting:PreferenceGroup</code>. These preference groups are
+meant to group together semantically related preferences.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingapplicationsettinggroup">setting:ApplicationSettingGroup</h4>
+<div class="paragraph">
+<p>Every Mobi application setting must have a <code>setting:inGroup</code> of a instance of <code>setting:ApplicationSettingGroup</code>.
+These application setting groups are meant to group together semantically related application settings.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingformfield">setting:FormField</h4>
+<div class="paragraph">
+<p>Instances of the <code>setting:FormField</code> class are used by Mobi settings to specify the form input that is used by the UI to
+select setting values.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settinghasdatavalue">setting:hasDataValue</h4>
+<div class="paragraph">
+<p>The <code>setting:hasDataValue</code> property is used by instances of setting subTypes to point to the current value of that
+setting. All Settings must point to a Property Shape that has an <code>sh:path</code> of <code>setting:hasDataValue</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingusesformfield">setting:usesFormField</h4>
+<div class="paragraph">
+<p>The <code>setting:usesFormField</code> property is used by the required <code>sh:PropertyShape</code> of a Mobi Setting to designate the type of form
+input that will be used by the frontend to accept setting values for that specific setting.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_settingingroup">setting:inGroup</h4>
+<div class="paragraph">
+<p>The <code>setting:inGroup</code> property specifies either the <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> that
+a Mobi Setting belongs too. It is used to semantically group related Settings in the UI.</p>
+</div>
+<div class="sect4">
+<h5 id="_required_shacl_nodeshape">Required SHACL NodeShape</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Must be of type <code>owl:Class</code> as well as type <code>shacl:Nodeshape</code></p>
+</li>
+<li>
+<p>Must have an <code>rdfs:subClassOf</code> of <code>setting:Preference</code> or <code>setting:ApplicationSetting</code></p>
+</li>
+<li>
+<p>Must have an <code>shacl:description</code> that will be shown above the Setting in the UI</p>
+</li>
+<li>
+<p>Must have a <code>shacl:property</code> that points to the required SHACL PropertyShape for the setting</p>
+</li>
+<li>
+<p>Must have a <code>setting:inGroup</code> of an IRI in the system of type
+<code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_required_shacl_propertyshape">Required SHACL PropertyShape</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Must be of type <code>shacl:PropertyShape</code></p>
+</li>
+<li>
+<p>Must have an <code>shacl:path</code> of <code>setting:hasDataValue</code></p>
+</li>
+<li>
+<p>A <code>shacl:datatype</code> of one of the following values</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>xsd:boolean</code></p>
+</li>
+<li>
+<p><code>xsd:string</code></p>
+</li>
+<li>
+<p><code>xsd:integer</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Must have a <code>setting:usesFormField</code> that has one of the following values that will affect
+which type of form input is shown in the UI for this preference</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>setting:ToggleInput</code></p>
+</li>
+<li>
+<p><code>setting:TextInput</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Must have a <code>setting:inGroup</code> of a valid instance of the
+<code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> class.</p>
+</li>
+<li>
+<p>May have optional <code>shacl:minCount</code> and/or <code>shacl:maxCount</code> fields denoting the
+min and max number of possible values for the preference which will be enforced in the UI.</p>
+</li>
+<li>
+<p>May have optional <code>shacl:pattern</code> which may have a regex that controls what values may be used and
+will be enforced by the UI.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Support for more datatypes and form fields coming soon!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_required_preferencegroupapplicationsettinggroup">Required PreferenceGroup/ApplicationSettingGroup</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>At least one instance of <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> must exist which has an
+<code>rdfs:label</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Preference/ApplicationSetting Groups already in the system can be reused.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Predefined Property Groups coming soon
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following diagram illustrates the relationship between the various preference related classes and properties:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/my-account/preference_diagram.png" alt="preference diagram">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_rdf">Example RDF</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
+@prefix : &lt;http://mobi.com/ontologies/test#&gt;.
+@base &lt;http://mobi.com/ontologies/test&gt;.
+
+:MyBooleanPreference a owl:Class, sh:NodeShape;
+    rdfs:subClassOf setting:Preference;
+    sh:description "What value do you want for your Boolean Preference?" ;
+    sh:property :MyBooleanPreferencePropertyShape;
+    setting:inGroup :MyTestPreferenceGroup .
+
+:MyBooleanPreferencePropertyShape a sh:PropertyShape;
+    sh:path setting:hasDataValue;
+    sh:datatype xsd:boolean;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    setting:usesFormField setting:ToggleInput .
+
+:MyTestPreferenceGroup a setting:PreferenceGroup ;
+    rdfs:label "My Test Preference Group"@en .</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_custom_settings">Adding Custom Settings</h3>
+<div class="paragraph">
+<p>In order to create new custom settings in Mobi, there are 3 steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Setting RDF to model the new Setting</p>
+</li>
+<li>
+<p>Generate Java classes from the Setting RDF using the Mobi rdf-orm-plugin</p>
+</li>
+<li>
+<p>Load the Setting RDF into the Mobi Repository</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_generate_java_classes_from_setting_rdf">Generate Java Classes from Setting RDF</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Create an RDF file with your custom setting definition in the <code>src/main/resources</code> directory of a Mobi bundle.
+This can be any valid RDF format, such a Turtle. A list of supported RDF formats can be found here:
+<a href="#Uploading Existing Ontologies">[Uploading Existing Ontologies]</a></p>
+</li>
+<li>
+<p>Create a pom.xml based on the following example pom in the appropriate Mobi bundle.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;org.example&lt;/groupId&gt;
+    &lt;artifactId&gt;Testsf&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;${project.groupId}.${project.artifactId}&lt;/name&gt;
+    &lt;packaging&gt;bundle&lt;/packaging&gt;
+    &lt;parent&gt;
+        &lt;artifactId&gt;mobi-parent&lt;/artifactId&gt;
+        &lt;groupId&gt;com.mobi&lt;/groupId&gt;
+        &lt;version&gt;1.20.0&lt;/version&gt;
+        &lt;relativePath&gt;&lt;/relativePath&gt;
+    &lt;/parent&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mobi&lt;/groupId&gt;
+            &lt;artifactId&gt;rdf.orm&lt;/artifactId&gt;
+            &lt;version&gt;1.20.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mobi&lt;/groupId&gt;
+            &lt;artifactId&gt;setting.api&lt;/artifactId&gt;
+            &lt;version&gt;1.20.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;inovex&lt;/id&gt;
+            &lt;url&gt;http://nexus.inovexcorp.com/nexus/content/repositories/public-maven-prod-group/&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+    &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;inovex&lt;/id&gt;
+            &lt;url&gt;http://nexus.inovexcorp.com/nexus/content/repositories/public-maven-prod-group/&lt;/url&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.5.1&lt;/version&gt;
+                &lt;extensions&gt;true&lt;/extensions&gt;
+                &lt;configuration&gt;
+                    &lt;obrRepository&gt;NONE&lt;/obrRepository&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;skip&gt;true&lt;/skip&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;com.mobi.orm&lt;/groupId&gt;
+                &lt;artifactId&gt;rdf-orm-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;1.20.0&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generateOrmSources&lt;/id&gt;
+                        &lt;phase&gt;generate-sources&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-orm&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;inherited&gt;false&lt;/inherited&gt;
+                        &lt;configuration&gt;
+                            &lt;generates&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;${project.basedir}/src/main/resources/myontologyfile.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;my.bundle.ontologies&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;MyOntologyName&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                            &lt;/generates&gt;
+                            &lt;references&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/rdf.orm.ontologies/1.20.0/rdf.orm.ontologies-1.20.0.jar!shacl.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.ontologies.shacl&lt;/outputPackage&gt;
+                                &lt;/ontology&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/setting.api/1.20.0/setting.api-1.20.0.jar!setting.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.setting.api.ontologies&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;Setting&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                            &lt;/references&gt;
+                            &lt;outputLocation&gt;${project.basedir}/src/main/java&lt;/outputLocation&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be sure to replace references to "My ontology" and "My bundle" with your actual ontology and bundle. Also make sure to
+have the <code>&lt;packaging&gt;bundle&lt;/packaging&gt;</code> and the <code>com.mobi.rdf.orm</code> dependency. On your next Mobi build, interfaces,
+implementation classes, and factory classes will be created based on your ontology.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_load_setting_rdf_into_mobi_repo">Load Setting RDF into Mobi Repo</h4>
+<div class="paragraph">
+<p>In order for Setting RDF to be recognized by Mobi, it must be loaded into the <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code>
+graph. This can be done one of two ways. The first option is to upload the RDF via Mobi Command Line. To do this, create
+a trig file with a graph of <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code> that has the same contents as your setting RDF.
+The following is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix setting: &lt;http://mobi.com/ontologies/preference#&gt;.
+@prefix : &lt;http://mobi.com/ontologies/test#&gt;.
+@base &lt;http://mobi.com/ontologies/test&gt;.
+
+&lt;http://mobi.com/setting-management&gt; {
+:MyBooleanPreference a owl:Class, sh:NodeShape;
+rdfs:subClassOf setting:Preference;
+sh:description "What value do you want for your Boolean Preference?" ;
+sh:property :MyBooleanPreferencePropertyShape;
+setting:inGroup :MyTestPreferenceGroup .
+
+    :MyBooleanPreferencePropertyShape a sh:PropertyShape;
+        sh:path setting:hasDataValue;
+        sh:datatype xsd:boolean;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        setting:usesFormField setting:ToggleInput .
+
+    :MyTestPreferenceGroup a setting:PreferenceGroup ;
+        rdfs:label "My Test Preference Group"@en .
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, start up Mobi, and run the following command in the Mobi Shell:
+<code>mobi:import -r system /path/to/my/trigfile.trig</code>. At this point, the preference should now be present and editable in
+the Mobi UI.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This will only work if you have already built using the rdf-orm-plugin described earlier in the documentation to
+generate Java classes for the setting RDF.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The second option to load your Setting RDF into the Mobi Repository is to add code to the activate
+method of a service in your corresponding Mobi bundle. The following methods can be used to help add code into the
+Mobi Repository.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>Models.createModel()</code> method to turn an <code>InputStream</code> into a <code>Model</code>.</p>
+</li>
+<li>
+<p><code>getRepository().getConnection().add(&#8230;&#8203;)</code> from the <code>CatalogConfigProvider</code> class used to add a model to the repo. Be
+sure to pass the <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code> iri as the context parameter value.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">settingUtilsService.updateRepoWithSettingDefinitions(MY_ONTOLOGY_INPUT_STREAM, MY_ONTOLOGY_NAME);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_a_stored_setting">Using a Stored Setting</h3>
+<div class="paragraph">
+<p>In order to use the value of a stored setting, the setting service will be used in conjunction with one or more
+of the ORM generated classes (classes generated in the <a href="#_generate_java_classes_from_setting_rdf">Generate Java Classes from Setting RDF</a> section).
+The following is an example of how to extract the value of a boolean preference that exists in the system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">boolean myBooleanPreferenceValue = false;
+Optional&lt;Preference&gt; myPreferenceOptional = preferenceService.getSetting(valueFactory.createIRI(MyPreference.TYPE), user;
+if (myPreferenceOptional.isPresent()) {
+    MyPreference myPreference = (MyPreference) myPreferenceOptional.get();
+    myBooleanPreferenceValue = myPreference.getHasDataValue().orElseThrow(() -&gt; new IllegalStateException("Some message")).booleanValue();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

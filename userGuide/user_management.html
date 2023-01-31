@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Administration</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="_administration">Administration</h3>
+<div class="paragraph">
+<p>The Administration page provides administrators with a portal to create, edit, and remove users and groups in Mobi. From this module, you can also assign high level access control for common actions within the application.</p>
+</div>
+<div class="paragraph">
+<p>To reach the Administration page, click on btn:[Administration] in the left menu. This option is not available to non-administrators.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/user-management/administration_link.png" alt="administration link" width="50%">
+</div>
+<div class="title">Figure 1. Administration link</div>
+</div>
+<div class="paragraph">
+<p>There are four main tabs of the Administration page:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_users">Users</a></p>
+</li>
+<li>
+<p><a href="#_groups">Groups</a></p>
+</li>
+<li>
+<p><a href="#_permissions">Permissions</a></p>
+</li>
+<li>
+<p><a href="#_application_settings">Application Settings</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_users">Users</h4>
+<div class="paragraph">
+<p>The Users tab allows you to create, edit, and remove users from the application.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/users_tab.png" alt="users tab">
+</div>
+<div class="title">Figure 2. Users Tab</div>
+</div>
+<div class="paragraph">
+<p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The default Admin user can not be deleted.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The middle of the Users tab contains the username of the selected user, a block for viewing and editing the user&#8217;s profile information, and a block for resetting the user&#8217;s password. Resetting a user&#8217;s password cannot be undone.</p>
+</div>
+<div class="paragraph">
+<p>The right side of the tab contains blocks for viewing and editing the selected user&#8217;s permissions and viewing the user&#8217;s groups. Clicking on the title of a group will open it in the <a href="#_groups">Groups section</a>.</p>
+</div>
+<div class="paragraph">
+<p>To create a user, click btn:[Create User] and the Create User overlay will appear. The <span class="underline">Username</span> field (required) must be unique within the application. The <span class="underline">Password</span> fields (required) allow you to enter in the password for the new user. The <span class="underline">First Name</span>, <span class="underline">Last Name</span>, and <span class="underline">Email</span> fields are not required, but allow you to enter in basic profile information for the new user. The last section contains a checkbox for setting whether the new user is an administrator. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create a new user with the entered information.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
+</div>
+<div class="title">Figure 3. Create User Overlay</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_groups">Groups</h4>
+<div class="paragraph">
+<p>The Groups tab allows you to create, edit, and remove groups from the application. Groups allow you to associate users with one another and apply the same permissions and roles to all members.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/groups_tab.png" alt="groups tab">
+</div>
+<div class="title">Figure 4. Groups Tab</div>
+</div>
+<div class="paragraph">
+<p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
+</div>
+<div class="paragraph">
+<p>The right side of the tab contains the selected group&#8217;s title and two rows of blocks. The top row contains blocks that allow you to edit the group&#8217;s description and permissions. If a group has the "Admin" role, all members within that group are considered administrators.</p>
+</div>
+<div class="paragraph">
+<p>The bottom row contains a block that allows you to view, add, and remove the group&#8217;s members. To add another user to the group, click btn:[Add Member] and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. Selecting a user in this drop down will automatically add them to the group. To remove a user from the table, click on the corresponding delete button at the end of the row. Any changes in this table will immediately be applied. Clicking on a username in this table will open that user&#8217;s information in the <a href="#_users">Users section</a>.</p>
+</div>
+<div class="paragraph">
+<p>To create a group, click btn:[Create Group] and the Create Group overlay will appear. The <span class="underline">Group Title</span> field (required) allows you to specify a name for the group. The <span class="underline">Description</span> field allows you to enter in a description about what the group represents. At the bottom of the overlay is a table for adding users to the group. Your user account will be added automatically. To add others to the group, click btn:[Add Member] and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. To remove a user from the table, click on the corresponding delete button at the end of the row. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create a new group with the entered information and add the listed users to it.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
+</div>
+<div class="title">Figure 5. Create group overlay</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_permissions">Permissions</h4>
+<div class="paragraph">
+<p>The Permissions tab allows you to set high level access control for common actions in the application, such as creating Ontology Records and querying the system repository.  Permissions can be set to allow all authenticated users (the <span class="underline">Everyone</span> slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the <span class="underline">Everyone</span> permission, find a user or group in the search box underneath the appropriate box, and select it. To remove a user or group from the permission, click the <code>X</code> button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More permissions coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/permissions_tab.png" alt="permissions tab">
+</div>
+<div class="title">Figure 6. Permissions Tab</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_application_settings">Application Settings</h4>
+<div class="paragraph">
+<p>The Application Settings tab enables you to alter/maintain system-wide settings. Below are descriptions of the settings currently available in the application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More Application Settings coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Default Ontology Namespace</dt>
+<dd>
+<p>The namespace to be used when generating default IRIs for new ontologies/vocabularies in the <a href="#ontology-editor-guide">Ontology Editor</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/application_settings_tab.png" alt="application settings tab">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

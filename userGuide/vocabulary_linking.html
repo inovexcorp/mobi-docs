@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Link (ENTERPRISE)</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="vocabulary-linking">Link (ENTERPRISE)</h3>
+<div class="paragraph">
+<p>The Mobi Vocabulary Linking Tool is an <strong>Enterprise only</strong> feature that allows you to create semantic links between terms found in two different vocabularies. The tool uses the <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein algorithm</a> by default to determine the similarity of labels between terms</p>
+</div>
+<div class="paragraph">
+<p>To reach the Vocabulary Linking tool, click on the link in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/full_tool_initial_view.png" alt="The Vocabulary Linking Tool">
+</div>
+<div class="title">Figure 1. The Vocabulary Linking Tool</div>
+</div>
+<div class="paragraph">
+<p>The initial view of the Vocabulary Linking Tool shows a form on the left for selecting the vocabularies and a space for matched terms to be displayed. To select a vocabulary, you must select the Ontology Record and a Branch. All selected semantic relations you wish to add will be committed to the selected branches for both vocabularies.</p>
+</div>
+<div class="paragraph">
+<p>To adjust the configuration for the linking algorithm, click on btn:[Advanced] and a configuration modal will appear. The modal contains fields for the “Matching Sensitivity”, which controls the range of percentages that matching results must be within to be returned, and the “Matching Properties”, which controls which properties are analyzed for similarity by the linking tool.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/config_modal.png" alt="The vocabulary linking configuration modal" width="50%">
+</div>
+<div class="title">Figure 2. The vocabulary linking configuration modal</div>
+</div>
+<div class="paragraph">
+<p>After you have selected 2 different ontologies, click on btn:[Analyze] and the right section of the view will update with the matched terms in a paginated list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/linking_results.png" alt="Example vocabulary linking results">
+</div>
+<div class="title">Figure 3. Example vocabulary linking results</div>
+</div>
+<div class="paragraph">
+<p>The top of the results section shows a checkbox for selecting or deselecting all the results in addition to two dropdowns. One is for filtering the results based on whether terms have already been semantically linked. The other is for sorting the results based on the highest matched percentage of all the labels of each matched term pair.</p>
+</div>
+<div class="paragraph">
+<p>Each result in the display shows the display name for each term, which semantic relation will be committed, and the highest matched percentage between labels of both the terms. Each result is also expandable to show all the properties  for each term in the pair along with a select for which semantic relation to use. If the terms in a matched pair are already semantically linked, they will be marked as such and the checkbox on the row will be disabled.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/matched_pair.png" alt="Example matched vocabulary terms">
+</div>
+<div class="title">Figure 4. Example pair of matched vocabulary terms</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/previously_linked.png" alt="Previously linked vocabulary matches">
+</div>
+<div class="title">Figure 5. Matched vocabulary terms that are already linked</div>
+</div>
+<div class="paragraph">
+<p>To mark which terms you wish to link, select which relation you wish to use from the select in the expanded section and check the box next to the pair. The options are “Exact Match”, “Close Match”, or “Related”.  Use the following as a reference for what each type of relation means:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Exact Match</dt>
+<dd>
+<p>Used to link two concepts that can always be used interchangeably.</p>
+</dd>
+<dt class="hdlist1">Close Match</dt>
+<dd>
+<p>Used to link two concepts that can sometimes be used interchangeably depending on the application. Not as strong of a link as “Exact Match”.</p>
+</dd>
+<dt class="hdlist1">Related</dt>
+<dd>
+<p>Represents associative (non-hierarchical) links.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>After you have selected the type of link you would like to make and checked the checkbox for the row, repeat this process for all the terms that you want linked. To commit the links, click on btn:[Commit] in the top right corner of the page, above the “Sort” dropdown. You should then see a modal open with options for how to commit the selected linking to the ontologies. You have a choice of committing to one ontology or both. Once you have selected which ontology(s) to commit to, click on btn:[Submit].</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/vocab_one_way_linking.png" alt="One Way Linking" width="50%">
+</div>
+</div>
+<div class="paragraph">
+<p>You should then get a message saying that the Linking Matches were successfully committed for each ontology.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vocabulary-linking/success.png" alt="Successful linking" width="50%">
+</div>
+<div class="title">Figure 6. A success message linking vocabularies</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Discover</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="discover-guide">Discover</h3>
+<div class="paragraph">
+<p>The Mobi web-based Discover module allows users to quickly search and explore their knowledge graphs. The <a href="#_explore">Explore</a> tab provides an intuitive interface for quickly navigating through ontology-defined entities. The <a href="#_query">Query</a> tab allows users to develop and execute SPARQL queries.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To learn more about SPARQL queries, see the <a href="https://www.w3.org/TR/sparql11-query/">W3C Specification</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The ability to save, publish, share and reuse SPARQL queries as part of applications or larger workflows is coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To reach the Discover page, click on the link in the left menu. The first tab shown is the <a href="#_explore">Explore tab</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
+</div>
+<div class="title">Figure 1. The Discover Page</div>
+</div>
+<div class="sect3">
+<h4 id="_explore">Explore</h4>
+<div class="paragraph">
+<p>The Explore tab of the Discover page allows you to get a high-level overview of the structure of your data within a <a href="#datasets-manager-guide">dataset</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/explore_classes.png" alt="explore classes">
+</div>
+<div class="title">Figure 2. Explore tab with classes</div>
+</div>
+<div class="paragraph">
+<p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking btn:[Explore Data] opens the instances view.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/explore_instances.png" alt="explore instances">
+</div>
+<div class="title">Figure 3. Explore Tab with instances</div>
+</div>
+<div class="paragraph">
+<p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking btn:[View <em>Class Name</em>] opens the single instance view. Clicking btn:[Create <em>Class Name</em>] opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/explore_single_instance.png" alt="explore single instance">
+</div>
+<div class="title">Figure 4. Explore Tab with single instance</div>
+</div>
+<div class="paragraph">
+<p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking btn:[Edit] opens the single instance editor.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
+</div>
+<div class="title">Figure 5. Explore Tab with single instance editor</div>
+</div>
+<div class="paragraph">
+<p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#Edit IRI Overlay">[Edit IRI Overlay]</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the kbd:[ENTER] key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+Editing the instance IRI might break relationships within the dataset.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To add a new property to the instance, click btn:[Add New Property] and select the property in the overlay. After all edits have been made, clicking btn:[Cancel] will discard the current changes and go back to the single instance view. Clicking btn:[Save] will save the current changes to the repository and then go back to the single instance view.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_query">Query</h4>
+<div class="paragraph">
+<p>The Query tab of the Discover page allows you to submit SPARQL query against the Mobi repository and optionally a specific <a href="#datasets-manager-guide">dataset</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
+</div>
+<div class="title">Figure 6. Query tab</div>
+</div>
+<div class="paragraph">
+<p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a btn:[Submit] button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking btn:[Submit] executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
+</div>
+<div class="paragraph">
+<p>The bottom section displays the results of the most recently submitted SPARQL query (powered by <a href="https://triply.cc/docs/yasgui-api#yasr">YASR</a>). The section has separate tabs for rendering the query result set depending on the type of SPARQL query submitted. SELECT query results are displayed under the Table tab where the headers of the table are the variables specified in the SPARQL query. The Table comes with features such as filtering, page size, sorting and pagination. CONSTRUCT query results can be displayed under the Turtle, JSON-LD and RDF/XML tabs. The query results are limited to 500 triples/rows for rendering, but the entire result set can be downloaded using the button in the upper right corner of the bottom section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/discover/discover_construct_query.png" alt="discover construct query">
+</div>
+<div class="title">Figure 7. Construct query</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

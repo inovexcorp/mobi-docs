@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Catalog</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="catalog-guide">Catalog</h3>
+<div class="paragraph">
+<p>The Mobi web-based Catalog allows users to publish data, dataset descriptions, analytics and other resources. It allows users to control the way their data is shared.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Federation of catalogs in Mobi is coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To reach the Catalog click on the link in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/catalog/full_catalog_initial_view.png" alt="full catalog initial view">
+</div>
+<div class="title">Figure 1. The Catalog</div>
+</div>
+<div class="paragraph">
+<p>The Local Catalog of Mobi contains all Records contained within your Mobi node. This includes all versioned ontologies created in the <a href="#ontology-editor-guide">Ontology Editor</a>, versioned mappings created in the <a href="#mapping-tool-guide">Mapping Tool</a>, versioned shapes graphs created in the <a href="#shapes-editor-guide">Shapes Editor</a>, and all datasets created in the <a href="#datasets-manager-guide">Datasets Manager</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are two main views of the Catalog:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <a href="#_catalog_landing_page">Catalog Landing Page</a></p>
+</li>
+<li>
+<p>the <a href="#_record_view">Record View</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_catalog_landing_page">Catalog Landing Page</h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/catalog/catalog_landing_page.png" alt="catalog landing page">
+</div>
+<div class="title">Figure 2. The Catalog Landing Page</div>
+</div>
+<div class="paragraph">
+<p>The landing page of the Catalog displays a paginated list of all the Records in the Local Catalog that can be searched, sorted, and filtered.
+The filters on the left contain all possible types of Records and all possible user keywords.
+The search bar allows you to perform a text search through all the Record metadata.</p>
+</div>
+<div class="paragraph">
+<p>Each Record in the list is displayed as a card with the Record title, type with related icon, date last modified, description, and keywords.
+Clicking on the title of the Record will copy its unique identifier (IRI).
+The footer of each Record card shows the username of its creator and a button to open that Record in its respective module (ontologies in the <a href="#ontology-editor-guide">Ontology Editor</a>, etc.).
+Clicking on the Record card will open it in the <a href="#_record_view">Record View</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_record_view">Record View</h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/catalog/record_view.png" alt="record view">
+</div>
+<div class="title">Figure 3. The Record View</div>
+</div>
+<div class="paragraph">
+<p>The Record View displays all metadata for the selected Record along with set of tabs that updates based on the type of Record. The top of the Record view shows the Record title, type icon, and its description. The Record description is meant to provide a short summary of the Record. The right side of the view displays the created and modified dates of the Record along with its keywords and a button to open the Record in its associated module (ontologies in the <a href="#ontology-editor-guide">Ontology Editor</a>, etc.).</p>
+</div>
+<div class="paragraph">
+<p>Every Record type will contain an Overview tab where you can view a Markdown description of the Record that provides more detailed information than the description field. If the Record is a Versioned RDF Record, such as an Ontology Record or Mapping Record, the tabset will also include a tab displaying the list of its Branches. The Branches in the list are expandable to view the description and commit history of the Branch.</p>
+</div>
+<div class="paragraph">
+<p>If you have the permission to manage the Record, clicking on the title, description, overview, and keywords fields will turn them into editable fields for easy updates. In addition, you will see a btn:[Manage] button which will navigate you to the Record Permissions page.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_record_permissions">Record Permissions</h4>
+<div class="paragraph">
+<p>The Record Permissions page enables you to specify which users and groups can perform various actions against a record, such as viewing, deleting, modifying, and managing. <strong>Modify</strong> refers to the ability to affect the data represented by the record while <strong>Manage</strong> refers to the ability to edit the Record metadata. Versioned RDF Records like Ontologies and Mappings will also provide the ability to restrict who can modify the MASTER branch. Each type of Record has its own default permissions that get set uploaded or created.</p>
+</div>
+<div class="paragraph">
+<p>Permissions can be set to allow all authenticated users (the Everyone slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the Everyone permission, find a user or group in the search box underneath the appropriate box, and select it. To remove a user or group from the permission, click the X button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.  You can also click on the back button if you want to go back to the Record View.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/catalog/record_view_permission.png" alt="record view permission">
+</div>
+<div class="title">Figure 4. Editing an Record Permission</div>
+</div>
+<div class="paragraph">
+<p>For Versioned RDF records, If a user is not allowed to modify the branch they are currently viewing, all actions in the editor that would affect the branch are disabled or removed. In addition, if a user is not allowed to edit the target branch of a <a href="#merge-requests-guide">merge request</a>, they will not be able to accept the request.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

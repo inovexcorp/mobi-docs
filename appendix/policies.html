@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Mobi Security Policies</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_mobi_security_policies">Appendix A: Mobi Security Policies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi utilizes <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xacml">XACML</a> standards to support
+Attribute-Based Access Control (ABAC). See the ABAC section for more detail.</p>
+</div>
+<div class="sect2">
+<h3 id="_attribute_based_access_control">Attribute-Based Access Control</h3>
+<div class="paragraph">
+<p>Attribute-Based Access Control is an alternative to the traditional Role-Based Access Control (RBAC) - an authorization
+model where users are permitted to access resources based on the roles assigned to the user. As the name implies, ABAC
+evaluates a combination of Attributes to determine the user&#8217;s access permissions.</p>
+</div>
+<div class="paragraph">
+<p>The base Attributes in Mobi&#8217;s ABAC model are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Subject</strong>: The subject is the user requesting access to a resource in order to perform an action. These are typically
+gathered from a token or an existing database/HR system.</p>
+</li>
+<li>
+<p><strong>Resource</strong>: The resource is an object or asset (e.g., files, records, metadata, application, etc.) that the user wants
+to access. Resource attributes in Mobi are typically the IRIs of object.</p>
+</li>
+<li>
+<p><strong>Action</strong>: The action is what the user wants to do with the resource. The typical actions in Mobi are "Create", "Read",
+"Update", "Delete", and "Modify".</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_attribute_based_access_control_workflow">Attribute-Based Access Control Workflow</h4>
+<div class="paragraph">
+<p>As an example, a policy in Mobi may state "Only users who have the admin role may view Ontology Record 1." When a
+request is made, Mobi&#8217;s XACML Engine (discussed below) will evaluate the request and grant view permission if the
+request has the following attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Subject is the IRI of the User making the request</p>
+</li>
+<li>
+<p>Subject <code>hasUserRole</code> of <code>admin</code></p>
+</li>
+<li>
+<p>Action is the "Read" action</p>
+</li>
+<li>
+<p>Resource is the IRI of Ontology Record 1</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_xacml">XACML</h3>
+<div class="paragraph">
+<p>eXtensible Access Control Markup Language (XACML) is an XML based language that enables security policy definitions and
+request evaluation to determine if a user has access to given resource. It is composed of the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Policy Decision Point (PDP)</strong>: Evaluates requests against authorization policies before issuing access decisions</p>
+</li>
+<li>
+<p><strong>Policy Enforcement Point (PEP)</strong>: Intercepts user&#8217;s access request to a resource, makes a decision request to the PDP
+to obtain the access decision
+(i.e. access to the resource is approved or rejected), and acts on the received decision</p>
+</li>
+<li>
+<p><strong>Policy Information Point (PIP)</strong>: The system entity that acts as a source of attribute values (i.e. a resource,
+subject, environment)</p>
+</li>
+<li>
+<p><strong>Policy Retrieval Point (PRP)</strong>: Point where the XACML access authorization policies are stored, typically a database
+or the filesystem.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/xacml/XACML_Workflow.png" alt="XACML Evaluation Engine">
+</div>
+</div>
+<div class="paragraph">
+<p>The XACML specification supports both Attribute-Based Access Control and Role-Based Access Control. Mobi&#8217;s
+implementation of XACML only supports ABAC. Request make to the PEP are evaluated in the PDP and return whether or not
+a user can access a Resource based on the ABAC schema defined above.</p>
+</div>
+<div class="paragraph">
+<p>Mobi&#8217;s XACML definitions are structured using combinations of the following top level elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Policy</strong>: contains a set of Rule elements and a specified procedure for combining the results of their evaluation.
+It is the basic unit of the policy used by the PDP, and so it is intended to form the basis of an authorization decision</p>
+</li>
+<li>
+<p><strong>Rule</strong>: contains a Boolean expression that can be evaluated in isolation, but that is not intended to be accessed in
+isolation by a PDP. A Rule can be comprised of the following sub-elements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Target</strong>: defines the set of requests to which the rule is intended to apply in the form of a logical expression on
+attributes in the request.</p>
+</li>
+<li>
+<p><strong>Effect</strong>: indicates the rule-writer&#8217;s intended consequence of a "True" evaluation for the rule.  Two values are
+allowed: "Permit" and "Deny".</p>
+</li>
+<li>
+<p><strong>Condition</strong>: represents a Boolean expression that refines the applicability of the rule beyond the predicates implied
+by its target.  Therefore, it may be absent.</p>
+</li>
+<li>
+<p><strong>Obligation Expressions</strong>: An operation specified in a rule, policy or policy set that should be performed by the PEP
+in conjunction with the enforcement of an authorization decision.  These are currently unused in Mobi policies.</p>
+</li>
+<li>
+<p><strong>Advice Expressions</strong>: A supplementary piece of information in a policy or policy set which is provided to the PEP with
+the decision of the PDP. These are currently unused in Mobi policies.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_xacml_example">XACML Example</h4>
+<div class="paragraph">
+<p>Here is an example policy that is used in Mobi to control what users may create an Ontology Record:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
+    &lt;Description&gt;Who can create an OntologyRecord in the Local Catalog?&lt;/Description&gt;
+    &lt;Target&gt;
+        &lt;AnyOf&gt;
+            &lt;AllOf&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/catalog-local&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/ontologies/policy#Create&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/ontologies/ontology-editor#OntologyRecord&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+            &lt;/AllOf&gt;
+        &lt;/AnyOf&gt;
+    &lt;/Target&gt;
+    &lt;Rule RuleId="urn:createOntologyRecord" Effect="Permit"&gt;
+        &lt;Target&gt;
+            &lt;AnyOf&gt;
+                &lt;AllOf&gt;
+                    &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                        &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/roles/user&lt;/AttributeValue&gt;
+                        &lt;AttributeDesignator AttributeId="http://mobi.com/ontologies/user/management#hasUserRole" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                    &lt;/Match&gt;
+                &lt;/AllOf&gt;
+            &lt;/AnyOf&gt;
+        &lt;/Target&gt;
+    &lt;/Rule&gt;
+    &lt;Rule RuleId="urn:createOntologyRecordAdmin" Effect="Permit"&gt;
+        &lt;Target&gt;
+            &lt;AnyOf&gt;
+                &lt;AllOf&gt;
+                    &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                        &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;admin&lt;/AttributeValue&gt;
+                        &lt;AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="http://mobi.com/ontologies/user/management#username" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                    &lt;/Match&gt;
+                &lt;/AllOf&gt;
+            &lt;/AnyOf&gt;
+        &lt;/Target&gt;
+    &lt;/Rule&gt;
+&lt;/Policy&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Target</code> of this policy matches requests where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Resource is the Mobi Catalog <code><a href="http://mobi.com/catalog-local" class="bare">http://mobi.com/catalog-local</a></code></p>
+</li>
+<li>
+<p>The Action is Create <code><a href="http://mobi.com/ontologies/policy#Create" class="bare">http://mobi.com/ontologies/policy#Create</a></code></p>
+</li>
+<li>
+<p>The Action Attribute for the RDF Type is an Ontology Record <code><a href="http://mobi.com/ontologies/ontology-editor#OntologyRecord" class="bare">http://mobi.com/ontologies/ontology-editor#OntologyRecord</a></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any request that have these 3 criteria are evaluated against the rule section. If either rule resolves to be True, then
+the request&#8217;s response is a <code>Permit</code> as defined in the <code>Effect</code> field in each <code>Rule</code> element.</p>
+</div>
+<div class="paragraph">
+<p>The first <code>Rule</code> states that the user making the request must be a user in Mobi:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>hasUserRole</code> (<code><a href="http://mobi.com/ontologies/user/management#hasUserRole" class="bare">http://mobi.com/ontologies/user/management#hasUserRole</a></code>) of <code>user</code> (<code><a href="http://mobi.com/roles/user" class="bare">http://mobi.com/roles/user</a></code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The second <code>Rule</code> states that the user must be the <code>admin</code> user:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>username</code> (<code><a href="http://mobi.com/ontologies/user/management#username" class="bare">http://mobi.com/ontologies/user/management#username</a></code>) must equal <code>admin</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These match operator is defined by the <code>MatchId</code> field of the <code>Match</code> element. Most Mobi policies use the basic <code>equals</code>
+operator <code>urn:oasis:names:tc:xacml:1.0:function:string-equal</code>. See the
+<a href="http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#_Toc325047234">XACML Functions</a> section of the
+specification to see other possible operations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_xacml_workflow">XACML Workflow</h4>
+<div class="paragraph">
+<p>Let&#8217;s modify our previous example to only allow the <code>admin</code> user to create Ontology Records by deleting the <code>Rule</code> with
+the <code>hasUserRole</code> section. Our new modified policy now looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
+    &lt;Description&gt;Who can create an OntologyRecord in the Local Catalog?&lt;/Description&gt;
+    &lt;Target&gt;
+        &lt;AnyOf&gt;
+            &lt;AllOf&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/catalog-local&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/ontologies/policy#Create&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+                &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/ontologies/ontology-editor#OntologyRecord&lt;/AttributeValue&gt;
+                    &lt;AttributeDesignator AttributeId="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                &lt;/Match&gt;
+            &lt;/AllOf&gt;
+        &lt;/AnyOf&gt;
+    &lt;/Target&gt;
+    &lt;Rule RuleId="urn:createOntologyRecordAdmin" Effect="Permit"&gt;
+        &lt;Target&gt;
+            &lt;AnyOf&gt;
+                &lt;AllOf&gt;
+                    &lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+                        &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;admin&lt;/AttributeValue&gt;
+                        &lt;AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="http://mobi.com/ontologies/user/management#username" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+                    &lt;/Match&gt;
+                &lt;/AllOf&gt;
+            &lt;/AnyOf&gt;
+        &lt;/Target&gt;
+    &lt;/Rule&gt;
+&lt;/Policy&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following request is for a user that is not the admin user and is attempting to create an Ontology Record:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Resource is <code><a href="http://mobi.com/catalog-local" class="bare">http://mobi.com/catalog-local</a></code></p>
+</li>
+<li>
+<p>Action is <code><a href="http://mobi.com/ontologies/policy#Create" class="bare">http://mobi.com/ontologies/policy#Create</a></code></p>
+</li>
+<li>
+<p>Action Attribute for Type is <code><a href="http://mobi.com/ontologies/ontology-editor#OntologyRecord" class="bare">http://mobi.com/ontologies/ontology-editor#OntologyRecord</a></code></p>
+</li>
+<li>
+<p>Subject is user with username <code>batman</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s now go through the typical XACML workflow from request to evaluation to response.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A REST request is made to a Mobi endpoint where the request is intercepted by the Policy Enforcement Point</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relevant user information is extracted from the request</p>
+</li>
+<li>
+<p>Action and Resource information is extracted from the targeted endpoint</p>
+<div class="ulist">
+<ul>
+<li>
+<p>These are defined by Java Annotations on the endpoints in the Mobi source code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A XACML request is generated from the data extracted from the REST request.</p>
+</li>
+<li>
+<p>The XACML request is then passed along to the Policy Decision Point</p>
+</li>
+<li>
+<p>The Policy Decision Point reaches out to the Policy Information Point and Policy Retrieval Point to retrieve additional
+attributes and relevant policies to evaluate against.</p>
+</li>
+<li>
+<p>The Policy Decision Point evaluates the request against any relevant policies. In this case it is our policy listed above.</p>
+</li>
+<li>
+<p>The Policy Decision Point sees that the User making the request is <code>batman</code> and not <code>admin</code>. Using a deny unless permit model
+the Policy Decision Point returns <code>Deny</code> as the response to the request.</p>
+</li>
+<li>
+<p>The Policy Enforcement Point propagates this <code>Deny</code> out, never actually entering the code for the REST request, and
+returns a 401 Unauthorized error to the system making the REST request.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mobi_policies">Mobi Policies</h3>
+<div class="sect3">
+<h4 id="_mobi_system_policies">Mobi System Policies</h4>
+<div class="paragraph">
+<p>Mobi stores default system policies in the <code>${karaf.etc}/policies/systemPolicies</code> directory. Custom XACML system policies
+should be added to this directory. On initial startup these policies are loaded into the Repository and Virtual Filesystem.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Any edits made to these policies after initial system startup will not be applied unless a <code>mobi:reload-system-policy</code> command
+is run from the Karaf terminal.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reload_system_policy_command">Reload System Policy Command</h4>
+<div class="paragraph">
+<p>A helper utility exists in the Karaf terminal for reloading manually edited system policies. The command take a path to
+a system policy.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+System policy file names must be a URI Encoding of the Policy IRI.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>karaf@mobi()&gt; mobi:reload-system-policy --help
+DESCRIPTION
+        mobi:reload-system-policy
+
+	Reloads a system policy in Mobi
+
+SYNTAX
+        mobi:reload-system-policy [PolicyFilePath]
+
+ARGUMENTS
+        PolicyFilePath
+                The path to the system policy file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command will replace existing system policies with the policy file provided as an argument</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mobi_policy_templates">Mobi Policy Templates</h4>
+<div class="paragraph">
+<p>Mobi makes use of policy templates for generating default policies for different Record Types. There are two main record
+policy template types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Record Policy</strong>: A policy for managing the READ/DELETE/MODIFY permissions of a Record</p>
+</li>
+<li>
+<p><strong>Policy Policy</strong>: A policy for managing the Record Policy and adjusting who can edit the permissions of a Record Policy</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following policy templates can be found in the <code>${karaf.etc}/policies/policyTemplates</code> directory with their system defaults:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>datasetRecordPolicy.xml</strong>: Default policy template for Dataset Records</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Read Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Delete Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Update/Manage Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Modify Permissions: Any user with the User role</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>mappingRecordPolicy.xml</strong>: Default policy template for Mapping Records</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Read Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Delete Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Update/Manage Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Modify Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Modify Master Branch: Any user with the User role</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>recordPolicy.xml</strong>: Default policy template for Versioned RDF Records (Ontology Records and Shapes Graph Records)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Read Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Delete Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Update/Manage Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Modify Permissions: Any user with the User role</p>
+</li>
+<li>
+<p>Modify Master Branch: The user who created the Record</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>policyPolicy.xml</strong>: The default policy template for managing access control for a Record. This policy is tied to each
+type of Record and is associated with the Update Permission for the Record. If the User has the Update Permission, then
+they can also change who else can Read/Delete/Manage/Modify a given Record.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Read Permissions: The user who created the Record</p>
+</li>
+<li>
+<p>Update/Manage Permissions: The user who created the Record</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These default policy templates for Records can be manually adjusted in the filesystem to reflect any organization
+specific need for access control for Records. The templates use a few tokens to do string replacement on when processed
+by the Mobi Record Services on creation. These tokens are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>%RECORDIRI%</code>: The IRI of the created Record</p>
+</li>
+<li>
+<p><code>%USERIRI%</code>: The IRI of the User creating the Record</p>
+</li>
+<li>
+<p><code>%POLICYIRI%</code>: The IRI of the Record Policy - this is used by the policyPolicy.xml for managing who can adjust
+permissions for a given Record</p>
+</li>
+<li>
+<p><code>%MASTER%</code>: The IRI of the Master branch if it is a Versioned RDF Record</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Unlike System Policies, these policies do not need to be reloaded after editing. They are picked up by the Mobi
+Record Services when a user creates a new Record.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

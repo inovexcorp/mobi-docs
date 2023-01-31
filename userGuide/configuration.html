@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Configuration</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="configuration-guide">Configuration</h3>
+<div class="paragraph">
+<p>All default configuration files for Apache Karaf and Mobi are located inside the <code>{MOBI_HOME}/etc</code> directory.</p>
+</div>
+<div class="sect3">
+<h4 id="_mobi">Mobi</h4>
+<div class="sect4">
+<h5 id="_service_configuration">Service Configuration</h5>
+<div class="paragraph">
+<p>The basic Mobi services can be configured using the following files:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Mobi Service Configuration Files</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.catalog.config.CatalogConfigProvider.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi Catalog</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.platform.config.state.StateManager.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi State Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.service.repository.native-system.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi System Repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.service.repository.native-prov.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi Provenance Repository</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>By default, all resources besides provenance data are stored in the system repository which is an RDF triplestore located in the <code>data/repos/system</code> directory of the Mobi distribution. The provenance data is stored within the prov repository. Each repository in Mobi is uniquely identified by its id. To change the data location, id, or title of either repository, edit the <span class="underline">dataDir</span>, <span class="underline">id</span>, and <span class="underline">title</span> properties respectively in the appropriate file. Apache Karaf will dynamically reload any changes made to this existing file.</p>
+</div>
+<div class="paragraph">
+<p>You can create new repositories to be used for storage in Mobi. First, choose either a "native" repository or a "memory" repository. These two types of repositories are defined in the <code>NativeRepositoryConfig</code> and <code>MemoryRepositoryConfig</code> classes in the <code>com.mobi.repository.impl.sesame</code> module. Once you have chosen the type of repository, make a new <code>.cfg</code> file in the <code>{MOBI_HOME}/etc</code> directory with a file name that starts with either "com.mobi.service.repository.native" or "com.mobi.service.repository.memory". In the file, set the <span class="underline">id</span>, <span class="underline">title</span>, and <span class="underline">dataDir</span> properties you wish for the repository. The file should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id=demo
+title=Demonstration
+dataDir=path/to/directory</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apache Karaf will automatically recognize the new configuration file and create the new repository.</p>
+</div>
+<div class="paragraph">
+<p>The repository that all Catalog resources are stored with is controlled within the <code>com.mobi.catalog.config.CatalogConfigProvider.cfg</code> file. The storage repository for all other types of data are controlled individually in other configuration files. To change each of these repository configurations, open the associated <code>.cfg</code> file and change the id of the <span class="underline">repository.target</span> property to be the id of the new repository. For example to change the repository for storing Catalog resources to the repository in the example above, you would open the <code>com.mobi.catalog.config.CatalogConfigProvider.cfg</code> file and edit the repository target line to be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>repository.target = (id=demo)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apache Karaf will automatically detect the changes and reload the new configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_security_configuration">Security Configuration</h5>
+<div class="paragraph">
+<p>The configuration for user authentication, authorization, and management are stored in the following files in the <code>{MOBI_HOME}/etc</code> directory:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Mobi Security Configuration Files</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.jaas.engines.RdfEngine.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi RDF Engine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.security.policy.api.xacml.XACMLPolicyManager.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the XACML security policy manager</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Mobi utilizes JAAS for user authentication and basic authorization. By default, user credentials and information are managed by the <code>RdfEngine</code> service which is configured with the <code>com.mobi.jaas.engines.RdfEngine.cfg</code> file. The file contains an id of the repository to be used for storage, the encryption settings for JAAS which are enabled to start, and the two default roles: "user" and "admin". Apache Karaf will automatically detect any changes and reload the updated configurations.</p>
+</div>
+<div class="paragraph">
+<p>The default user for Mobi is "admin" with password "admin". To change the credentials of the "admin" user or perform any other user management activities, utilize the <a href="#administration-guide">Administration</a> page, the <a href="#my-account-guide">My Account</a> page, or the appropriate REST endpoints.</p>
+</div>
+<div class="paragraph">
+<p>For more advanced authorization functionality, Mobi uses the an Attribute Based Access Control (ABAC) system called <a href="https://www.oasis-open.org/committees/xacml/">XACML</a>. Policies describing the attributes for allowing or denying individual access requests are managed by the <code>XACMLPolicyManager</code> service which is configured with the <code>com.mobi.security.policy.api.xacml.XACMLPolicyManager.cfg</code> file. The file contains an id of the repository to be used for storage, the location the XACML policy files should be stored in, and whether the policy file location should be created if it does not already exist. Apache Karaf will automatically detect any changes and reload the updated configurations.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_email_service_configuration">Email Service Configuration</h5>
+<div class="paragraph">
+<p>The configuration for the Mobi Email Service is stored in the following file in the <code>{MOBI_HOME}/etc</code> directory:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Mobi Email Service Configuration Files</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.email.api.EmailService.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi Email Service</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The Mobi Email Service is built on the Apache Commons Email API. The Email Service provides the ability to connect to a provided SMTP server and send an email using a configured email account. By default, the service is configured to connect to a Gmail SMTP server in the <code>com.mobi.email.api.EmailService.cfg</code> file. The service has configurations for <code>smtpServer</code>, <code>port</code>, <code>emailAddress</code>, <code>emailPassword</code>, <code>security</code>, and <code>emailTemplate</code>. Please see below for different configurations of popular email services.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_email_template">Email Template</h5>
+<div class="paragraph">
+<p>The Mobi Email Email Service supplies a default email template that works across most email clients. The default file is located in the <code>{MOBI_HOME}/etc</code> directory. If you want to provide your own email template, modify the <code>emailTemplate</code> configuration to the new email template with either a relative or absolute path to the file. The email service will resolve relative file paths for an email template using the <code>{MOBI_HOME}/etc</code> directory as the base directory.</p>
+</div>
+<div class="paragraph">
+<p>The email service provides a method for doing a simple string replace on the <code>!|$MESSAGE!|$</code> binding within the template. For more complex HTML inserts, the service provides a method to replace all HTML between the two <code>!|$BODY!|$</code> bindings. Custom templates must have the aforementioned bindings (<code>!|$MESSAGE!|$</code> &amp; <code>!|$BODY!|$</code>). The <code>!|$MESSAGE!|$</code> binding must be between two <code>!|$BODY!|$</code> bindings. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+...
+&lt;body&gt;
+!|$BODY!|$
+&lt;table&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;p&gt;
+                &lt;!-- A simple message to replace --&gt;
+                !|$MESSAGE!|$
+            &lt;/p&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+!|$BODY!|$
+...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_smtp_configurations">SMTP Configurations</h5>
+<div class="sect5">
+<h6 id="_gmail">Gmail</h6>
+<div class="paragraph">
+<p>To send emails with Gmail, you must also follow the steps <a href="https://myaccount.google.com/lesssecureapps">here</a> to allow less secure apps to access the gmail account. Gmail also has <a href="https://support.google.com/a/answer/166852">strict sending limits</a> that can impair functionality as your organization grows. Additionally, Gmail may flag a machine that it does not recognize and prevent access. If this occurs, log in to your gmail and <a href="https://myaccount.google.com/device-activity">grant the device access</a>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>smtpServer = smtp.gmail.com
+emailAddress = my.email@gmail.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_outlook">Outlook</h6>
+<div class="literalblock">
+<div class="content">
+<pre>smtpServer = smtp-mail.outlook.com
+emailAddress = my.email@outlook.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_office_365">Office 365</h6>
+<div class="literalblock">
+<div class="content">
+<pre>smtpServer = smtp.office365.com
+emailAddress = my.email@yourdomain.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_yahoo">Yahoo</h6>
+<div class="literalblock">
+<div class="content">
+<pre>smtpServer = smtp.mail.yahoo.com
+emailAddress = my.email@yahoo.com
+emailPassword = my-password
+port = 465
+security = STARTTLS
+emailTemplate = emailTemplate.html</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_mailgun">Mailgun</h6>
+<div class="literalblock">
+<div class="content">
+<pre>smtpServer = smtp.mailgun.org
+emailAddress = my.email@mg.gitlab.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_apache_karaf">Apache Karaf</h4>
+<div class="paragraph">
+<p>The Karaf instance that runs Mobi can be configured using the configuration files located in the <code>{MOBI_HOME}/etc</code>
+ directory.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Relevant Karaf Configuration Files</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.url.mvn.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for Maven repositories used for bundle resolution and deployment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for HTTPS connections</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <code>org.ops4j.pax.url.mvn.cfg</code> file specifies how Apache Karaf will resolve Maven URLs. This file is set up so that
+Apache Karaf will use the basic Maven repositories along with your local Maven repository and the public Mobi remote
+repository to resolve artifacts.</p>
+</div>
+<div class="paragraph">
+<p>The <code>org.ops4j.pax.web.cfg</code> file configures the web service Apache Karaf uses to run Mobi. By default, Mobi only
+runs HTTPS on port 8443.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

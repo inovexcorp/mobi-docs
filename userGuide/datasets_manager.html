@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Datasets Manager</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="datasets-manager-guide">Datasets Manager</h3>
+<div class="paragraph">
+<p>The Mobi Datasets Manager allows users to create, edit, clear, and delete datasets within the application to group and store Resource Description Framework (<a href="https://www.w3.org/RDF/">RDF</a>) semantic data into various graphs for enhanced query isolation, data segmentation, and management.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To learn more about the structure of a dataset, refer to the <a href="#Mobi Datasets">[Mobi Datasets]</a> Appendix.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To reach the Datasets Manager, click on the link in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
+</div>
+<div class="title">Figure 1. The Datasets Manager</div>
+</div>
+<div class="paragraph">
+<p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The btn:[Upload Data] button allows you to upload graph data to the dataset from a file.</p>
+</div>
+<div class="paragraph">
+<p>To create a new dataset, click btn:[New Dataset] and fill out the information in the creation overlay.</p>
+</div>
+<div class="sect3">
+<h4 id="_create_dataset">Create Dataset</h4>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
+</div>
+<div class="title">Figure 2. New Dataset Overlay</div>
+</div>
+<div class="paragraph">
+<p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository ID</span> field displays the identifier of the repository registered within Mobi where the dataset and all associated named graphs will be stored. For now, this is defaulted to the system repository. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking btn:[Cancel] will close the overlay. Clicking btn:[Submit] will create the dataset with the provided metadata.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The ability to create new repositories in Mobi is coming soon!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_edit_dataset">Edit Dataset</h4>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
+</div>
+<div class="title">Figure 3. Edit Dataset Overlay</div>
+</div>
+<div class="paragraph">
+<p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking btn:[Update] will update the dataset record with the new metadata.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+Datasets are associated with specific versions (commits) of an ontology record. In order to update a dataset to the latest version of an ontology record, you&#8217;ll need to remove the ontology, click btn:[Submit], then add that ontology back to the dataset.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>

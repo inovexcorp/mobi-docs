@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<title>Mobi Mappings</title>
+<style>
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_mobi_mappings">Appendix A: Mobi Mappings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi mappings are used to convert delimited data into RDF and are made up of instances of classes defined in a custom ontology found in the <code>com.mobi.etl.api/src/main/resources/delimited.ttl</code> file in the source code. These main classes are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#_mapping">Mapping</a></code></p>
+</li>
+<li>
+<p><code><a href="#_classmapping">ClassMapping</a></code></p>
+</li>
+<li>
+<p><code><a href="#_datamapping">DataMapping</a></code></p>
+</li>
+<li>
+<p><code><a href="#_objectmapping">ObjectMapping</a></code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All examples in this Appendix will be in Turtle RDF serialization and use the following prefixes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Prefix</th>
+<th class="tableblock halign-left valign-top">Namespace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>example</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://guide.org/</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delim</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/delimited#</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_mapping">Mapping</h3>
+<div class="paragraph">
+<p>The <code>delim:Mapping</code> class represents the mapping itself. Every mapping must have one and only one instance of the <code>Mapping</code> class. Properties associated with this class provide information about the mapping that are needed for the <a href="#mapping-tool-guide">Mapping Tool</a> to have context. These properties are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#_sourcerecord">sourceRecord</a></code></p>
+</li>
+<li>
+<p><code><a href="#_sourcebranch">sourceBranch</a></code></p>
+</li>
+<li>
+<p><code><a href="#_sourcecommit">sourceCommit</a></code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_sourcerecord">sourceRecord</h4>
+<div class="paragraph">
+<p>The <code>delim:sourceRecord</code> property specifies the <code>OntologyRecord</code> a mapping uses for its classes and properties. The <a href="#mapping-tool-guide">Mapping Tool</a> requires this property along with <code><a href="#_sourcebranch">sourceBranch</a></code> and <code><a href="#_sourcecommit">sourceCommit</a></code> to retrieve a specific version of an ontology saved in Mobi. A mapping will have access to all entities defined in ontologies within the imports closure of the source ontology. The Mapping Tool utilizes all class and property definitions to validate the class and property mappings and apply the correct datatypes to data property values.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. <code>sourceRecord</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DocumentExample delim:sourceRecord &lt;http://mobi.com/records/uhtc&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sourcebranch">sourceBranch</h4>
+<div class="paragraph">
+<p>The <code>delim:sourceBranch</code> property specifies the <code>Branch</code> of the <code><a href="#_sourcerecord">sourceRecord</a></code> a mapping uses for its classes and properties. The <a href="#mapping-tool-guide">Mapping Tool</a> requires this property along with <code><a href="#_sourcerecord">sourceRecord</a></code> and <code><a href="#_sourcecommit">sourceCommit</a></code> to retrieve a specific version of an ontology saved in Mobi. A mapping will have access to all entities defined in ontologies within the imports closure of the source ontology. The Mapping Tool utilizes all class and property definitions to validate the class and property mappings and apply the correct datatypes to data property values.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. <code>sourceBranch</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DocumentExample delim:sourceBranch &lt;http://mobi.com/branches/master&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sourcecommit">sourceCommit</h4>
+<div class="paragraph">
+<p>The <code>delim:sourceCommit</code> property specifies the <code>Commit</code> of the <code><a href="#_sourcebranch">sourceBranch</a></code> a mapping uses for its classes and properties. The <a href="#mapping-tool-guide">Mapping Tool</a> requires this property along with <code><a href="#_sourcerecord">sourceRecord</a></code> and <code><a href="#_sourcebranch">sourceBranch</a></code> to retrieve a specific version of an ontology saved in Mobi. A mapping will have access to all entities defined in ontologies within the imports closure of the source ontology. The Mapping Tool utilizes all class and property definitions to validate the class and property mappings and apply the correct datatypes to data property values.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. <code>sourceCommit</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DocumentExample delim:sourceCommit &lt;http://mobi.com/commits/0&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_classmapping">ClassMapping</h3>
+<div class="paragraph">
+<p>The <code>delim:ClassMapping</code> class represents a blueprint for creating an instance of a class. Every <code>ClassMapping</code> defined in a mapping will create an instance of the class it maps to for every row in a set of delimited data. Each class instance created will have a generated IRI. Properties associated with this class specify how the class instance it creates should be constructed. These properties are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#_mapsto">mapsTo</a></code></p>
+</li>
+<li>
+<p><code><a href="#_dataproperty">dataProperty</a></code></p>
+</li>
+<li>
+<p><code><a href="#_objectproperty">objectProperty</a></code></p>
+</li>
+<li>
+<p><code><a href="#_hasprefix">hasPrefix</a></code></p>
+</li>
+<li>
+<p><code><a href="#_localname">localName</a></code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_mapsto">mapsTo</h4>
+<div class="paragraph">
+<p>The <code>delim:mapsTo</code> property specifies the class a <code>ClassMapping</code> will create. This is a required property for a <code>ClassMapping</code> since otherwise, the <a href="#mapping-tool-guide">Mapping Tool</a> will not know which class to create an instance of. It must point to a class that is defined either within the source ontology of the mapping or one of the ontologies in the source ontology&#8217;s imports closure.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. <code>mapsTo</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample delim:mapsTo &lt;http://mobi.com/ontologies/uhtc&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dataproperty">dataProperty</h4>
+<div class="paragraph">
+<p>The <code>delim:dataProperty</code> property specifies a <code><a href="#_datamapping">DataMapping</a></code> that is associated with a <code>ClassMapping</code>. It must point to a <code><a href="#_datamapping">DataMapping</a></code> instance defined within the mapping. A <code>ClassMapping</code> can have one or more of this property. Every instance of a class created from a <code>ClassMapping</code> will have the property specified in the <code><a href="#_datamapping">DataMapping</a></code> specified by <code>dataProperty</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. <code>dataProperty</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample delim:dataProperty example:DataMapping1 ;
+    delim:dataProperty example:DataMapping2 .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_objectproperty">objectProperty</h4>
+<div class="paragraph">
+<p>The <code>delim:objectProperty</code> property specifies an <code><a href="#_objectmapping">ObjectMapping</a></code> that is associated with a <code>ClassMapping</code>. It must point to a <code><a href="#_objectmapping">ObjectMapping</a></code> instance defined within the mapping. A <code>ClassMapping</code> can have one or more of this property. Every instance of a class created from a <code>ClassMapping</code> will have the property specified in the <code><a href="#_objectmapping">ObjectMapping</a></code> specified by <code>objectProperty</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. <code>objectProperty</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample delim:objectProperty example:ObjectMapping1 ;
+    delim:objectProperty example:ObjectMapping2 .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hasprefix">hasPrefix</h4>
+<div class="paragraph">
+<p>The <code>delim:hasPrefix</code> property specifies the namespace of the IRI for every class instance created by a <code>ClassMapping</code>. This property is required by the <a href="#mapping-tool-guide">Mapping Tool</a> so it knows how to construct the IRI for each class instance created by the <code>ClassMapping</code>. The value of this property is a string and must be a valid namespace.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. <code>hasPrefix</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample delim:hasPrefix "http://guide.org/example/" .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_localname">localName</h4>
+<div class="paragraph">
+<p>The <code>delim:localName</code> property specifies how the local name of the IRI will be generated for every class instance created by a <code>ClassMapping</code>. This property points to a string literal and must be in the following format. The string must start with a dollar sign ($) and contain either the string "UUID" or a number surrounded by curly braces "{}". The "UUID" string will generate a unique identifier for every class instance created by the <code>ClassMapping</code>. A number will grab the value of the column at that zero-based index in the row being mapped. If the column specified has duplicate values, the <a href="#mapping-tool-guide">Mapping Tool</a> will combine the properties of every class instance with that IRI and combine them into a single instance. If this property is not set on a <code>ClassMapping</code>, the <a href="#mapping-tool-guide">Mapping Tool</a> will default to generating a UUID for every class instance.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. <code>localName</code></div>
+<div class="content">
+<div class="paragraph">
+<p>This means every class instance will have a unique identifier for a local name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample1 delim:localName "${UUID}" .</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means every class instance will have the value from the third column for a local name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ClassMappingExample2 delim:localName "${2}" .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_datamapping">DataMapping</h3>
+<div class="paragraph">
+<p>The <code>delim:DataMapping</code> class represents a blueprint for creating a data property on a class instance. Since data properties in an ontology point to literal values, a <code>DataMapping</code> specifies a column whose value in the row being mapped will be used as the value of the generated data property. Properties associated with this class define how a data property will be created. These properties are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#_columnindex">columnIndex</a></code></p>
+</li>
+<li>
+<p><code><a href="#data-hasProperty">hasProperty</a></code></p>
+</li>
+<li>
+<p><code><a href="#_datatypespec">datatypeSpec</a></code></p>
+</li>
+<li>
+<p><code><a href="#_languagespec">languageSpec</a></code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_columnindex">columnIndex</h4>
+<div class="paragraph">
+<p>The <code>delim:columnIndex</code> property specifies which column a <code>DataMapping</code> should pull the value from to set as the value of the generated data property. This property is required for a <code>DataMapping</code> so that the <a href="#mapping-tool-guide">Mapping Tool</a> knows where to get the value of a data property. All column values retrieved by this property are interpreted as strings. The value of this property must be a string and all the column indexes are zero-based.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. <code>columnIndex</code></div>
+<div class="content">
+<div class="paragraph">
+<p>This will retrieve the value from the first column.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DataMapping1 delim:columnIndex "0" .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="data-hasProperty">hasProperty</h4>
+<div class="paragraph">
+<p>The <code>delim:hasProperty</code> property specifies which data property a <code>DataMapping</code> will create. This property is required for a <code>DataMapping</code> so that the <a href="#mapping-tool-guide">Mapping Tool</a> knows what property to create. It must point to a data property defined either within the source ontology of the mapping or one of the ontologies in the source ontology&#8217;s imports closure. This property can be associated with either a <code>DataMapping</code> or a <code><a href="#_objectmapping">ObjectMapping</a></code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 10. <code>hasProperty</code> for <code>DataMapping</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DataMapping1 delim:hasProperty &lt;http://mobi.com/ontologies/uhtc/aDataProperty&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_datatypespec">datatypeSpec</h4>
+<div class="paragraph">
+<p>The <code>delim:datatypeSpec</code> property specifies a manual override for the datatype of generated data property values resulting from a <code>DataMapping</code>. By default, the datatype will be determined from the range of the property if found with a fallback of string. This setting has precedence over the range of the property. This property is optional for a <code>DataMapping</code>. The value of this property must be the IRI of a standard XSD datatype.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 11. <code>datatypeSpec</code></div>
+<div class="content">
+<div class="paragraph">
+<p>This will set the datatype of all values to xsd:double.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DataMapping1 delim:datatypeSpec xsd:double .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_languagespec">languageSpec</h4>
+<div class="paragraph">
+<p>The <code>delim:languageSpec</code> property specifies a language for all generated data property values resulting from a <code>DataMapping</code>. If this property is set, the mapper will manually change the datatype of the value to be <code>rdfs:langString</code>. Any datatype specified by the range of the property will be ignored. This property is optional for a <code>DataMapping</code>. The value of this property must be a valid language tag string (found <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">here</a> under the ISO 639-1 column).</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 12. <code>languageSpec</code></div>
+<div class="content">
+<div class="paragraph">
+<p>This will set the language of all values to be English.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:DataMapping1 delim:languageSpec "en" .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_objectmapping">ObjectMapping</h3>
+<div class="paragraph">
+<p>The <code>delim:ObjectMapping</code> class represents a blueprint for creating an object property on a class instance. Since object properties in an ontology point to other classes or class expressions, an <code>ObjectMapping</code> specifies a <code>ClassMapping</code> that will be created for the same row and whose generated class instance will be used as the value of the generated object property. Properties associated with this class define how an object property will be created. These properties are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="#_classmapping_2">classMapping</a></code></p>
+</li>
+<li>
+<p><code><a href="#object-hasProperty">hasProperty</a></code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_classmapping_2">classMapping</h4>
+<div class="paragraph">
+<p>The <code>delim:classMapping</code> property specifies which class instance generated from a <code>ClassMapping</code> will be used as the value of the generated object property. This property is required for an <code>ObjectMapping</code> so that the <a href="#mapping-tool-guide">Mapping Tool</a> knows which class should be the value of the object property. The generated value will be the class instance created by the specified <code>ClassMapping</code> for the row being mapped. The value must be a <code>ClassMapping</code> defined within the mapping.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 13. <code>classMapping</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ObjectMapping1 delim:classMapping delim:ClassMappingExample .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="object-hasProperty">hasProperty</h4>
+<div class="paragraph">
+<p>The <code>delim:hasProperty</code> property specifies which object property an <code>ObjectMapping</code> will create. This property is required for an <code>ObjectMapping</code> so that the <a href="#mapping-tool-guide">Mapping Tool</a> knows what property to create. It must point to a object property defined either within the source ontology of the mapping or one of the ontologies in the source ontology&#8217;s imports closure. This property can be associated with either a <code>ObjectMapping</code> or a <code><a href="#_datamapping">DataMapping</a></code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 14. <code>hasProperty</code> for <code>ObjectMapping</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">example:ObjectMapping1 delim:hasProperty &lt;http://mobi.com/ontologies/uhtc/aObjectProperty&gt; .</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-31 19:18:38 UTC
+</div>
+</div>
+</body>
+</html>
