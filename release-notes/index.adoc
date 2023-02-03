@@ -1,27 +1,38 @@
-[appendix]
-== Release Notes
-=== Release Notes for Mobi 2.1
+= Mobi Release Notes
+:toc: left
+:toclevels: 3
+:linkcss:
+:experimental:
+:idprefix:
+:source-highlighter: highlight.js
+:highlightjsdir: ../highlight
+:favicon: ../favicon.ico
+:docinfodir: ../
+
+Mobi is an open and collaborative knowledge graph platform for teams and communities to publish and discover data, data models, and analytics that are instantly consumable. These are the Release notes for the Mobi platform.
+
+== Release Notes for Mobi 2.1
 Mobi 2.1 released on December 16, 2022. This release includes more intuitive changes displays, multiple improvements for "solutioneers" building on top of Mobi, and a variety of performance enhancements and bug fixes.
 
-==== What's New
+=== What's New
 * We've updated all displays of changed triples to be consistently formatted and introduced a new toggle to display all unchanged triples as well, enabling more context when reviewing
 * We've moved all default policies and policy templates to a specific location in the installation directory so administrators can customize the default permissions for their Mobi instance
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Upgraded RDF4J to 4.2.1
 * Upgraded Karaf to 4.4.2
-* Created a folder in the installation directory to hold all policy templates used for new records and the default system policies (See <<Mobi Security Policies>>)
+* Created a folder in the installation directory to hold all policy templates used for new records and the default system policies (See link:/latest/index.html#mobi_security_policies[Mobi Security Policies])
 * Added a new command to the Mobi Karaf shell that will revert all system policies to the defaults specified in the new directory (See <<Mobi Security Policies>>)
 * Enabled ability to reach the Swagger Documentation without specifying `/index.html` at the end of the URL
 * (ENTERPRISE) Added ability to provide a custom relay state on SAML redirects to support custom solutions in the platform to use the Mobi SSO connectivity
 
-===== Catalog
+==== Catalog
 * Updated all triple changes displays to display triples grouped by property and delineated with `++` and `--` symbols
 * Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples
 
-===== Ontology Editor
+==== Ontology Editor
 * Updated all triple changes displays to display triples grouped by property and delineated with `++` and `--` symbols
 * Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples
 * Added logic to clean up user state associated with a deleted record
@@ -29,43 +40,43 @@ Mobi 2.1 released on December 16, 2022. This release includes more intuitive cha
 * Improved performance of hierarchy renders on first load
 * Fixed issue where updates to an IRI used in a complex restriction were not reflected
 
-===== Link (ENTERPRISE)
+==== Link (ENTERPRISE)
 * Fixed issue where results were not shown for a new analysis if the previous analysis results were empty
 
-===== Merge Requests
+==== Merge Requests
 * Updated all triple changes displays to display triples grouped by property and delineated with `++` and `--` symbols
 * Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples
 
-===== Shapes Editor
+==== Shapes Editor
 * Updated all triple changes displays to display triples grouped by property and delineated with `++` and `--` symbols
 * Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples
 * Added logic to clean up user state associated with a deleted record
 * Added success toast on commit
 
-===== Mapping Tool
+==== Mapping Tool
 * Updated all triple changes displays to display triples grouped by property and delineated with `++` and `--` symbols
 * Added "Show Full" toggle to all changes displays except in the Commit Information modal which will display all triples for a particular subject alongside the changed triples
 
-===== Datasets
+==== Datasets
 * Introduced restrictions on uploads to datasets to protect system graphs
 
-===== Administration
+==== Administration
 * Changed the Permissions page to dynamically pull the list of system policies allowing new policies introduced to automatically appear in the list
 * Fixed issue where deleting a group referenced in a policy would not allow that policy to be edited
 
-==== Hotfixes
+=== Hotfixes
 
-===== Version 2.1.1
+==== Version 2.1.1
 Hotfix 2.1.1 was released on December 19, 2022.
 
 * Reverted the Karaf version to 4.4.1 due to a bug with the `bin/client` script
 
-=== Release Notes for Mobi 2.0
+== Release Notes for Mobi 2.0
 Mobi 2.0 released on September 15, 2022. This major release includes major infrastructure updates throughout the platform along with a variety of performance enhancements and bug fixes. Most impactful changes are a new requirement for Java 17 and the entire web application is now built with Angular 6 and more consistent of an experience.
 
 NOTE: For those upgrading from 1.x to 2.0, follow our https://inovexirad.atlassian.net/servicedesk/customer/kb/view/2588246017[Migration Guide]
 
-==== What's New
+=== What's New
 * We've upgraded our Karaf, Angular, RDF4J, and OSGi dependencies to take advantage of the latest stability and functionality improvements
 * We've updated the required Java version to 17
 
@@ -73,9 +84,9 @@ WARNING: Mobi will now no longer start the Java version is older than 17. Please
 
 WARNING: With the latest version of Karaf, the password properties in `$MOBI_HOME/etc/org.ops4j.pax.web.cfg` that enable custom SSL certificates have changed. See <<Configure Custom SSL Certificates>>.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Upgraded Karaf to 4.4.1
 * Upgraded Angular to 6.1.10 and removed all usages and references to AngularJS
 * Upgraded RDF4J to 4.1.0
@@ -87,23 +98,23 @@ WARNING: With the latest version of Karaf, the password properties in `$MOBI_HOM
 * Removed all Mobi API wrappers around RDF4J and switched to using the library directly for drastic performance improvements
 * Removed the OWL API based implementation of our Ontology API 
 
-===== Ontology Editor
+==== Ontology Editor
 * Fixed issue where blank nodes would be detached on upload changes if the IRI of the parent node changed
 * Fixed issue where blank node IDs with hyphens would be affected when previewing the ontology data
 
-===== Discover
+==== Discover
 * Removed the outdated and underutilized Search tab
 
-==== Hotfixes
+=== Hotfixes
 
-===== Version 2.0.3
+==== Version 2.0.3
 Hotfix 2.0.3 was released on November 16, 2022.
 
 * Fixed an issue where clicking on a search result in the Ontology Editor Search tab did not bring up a display of the entity
 * Fixed an issue where the Ontology Editor would bring users to the Visualization tab after uploading changes instead of the Changes tab
 * Fixed an issue where the page index of the list of Changes in the Ontology Editor and Shapes Editor did not reset when the changes were removed
 
-===== Version 2.0.2
+==== Version 2.0.2
 Hotfix 2.0.2 was released on November 2, 2022.
 
 * (ENTERPRISE) Fixed issue where certain screens with a lot of content were not scrolling properly
@@ -115,71 +126,71 @@ Hotfix 2.0.2 was released on November 2, 2022.
 * Fixed issue where IRIs of entities being created in the Ontology Editor could not be edited before being saved
 * Fixed issue where the Schemes and Concepts tabs did not render immediately after SKOS was added to the imports closure
 
-===== Version 2.0.1
+==== Version 2.0.1
 Hotfix 2.0.1 was released on October 16, 2022.
 
 * Fixed issue where Merge Requests could not be accepted
 
-=== Release Notes for Mobi 1.22
+== Release Notes for Mobi 1.22
 Mobi 1.22 released on June 22, 2022. This release includes extensive application of Dataset policies throughout the platform, full policy management in the Catalog, enhanced access control on Shapes Graph Records, and a prepackaged default trust store for secure SSL communications. It also includes various bug fixes and improvements.
 
-==== What's New
+=== What's New
 * We've consolidated access control management of all records into the Catalog
 * We've included a default trust store with the platform to simplify the process to enable secure SSL communication with external sources
 * We've introduced a new policy for controlling who can create Shapes Graph Records
 
 WARNING: All system level policies will be reset to their defaults on a restore into this version and will need to be updated to the desired state again.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Introduced a new bundled trust store that is used throughout the platform when establishing connections to outside sources, including importing ontologies from the web
 * Adjusted the `setenv` file to make setting the max and min memory usage more straightforward
 * Fixed issue where un-encrypted configuration properties would be encrypted on restore even if auto-encryption was not enabled
 
-===== Catalog
+==== Catalog
 * Introduced new UI for editing the policy of any Record in the platform to centralize and simplify the functionality
 
-===== Ontology Editor
+==== Ontology Editor
 * Removed the UI for managing ontology access in favor of the new consolidated experience in the Catalog
 * Updated the backend SPARQL endpoints for querying ontologies to more closely align with the SPARQL 1.1 W3C specification and behave similarly to the overall SPARQL endpoint used for querying datasets and repositories
 * Fixed issue where merges could be submitted even when there were no commits different between the source and target branches
 * Fixed issue where entities with empty label values would prevent the ontology from being opened
 
-===== Merge Requests
+==== Merge Requests
 * Fixed issue where merges could be submitted even when there were no commits different between the source and target branches
 
-===== Shapes Editor
+==== Shapes Editor
 * Introduced a new policy for managing who can create a Shapes Graph Record
 * Improved user experience when a user's access is limited within the editor
 * Adjusted the defaults set when creating new Shapes Graph Records such that managing, deleting, and modifying the master branch are limited to the creator of the Record while viewing and general modification are enabled for everyone
 
-===== Mapping Tool
+==== Mapping Tool
 * Adjusted the class select when creating a class mapping to dynamically pull the list from the source ontology and improve rendering time
 * Adjusted process to map data into a Dataset to take into account the Dataset's policy
 
-===== Discover
+==== Discover
 * Adjusted the Explore tool to take into account the Dataset's policy and display appropriate feedback to the user
 * Improved user experience in the Query tool when the user is unauthorized to submit
 
-=== Release Notes for Mobi 1.21
+== Release Notes for Mobi 1.21
 Mobi 1.21 released on February 15, 2022. This release features the full release of the Ontology Visualization feature in the Ontology Editor, access control policies on datasets, a UI for defining the default IRI when creating new ontologies, and a brand new beta release of a Shapes Editor for Shapes Constraint Language (SHACL) files. It also includes various bug fixes and improvements.
 
-==== What's New
+=== What's New
 * We've added a new beta module for editing SHACL Graphs called the <<shapes-editor-guide,Shapes Editor>>
 * We've expanded the Ontology Visualization feature out of beta with a host of usability improvements
 * We've added a section to customize application-wide settings to the Administration page
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Upgraded AngularJS version to 1.8.2
 * Upgraded Lodash version to 4.17.21
 
-===== Catalog
+==== Catalog
 * Fixed issue where a publisher was not set on the MASTER branch when a new record was created
 
-===== Ontology Editor
+==== Ontology Editor
 * Updated the Ontology Visualization feature to enable customization of the graph by hiding and showing classes and ontologies in a collapsible side panel
 * Updated merge workflow to prevent merges into the same branch as the source
 * Added application setting to customize the default IRI for new ontologies
@@ -187,34 +198,34 @@ Mobi 1.21 released on February 15, 2022. This release features the full release 
 * Fixed issue where circular subclass relationships were not properly represented in the class hierarchy
 * Fixed issue where IRIs with an invalid extra "#" were accepted when editing an IRI
 
-===== Merge Requests
+==== Merge Requests
 * Updated merge workflow to prevent merges into the same branch as the source
 
-===== Shapes Editor
+==== Shapes Editor
 * Introduced brand new beta module for editing SHACL shapes graphs with full versioning support. Behaves like the Ontology Editor with commits, branches, and tags to facilitate collaborative development. See <<shapes-editor-guide,Shapes Editor (BETA)>> for more details
 
-===== Mapping Tool
+==== Mapping Tool
 * Improved formatting of JSON-LD preview
 
-===== Datasets
+==== Datasets
 * Introduced default access policies for Dataset Records. Default access only allows the creator to delete and manage record metadata
 
-===== Administration
+==== Administration
 * Added a new section for managing Application Settings (see <<Application Settings>>)
 
-=== Release Notes for Mobi 1.20
+== Release Notes for Mobi 1.20
 Mobi 1.20 released on October 11, 2021. This release features a beta for Ontology Visualization in the Ontology Editor, updated `dct:modified` dates on Records, Record filtering by keyword in the Catalog, UPDATE query CLI support, and an extension to the Settings framework to support application wide settings. It also includes updates to policy handling, such as the filtering Records based on the user's ability to view the Record. Additionally, this release includes SPARQL query endpoint compliance, a REST interface for ETL, Basic Authentication on REST endpoints, Reflexive/Irreflexive property support, and various bug fixes and improvements.
 
-==== What's New
+=== What's New
 * We've added a new beta feature for Ontology Visualization in the Ontology Editor
 * We've added Record filtering by keywords in the Catalog
 * We've introduced filtering Records based on the user's ability to view the Record
 
 WARNING: `Query System Repo` policy will be reset to support updated SPARQL compliant endpoints.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Removed deprecated OWLAPI Ontology Implementation bundle
 * Added support for UPDATE queries to the `mobi:query` CLI command. Has the ability to perform a dry run of the query displaying what will change
 * Created an experimental REST interface for automatically translating source files into RDF with an extracted ontology. Currently supports XML, JSON, and CSV files
@@ -228,12 +239,12 @@ WARNING: `Query System Repo` policy will be reset to support updated SPARQL comp
 * Fixed system policy to restrict permissions to do everything from anyone with the admin role to only the admin user
 * Fixed issue with Swagger docs not displaying list parameters correctly
 
-===== Catalog
+==== Catalog
 * Added the ability to filter Records based on keywords on the Record
 * Updated `dct:modified` date of Records based on committing to a branch, adding/removing branches, editing branch metadata, and editing Record metadata
 * Fixed issue where the markdown editor help text would be cut off by side component
 
-===== Ontology Editor
+==== Ontology Editor
 * Introduced a beta feature for Ontology Visualization that will render up to 500 classes as nodes in a network graph, using the subclass relationships and object properties as edges. Uses the source Ontology and its imports
 * Added the source Ontology IRI when viewing an imported entity
 * Added `owl:ReflexiveProperty` and `owl:IrreflexiveProperty` support to properties
@@ -246,29 +257,29 @@ WARNING: `Query System Repo` policy will be reset to support updated SPARQL comp
 * Fixed issue where a long imported Ontology IRI would extend past the confirm modal on deletion
 * Fixed issue where a long imported Ontology IRI would extend past modal on addition
 
-===== Mapping Tool
+==== Mapping Tool
 * Fixed issue where Classes from uncommitted changes on MASTER of source Ontologies appeared in Class selector
 
-===== Discover
+==== Discover
 * Updated the display of syntax error messages in the Query tab when submitting invalid SPARQL queries to be more human-readable
 
-===== My Account
+==== My Account
 * Fixed issue where updated names wouldn't immediately reflect the change in the side panel
 
-===== Administration
+==== Administration
 * Added handling for cleaning up User State when deleting a User
 
-=== Release Notes for Mobi 1.19
+== Release Notes for Mobi 1.19
 Mobi 1.19 released on May 7, 2021. This release includes improved performance for various actions within the Ontology editor, support for uploading compressed ontology files, and new features for an improved editing and viewing experience. It also features a new https://www.w3.org/TR/shacl/[SHACL] based framework for setting user preferences in the UI, fully interactive Swagger documentation for our extensive REST APIs, and numerous bug fixes and improvements.
 
-==== What's New
+=== What's New
 * We've added new Swagger-based REST API documentation where API calls can be tested live
 * We've introduced a new framework for configuring and generating web forms for user preferences powered by https://www.w3.org/TR/shacl/[SHACL]
 * We've introduced performance improvements to the Ontology Editor to better support uploading large ontologies and viewing the change history of ontology entities
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Encryption of sensitive information stored within service configuration files is now enabled by default
 * Changes to the master password used for service configuration encryption can be changed without having to restart the server
 * Swagger REST API documentation is available on every running server (see documentation <<Accessing Swagger REST API Documentation, here>>)
@@ -279,12 +290,12 @@ Mobi 1.19 released on May 7, 2021. This release includes improved performance fo
 * Fixed issue where icons did not load when not connected to the internet
 * Fixed issue where logs viewed via the Karaf console did not display the Java Class names
 
-===== Catalog
+==== Catalog
 * Added ability to copy the full IRI of a commit when clicking on the hash in the commit info overlay
 * Fixed issue where a new record "Overview" value would not immediately display after saving
 * Fixed issue where In Progress Commits were not deleted from the repository when a Record was deleted
 
-===== Ontology Editor
+==== Ontology Editor
 * Changed calculation of differences on upload changes to deterministically skolemize blank nodes to provide a more accurate difference
 * Improved the performance of the See History view for individual entities in an ontology
 * Improved the performance of caching an retrieving ontology data
@@ -306,35 +317,35 @@ Mobi 1.19 released on May 7, 2021. This release includes improved performance fo
 * Fixed issue where See History did not update when switching branches
 * Fixed issue where a "IRI already exists" error would display for a split second when creating a new entity
 
-===== Merge Requests
+==== Merge Requests
 * Fixed issue where long ontology names caused the second step of creating a Merge Request to horizontally scroll
 
-===== Mapping Tool
+==== Mapping Tool
 * Added ability to copy the full IRI of a commit when clicking on the hash in the commit info overlay
 * Fixed issue where full mapping definition was not returned when downloading a mapping
 
-===== Discover
+==== Discover
 * Fixed issue where blank nodes defined as known classes caused errors in the Explore tool when viewing the class list and list of instances
 
-===== My Account
+==== My Account
 * New Preferences tab that will populate with User Preference https://www.w3.org/TR/shacl/[SHACL] definitions from the repository (see documentation <<Preferences, here>>)
 * Confirm password input in Password tab was converted to a single field with the ability to unmask the value for verification
 
-===== Administration
+==== Administration
 * Confirm password input in Reset Password overlay and Create User overlay was converted to a single field with the ability to unmask the value for verification
 
-=== Release Notes for Mobi 1.18
+== Release Notes for Mobi 1.18
 Mobi 1.18 released on November 3, 2020. This release includes improved performance when viewing the differences of a specific commit or between two commits. It also has a brand new SPARQL query editor that supports CONSTRUCT queries as well, expressive syntax error displays on ontology uploads, support for encrypting passwords stored in service configuration files, and updates to several underlying libraries between the backend and frontend.
 
-==== What's New
+=== What's New
 * We've introduced performance improvements to the Ontology Editor, Merge Requests, and Catalog to support viewing extremely large collections of differences while also displaying the calculated name for each entity instead of the local name of the IRIs 
 * We've introduced a new SPARQL query editor in the Discover module with a better query editing experience, resizable editor and results areas, and support for CONSTRUCT SPARQL queries
 * We've added the ability to view syntax errors when an ontology upload fails
 * We've added configurable encryption of sensitive information stored within service configuration files
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Updated RDF4J version to 2.5.5
 * New support for configuring a master encryption password used to protect plaintext property values stored within service configuration files
 * The Login and Home modules in the frontend code have been converted from AngularJS to Angular
@@ -342,10 +353,10 @@ Mobi 1.18 released on November 3, 2020. This release includes improved performan
 * Fixed issue where users would see a "Problem Getting States" error when logging in
 * Added security policy for Dataset creation.
 
-===== Catalog
+==== Catalog
 * Changed the display of commit differences to load incrementally and display the calculated names of each entity instead of the local name of the IRI
 
-===== Ontology Editor
+==== Ontology Editor
 * Added support for `owl:versionInfo` and `owl:versionIRI`
 * Added more intelligent identification of the RDF format of a file when uploading ontologies
 * Added display of syntax errors to the ontology upload snackbar
@@ -360,41 +371,41 @@ Mobi 1.18 released on November 3, 2020. This release includes improved performan
 * Fixed issue where the text of the selected data or object property in the "Add Datatype Property Value" modal would extend past the edge of the modal
 * Fixed issue where changing the language of a skos:prefLabel value on a Concept Scheme or Concept would cause an "Invalid JSON-LD" error
 
-===== Merge Requests
+==== Merge Requests
 * Changed the display of commit differences to load incrementally and display the calculated names of each entity instead of the local name of the IRI
 * Fixed issue where ontology IRIs would extend past their cards in the first step of creating a merge request on Firefox
 
-===== Mapping Tool
+==== Mapping Tool
 * Changed the display of commit differences to load incrementally
 * Fixed issue where the selected property would not load when editing an existing property mapping
 
-===== Discover
+==== Discover
 * Introduced new policy to control who can create Datasets within the system (available in the User Management module)
 
-===== Discover
+==== Discover
 * Refactored Query submodule to re-skin http://yasgui.org/[YASGUI] for Mobi
 * Introduced CONSTRUCT query support to both frontend Query editor and backend endpoints
 * Changed JSON response for SELECT SPARQL queries to conform to the https://www.w3.org/TR/sparql11-results-json/[W3C specification]
 * Introduced utility Java class to support converting SELECT SPARQL query results to JSON, CSV, and TSV
 
-=== Release Notes for Mobi 1.17
+== Release Notes for Mobi 1.17
 Mobi 1.17 released on August 5, 2020. This release includes major performance improvements, allowing the ontology editor to support much larger ontologies than it could before. It also has a new "Active Entity" filter in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view, configurable token duration for account logins, a limit on the amount of data shown in the Preview Block of the Ontology Editor, and now defaults to using the Repository Implementation for the Ontology API.
 
-==== What's New
+=== What's New
 * We've introduced performance improvements to the Ontology Editor to support extremely large ontologies with hundreds of thousands of entities as well increasing application response speed for various actions.
 * We've introduced a new filter for the hierarchy in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view
 * We've added configurable token duration for account logins
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Added scaffolding that includes new packages and files to help facilitate the switch from angularJS to angular
 * Application now defaults to using the Repository Implementation for the Ontology API
 * New support for configurable token duration for account logins
 * Added a line in the config specifying the default port for Mobi.
 * Fixed issue where the username of the logged in user was replaced with "..." if it was to long to fit in the navbar instead of truncating.
 
-===== Ontology Editor
+==== Ontology Editor
 * New "Active Entity" filter in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view
 * Refactored the Ontology Editor to store only required data for rendering in the web application rather than the entire Ontology RDF
 * New backend endpoint to retrieve full RDF for a specified entity along with it's transitively attached blank nodes
@@ -416,23 +427,23 @@ Mobi 1.17 released on August 5, 2020. This release includes major performance im
 * Fixed issue where application would run out of memory when merging large ontologies with merge conflicts
 * Fixed issue where incorrect blank nodes were generated from certain Manchester Syntax strings
 
-===== Catalog
+==== Catalog
 
 * Fixed issue where the graph in the Catalog Commit table overlapped with the Creator column
 
-=== Release Notes for Mobi 1.16
+== Release Notes for Mobi 1.16
 
 Mobi 1.16 released on October 7, 2019. This release includes a Webpack and Typescript frontend, a new implementation of the backend Ontology API, better SKOS and SKOS-XL vocabulary support, and various other performance improvements.
 
-==== What's New
+=== What's New
 
 * We've introduced a completely new implementation of the backend Ontology API that utilizes a triplestore for caching and querying information.
 * We've changed the build process and language of the frontend code from Gulp and JavaScript to Webpack and TypeScript.
 * We are continuing to create a more consistent look-and-feel across the application. To that end, we've included several UI updates to various tools.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Switched certain backend services to OSGi DS annotations instead of deprecated BND annotations
 * Switched backup/restore methods to copy and replace all configuration files except for server specific files
 * Switched backend library for generated JSON from net.sf to Jackson for improved performance
@@ -446,7 +457,7 @@ Mobi 1.16 released on October 7, 2019. This release includes a Webpack and Types
 * Fixed issue where usernames were case sensitive.
 * Fixed issue where restoring an older version of Mobi overwrote the version of the deployed bundles on a clean start
 
-===== Ontology Editor
+==== Ontology Editor
 * New implementation of the backend Ontology API that allows for the uploading and opening of .OBO ontologies
 * New implementation of the backend Ontology API that uses a repository for caching and querying
 * New backend endpoint for retrieving the list of ontology IRIs in the imports closure
@@ -465,39 +476,39 @@ Mobi 1.16 released on October 7, 2019. This release includes a Webpack and Types
 * Fixed broken "go to" functionality in the Object Property section of the Individuals tab
 * Fixed bug where JavaScript console errors appeared when closing an ontology with the new entity snackbar visible
 
-===== Catalog
+==== Catalog
 
 * Fixed issue where updating record metadata would remove all other entities within the Record's named graph (such as linked ontologies for Dataset Records)
 * Fixed issue where commits would not display for a branch of a VersionedRDFRecord when switching which branch was open
 
-===== Merge Requests
+==== Merge Requests
 
 * New backend support for editing comments on a merge request
 
-===== Datasets
+==== Datasets
 
 * New backend support for querying specific named graphs within a dataset using a Dataset Repository Connection
 * Fixed issue where a SPARQL query in the form of `CONSTRUCT WHERE {...}` against a Dataset would not be rewritten properly
 
-===== Administration
+==== Administration
 
 * Fixed issue where the list of groups would not update after one was created
 * Fixed issue where the table of members of a group would not update after removing a member
 
-=== Release Notes for Mobi 1.15
+== Release Notes for Mobi 1.15
 
 Mobi 1.15 released on March 28, 2019. This release includes a redesigned Catalog, new ontology editor usability features, and several performance and API improvements.
 
-==== What's New
+=== What's New
 
 * We've completely reworked the Catalog to improve search and usability. We've added functionality for editing record metadata, including support for Markdown descriptions.
 * We've implemented several new features in the ontology editor to improve user experience. Users can now filter hierarchies based on search terms and view the change history of individual entities. We've implemented "scroll-to" functionality for quickly navigating to deeply nested terms, and provide a more complete list of language tags when annotating strings.
 * We've improved processing of large ontologies including better memory management and processing of complex hierarchies.
 * We are continuing to create a more consistent look-and-feel across the application. To that end, we've included several UI updates to various tools.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 * Upgraded underlying RDF4J version to 2.4.3.
 * Upgraded underlying AngularJS version to 1.7.7.
 * Added support for SPARQL and HTTP backing repositories
@@ -508,7 +519,7 @@ Mobi 1.15 released on March 28, 2019. This release includes a redesigned Catalog
 * Fixed issues with text overflow in several views.
 * Fixed an issue where backups made with the Mobi CLI on Windows machines would not restore correctly on Unix or Linux machines.
 
-===== Ontology Editor
+==== Ontology Editor
 
 * New support for filtering hierarchies based on search text. Matches any annotations used for calculating the display name along with the local name.
 * New support for viewing entity change history. Displays the list of commits where an entity was changed and what the entity looked like at each change.
@@ -520,27 +531,27 @@ Mobi 1.15 released on March 28, 2019. This release includes a redesigned Catalog
 * Changed the processing of hierarchical relationships in the Ontology REST and frontend for faster processing.
 * Fixed an issue where the list of entities in the search tab where not sorted.
 
-===== Catalog
+==== Catalog
 
 * New support for opening a record in its respective module from the catalog.
 * New support for adding a Markdown description to records you have the permission to manage.
 * New support for editing the title, description, and keywords of records you have the permission to manage.
 * Developed new look and feel for the Catalog UI.
 
-===== Merge Requests
+==== Merge Requests
 
 * Updated UI components to be consistent with the rest of the application.
 * Fixed an issue where Merge Requests were not properly deleted if they had reply comments.
 
-===== Dataset Manager
+==== Dataset Manager
 
 * Fixed issue where invalid dataset IRIs spaces were accepted.
 
-=== Release Notes for Mobi 1.14
+== Release Notes for Mobi 1.14
 
 Mobi 1.14 released on January 18, 2019. This release includes several new features for ontology versioning, tools for creating better review and ingest workflows with merge requests and the mapping tool, and major performance improvements.
 
-==== What's New
+=== What's New
 
 * We've developed new features for viewing older versions of an ontology in the ontology editor. You can now select commits from the Commits tab to open those versions in read-only mode. You can also tag any commit to create a human readable and persistent pointer to a particular commit to track multiple ontology versions.
 * We've implemented several performance improvements across the application to improve user experience when uploading, opening, and editing large ontologies.
@@ -549,9 +560,9 @@ Mobi 1.14 released on January 18, 2019. This release includes several new featur
 * In order to ease the burden of upgrading Mobi to a new version, we've included Mobi command line tools for creating full system backups and restores. For instructions on upgrading from version 1.13 check out this https://inovexirad.atlassian.net/servicedesk/customer/kb/view/725581873[KB Article].
 * We are continuing to create a more consistent look-and-feel across the application. To that end, we've included several UI updates to various tools.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 
 * Upgraded underlying RDF4J version to 2.4.1.
 * Modified the default repository indexing strategy to include named graph indexing by default. This should increase performance considerably on larger repository sizes.
@@ -561,7 +572,7 @@ Mobi 1.14 released on January 18, 2019. This release includes several new featur
 * Refreshed User Management modal UI design to be more consistent with the rest of the application.
 * Fixed an issue causing performance degradation when committing large sets of data to Versioned RDF Records.
 
-===== Ontology Editor
+==== Ontology Editor
 
 * New support for creating tags within an ontology. Tags are persistent identifiers for specific commits.
 * New support for opening specific commits and tags. These commits and tags are opened in read-only mode.
@@ -580,13 +591,13 @@ Mobi 1.14 released on January 18, 2019. This release includes several new featur
 * Fixed an issue improperly displaying a success toast after closing access control management with no changes.
 * Fixed an issue that improperly opened a modal when ontology upload is cancelled.
 
-===== Merge Requests
+==== Merge Requests
 
 * New support added for creating and deleting comments and replies in merge requests to facilitate discussions.
 * Added support for editing open merge requests.
 * Added support for removing the source branch upon merge.
 
-===== Mapping Tool
+==== Mapping Tool
 
 * Added support for committing mapped ontology entities to a specific branch rather than only the master branch.
 * Added support for removing data from the mapping results that already exists on the target branch during ontology mapping.
@@ -596,28 +607,28 @@ Mobi 1.14 released on January 18, 2019. This release includes several new featur
 * Fixed an issue with improperly processing empty rows in a CSV file in certain situations.
 * Fixed an issue causing filename to improperly display when changing file selection in the Mapping Tool.
 
-===== Catalog
+==== Catalog
 
 * Added better support for rendering branches in a Versioned RDF Record view.
 
-===== Dataset Manager
+==== Dataset Manager
 
 * Reworked the ontology selector to enable search and a better ontology selection experience.
 
-=== Release Notes for Mobi 1.13
+== Release Notes for Mobi 1.13
 
 Mobi 1.13 released on October 10, 2018. This release includes a completely refreshed user experience, ontology access control, new tools for creating ontologies and vocabularies, and enhanced features for ontology review workflows.
 
-==== What's New
+=== What's New
 
 * We've developed an entirely new look-and-feel for the Mobi application. This update includes a brand new Home Page and a redesigned Ontology Editor.
 * We released the beginnings of our policy-based access control in 1.12 and have expanded that to all ontology records. You can now control which users and groups can create, read, modify, and delete ontologies.
 * For those of you maintaining vocabularies in Excel files, you can now use the mapping tool to load those files into Mobi ontologies. Simply create a mapping based on SKOS or OWL and use the "Commit to Ontology" option.
 * Merge requests are a great way to create ontology review workflows and we've added new features for assigning, editing, and accepting them.
 
-==== Detailed Notes
+=== Detailed Notes
 
-===== General Improvements and Fixes
+==== General Improvements and Fixes
 
 * Redesigned look and feel for the Mobi web application including new Home Page and Ontology Editor designs
 * Refactored conflict checking to provide better support for a variety of merge scenarios
@@ -632,7 +643,7 @@ Mobi 1.13 released on October 10, 2018. This release includes a completely refre
 * Fixed an issue where passwords do not match error was not being properly cleared
 * Fixed an issue where merging duplicate changes from two branches sometimes resulted in statements remaining that should have been deleted
 
-===== Ontology Editor
+==== Ontology Editor
 
 * Properly implemented backend paging for the ontology list
 * Redesigned entity creation in the ontology editor. Creation now happens through the editor button stack instead of within each individual tab.
@@ -646,13 +657,13 @@ Mobi 1.13 released on October 10, 2018. This release includes a completely refre
 * Fixed an issue where uploading ontologies with missing entities on restrictions resulted in Error Entities being displayed
 * Fixed an issue where anonymous ontologies did not properly show the commit history
 
-===== Merge Requests
+==== Merge Requests
 
 * Added support for assigning merge requests to users
 * Added support for accepting merge requests
 * Added support for resolving merge conflicts within a merge request. Request still available for review after conflict resolution.
 
-===== Mapping Tool
+==== Mapping Tool
 
 * Added support for mapping the same property to multiple columns of a tabular file
 * Added support for Annotation Properties in property mappings
@@ -661,11 +672,11 @@ Mobi 1.13 released on October 10, 2018. This release includes a completely refre
 * Added support for committing mapping results to an ontology record
 * Fixed an issue when mapping ontology properties for blank cells
 
-=== Release Notes for Mobi 1.12
+== Release Notes for Mobi 1.12
 
 Mobi 1.12 released on May 18, 2018. This release includes new features for collaborating and reviewing changes to ontologies as well as a new policy-based security architecture.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * Released new, extensible service layer for managing hierarchical record types within the Mobi Catalog.
 * Updated underlying RDF4J version to 2.2.4
@@ -674,16 +685,16 @@ Mobi 1.12 released on May 18, 2018. This release includes new features for colla
 * Fixed an issue affecting evaluation order of commits within branching commit chains for Versioned RDF Records.
 * Fixed an issue preventing Windows machines from running the Mobi CLI client.
 
-==== Security
+=== Security
 
 * Released new support for policy-based access control. New APIs and backend services support managing and evaluating security policies for controlling actions at all layers of the platform.
 * Support added for controlling which users and groups can create ontologies.
 
-==== Merge Requests
+=== Merge Requests
 
 * Released new module for managing merge requests. Merge requests are long lived components that enable reviewing changes between branches of a record before performing a merge.
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Reworked behavior of ontology editor when making changes while behind the head of a branch. New notifications and seamless merging has been implemented to make this process more intuitive.
 * Support added for viewing relevant commit list when merging two branches.
@@ -701,19 +712,19 @@ Mobi 1.12 released on May 18, 2018. This release includes new features for colla
 * Fixed an issue allowing merge actions to be completed when a user has uncommitted changes.
 * Fixed an issue where re-uploading an ontology improperly indicates success after initially indicating failure.
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Fixed an issue where local ontology changes affected mappings being edited at the same time.
 
-==== Discover Module
+=== Discover Module
 
 * Fixed an issue where navigating away from editing an instance would automatically save changes instead of cancelling.
 
-=== Release Notes for Mobi 1.11
+== Release Notes for Mobi 1.11
 
 Mobi 1.11 released on January 24, 2017. This release features improvements to ontology version control, data management and exploration, and numerous bug fixes and performance improvements across the platform.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * Support added for configuring Repositories based on standard SPARQL endpoints.
 * Support added for copying values from RDF preview blocks.
@@ -723,7 +734,7 @@ Mobi 1.11 released on January 24, 2017. This release features improvements to on
 * Fixed an issue causing slow load time for the Activity Log.
 * Fixed an issue where triples were not properly being tracked if the same triple was added and removed in the same commit.
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Improved branch merging process. Merges are now initiated through a button on the button stack. Commit changes are aggregated and shown beneath the branch selector. Finally, the conflicts view has been updated to improve readability of entity change conflicts. These improvements make it easier to review changes between branches before merging.
 * Support added for tighter integration between the Individuals tab and Concepts tab when developing SKOS vocabularies.
@@ -742,26 +753,26 @@ Mobi 1.11 released on January 24, 2017. This release features improvements to on
 * Fixed an issue allowing users to add duplicate values for the same property to an ontology entity.
 * Fixed an issue with class folders being added to the individuals tab incorrectly when creating subclass axioms.
 
-==== Dataset Manager
+=== Dataset Manager
 
 * Support added for uploading RDF data files to a dataset through the Dataset Manager UI.
 
-==== Discover Module
+=== Discover Module
 
 * Support added for using inferences when suggesting link targets while editing instances in the Explore tool.
 
-=== Release Notes for Mobi 1.10
+== Release Notes for Mobi 1.10
 
 Mobi 1.10 released on November 27, 2017. This release features improvements to vocabulary editing, new instance management tools, and numerous bug fixes across the platform.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * Incorporated new automated web testing framework for testing web UI components.
 * Added many new backend services and features to support future distributed catalog capabilities.
 * Added many new backend services and features to support future ETL workflow capabilities.
 * Fixed an issue with ORM API causing ConcurrentModificationExceptions when editing functional properties with more than value assigned
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Completed a major overhaul of the vocabulary editor. The vocabulary editor features have now been rolled into the ontology editor and dynamically become available upon declaration or import of SKOS classes. Additionally, various display improvements have been made for the Schemes and Concepts views.
 * Fixed an issue causing dropdowns with hundreds of items or more to become unresponsive. Dropdowns with large numbers of items now show a subset of items and allow searching.
@@ -775,18 +786,18 @@ Mobi 1.10 released on November 27, 2017. This release features improvements to v
 * Fixed an issue with poor display of long branch names in the branch select box
 * Fixed an issue with inconsistent use of inferred ontology entities
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Mapping components (class and property mappings) now have associated titles so that they are more easily identified.
 * Support added for creating multiple class mappings of the same type. This allows mapping different properties to the same class type.
 
-==== Dataset Manager
+=== Dataset Manager
 
 * Added missing form label for ontologies list
 * Fixed an issue where linked ontologies were not correctly retrieved
 * Fixed an issue causing performance problems when importing large data files into a dataset
 
-==== Discover Module
+=== Discover Module
 
 * Support added for searching with property paths in the Search tool
 * Support added for creating new instances of classes from the class page in the Explore tool
@@ -796,11 +807,11 @@ Mobi 1.10 released on November 27, 2017. This release features improvements to v
 * Fixed an issue when customizing IRIs of new instances in the Explore tool
 * Fixed an issue where editing an instance property did not correctly add datatypes in the Explore tool
 
-=== Release Notes for Mobi 1.9
+== Release Notes for Mobi 1.9
 
 Mobi 1.9 released on October 20, 2017. This release features new provenance, search, and visualization features as well as numerous bug fixes across the platform.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * New provenance features collect information about catalog record creation and deletion events, and provide an Activity Log in the web UI. This data collection joins existing capabilities tracking record modification to provide a detailed picture about how resources within Mobi are being created, used, and destroyed. Future improvements will provide more detailed visualization tools and collection capabilities to track all resources within Mobi at a detailed level.
 * Updated the project source code to reflect the rebranding from MatOnto to Mobi
@@ -808,7 +819,7 @@ Mobi 1.9 released on October 20, 2017. This release features new provenance, sea
 * New backend service capabilities added for managing files and file systems
 * Fixed an issue where dates were not properly persisted with the xsd:dateTime datatype
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Improvements made in how the ontology editor handles blank node data within the browser
 * Fixed an issue impeding the loading of ontologies with a large number of direct or indirect imports
@@ -822,49 +833,49 @@ Mobi 1.9 released on October 20, 2017. This release features new provenance, sea
 * Fixed an issue where searching on a newly created vocabulary resulted in many missing entities
 * Fixed an issue where clicking a Concept link in the ontology editor did not correctly navigate to the Individuals tab
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Fixed an issue where updating the ontology version was not properly saved to the mapping record
 * Fixed an issue where mappings could not be run from the edit page unless changes were made
 * Fixed an issue where dropdown boxes were not correctly populated after modifying the mapping ontology
 
-==== Dataset Manager
+=== Dataset Manager
 
 * Fixed an issue where pagination in dataset creation overlay did not work properly
 * Fixed an issue with incorrect info messages on the Dataset Manager UI module
 * Fixed an issue where selected ontologies were improperly displayed when editing a dataset
 
-==== Catalog
+=== Catalog
 
 * Fixed an issue where catalog sorting options contained duplicate values
 * Fixed an issue where the catalog module broke when a selected record was deleted
 
-==== Analytic Module
+=== Analytic Module
 
 * New module added to support development of analytics and visualizations in the Mobi web application. This initial release includes features for developing dynamic tables based on user-managed ontologies. Future improvements will bring charting, dashboard, and reporting capabilities.
 
-==== Federation Services
+=== Federation Services
 
 * Renamed services and data to reflect new federation naming scheme
 * Fixed an issue where modifying service configurations did not immediately reconfigure federation services
 * Fixed an issue where platform services were not able to start correctly if MAC address could not be determined
 
-==== CLI
+=== CLI
 
 * Support added for submitting SPARQL queries via the Mobi command-line client
 
-=== Release Notes for Mobi 1.8
+== Release Notes for Mobi 1.8
 
 Mobi 1.8 released on August 27, 2017. This release features the official rebranding of the MatOnto platform as Mobi. Key features include improved support for OWL Restrictions, new support for local ontology imports, new features for instance data editing and creation, and a new "Search" tool within the Discover Module.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * New support added for importing and exporting data from the Mobi console. Support includes importing data into an existing dataset and exporting dataset data and catalog records.
 * Support added to the Mobi console for exporting named graphs from a repository
 * Fixed several build errors related to running unit tests in Windows environments
 * Fixed an issue where commit fragments were not being properly removed when a Versioned RDF Record was deleted
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Improved support for rendering OWL Restrictions including owl:oneOf and cardinalities
 * Support added for owl:inverseOf and owl:AsymmetricProperty
@@ -879,54 +890,54 @@ Mobi 1.8 released on August 27, 2017. This release features the official rebrand
 * Fixed an issue where IRI existence validation was improperly reporting errors
 * Fixed an issue where especially long RDF lists within an ontology would cause stack overflow errors
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Support added for properly respecting owl:deprecated on ontology classes
 * Support added for versioning mapping records
 * Support added for processing formulas within Excel files
 * Fixed an issue where the mapping name was unmodifiable within the mapping editor
 
-==== Discover Module
+=== Discover Module
 
 * New "Search" tool added to the Discover Module. "Search" tool supports keyword, type, and data property search within a dataset.
 * Support added to the "Explore" tool for viewing, editing, and creating instance data
 * Support added to the "Explore" tool for applying properties to existing data through the use of reification
 * Support added to the "Explore" tool for respecting required properties when creating and editing instance data
 
-==== Datasets
+=== Datasets
 
 * Support added for editing datasets from the Datasets Module
 
-==== Federation Services
+=== Federation Services
 
 * New features added for creating federations of Mobi nodes as a first step toward enabling distributed collaboration
 
-==== API Updates
+=== API Updates
 
 * Improved versioning services to properly version quads in addition to triples
 * Support added to properly edit blank node resources by skolemizing blank nodes between the triplestore and the web application
 * Fixed an issue for properly handling null values in DatasetConnection.remove(s, p, o, c)
 
-==== Known Issues
+=== Known Issues
 
 * In the Vocabulary Editor, adding hierarchical relationships (e.g. broader and narrower) to concepts does not properly nest them in the concept tree until the vocabulary is reopened.
 * There is a typo in the `etc/branding-ssh.properties` that causes the Karaf client to hang. This will be fixed in release 1.9.
 
-=== Release Notes for MatOnto 1.7
+== Release Notes for MatOnto 1.7
 
 MatOnto 1.7 released on June 5, 2017. This release includes many bug fixes and performance improvements for the ontology editor and mapping tool as well as a new Discover Module for exploring datasets.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * Fixed an issue where retrieving users with email addresses in the User Management tool caused an Internal Server Error
 
-==== Discover Module
+=== Discover Module
 
 * Replaced the existing SPARQL Editor Module with the new Discover Module
 * Added "Explore" tool to the Discover Module to enable quick exploration of datasets. This new tool will show the user what types of data are stored in the dataset and provide data samples. Future updates to the tool will allow users to explore and modify instance properties, create new instances, and delete existing instances.
 * Fixed an issue where comments were not allowed in SPARQL queries against datasets
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Improved parsing of entity local names with acronyms used for display values (e.g. http://example.com/ontology#ABCEntity -> "ABC Entity")
 * Support added for directly adding a subClassOf or subPropertyOf axiom when creating a new class or property
@@ -935,7 +946,7 @@ MatOnto 1.7 released on June 5, 2017. This release includes many bug fixes and p
 * Fixed an issue where the individuals tree was not updated correctly when the ontology class tree changed
 * Fixed an issue where a user could not assign a ConceptScheme when creating a new Concept
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Support added for applying datatypes to literals based on the selected ontology properties
 * Support added for using basic rdfs and dcterms properties in a mapping
@@ -943,14 +954,14 @@ MatOnto 1.7 released on June 5, 2017. This release includes many bug fixes and p
 * Fixed an issue where modifying an ontology that was also being used in an active mapping broke the mapping ontology selector
 * Fixed an issue where the Mapping Tool was not properly including ontology updates when selecting the latest ontology version
 
-==== API Updates
+=== API Updates
 
 * Refactored public Catalog API to include path validation when performing operations such as creating commits and merging branches
 * Significant performance improvements when retrieving commit data from the Catalog REST endpoints. Dramatically reduces load times for large ontologies.
 * Support added for creating commits from external data. This capability will enable future support for applying commits from files and merging records.
 * Various improvements to memory management when opening ontologies. Dramatically reduces memory usage when opening large ontologies.
 
-==== Known Issues
+=== Known Issues
 
 * In the Vocabulary Editor, SKOS relationship properties are missing from the property selector when using subclasses of skos:Concept. This issue will be fixed in Release 1.8.
 * Intermittent build errors occur in the Catalog REST bundle due to some shared resources. This issue will be fixed in Release 1.8.
@@ -960,11 +971,11 @@ MatOnto 1.7 released on June 5, 2017. This release includes many bug fixes and p
 * The Mapping Tool does not correctly handle mapping object properties with no range. The tool allows you to select the object property, but produces an error when trying to determine the target class type. This issue will be fixed in a future release.
 * The Mapping Tool does not correctly save mappings that have had their name changed. This issue will be fixed in Release 1.8.
 
-=== Release Notes for MatOnto 1.6
+== Release Notes for MatOnto 1.6
 
 MatOnto 1.6 released on May 8, 2017. This release includes many bug fixes and performance improvements for the ontology editor as well as various improvements to the mapping tool and user management page.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * Google groups link added to help menu
 * User management user list now displays full name if available
@@ -973,7 +984,7 @@ MatOnto 1.6 released on May 8, 2017. This release includes many bug fixes and pe
 * Fixed an issue where targeted spinner would lock up the application in several places
 * Fixed an issue where admin tags were not displayed correctly in the user list of the user management page
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Support added for a click-to-copy feature for ontology entity IRIs
 * Support added to render complex class expressions and restrictions using Manchester Syntax in Axioms panel
@@ -995,7 +1006,7 @@ MatOnto 1.6 released on May 8, 2017. This release includes many bug fixes and pe
 * Fixed an issue where modification badges would not be removed after performing a commit
 * Fixed an issue where the project tab would not update on branch change
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Support added for editing full IRI in IRI templates
 * Support added to ignore property mappings for empty cells when mapping in delimited and excel files
@@ -1008,15 +1019,15 @@ MatOnto 1.6 released on May 8, 2017. This release includes many bug fixes and pe
 * Fixed an issue where using an ontology with the same class defined in the ontology and one of its imports resulted in an empty dropdown when adding a class mapping
 * Fixed an issue where page leave confirmation message was displayed when downloading a mapped data
 
-==== Datasets
+=== Datasets
 
 * Support added to associate datasets with ontologies that describe the data within them
 
-=== Release Notes for MatOnto 1.5
+== Release Notes for MatOnto 1.5
 
 MatOnto 1.5 released on April 4, 2017. This release contains the first features for MatOnto datasets and many improvements to the Ontology Editor user experience.
 
-==== Datasets
+=== Datasets
 
 A new feature in 1.5, MatOnto Datasets provide collections of RDF graphs that can be managed and queried independently of other data stored within MatOnto repositories.
 
@@ -1024,7 +1035,7 @@ A new feature in 1.5, MatOnto Datasets provide collections of RDF graphs that ca
 * Java and REST services are now available for creating, managing, and querying datasets. The services ensure all operations on the Dataset are isolated to that specific set of RDF graphs.
 * A new UI module provides capabilities for creating and managing datasets.
 
-==== Ontology Editor
+=== Ontology Editor
 
 * Support added for displaying and editing language tags on string literals.
 * Support added for displaying and selecting if a property is functional.
@@ -1038,21 +1049,21 @@ A new feature in 1.5, MatOnto Datasets provide collections of RDF graphs that ca
 * Support added for creating custom Annotation Properties.
 * Each entity now displays a list of its `rdf:type`.
 
-==== Mapping Tool
+=== Mapping Tool
 
 * Integration with MatOnto Datasets provides the capability to upload transformed data to a Dataset.
 * Removed the idea of a "Base Class" from the mapping configuration. You now select from a list of classes in an order to create class mappings.
 
-==== SPARQL Query Editor
+=== SPARQL Query Editor
 
 * Integration with MatOnto Datasets provides the capability to limit a query operation to a particular Dataset.
 * Malformed queries now properly display a message describing the parsing error.
 * New feature allows user to download the results of a SPARQL tuple query in CSV, TSV, or Excel format.
 
-==== General Improvements and Fixes
+=== General Improvements and Fixes
 
 * User management tool now allows an admin to reset a user's password.
 
-==== Known Issues
+=== Known Issues
 
 * Double-clicking an entity in the Ontology Editor search results wil not remove the loading spinner. Reload the browser tab to clear this issue.

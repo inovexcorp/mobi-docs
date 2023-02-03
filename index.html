@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <title>Mobi Documentation Site</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./foundation.css">
+    <link rel="stylesheet" href="./nav-bar.css">
+    <style>
+        .content {
+            width: 100%;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+        .intro {
+            overflow: hidden;
+            height: auto;
+            margin: auto;
+            display: inline-block;
+            width: 600px;
+        }
+        .intro p {
+            margin-top: 2rem;
+        }
+        .content img.logo {
+            width: 600px;
+            display: block;
+        }
+        .quick-link i {
+            font-size: 10rem;
+            display: block;
+        }
+        .quick-link {
+            float: left;
+            margin: 0 3rem;
+        }
+        .quick-link a {
+            color: #303f9f;
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+        .quick-link a:hover {
+            box-shadow: 5px 5px 10px #636363;
+        }
+        .quick-links {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a class="img-link" href="/"><img src="mobi-alternate-logo.png" alt="Alternative Mobi Logo"/></a>
+        <div class="nav-items">
+            <a href="latest/index.html">User Manual</a>
+            <a href="release-notes/index.html">Release Notes</a>
+            <a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">Help Desk</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="intro">
+            <img class="logo" src="mobi-primary-logo-cropped.png" alt="Primary Mobi Logo"/>
+            <p>Welcome to the Mobi Documentation Site! Here you can find the latest user manual and release notes along with information on previous releases.</p>
+        </div>
+        <br>
+        <div class="quick-links">
+            <div class="quick-link">
+                <a href="latest/index.html">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    User Manual
+                </a>
+            </div>
+            <div class="quick-link">
+                <a href="release-notes/index.html">
+                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    Release Notes
+                </a>
+            </div>
+            <div class="quick-link">
+                <a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    Help Desk
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

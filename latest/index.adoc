@@ -6,10 +6,11 @@
 :experimental:
 :idprefix:
 :source-highlighter: highlight.js
-:highlightjsdir: highlight
-:favicon: ./images/favicon.ico
+:highlightjsdir: ../highlight
+:favicon: ../favicon.ico
+:docinfodir: ../
 
-image::mobi-primary-logo-cropped.png[Mobi Logo, 500, align="center"]
+image::/../mobi-primary-logo-cropped.png[Mobi Logo, 500, align="center"]
 
 Mobi is an open and collaborative knowledge graph platform for teams and communities to publish and discover data, data models, and analytics that are instantly consumable.
 
