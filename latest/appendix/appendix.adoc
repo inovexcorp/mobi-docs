@@ -5,5 +5,3 @@ include::mobi_datasets.adoc[]
 include::settings.adoc[]
 
 include::policies.adoc[]
-
-include::release_notes.adoc[]
