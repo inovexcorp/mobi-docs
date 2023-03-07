@@ -23,22 +23,25 @@
             display: inline-block;
             width: 600px;
         }
+        .intro img {
+            margin-bottom: 2rem;
+        }
         .intro p {
-            margin-top: 2rem;
+            font-size: 1.25em;
         }
         .content img.logo {
             width: 600px;
             display: block;
         }
-        .quick-link i {
-            font-size: 10rem;
+        .quick-link .nav-anchor i {
+            font-size: 6rem;
             display: block;
         }
         .quick-link {
             float: left;
             margin: 0 3rem;
         }
-        .quick-link a {
+        .quick-link a.nav-anchor {
             color: #303f9f;
             display: inline-block;
             padding: 0.5rem;
@@ -59,6 +62,38 @@
                 float: none;
             }
         }
+        .dropdown {
+            position: relative;
+        }
+        .dropbtn {
+            border: none;
+            border-radius: 3px;
+            background-color: white;
+            color: #2ba6cb;
+            cursor: pointer;
+            padding: 5px;
+            width: 100%;
+        }
+        .dropbtn:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            /* min-width: 160px; */
+            width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            /* color: black; */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {background-color: #ddd;}
+        .show {display:block;}
     </style>
 </head>
 <body>
@@ -73,29 +108,85 @@
     <div class="content">
         <div class="intro">
             <img class="logo" src="mobi-primary-logo-cropped.png" alt="Primary Mobi Logo"/>
-            <p>Welcome to the Mobi Documentation Site! Here you can find the latest user manual and release notes along with information on previous releases.</p>
+            <p style="margin-bottom: 0; font-weight: bold;">Welcome to the Mobi Documentation Site!</p>
+            <p>Here you can find the latest user manual and release notes along with information on previous releases.</p>
         </div>
         <br>
         <div class="quick-links">
             <div class="quick-link">
-                <a href="latest/index.html">
+                <a id="user-manual-link" class="nav-anchor" href="latest/index.html">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     User Manual
                 </a>
+                <div class="dropdown" id="other-versions-dropdown">
+                    <button class="dropbtn" onclick="myFunction(this)">Other Versions <i class="fa fa-chevron-down"></i></button>
+                    <div class="dropdown-content" id="other-versions"></div>
+                </div>
             </div>
             <div class="quick-link">
-                <a href="release-notes/index.html">
+                <a class="nav-anchor" href="release-notes/index.html">
                     <i class="fa fa-list-alt" aria-hidden="true"></i>
                     Release Notes
                 </a>
             </div>
             <div class="quick-link">
-                <a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+                <a class="nav-anchor" href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">
                     <i class="fa fa-question-circle" aria-hidden="true"></i>
                     Help Desk
                 </a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var userManualAnchor = document.querySelector("#user-manual-link");
+            var dropdown = document.querySelector('#other-versions')
+            fetch('./versions.json')
+                .then((response) => response.json())
+                .then((json) => {
+                    var textNode = document.createTextNode(' (v' + json['latest'] + ')');
+                    userManualAnchor.append(textNode);
+                    if (json['older'] && json['older'].length) {
+                        json['older'].forEach(version => {
+                            var versionOption = document.createElement('a');
+                            versionOption.textContent = version;
+                            versionOption.href = version + '/index.html';
+                            dropdown.appendChild(versionOption);
+                        });
+                    } else {
+                        var dropdownButton = document.querySelector('#other-versions-dropdown button');
+                        dropdownButton.style.display = 'none';
+                    }
+                });
+        });
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction(element) {
+            document.getElementById("other-versions").classList.toggle("show");
+            var i = element.querySelector('i')
+            if (i.classList.contains('fa-chevron-down')) {
+                i.classList.remove('fa-chevron-down');
+                i.classList.add('fa-chevron-up');
+            } else {
+                i.classList.remove('fa-chevron-up');
+                i.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.parentNode.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
