@@ -44,11 +44,20 @@
             padding: 0.5rem;
             border-radius: 5px;
         }
-        .quick-link a:hover {
-            box-shadow: 5px 5px 10px #636363;
-        }
         .quick-links {
             display: inline-block;
+        }
+        @media screen and (max-width: 800px) {
+            .intro {
+                width: auto;
+            }
+            .content img.logo {
+                width: auto;
+                padding: 0 20px;
+            }
+            .quick-link {
+                float: none;
+            }
         }
     </style>
 </head>

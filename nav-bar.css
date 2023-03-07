@@ -1,3 +1,6 @@
+:target {
+    scroll-margin-top: calc(50px + 1rem);
+}
 .nav-bar {
     position: fixed;
     z-index: 10000;
@@ -27,8 +30,36 @@
     margin: 0 0.5rem;
 }
 body {
-    padding-top: 50px;
+    margin-top: 50px;
 }
 body #header #toc {
-    padding-top: 50px !important;
+    margin-top: 50px !important;
+}
+.tocSwitch {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    text-decoration: none;
+    font-size: 1.5rem;
+    z-index: 1001;
+}
+@media screen and (min-width: 768px) {
+    .tocSwitch {
+        display: none;
+    }
+    #toc {
+        display: block !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    body #header #toc {
+        position: fixed;
+        background-color: rgba(255, 255, 255);
+        z-index: 1000;
+        top: 50px;
+        width: 100%;
+        margin-top: 0 !important;
+        overflow-y: auto;
+        bottom: 0;
+    }
 }
