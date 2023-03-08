@@ -1,0 +1,41 @@
+[[my-account-guide]]
+=== My Account
+The My Account page of Mobi provides users with a way to configure their own account and customize various aspects of the application to suit their needs.
+
+To reach the My Account page, click on the display of your username in the left menu.
+
+.My Account link
+image::my-account/my_account_link.png[width=50%,pdfwidth=50%,align=center]
+
+The My Account page contains four main tabs for configuring your account:
+
+* <<Profile>>
+* <<Groups>>
+* <<Password>>
+* <<Preferences>>
+
+==== Profile
+The Profile tab contains a form for viewing and editing your basic profile information. This information includes your [underline]#First Name#, [underline]#Last Name#, and [underline]#Email# address. None of this information is required. Your current settings for these fields will be displayed to start. To edit, simply change the values in one or more of the fields and and click btn:[Save] in the bottom right. If the change was successful, you will see a success message at the top of the section.
+
+.Profile Tab
+image::my-account/profile_tab.png[]
+
+==== Groups
+The Groups tab contains a list of all the groups you belong to. Next to each group title is an indicator of how many users are within that group. If a group has the admin role, an indicator will be next to the group's title.
+
+.Groups Tab
+image::my-account/groups_tab.png[]
+
+==== Password
+The Password tab contains a form for updating your password. To change it, you must first input your [underline]#Current Password# in the first field. Then enter your desired [underline]#New Password# in the second field and click btn:[Save] in the bottom right. If the change was successful, you will see a success message at the top of the tab.
+
+.Password Tab
+image::my-account/password_tab.png[]
+
+==== Preferences
+The Preferences tab will dynamically populate with user preference definitions added to the repository (see documentation <<Settings Framework, here>>). These preferences are specific to your user.
+
+.Preferences Tab
+image::my-account/preferences_tab.png[]
+
+NOTE: Default preferences coming soon!

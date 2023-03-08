@@ -1,0 +1,12 @@
+== Introduction
+Mobi is a free and open platform which links native data sources into a knowledge graph, creating an environment for teams and communities to accelerate discovery and deployment of advanced data systems. Mobi is built with http://karaf.apache.org/[Apache Karaf] and utilizes https://www.w3.org/TR/owl2-overview/[OWL 2] for authoring ontologies, the https://www.w3.org/TR/sparql11-overview/[SPARQL] query language for data lookup, and a pluggable backend system for processing and handling graph data modeled using the Resource Description Framework (https://www.w3.org/RDF/[RDF]). The Mobi platform applies the best practices recommended by the World Wide Web Consortium (https://www.w3.org/standards/semanticweb/data[W3C]) to support organic growth of knowledge in a variety of domains.
+
+<<index.adoc#quick_start_guide,Quick Start Guide>>
+
+<<index.adoc#user_guide,User Guide>>
+
+<<index.adoc#administration_guide,Administration Guide>>
+
+<<index.adoc#developer_guide,Developer Guide>>
+
+<<index.adoc#release_notes,Release Notes>>

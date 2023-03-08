@@ -1,0 +1,64 @@
+[[mobi-shell-guide]]
+=== Mobi Shell
+The Mobi Shell is a wrapper around the Karaf shell which provides additional commands and tools for working with Mobi data. To access the shell, run the `bin/client` script in *MOBI_HOME* (that's `bin\client.bat` for you Windows users). The startup screen of the Mobi shell looks like the following.
+
+[source,plaintext]
+----
+                                                    
+                 @#@@                               
+                @###@                               
+               @@@@@                   _     _      
+   @@@       @@@@      _ __ ___   ___ | |__ (_)     
+  @,,,@@@@@&    @     | '_ ` _ \ / _ \| '_ \| |  
+  @,,&&     @  @      | | | | | | (_) | |_) | |     
+              @@      |_| |_| |_|\___/|_.__/|_|    
+               @@                                   
+              @///@                                 
+              @////&                                
+               @@@@                                 
+                                                    
+
+  mobi (x.x.x)
+  Powered by Apache Karaf (4.0.6)
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or 'osgi:shutdown' to shutdown mobi.
+
+karaf@mobi>
+----
+
+
+The Mobi specific commands all start with `mobi:`. To view the list of available commands, type `mobi:` and hit kbd:[TAB]. To get information about a particular command, type the name of the command and `--help` afterwards and run it. For example, running `mobi:import --help` would show you this.
+
+[source,plaintext]
+----
+karaf@mobi>mobi:import --help
+DESCRIPTION
+        mobi:import
+
+	Imports objects to a repository or dataset
+
+SYNTAX
+        mobi:import [options] ImportFile 
+
+ARGUMENTS
+        ImportFile
+                The file to be imported into the repository
+
+OPTIONS
+        -c, --continueOnError
+                If true, continue parsing even if there is an error on a line.
+        -d, --dataset
+                The id of the DatasetRecord the file will be imported to
+        -r, --repository
+                The id of the repository the file will be imported to
+        --help
+                Display this help message
+        -b, --batchSize
+                The number representing the triple transaction size for importing.
+                (defaults to 10000)
+
+----
+
+You can also run commands in the Mobi shell without opening it by running `bin/client "command"`. For example, to run the `mobi:repository-list` command, you would run `bin/client "mobi:repository-list"`. If the command you are running involves files with spaces in the name, make sure the spaces are escaped, meaning use `"\ "` instead of `" "`. The same goes for commands that include text within quotes, make sure the quotes are escaped as well.
