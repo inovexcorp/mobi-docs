@@ -1,9 +1,4 @@
 # Mobi Documentation
-This documentation is generated using [Asciidoctor](http://asciidoctor.org/) and GitHub Actions to create a GitHub Pages site. For syntax details, refer to Asciidoctor's [Writer's Guide](http://asciidoctor.org/docs/asciidoc-writers-guide/). For more in-depth details, see Asciidoctor's [User Manual](http://asciidoctor.org/docs/user-manual/).
+[![pages-build-deployment](https://github.com/inovexcorp/mobi-docs/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/inovexcorp/mobi-docs/actions/workflows/pages/pages-build-deployment)
 
-## Build Instructions
-### Install Asciidoctor
-Follow the [official instructions](https://docs.asciidoctor.org/asciidoctor/latest/install/) to install the Asciidoctor Ruby gem on your machine. This is required to build.
-
-### Build the Documentation
-To build the documentation from the Asciidoc files, simply run `make` in the root of the project. The output is two `index.html` files: one under `latest` and one under `release-notes`. The full documentation site should be served from the `index.html` file in the root of the project.
+This documentation was generated using [Asciidoctor](http://asciidoctor.org/) and custom static files to create a GitHub Pages site hosted with GitHub Actions. The repository only contains the final generated files. We host both the latest User Manual and previous versions.
