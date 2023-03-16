@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.12">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Mobi User Manual</title>
 <link rel="stylesheet" href="./../foundation.css">
+<link rel="stylesheet" href="../highlight/styles/github.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 <link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="../nav-bar.css">
@@ -71,14 +72,14 @@
 </head>
 <body class="article toc2 toc-left">
 <div class="nav-bar">
-    <a class="img-link" href="../">
+    <a class="img-link" href="/">
         <img src="../mobi-alternate-logo.png" alt="Alternative Mobi Logo"/>
     </a>
     <input type="checkbox" name="menu-btn" id="menu-btn" value="1" />
     <label class="menu-icon" for="menu-btn"><i class="fa fa-bars" aria-hidden="true"></i></label>
     <ul class="nav-items">
-        <li><a href="../latest/index.html">User Manual</a></li>
-        <li><a href="../release-notes/index.html">Release Notes</a></li>
+        <li><a href="/latest/index.html">User Manual</a></li>
+        <li><a href="/release-notes/index.html">Release Notes</a></li>
         <li><a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">Help Desk</a></li>
     </ul>
 </div><div id="header">
@@ -312,7 +313,7 @@
 <div class="sectionbody">
 <div class="imageblock text-center">
 <div class="content">
-<img src="../mobi-primary-logo-cropped.png" alt="Mobi Logo" width="500">
+<img src="/mobi-primary-logo-cropped.png" alt="Mobi Logo" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -376,7 +377,7 @@ file to a new directory on your system. For example, in <code>C:\Mobi</code> - f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="powershell" class="language-powershell hljs">&gt; cd %MOBI_HOME%
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">&gt; cd %MOBI_HOME%
 &gt; bin\start.bat</code></pre>
 </div>
 </div>
@@ -385,7 +386,7 @@ file to a new directory on your system. For example, in <code>C:\Mobi</code> - f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ cd $MOBI_HOME
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cd $MOBI_HOME
 $ ./bin/start</code></pre>
 </div>
 </div>
@@ -2886,7 +2887,7 @@ runs HTTPS on port 8443.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">                 @#@@
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">                 @#@@
                 @###@
                @@@@@                   _     _
    @@@       @@@@      _ __ ___   ___ | |__ (_)
@@ -2914,7 +2915,7 @@ karaf@mobi&gt;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">karaf@mobi&gt;mobi:import --help
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi&gt;mobi:import --help
 DESCRIPTION
         mobi:import
 
@@ -3130,7 +3131,7 @@ following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo useradd -d /opt/mobi mobi</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo useradd -d /opt/mobi mobi</code></pre>
 </div>
 </div>
 </div>
@@ -3141,7 +3142,7 @@ following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
 sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code></pre>
 </div>
 </div>
@@ -3162,7 +3163,7 @@ If you are using a Red Hat system, you can install Java 17 with <code>sudo yum i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo su - mobi
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
 echo 'export JAVA_HOME=/usr/java/jdk-17.0.4.1' &gt;&gt; ~/.bashrc
 exit</code></pre>
 </div>
@@ -3194,7 +3195,7 @@ server.
 <p>Unpack Mobi to the installation parent directory (e.g. <strong>/opt/mobi</strong>)</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo su - mobi
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
 tar -xf $MOBI_DIST.tar.gz</code></pre>
 </div>
 </div>
@@ -3203,7 +3204,7 @@ tar -xf $MOBI_DIST.tar.gz</code></pre>
 <p>Create a symlink to the latest distribution</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ln -s $MOBI_DIST latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ln -s $MOBI_DIST latest</code></pre>
 </div>
 </div>
 </li>
@@ -3211,7 +3212,7 @@ tar -xf $MOBI_DIST.tar.gz</code></pre>
 <p>Start the Mobi server</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd latest
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd latest
 ./bin/start</code></pre>
 </div>
 </div>
@@ -3223,7 +3224,7 @@ tar -xf $MOBI_DIST.tar.gz</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./bin/stop</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./bin/stop</code></pre>
 </div>
 </div>
 </div>
@@ -3249,7 +3250,7 @@ All versions from 1.22 onwards have this line already added.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export JAVA_OPTS="-Xms${JAVA_MIN_MEM} -Xmx${JAVA_MAX_MEM}"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JAVA_OPTS="-Xms${JAVA_MIN_MEM} -Xmx${JAVA_MAX_MEM}"</code></pre>
 </div>
 </div>
 </div>
@@ -3260,7 +3261,7 @@ All versions from 1.22 onwards have this line already added.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">org.osgi.service.http.port.secure = &lt;SSL_APPLICATION_PORT&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">org.osgi.service.http.port.secure = &lt;SSL_APPLICATION_PORT&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -3288,7 +3289,7 @@ simply replace the default keystore file with your own:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp mycerts.jks $MOBI_DIST/etc/keystore</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp mycerts.jks $MOBI_DIST/etc/keystore</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3358,7 +3359,7 @@ Be sure to correctly configure the file locations and user.
 directory. For example:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[Unit]
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[Unit]
 Description=Mobi Service.
 After=network.target
 StartLimitIntervalSec=30
@@ -3382,7 +3383,7 @@ WantedBy=default.target</code></pre>
 and enable the new service:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">systemctl start mobi
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start mobi
 systemctl enable mobi</code></pre>
 </div>
 </div>
@@ -3446,7 +3447,7 @@ In Enterprise deployments, this is only applied to non-SSO based authentication.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">### 1 day token duration
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">### 1 day token duration
 tokenDurationMins = 1440</code></pre>
 </div>
 </div>
@@ -3663,7 +3664,7 @@ full user DNs. (ex: <code>uid</code>)</p></td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">repository.target = (id=system)
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">repository.target = (id=system)
 ldap.server = localhost
 ldap.port = 10389
 ldap.timeout = 30
@@ -3802,7 +3803,7 @@ file in the <code>$MOBI_DIST/etc/</code> directory and make this value <code>${k
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">title=Samling
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">title=Samling
 entityId=https://localhost:8443/mobi/#/login
 certFile=${karaf.etc}/samling.cert
 keyFile=${karaf.etc}/samling_pkcs8.key
@@ -3816,7 +3817,7 @@ ssoBinding=urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">title=Samling
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">title=Samling
 entityId=https://localhost:8443/mobi/#/login
 certFile=${karaf.etc}/samling.cert
 keyFile=${karaf.etc}/samling_pkcs8.key
@@ -3871,7 +3872,7 @@ to set the token duration value.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">### 1 day token duration
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">### 1 day token duration
 tokenDurationMins = 1440</code></pre>
 </div>
 </div>
@@ -3976,7 +3977,7 @@ tokenDurationMins = 1440</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">title=Mock OAuth
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">title=Mock OAuth
 clientId=mobi
 scope=read,openid
 grantType=CODE
@@ -4014,7 +4015,7 @@ keyFile=${karaf.etc}/NTs4oGbx1A-cROpjgUKdKtzTEkHUhhSwQ7xdhN6FdlQ_pub.pem</code><
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">title=Mock OAuth
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">title=Mock OAuth
 clientId=mobi
 scope=read,openid
 openidConfigHostname=http://localhost:8080</code></pre>
@@ -4045,7 +4046,7 @@ directory and contains the following fields:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">enabled=true
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">enabled=true
 password=ENTER_A_UNIQUE_PASSWORD_HERE</code></pre>
 </div>
 </div>
@@ -4069,7 +4070,7 @@ To configure the use of an environment variable, use the following fields:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">enabled=true
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">enabled=true
 variable=MY_CHOSEN_ENVIRONMENT_VARIABLE</code></pre>
 </div>
 </div>
@@ -4194,7 +4195,7 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mvn clean install</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn clean install</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4205,7 +4206,7 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">bin/start</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4213,7 +4214,7 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="powershell" class="language-powershell hljs">bin\start.bat</code></pre>
+<pre class="highlightjs highlight"><code class="language-powershell hljs" data-lang="powershell">bin\start.bat</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4232,7 +4233,7 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">com.mobi.cache.impl.repository.CleanupRepositoryCache.cfg</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">com.mobi.cache.impl.repository.CleanupRepositoryCache.cfg</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4240,7 +4241,7 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">repoId = ontologyCache
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">repoId = ontologyCache
 expiry = 1800
 scheduler.expression=0 0 * * * ?</code></pre>
 </div>
@@ -4256,7 +4257,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.owlapi.OntologyManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.owlapi.OntologyManager</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4264,7 +4265,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.repository.OntologyManager</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.repository.OntologyManager</code></pre>
 </div>
 </div>
 </div>
@@ -4279,7 +4280,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">mobi:import --dataset https://mobi.com/records/my-dataset /Users/tester/Documents/testData.trig</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">mobi:import --dataset https://mobi.com/records/my-dataset /Users/tester/Documents/testData.trig</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4313,7 +4314,7 @@ to both the input file to translate and output location for the result. Below is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="plaintext" class="language-plaintext hljs">mobi:document-translate /Users/tester/Documents/example.json /Users/tester/Documents/outputDir</code></pre>
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">mobi:document-translate /Users/tester/Documents/example.json /Users/tester/Documents/outputDir</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5292,7 +5293,7 @@ This can be any valid RDF format, such a Turtle. A list of supported RDF formats
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
     &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
@@ -5472,7 +5473,7 @@ sure to pass the <code><a href="http://mobi.com/setting-management" class="bare"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">settingUtilsService.updateRepoWithSettingDefinitions(MY_ONTOLOGY_INPUT_STREAM, MY_ONTOLOGY_NAME);</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">settingUtilsService.updateRepoWithSettingDefinitions(MY_ONTOLOGY_INPUT_STREAM, MY_ONTOLOGY_NAME);</code></pre>
 </div>
 </div>
 </div>
@@ -5486,7 +5487,7 @@ The following is an example of how to extract the value of a boolean preference 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">boolean myBooleanPreferenceValue = false;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">boolean myBooleanPreferenceValue = false;
 Optional&lt;Preference&gt; myPreferenceOptional = preferenceService.getSetting(valueFactory.createIRI(MyPreference.TYPE), user;
 if (myPreferenceOptional.isPresent()) {
     MyPreference myPreference = (MyPreference) myPreferenceOptional.get();
@@ -5637,7 +5638,7 @@ the decision of the PDP. These are currently unused in Mobi policies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
     &lt;Description&gt;Who can create an OntologyRecord in the Local Catalog?&lt;/Description&gt;
     &lt;Target&gt;
         &lt;AnyOf&gt;
@@ -5739,7 +5740,7 @@ the <code>hasUserRole</code> section. Our new modified policy now looks like thi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="http://mobi.com/policies/ontology-creation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-permit" Version="1.0"&gt;
     &lt;Description&gt;Who can create an OntologyRecord in the Local Catalog?&lt;/Description&gt;
     &lt;Target&gt;
         &lt;AnyOf&gt;
@@ -6047,11 +6048,15 @@ Record Services when a user creates a new Record.
 <div id="footer">
 <div id="footer-text">
 Version 2.1<br>
-Last updated 2023-03-11 14:19:19 -0500
+Last updated 2023-03-10 15:23:10 UTC
 </div>
 </div>
-<link rel="stylesheet" href="../highlight/styles/github.min.css">
 <script src="../highlight/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="../nav-bar.css">
+<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Create toggle anchor
+        var target = document.querySelector('#header');
+        var anchor = document.createElement('a');
+        anchor.className = 'tocSwitch fa fa-arrow-up';
+        // Add click listener to the button
+        anchor.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var toc = document.querySelector('#toc');
+            var body = document.querySelector('body');
+            // If the toc is visible
+            if (body.classList.contains('toc2')) {
+                body.classList.remove('toc2');
+                body.classList.remove('toc-left');
+                toc.style.display = 'none';
+                anchor.className = 'tocSwitch fa fa-arrow-down';
+            } else { // If the toc is not visible
+                body.classList.add('toc2');
+                body.classList.add('toc-left');
+                toc.style.display = 'block';
+                anchor.className = 'tocSwitch fa fa-arrow-up';
+            }
+        });
+        // Add anchor to DOM
+        target.appendChild(anchor);
+        // Add window resize listener
+        $(window).resize(function() {
+            var toc = document.querySelector('#toc');
+            var body = document.querySelector('body');
+            // If the window is smaller than 768px, collapse the toc by default
+            if ($(window).width() < 768) { 
+                body.classList.remove('toc2');
+                body.classList.remove('toc-left');
+                toc.style.display = 'none';
+                anchor.className = 'tocSwitch fa fa-arrow-down';
+            } else { // If the window is bigger than 768px, keep the toc open
+                body.classList.add('toc2');
+                body.classList.add('toc-left');
+                toc.style.display = 'block';
+                anchor.className = 'tocSwitch fa fa-arrow-up';
+            }
+        });
+        // Add click listener for 
+        $('#toc a').click(function() {
+            var toc = document.querySelector('#toc');
+            var body = document.querySelector('body');
+            if ($(window).width() < 768) { 
+                body.classList.remove('toc2');
+                body.classList.remove('toc-left');
+                toc.style.display = 'none';
+                anchor.className = 'tocSwitch fa fa-arrow-down';
+            }
+        });
+    });
+</script>
