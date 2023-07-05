@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 2.2</span>
+<span id="revnumber">version 2.3</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -596,6 +596,15 @@ docker container stop {container id for mobi}</code></pre>
 <div class="title">Figure 4. The Home Page</div>
 </div>
 <div class="paragraph">
+<p>Additionally, the activity display has a tab to view a filtered list of the current user&#8217;s activities.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/home/activity_view.png" alt="My Activity">
+</div>
+<div class="title">Figure 5. My Activity</div>
+</div>
+<div class="paragraph">
 <p>Mobi Enterprise also has a <a href="#vocabulary-linking">Vocabulary Linking</a> module for discovering relationships between vocabularies for enhanced semantic integration.</p>
 </div>
 <div class="sect2">
@@ -622,7 +631,7 @@ Federation of catalogs in Mobi is coming soon!
 <div class="content">
 <img src="images/catalog/full_catalog_initial_view.png" alt="full catalog initial view">
 </div>
-<div class="title">Figure 5. The Catalog</div>
+<div class="title">Figure 6. The Catalog</div>
 </div>
 <div class="paragraph">
 <p>The Local Catalog of Mobi contains all Records contained within your Mobi node. This includes all versioned ontologies created in the <a href="#ontology-editor-guide">Ontology Editor</a>, versioned mappings created in the <a href="#mapping-tool-guide">Mapping Tool</a>, versioned shapes graphs created in the <a href="#shapes-editor-guide">Shapes Editor</a>, and all datasets created in the <a href="#datasets-manager-guide">Datasets Manager</a>.</p>
@@ -646,11 +655,11 @@ Federation of catalogs in Mobi is coming soon!
 <div class="content">
 <img src="images/catalog/catalog_landing_page.png" alt="catalog landing page">
 </div>
-<div class="title">Figure 6. The Catalog Landing Page</div>
+<div class="title">Figure 7. The Catalog Landing Page</div>
 </div>
 <div class="paragraph">
 <p>The landing page of the Catalog displays a paginated list of all the Records in the Local Catalog that can be searched, sorted, and filtered.
-The filters on the left contain all possible types of Records and all possible user keywords.
+The filters on the left contain all possible types of Records, any user who has created a record, and all possible user keywords.
 The search bar allows you to perform a text search through all the Record metadata.</p>
 </div>
 <div class="paragraph">
@@ -666,13 +675,13 @@ Clicking on the Record card will open it in the <a href="#record_view">Record Vi
 <div class="content">
 <img src="images/catalog/record_view.png" alt="record view">
 </div>
-<div class="title">Figure 7. The Record View</div>
+<div class="title">Figure 8. The Record View</div>
 </div>
 <div class="paragraph">
 <p>The Record View displays all metadata for the selected Record along with set of tabs that updates based on the type of Record. The top of the Record view shows the Record title, type icon, and its description. The Record description is meant to provide a short summary of the Record. The right side of the view displays the created and modified dates of the Record along with its keywords and a button to open the Record in its associated module (ontologies in the <a href="#ontology-editor-guide">Ontology Editor</a>, etc.).</p>
 </div>
 <div class="paragraph">
-<p>Every Record type will contain an Overview tab where you can view a Markdown description of the Record that provides more detailed information than the description field. If the Record is a Versioned RDF Record, such as an Ontology Record or Mapping Record, the tabset will also include a tab displaying the list of its Branches. The Branches in the list are expandable to view the description and commit history of the Branch.</p>
+<p>Every Record type will contain an Overview tab where you can view a Markdown description of the Record that provides more detailed information than the description field. If the Record is a Versioned RDF Record, such as an Ontology Record or Mapping Record, the tabset will also include a tab displaying the list of its Branches. The Branches in the list are expandable to view the description and commit history of the Branch. The Activity tab will show a list of activities associated with the Record.</p>
 </div>
 <div class="paragraph">
 <p>If you have the permission to manage the Record, clicking on the title, description, overview, and keywords fields will turn them into editable fields for easy updates. In addition, you will see a <b class="button">Manage</b> button which will navigate you to the Record Permissions page.</p>
@@ -690,7 +699,7 @@ Clicking on the Record card will open it in the <a href="#record_view">Record Vi
 <div class="content">
 <img src="images/catalog/record_view_permission.png" alt="record view permission">
 </div>
-<div class="title">Figure 8. Editing an Record Permission</div>
+<div class="title">Figure 9. Editing an Record Permission</div>
 </div>
 <div class="paragraph">
 <p>For Versioned RDF records, If a user is not allowed to modify the branch they are currently viewing, all actions in the editor that would affect the branch are disabled or removed. In addition, if a user is not allowed to edit the target branch of a <a href="#merge-requests-guide">merge request</a>, they will not be able to accept the request.</p>
@@ -721,10 +730,10 @@ The community distribution of ontologies in Mobi is coming soon!
 <div class="content">
 <img src="images/ontology-editor/full_editor_initial_view.png" alt="The Ontology Editor">
 </div>
-<div class="title">Figure 9. The Ontology Editor</div>
+<div class="title">Figure 10. The Ontology Editor</div>
 </div>
 <div class="paragraph">
-<p>The initial view of the Ontology Editor shows the Ontologies page. The center of the page contains a paginated list of all ontologies in the local Mobi repository. Each ontology in the list displays ontology metadata and an action menu. The action menu allows you to delete the ontology. Deleting an ontology from this location will delete the ontology and associated ontology record and change history from the local catalog. Clicking an ontology will open it in the editor.</p>
+<p>The initial view of the Ontology Editor shows the Ontologies page. The center of the page contains a paginated list of all ontologies in the local Mobi repository. Each ontology in the list displays ontology metadata and an action menu. The action menu allows you to download or delete the ontology. Downloading the ontology from this location will download the HEAD commit of the MASTER branch. Deleting an ontology from this location will delete the ontology and associated ontology record and change history from the local catalog. Clicking an ontology will open it in the editor.</p>
 </div>
 <div class="paragraph">
 <p>When opening an ontology, the editor will load the previous branch and commit you were viewing. If you have not previously opened the ontology or the branch you were viewing no longer exists, then the editor will load the HEAD commit of the ontology&#8217;s master branch. For an explanation of commits and branches see the section on
@@ -743,7 +752,7 @@ The community distribution of ontologies in Mobi is coming soon!
 <div class="content">
 <img src="images/ontology-editor/new_ontology_form.png" alt="new ontology form" width="50%">
 </div>
-<div class="title">Figure 10. New Ontology Form</div>
+<div class="title">Figure 11. New Ontology Form</div>
 </div>
 <div class="paragraph">
 <p>The <span class="underline">Ontology IRI</span> is the unique identifier for the new ontology. The editor pre-populates this field with a default namespace and a local name generated from the <span class="underline">Title</span> field. You can always override this behavior. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotations of both the new ontology record and the ontology object within the new ontology. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotations of both the new ontology record and the ontology object within the new ontology. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new ontology record.</p>
@@ -761,7 +770,7 @@ The community distribution of ontologies in Mobi is coming soon!
 <div class="content">
 <img src="images/ontology-editor/upload_metadata_form.png" alt="upload metadata form" width="50%">
 </div>
-<div class="title">Figure 11. Ontology upload metadata form.</div>
+<div class="title">Figure 12. Ontology upload metadata form.</div>
 </div>
 <div class="paragraph">
 <p>Once all metadata has been submitted, a panel will be shown in the bottom right of the page which shows the status for each upload. Any errors will be detailed for each file. To refresh the main ontologies list with the new files, close the upload panel.</p>
@@ -770,7 +779,7 @@ The community distribution of ontologies in Mobi is coming soon!
 <div class="content">
 <img src="images/ontology-editor/upload_ontology_results.png" alt="upload ontology results" width="50%">
 </div>
-<div class="title">Figure 12. Ontology upload results.</div>
+<div class="title">Figure 13. Ontology upload results.</div>
 </div>
 <div class="paragraph">
 <p>Supported ontology file types are <code>.owl</code>, <code>.ttl</code>, <code>.xml</code>, <code>.jsonld</code>, <code>.owx</code>, <code>.json</code>, <code>.n3</code>, <code>.nq</code>, <code>.nt</code>, <code>.rdf</code>, <code>.txt</code>, <code>.json</code>, <code>.ofn</code>, <code>.omn</code> , <code>.owx</code>, and <code>.rdfs</code>. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new ontology record. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new ontology record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new ontology record. The file extension is used to guess the appropriate RDF Format to parse the file contents. If a parsing error occurs, the snackbar will display the error message relevant to guessed RDF Format.</p>
@@ -800,7 +809,7 @@ To learn more about OWL ontologies, see the <a href="https://www.w3.org/TR/2012/
 <div class="content">
 <img src="images/ontology-editor/full_editor_ontology_view.png" alt="full editor ontology view">
 </div>
-<div class="title">Figure 13. Ontology Editor</div>
+<div class="title">Figure 14. Ontology Editor</div>
 </div>
 <div class="paragraph">
 <p>This section will describe the tools related to ontology development activities. These include:</p>
@@ -851,7 +860,7 @@ To learn more about OWL ontologies, see the <a href="https://www.w3.org/TR/2012/
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_project.png" alt="ontology editor tab project">
 </div>
-<div class="title">Figure 14. Ontology Editor Project Tab</div>
+<div class="title">Figure 15. Ontology Editor Project Tab</div>
 </div>
 <div class="paragraph">
 <p>The top of this tab contains the title of the ontology and its IRI. The IRI shown is the Version IRI, Ontology IRI, or a blank node identifier. The IRI can be copied quickly by clicking on it.</p>
@@ -887,7 +896,7 @@ The serialized ontology is a representation of data stored in the repository and
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_overview.png" alt="ontology editor tab overview">
 </div>
-<div class="title">Figure 15. Ontology Editor Overview Tab</div>
+<div class="title">Figure 16. Ontology Editor Overview Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of this tab contains the list of all classes and their associated properties, including imports. Any properties that have no <code>rdfs:domain</code> are grouped into a folder in the hierarchy called "Properties". You can expand a class to view its properties by clicking the "+" icon or double-clicking the class name. Properties are displayed with a symbol representing the data type of the range property. If an entity has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the entity name. Imported classes and properties will appear grey and italicized.
@@ -927,7 +936,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_classes.png" alt="ontology editor tab classes">
 </div>
-<div class="title">Figure 16. Ontology Editor Classes Tab</div>
+<div class="title">Figure 17. Ontology Editor Classes Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the classes, including imports, nested according to their <code>rdfs:subClassOf</code> property. That is, a class&#8217;s children are classes which are defined as subclasses of the particular class. Since classes can be defined as a subclass of multiple classes, they may appear several times within the hierarchy. If a class has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the class name. Imported classes will appear grey and italicized.
@@ -952,7 +961,7 @@ Clicking on an item in the hierarchy will load that class&#8217;s information in
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_properties.png" alt="ontology editor tab properties">
 </div>
-<div class="title">Figure 17. Ontology Editor Properties Tab</div>
+<div class="title">Figure 18. Ontology Editor Properties Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the data, object, and annotation properties, including imports. The data, object, and annotation properties are grouped into three separate folders within the hierarchy that will open and close when clicked. Properties are nested according to their <code>rdfs:subPropertyOf</code> property. That is, a property&#8217;s children are properties which are defined as subproperties of the particular property. Properties are displayed with a symbol representing the data type of the range property. If a property has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the property name.  Imported properties will appear grey and italicized.
@@ -971,7 +980,7 @@ Clicking on an item in the hierarchy will load that property&#8217;s information
 <div class="content">
 <img src="images/ontology-editor/object_property_tab.png" alt="object property tab">
 </div>
-<div class="title">Figure 18. Object Property View</div>
+<div class="title">Figure 19. Object Property View</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -998,7 +1007,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_individuals.png" alt="ontology editor tab individuals">
 </div>
-<div class="title">Figure 19. Ontology Editor Individuals Tab</div>
+<div class="title">Figure 20. Ontology Editor Individuals Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a view of all individuals, including imports, nested under their classes based on the <code>rdfs:subClassOf</code> property. If an individual has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the individual name. Imported individuals will appear grey and italicized.
@@ -1017,7 +1026,7 @@ Clicking on an item in the list will load that individual&#8217;s information in
 <div class="content">
 <img src="images/ontology-editor/edit_individual_types.png" alt="edit individual types" width="50%">
 </div>
-<div class="title">Figure 20. Edit Individual Types Overlay</div>
+<div class="title">Figure 21. Edit Individual Types Overlay</div>
 </div>
 </div>
 <div class="sect4">
@@ -1029,7 +1038,7 @@ Clicking on an item in the list will load that individual&#8217;s information in
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_schemes.png" alt="ontology editor tab schemes">
 </div>
-<div class="title">Figure 21. Ontology Editor Schemes Tab</div>
+<div class="title">Figure 22. Ontology Editor Schemes Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the concept schemes, including imports. The top level items are the concept schemes, or subclasses of <code>skos:ConceptScheme</code>, and their children are all concepts, or subclasses of <code>skos:Concept</code>, within that scheme. This could be defined through the <code>skos:hasTopConcept</code>, <code>skos:topConceptOf</code>, or <code>skos:inScheme</code> properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concept schemes and concepts will appear grey and italicized.
@@ -1054,7 +1063,7 @@ Clicking on an item in the hierarchy will load that concept scheme&#8217;s or co
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_concepts.png" alt="ontology editor tab concepts">
 </div>
-<div class="title">Figure 22. Ontology Editor Concepts Tab</div>
+<div class="title">Figure 23. Ontology Editor Concepts Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the concepts, including imports. The concept hierarchy is determined using all of the SKOS broader and narrower properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concepts will appear grey and italicized.
@@ -1079,7 +1088,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_search.png" alt="ontology editor tab search">
 </div>
-<div class="title">Figure 23. Ontology Editor Search Tab</div>
+<div class="title">Figure 24. Ontology Editor Search Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a simple search bar and a list of search results. To perform a search, type a string into the search bar and press the <kbd>ENTER</kbd> key. The results are separated by type headers which are collapsible. Each result is displayed with its display name. Properties are displayed with a symbol representing the data type of the range property. Clicking on a result will load that entity&#8217;s information into the right section of this tab. The right section displays the entity&#8217;s display name, IRI, types, and properties. The parts of the property values that match the search text will be highlighted. The right section also includes a <b class="button">Go To</b> button that will open the entity in the appropriate tab. Double clicking on an entity in the list will also open that entity in the appropriate tab.</p>
@@ -1094,7 +1103,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/pizza_graph.png" alt="pizza graph">
 </div>
-<div class="title">Figure 24. Pizza Ontology Graph</div>
+<div class="title">Figure 25. Pizza Ontology Graph</div>
 </div>
 <div class="paragraph">
 <p>The ontology visualization feature enables users to easily understand data within an Ontology by allowing them to navigate across the classes and their relationships. The feature allows users to zoom, pan, select, drag, hover, and click nodes and links.</p>
@@ -1106,13 +1115,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/warning_commit_inprogress.png" alt="warning commit inprogress">
 </div>
-<div class="title">Figure 25. Uncommited changes state</div>
+<div class="title">Figure 26. Uncommited changes state</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/warning_over_node_limit.png" alt="warning over node limit">
 </div>
-<div class="title">Figure 26. Over the limit state</div>
+<div class="title">Figure 27. Over the limit state</div>
 </div>
 <div class="paragraph">
 <p>The side panel of the Visualization tab displays a searchable list of all the classes in the import closure (i.e. direct and imported) grouped by parent ontology. The checkboxes next to each class indicate whether a class is currently shown in the visualization and can be toggled to customize the displayed graph. Selecting the checkbox next to a class will update the graph by adding a new node with the class name, subclass relationships with other displayed classes, and object properties with other displayed classes. Deselecting the checkbox next to a class will remove these three things. Selecting a class in the side panel will highlight the node in the graph if displayed. Selecting a node in the graph will also highlight in the side panel. The side panel also includes a "Filter" dropdown with three options to help find the classes of interest in the list.</p>
@@ -1134,7 +1143,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/sidebard_imported_open.png" alt="sidebard imported open">
 </div>
-<div class="title">Figure 27. Side Panel: classes grouped by parent ontology</div>
+<div class="title">Figure 28. Side Panel: classes grouped by parent ontology</div>
 </div>
 <div class="paragraph">
 <p>The side panel can be hidden or shown with a button.</p>
@@ -1143,13 +1152,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_close_button.png" alt="sidepanel close button">
 </div>
-<div class="title">Figure 28. Side Panel Close Button</div>
+<div class="title">Figure 29. Side Panel Close Button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_open_button.png" alt="sidepanel open button">
 </div>
-<div class="title">Figure 29. Side Panel Open Button</div>
+<div class="title">Figure 30. Side Panel Open Button</div>
 </div>
 <div class="sect5">
 <h6 id="imported_ontologies">Imported Ontologies</h6>
@@ -1160,13 +1169,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/imported_ontology.png" alt="imported ontology">
 </div>
-<div class="title">Figure 30. Imported Ontologies</div>
+<div class="title">Figure 31. Imported Ontologies</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/update_imports.png" alt="update imports">
 </div>
-<div class="title">Figure 31. Refresh import</div>
+<div class="title">Figure 32. Refresh import</div>
 </div>
 </div>
 </div>
@@ -1200,7 +1209,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/check_out_tag.png" alt="check out tag">
 </div>
-<div class="title">Figure 32. Ontology checked out at a tag</div>
+<div class="title">Figure 33. Ontology checked out at a tag</div>
 </div>
 <div class="paragraph">
 <p>To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1215,7 +1224,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_changes.png" alt="ontology editor tab changes">
 </div>
-<div class="title">Figure 33. Ontology Editor Changes Tab</div>
+<div class="title">Figure 34. Ontology Editor Changes Tab</div>
 </div>
 <div class="paragraph">
 <p>Within each collapsible block in the list are the added and deleted triples for a particular entity IRI. If there are no changes to the ontology, this page will be empty. To commit these changes, select the <b class="button">Commit Changes</b> button in the <a href="#button_stack">Button Stack</a>. To remove these changes, click <b class="button">Remove All Changes</b>.</p>
@@ -1227,13 +1236,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/pull_latest_changes.png" alt="pull latest changes">
 </div>
-<div class="title">Figure 34. Pull in latest changes message</div>
+<div class="title">Figure 35. Pull in latest changes message</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/behind_head.png" alt="behind head">
 </div>
-<div class="title">Figure 35. Behind the head with saved changes</div>
+<div class="title">Figure 36. Behind the head with saved changes</div>
 </div>
 </div>
 <div class="sect4">
@@ -1248,7 +1257,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/merge_view.png" alt="merge view">
 </div>
-<div class="title">Figure 36. Merge branches view</div>
+<div class="title">Figure 37. Merge branches view</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1260,7 +1269,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_main.png" alt="merge conflicts main">
 </div>
-<div class="title">Figure 37. List of all merge conflicts</div>
+<div class="title">Figure 38. List of all merge conflicts</div>
 </div>
 <div class="paragraph">
 <p>When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the <b class="button">Back to List</b> button to go back to the list of all the conflicts or the <b class="button">Previous</b> or <b class="button">Next</b> buttons to iterate through the list of conflicts.</p>
@@ -1281,7 +1290,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_resolution.png" alt="merge conflicts resolution">
 </div>
-<div class="title">Figure 38. Merge conflict resolution view.</div>
+<div class="title">Figure 39. Merge conflict resolution view.</div>
 </div>
 <div class="paragraph">
 <p>Once all conflicts have been resolved, the <b class="button">Submit with Resolutions</b> button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.</p>
@@ -1290,13 +1299,13 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="sect4">
 <h5 id="commits_tab">Commits Tab</h5>
 <div class="paragraph">
-<p>The Commits Tab provides a table and graph of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the table. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. To view more information about a particular commit in the history, such as the added and deleted statements, click on its id or associated circle in the graph. The table also includes buttons for "checking out" a commit in the history. Clicking a <b class="button">View</b> button will open the ontology at that commit in read-only mode. This is useful for creating tags to indicate versions on the ontology (see <a href="#button_stack">Button Stack</a> and <a href="#checking_out_branchestagscommits">Checking Out Branches/Tags/Commits</a>).</p>
+<p>The Commits Tab provides a graph of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the graph. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. The graph displays any Tags associated with a commit and will also display the branch name associated with a merge if the branch still exists in the system. To view more information about a particular commit in the history, such as the added and deleted statements, click on its hash id to open an informational modal. The graph also includes commit dots for "checking out" a commit in the history. Clicking the Commit dot will open the ontology at that commit in read-only mode. This is useful for creating tags to indicate versions on the ontology (see <a href="#button_stack">Button Stack</a> and <a href="#checking_out_branchestagscommits">Checking Out Branches/Tags/Commits</a>).</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/commit_history_table.png" alt="commit history table">
 </div>
-<div class="title">Figure 39. Commit history table of a branch</div>
+<div class="title">Figure 40. Commit history table of a branch</div>
 </div>
 </div>
 <div class="sect4">
@@ -1308,7 +1317,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/entity_history.png" alt="entity history">
 </div>
-<div class="title">Figure 40. Entity History view</div>
+<div class="title">Figure 41. Entity History view</div>
 </div>
 </div>
 </div>
@@ -1323,7 +1332,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/edit_iri_overlay.png" alt="edit iri overlay">
 </div>
-<div class="title">Figure 41. Edit IRI overlay</div>
+<div class="title">Figure 42. Edit IRI overlay</div>
 </div>
 </div>
 <div class="sect4">
@@ -1335,7 +1344,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/axiom_value_editor.png" alt="axiom value editor" width="50%">
 </div>
-<div class="title">Figure 42. Axiom Overlay Editor with an example</div>
+<div class="title">Figure 43. Axiom Overlay Editor with an example</div>
 </div>
 </div>
 <div class="sect4">
@@ -1359,7 +1368,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/property_value_display.png" alt="property value display">
 </div>
-<div class="title">Figure 43. A property value display with multiple values</div>
+<div class="title">Figure 44. A property value display with multiple values</div>
 </div>
 </div>
 <div class="sect4">
@@ -1371,7 +1380,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/button_stack.png" alt="button stack">
 </div>
-<div class="title">Figure 44. Collapsed button stack</div>
+<div class="title">Figure 45. Collapsed button stack</div>
 </div>
 <div class="paragraph">
 <p>To add a new entity to the ontology, click on the main <b class="button">Create Entity</b> button in the stack. This will open an overlay with options for what kind of entity to create and once you have selected an option, an appropriate overlay will be shown for creating that type of entity. After creating the entity, a snackbar will appear at the bottom allowing you to navigate directly to your new entity.</p>
@@ -1380,13 +1389,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_entity_button.png" alt="create entity button">
 </div>
-<div class="title">Figure 45. Create Entity button</div>
+<div class="title">Figure 46. Create Entity button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/new_snackbar.png" alt="new snackbar">
 </div>
-<div class="title">Figure 46. New Entity snackbar</div>
+<div class="title">Figure 47. New Entity snackbar</div>
 </div>
 <div class="paragraph">
 <p>If you have made changes to an ontology, the <b class="button">Commit Changes</b> button will become active. Clicking on this button will bring up the Add Commit overlay.</p>
@@ -1395,7 +1404,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/commit_changes_button.png" alt="commit changes button">
 </div>
-<div class="title">Figure 47. Commit button</div>
+<div class="title">Figure 48. Commit button</div>
 </div>
 <div class="paragraph">
 <p>The Add Commit overlay provides a textarea for you to enter in a <span class="underline">Comment</span> that will be associated with that commit. This commit usually specifies what changes where made in the commit so that others can read the message and understand what happened at that point in time. You can still commit your changes if you are not currently viewing the head commit of the current branch. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will add all your saved changes to a new commit object whose parent is the commit you were viewing and close the overlay.</p>
@@ -1404,7 +1413,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/add_commit_overlay.png" alt="add commit overlay" width="50%">
 </div>
-<div class="title">Figure 48. Add commit overlay</div>
+<div class="title">Figure 49. Add commit overlay</div>
 </div>
 <div class="paragraph">
 <p>See the <a href="#merging_branches">Merging Branches</a> section for details on how the merging branches works.</p>
@@ -1413,7 +1422,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/merge_branch_button.png" alt="merge branch button">
 </div>
-<div class="title">Figure 49. Merge Branch button</div>
+<div class="title">Figure 50. Merge Branch button</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Create Branch</b> button allows you to create a new branch from the commit and branch you are viewing, including past commits. This action can be performed even if you have unsaved or saved changes. Clicking on the button will bring up the Create New Branch overlay.</p>
@@ -1422,7 +1431,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_branch_button.png" alt="create branch button">
 </div>
-<div class="title">Figure 50. Create Branch button</div>
+<div class="title">Figure 51. Create Branch button</div>
 </div>
 <div class="paragraph">
 <p>The Create New Branch overlay provides fields for entering information about the branch as a whole. The <span class="underline">Title</span> field (required) will set the <code>dcterms:title</code> of the branch. The <span class="underline">Description</span> field will set the <code>dcterms:description</code> of the branch. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new branch with the entered information whose head commit was the commit you were viewing and close the overlay.</p>
@@ -1431,7 +1440,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_branch_overlay.png" alt="create branch overlay" width="50%">
 </div>
-<div class="title">Figure 51. Create new branch overlay</div>
+<div class="title">Figure 52. Create new branch overlay</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Create Tag</b> button allows you to create a human readable and persistent pointer to the commit you are currently viewing. Clicking this button will bring up an overlay where you can type in the title for the Tag and customize it&#8217;s IRI. Once the Tag is created, the ontology will open the ontology in read-only mode at the tagged commit.</p>
@@ -1440,7 +1449,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_tag_button.png" alt="create tag button">
 </div>
-<div class="title">Figure 52. Create Tag button</div>
+<div class="title">Figure 53. Create Tag button</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Upload Changes</b> button allows you to upload a new version of your ontology from a file and apply the changes. Clicking this button will bring up an overlay where you can select the file with the changed ontology. Uploaded changes will not be automatically committed, but will allow you to review changes before making a new Commit.</p>
@@ -1449,7 +1458,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/upload_changes_button.png" alt="upload changes button">
 </div>
-<div class="title">Figure 53. Upload Changes button</div>
+<div class="title">Figure 54. Upload Changes button</div>
 </div>
 </div>
 <div class="sect4">
@@ -1543,7 +1552,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/full_tool_initial_view.png" alt="The Vocabulary Linking Tool">
 </div>
-<div class="title">Figure 54. The Vocabulary Linking Tool</div>
+<div class="title">Figure 55. The Vocabulary Linking Tool</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Vocabulary Linking Tool shows a form on the left for selecting the vocabularies and a space for matched terms to be displayed. To select a vocabulary, you must select the Ontology Record and a Branch. All selected semantic relations you wish to add will be committed to the selected branches for both vocabularies.</p>
@@ -1555,7 +1564,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/config_modal.png" alt="The vocabulary linking configuration modal" width="50%">
 </div>
-<div class="title">Figure 55. The vocabulary linking configuration modal</div>
+<div class="title">Figure 56. The vocabulary linking configuration modal</div>
 </div>
 <div class="paragraph">
 <p>After you have selected 2 different ontologies, click on <b class="button">Analyze</b> and the right section of the view will update with the matched terms in a paginated list.</p>
@@ -1564,7 +1573,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/linking_results.png" alt="Example vocabulary linking results">
 </div>
-<div class="title">Figure 56. Example vocabulary linking results</div>
+<div class="title">Figure 57. Example vocabulary linking results</div>
 </div>
 <div class="paragraph">
 <p>The top of the results section shows a checkbox for selecting or deselecting all the results in addition to two dropdowns. One is for filtering the results based on whether terms have already been semantically linked. The other is for sorting the results based on the highest matched percentage of all the labels of each matched term pair.</p>
@@ -1576,13 +1585,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/matched_pair.png" alt="Example matched vocabulary terms">
 </div>
-<div class="title">Figure 57. Example pair of matched vocabulary terms</div>
+<div class="title">Figure 58. Example pair of matched vocabulary terms</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/vocabulary-linking/previously_linked.png" alt="Previously linked vocabulary matches">
 </div>
-<div class="title">Figure 58. Matched vocabulary terms that are already linked</div>
+<div class="title">Figure 59. Matched vocabulary terms that are already linked</div>
 </div>
 <div class="paragraph">
 <p>To mark which terms you wish to link, select which relation you wish to use from the select in the expanded section and check the box next to the pair. The options are “Exact Match”, “Close Match”, or “Related”.  Use the following as a reference for what each type of relation means:</p>
@@ -1618,7 +1627,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/success.png" alt="Successful linking" width="50%">
 </div>
-<div class="title">Figure 59. A success message linking vocabularies</div>
+<div class="title">Figure 60. A success message linking vocabularies</div>
 </div>
 </div>
 <div class="sect2">
@@ -1633,7 +1642,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shacl_overview.png" alt="Shapes Overview Page">
 </div>
-<div class="title">Figure 60. Shapes Editor Overview page</div>
+<div class="title">Figure 61. Shapes Editor Overview page</div>
 </div>
 <div class="paragraph">
 <p>The main Shapes Editor page includes a new action-bar where all the action buttons for a shapes graph record are located. From the action-bar, users can create, filter, and open different shapes graph records, branches, and tags.</p>
@@ -1642,7 +1651,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/action_bar.png" alt="action bar" width="100%">
 </div>
-<div class="title">Figure 61. Shapes Editor Action Bar</div>
+<div class="title">Figure 62. Shapes Editor Action Bar</div>
 </div>
 <div class="paragraph">
 <p>When opening a shapes graph record, the editor will load the previous branch and/or commit you were viewing. If you have not previously opened the record or in the case that the branch you were viewing no longer exists, the editor will load the HEAD commit of the shape graph&#8217;s master branch. For an explanation of commits and branches, see the section on <a href="#shapes_graph_versioning">Shapes Graph Versioning</a>.</p>
@@ -1654,7 +1663,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shapes_details.png" alt="shapes details">
 </div>
-<div class="title">Figure 62. Shapes Record Details</div>
+<div class="title">Figure 63. Shapes Record Details</div>
 </div>
 <div class="sect3">
 <h4 id="creating_new_shapes_graphs">Creating New Shapes Graphs</h4>
@@ -1665,7 +1674,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/create_shapes.png" alt="create shapes" width="50%">
 </div>
-<div class="title">Figure 63. New Shapes Record Form</div>
+<div class="title">Figure 64. New Shapes Record Form</div>
 </div>
 <div class="paragraph">
 <p>The Title field populates the <code>dcterms:title</code> annotations of the new shapes graph record and the Description field populates the <code>dcterms:description</code> annotations of the new shapes graph record. The keywords field will attach the entered values as keywords to the new record.</p>
@@ -1719,7 +1728,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/versioning_dropdown.png" alt="versioning dropdown" width="40%">
 </div>
-<div class="title">Figure 64. Branches Dropdown</div>
+<div class="title">Figure 65. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1737,13 +1746,13 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/changes_page.png" alt="changes page">
 </div>
-<div class="title">Figure 65. Changes Page</div>
+<div class="title">Figure 66. Changes Page</div>
 </div>
 <div class="paragraph">
-<p>The Changes Page displays all the uncommitted changes and the commit history table for the opened shapes graph record. This provides users the ability to upload changes without committing and allows a user the opportunity to review proposed changes to a shapes graph in a more digestible manner before adding any commits to the commit history. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the shape graph, resetting to the state of the current commit.</p>
+<p>The Changes Page displays all the uncommitted changes and the commit history graph for the opened shapes graph record. This provides users the ability to upload changes without committing and allows a user the opportunity to review proposed changes to a shapes graph in a more digestible manner before adding any commits to the commit history. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the shape graph, resetting to the state of the current commit.</p>
 </div>
 <div class="paragraph">
-<p>Users can also view a shapes graph record at a specific commit in time by clicking the <b class="button">View</b> button next to the corresponding commit in the commit history table.</p>
+<p>The commit history graph displays of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the graph. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. The graph displays any Tags associated with a commit and will also display the branch name associated with a merge if the branch still exists in the system. To view more information about a particular commit in the history, such as the added and deleted statements, click on its hash id to open an informational modal. The graph also includes commit dots for "checking out" a commit in the history. Clicking the Commit dot will open the shapes graph at that commit in read-only mode.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1755,7 +1764,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 66. Merge Branches button</div>
+<div class="title">Figure 67. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether or not you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -1764,7 +1773,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_page.png" alt="merge page">
 </div>
-<div class="title">Figure 67. Merge View</div>
+<div class="title">Figure 68. Merge View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1779,7 +1788,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/upload_changes_button.png" alt="upload changes button" width="10%">
 </div>
-<div class="title">Figure 68. Upload Changes button</div>
+<div class="title">Figure 69. Upload Changes button</div>
 </div>
 </div>
 </div>
@@ -1796,7 +1805,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
 </div>
-<div class="title">Figure 69. The Merge Requests module</div>
+<div class="title">Figure 70. The Merge Requests module</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Merge Requests module displays a list of all currently open merge requests within the application sorted by created date descending along with a button to <a href="#create_a_merge_request">create a merge request</a>. To view all accepted merge requests, change the selected filter next to the search bar. Each merge request in the list displays a preview of the request metadata and a button to delete the request. Clicking on a merge request in the list opens a display of the individual merge request.</p>
@@ -1805,7 +1814,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/merge-requests/individual_request.png" alt="individual request">
 </div>
-<div class="title">Figure 70. An Individual Merge Request</div>
+<div class="title">Figure 71. An Individual Merge Request</div>
 </div>
 <div class="paragraph">
 <p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, and a button to go back to the main list of merge requests.</p>
@@ -1835,7 +1844,7 @@ The comment editor supports GitHub flavored Markdown which you can find more inf
 <div class="content">
 <img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
 </div>
-<div class="title">Figure 71. Editing Merge Request Metadata</div>
+<div class="title">Figure 72. Editing Merge Request Metadata</div>
 </div>
 <div class="sect3">
 <h4 id="create_a_merge_request">Create a Merge Request</h4>
@@ -1858,7 +1867,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step1.png" alt="step1">
 </div>
-<div class="title">Figure 72. Creating a Merge Request: Step 1 - Select a Record</div>
+<div class="title">Figure 73. Creating a Merge Request: Step 1 - Select a Record</div>
 </div>
 <div class="paragraph">
 <p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click <b class="button">Next</b>.</p>
@@ -1867,7 +1876,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step2.png" alt="step2">
 </div>
-<div class="title">Figure 73. Creating a Merge Request: Step 2 - Select Branches</div>
+<div class="title">Figure 74. Creating a Merge Request: Step 2 - Select Branches</div>
 </div>
 <div class="paragraph">
 <p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click <b class="button">Submit</b> and a new Merge Request with your selections will be created.</p>
@@ -1876,7 +1885,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step3.png" alt="step3">
 </div>
-<div class="title">Figure 74. Creating a Merge Request: Step 3 - Request Metadata</div>
+<div class="title">Figure 75. Creating a Merge Request: Step 3 - Request Metadata</div>
 </div>
 </div>
 <div class="sect3">
@@ -1888,7 +1897,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/conflicts.png" alt="conflicts">
 </div>
-<div class="title">Figure 75. Conflicts on a Merge Request</div>
+<div class="title">Figure 76. Conflicts on a Merge Request</div>
 </div>
 <div class="paragraph">
 <p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance.</p>
@@ -1907,7 +1916,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
 </div>
-<div class="title">Figure 76. Mapping Tool button</div>
+<div class="title">Figure 77. Mapping Tool button</div>
 </div>
 <div class="paragraph">
 <p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
@@ -1924,7 +1933,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
 </div>
-<div class="title">Figure 77. Create Mapping Overlay</div>
+<div class="title">Figure 78. Create Mapping Overlay</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking <b class="button">Continue</b> brings you to the Edit Mapping Page.</p>
@@ -1933,7 +1942,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
 </div>
-<div class="title">Figure 78. File Upload Page for Creating a Mapping</div>
+<div class="title">Figure 79. File Upload Page for Creating a Mapping</div>
 </div>
 <div class="paragraph">
 <p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with each class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
@@ -1954,7 +1963,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
 </div>
-<div class="title">Figure 79. Edit Mapping Page Edit Tab</div>
+<div class="title">Figure 80. Edit Mapping Page Edit Tab</div>
 </div>
 <div class="paragraph">
 <p>When creating a mapping, the first thing you will see is the <a href="#source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking <b class="button">Add Class</b> opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
@@ -1972,19 +1981,19 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
-<div class="title">Figure 80. Create Property Mapping Overlay for a Data/Annotation Property</div>
+<div class="title">Figure 81. Create Property Mapping Overlay for a Data/Annotation Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
 </div>
-<div class="title">Figure 81. Create Property Mapping Overlay for an Object Property</div>
+<div class="title">Figure 82. Create Property Mapping Overlay for an Object Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
 </div>
-<div class="title">Figure 82. Language Selection for a Data/Annotation Property</div>
+<div class="title">Figure 83. Language Selection for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>Clicking the main <b class="button">Save</b> button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the <b class="button">Save</b> button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking <b class="button">Submit</b> in an overlay will save the current state of the mapping and run it.</p>
@@ -2017,7 +2026,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/save_run_options.png" alt="save run options">
 </div>
-<div class="title">Figure 83. Options for saving and running a mapping</div>
+<div class="title">Figure 84. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2029,13 +2038,13 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
 </div>
-<div class="title">Figure 84. File Upload Page for Editing a Mapping</div>
+<div class="title">Figure 85. File Upload Page for Editing a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
 </div>
-<div class="title">Figure 85. File Upload Page for Editing a Mapping with missing columns</div>
+<div class="title">Figure 86. File Upload Page for Editing a Mapping with missing columns</div>
 </div>
 </div>
 <div class="sect3">
@@ -2065,13 +2074,13 @@ To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
 </div>
-<div class="title">Figure 86. File Upload Page for Running a Mapping</div>
+<div class="title">Figure 87. File Upload Page for Running a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
 </div>
-<div class="title">Figure 87. File Upload Page for Running a Mapping with missing columns</div>
+<div class="title">Figure 88. File Upload Page for Running a Mapping with missing columns</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Run Mapping</b> will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
@@ -2092,7 +2101,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/run_options.png" alt="run options">
 </div>
-<div class="title">Figure 88. Options for saving and running a mapping</div>
+<div class="title">Figure 89. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2106,7 +2115,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
 </div>
-<div class="title">Figure 89. Source Ontology Overlay</div>
+<div class="title">Figure 90. Source Ontology Overlay</div>
 </div>
 <div class="paragraph">
 <p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. Class mappings and property mappings are incompatible if the class or property that is referenced no longer exists in the imports closure of the source ontology. Property mappings are also incompatible if they are a different type or have a different range.</p>
@@ -2166,7 +2175,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
 </div>
-<div class="title">Figure 90. The Datasets Manager</div>
+<div class="title">Figure 91. The Datasets Manager</div>
 </div>
 <div class="paragraph">
 <p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The <b class="button">Upload Data</b> button allows you to upload graph data to the dataset from a file.</p>
@@ -2180,7 +2189,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
 </div>
-<div class="title">Figure 91. New Dataset Overlay</div>
+<div class="title">Figure 92. New Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository</span> field allows you to specity the identifier of the repository registered within AVM where the dataset and all associated named graphs will be stored. The default option is the system repository and should be used in most cases. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create the dataset with the provided metadata.</p>
@@ -2204,7 +2213,7 @@ The ability to create new repositories in Mobi is coming soon!
 <div class="content">
 <img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
 </div>
-<div class="title">Figure 92. Edit Dataset Overlay</div>
+<div class="title">Figure 93. Edit Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking <b class="button">Update</b> will update the dataset record with the new metadata.</p>
@@ -2259,7 +2268,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
 </div>
-<div class="title">Figure 93. The Discover Page</div>
+<div class="title">Figure 94. The Discover Page</div>
 </div>
 <div class="sect3">
 <h4 id="explore">Explore</h4>
@@ -2270,7 +2279,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_classes.png" alt="explore classes">
 </div>
-<div class="title">Figure 94. Explore tab with classes</div>
+<div class="title">Figure 95. Explore tab with classes</div>
 </div>
 <div class="paragraph">
 <p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking <b class="button">Explore Data</b> opens the instances view.</p>
@@ -2279,7 +2288,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_instances.png" alt="explore instances">
 </div>
-<div class="title">Figure 95. Explore Tab with instances</div>
+<div class="title">Figure 96. Explore Tab with instances</div>
 </div>
 <div class="paragraph">
 <p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking <b class="button">View <em>Class Name</em></b> opens the single instance view. Clicking <b class="button">Create <em>Class Name</em></b> opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
@@ -2288,7 +2297,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance.png" alt="explore single instance">
 </div>
-<div class="title">Figure 96. Explore Tab with single instance</div>
+<div class="title">Figure 97. Explore Tab with single instance</div>
 </div>
 <div class="paragraph">
 <p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking <b class="button">Edit</b> opens the single instance editor.</p>
@@ -2297,7 +2306,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
 </div>
-<div class="title">Figure 97. Explore Tab with single instance editor</div>
+<div class="title">Figure 98. Explore Tab with single instance editor</div>
 </div>
 <div class="paragraph">
 <p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#edit_iri_overlay">Edit IRI Overlay</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the <kbd>ENTER</kbd> key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
@@ -2327,7 +2336,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
 </div>
-<div class="title">Figure 98. Query tab</div>
+<div class="title">Figure 99. Query tab</div>
 </div>
 <div class="paragraph">
 <p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a <b class="button">Submit</b> button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking <b class="button">Submit</b> executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
@@ -2339,7 +2348,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_construct_query.png" alt="discover construct query">
 </div>
-<div class="title">Figure 99. Construct query</div>
+<div class="title">Figure 100. Construct query</div>
 </div>
 </div>
 </div>
@@ -2355,7 +2364,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 100. My Account link</div>
+<div class="title">Figure 101. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -2385,7 +2394,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 101. Profile Tab</div>
+<div class="title">Figure 102. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2397,7 +2406,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 102. Groups Tab</div>
+<div class="title">Figure 103. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2409,7 +2418,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 103. Password Tab</div>
+<div class="title">Figure 104. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2421,7 +2430,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 104. Preferences Tab</div>
+<div class="title">Figure 105. Preferences Tab</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2449,7 +2458,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 105. Administration link</div>
+<div class="title">Figure 106. Administration link</div>
 </div>
 <div class="paragraph">
 <p>There are four main tabs of the Administration page:</p>
@@ -2479,7 +2488,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 106. Users Tab</div>
+<div class="title">Figure 107. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -2509,7 +2518,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 107. Create User Overlay</div>
+<div class="title">Figure 108. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2521,7 +2530,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 108. Groups Tab</div>
+<div class="title">Figure 109. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -2539,7 +2548,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 109. Create group overlay</div>
+<div class="title">Figure 110. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2563,7 +2572,7 @@ More permissions coming soon!
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 110. Permissions Tab</div>
+<div class="title">Figure 111. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3505,7 +3514,7 @@ tokenDurationMins = 1440</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.admin.dn</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The admin DN on your LDAP server (ex: <code>uid=admin,ou=system</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The admin DN on your LDAP server (ex: <code>uid=admin,ou=system</code>). The admin account is expected to have appropriate permissions to query all users, groups, and attributes desired.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -3531,10 +3540,10 @@ tokenDurationMins = 1440</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.users.id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The field name on users that the Mobi application will use as the username to log in (ex: <code>uid</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">`</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ldap.users.firstName`</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.users.firstName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The field name on users whose value is the first name of the user (ex: <code>givenName</code>)</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3553,7 +3562,7 @@ tokenDurationMins = 1440</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.users.membership</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The field name on users whose values are the groups they are a part of (ex: <code>memberOf</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The field name on users whose values are the groups they are a part of (ex: <code>memberOf</code>). If the field not available, it can be left blank.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -3595,7 +3604,7 @@ tokenDurationMins = 1440</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.groups.membership</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The field name on groups whose values are the users that are a part of the group (ex: <code>member</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The field name on groups whose values are the users that are a part of the group (ex: <code>member</code>).  If the field not available, it can be left blank.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -4217,7 +4226,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 <div class="sect2">
 <h3 id="accessing_swagger_rest_api_documentation">Accessing Swagger REST API Documentation</h3>
 <div class="paragraph">
-<p>Every installation of Mobi provides <a href="https://swagger.io/">Swagger</a> Documentation for the full suite of Mobi REST APIs. This documentation is provided as a standard Swagger YAML file as well as a fully interactive hosted version. The Swagger YAML file can be downloaded at <code>$MOBI_HOST/swagger-ui/mobi-swagger.yaml</code>. To reach the Swagger Documentation UI, navigate to <code>$MOBI_HOST/swagger-ui/index.html</code>. For example, in a default deployment these URLs would look like <a href="https://localhost:8443/swagger-ui/mobi-swagger.yaml" class="bare">https://localhost:8443/swagger-ui/mobi-swagger.yaml</a> and <a href="https://localhost:8443/swagger-ui/index.html" class="bare">https://localhost:8443/swagger-ui/index.html</a>, respectively.</p>
+<p>Every installation of Mobi provides <a href="https://swagger.io/">Swagger</a> Documentation for the full suite of Mobi REST APIs. This documentation is provided as a standard Swagger YAML file as well as a fully interactive hosted version. The Swagger YAML file can be downloaded at <code>$MOBI_HOST/swagger-ui/mobi-swagger.yaml</code>. To reach the Swagger Documentation UI, navigate to <code>$MOBI_HOST/swagger-ui/index.html</code>. For example, in a default deployment these URLs would look like <a href="https://localhost:8443/swagger-ui/mobi-swagger.yaml" class="bare">https://localhost:8443/swagger-ui/mobi-swagger.yaml</a> and <a href="https://localhost:8443/swagger-ui/index.html" class="bare">https://localhost:8443/swagger-ui/index.html</a>, respectively. If the browser session is already logged into Mobi, there is no need to click the Authorize button.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -4288,7 +4297,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 111. XML Example File</div>
+<div class="title">Figure 112. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -4299,7 +4308,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Ouput File">
 </div>
-<div class="title">Figure 112. XML Example Ontology File</div>
+<div class="title">Figure 113. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -4309,7 +4318,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 113. XML Example Data File</div>
+<div class="title">Figure 114. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4322,7 +4331,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 114. JSON Example File</div>
+<div class="title">Figure 115. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -4332,7 +4341,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 115. JSON Example Ontology File</div>
+<div class="title">Figure 116. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -4342,7 +4351,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 116. JSON Example Data File</div>
+<div class="title">Figure 117. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4355,7 +4364,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 117. CSV Example File</div>
+<div class="title">Figure 118. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -4365,7 +4374,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Ouput File">
 </div>
-<div class="title">Figure 118. CSV Example Ontology File</div>
+<div class="title">Figure 119. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -4375,7 +4384,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 119. CSV Example Data File</div>
+<div class="title">Figure 120. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -5974,8 +5983,8 @@ Record Services when a user creates a new Record.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.2<br>
-Last updated 2023-04-11 00:50:43 UTC
+Version 2.3<br>
+Last updated 2023-07-05 18:50:45 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
