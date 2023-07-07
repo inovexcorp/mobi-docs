@@ -3191,7 +3191,7 @@ server.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
-tar -xf $MOBI_DIST.tar.gz</code></pre>
+tar -xf $MOBI_HOME.tar.gz</code></pre>
 </div>
 </div>
 </li>
@@ -3199,7 +3199,7 @@ tar -xf $MOBI_DIST.tar.gz</code></pre>
 <p>Create a symlink to the latest distribution</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ln -s $MOBI_DIST latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ln -s $MOBI_HOME latest</code></pre>
 </div>
 </div>
 </li>
@@ -3228,7 +3228,7 @@ tar -xf $MOBI_DIST.tar.gz</code></pre>
 <div class="sect4">
 <h5 id="change_the_default_java_heap_size">Change the Default Java Heap Size</h5>
 <div class="paragraph">
-<p>Set the max heap size in <code>$MOBI_DIST/bin/setenv</code> (e.g.
+<p>Set the max heap size in <code>$MOBI_HOME/bin/setenv</code> (e.g.
 <code>JAVA_MAX_MEM=4G</code>). In version 1.21, to include the <code>JAVA_MAX_MEM</code> and <code>JAVA_MIN_MEM</code> variables in the Mobi startup, add the following line beneath them in the <code>setenv</code> file.</p>
 </div>
 <div class="admonitionblock note">
@@ -3252,7 +3252,7 @@ All versions from 1.22 onwards have this line already added.
 <div class="sect4">
 <h5 id="change_the_default_web_port">Change the Default Web Port</h5>
 <div class="paragraph">
-<p>Change the default SSL port in <code>$MOBI_DIST/etc/org.ops4j.pax.web.cfg</code></p>
+<p>Change the default SSL port in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3284,12 +3284,12 @@ simply replace the default keystore file with your own:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp mycerts.jks $MOBI_DIST/etc/keystore</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp mycerts.jks $MOBI_HOME/etc/keystore</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>If there is a keystore password, it can be configured in the
-<code>$MOBI_DIST/etc/org.ops4j.pax.web.cfg</code> file using the following
+<code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code> file using the following
 configuration properties:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -3452,7 +3452,7 @@ tokenDurationMins = 1440</code></pre>
 <div class="sect4">
 <h5 id="ldap_configuration_enterprise">LDAP Configuration (ENTERPRISE)</h5>
 <div class="paragraph">
-<p>In Enterprise deployments only, Mobi can be configured so that users can log into the application with the Users/Groups defined in your organization&#8217;s directory, you must create a file called <code>com.mobi.enterprise.ldap.impl.engine.LDAPEngine.cfg</code> with the following properties and put it in the <code>$MOBI_DIST/etc/</code> directory before starting the application. If a property is not required, you can delete the line from the config file. The list of possible fields for the config file are shown in the table below.</p>
+<p>In Enterprise deployments only, Mobi can be configured so that users can log into the application with the Users/Groups defined in your organization&#8217;s directory, you must create a file called <code>com.mobi.enterprise.ldap.impl.engine.LDAPEngine.cfg</code> with the following properties and put it in the <code>$MOBI_HOME/etc/</code> directory before starting the application. If a property is not required, you can delete the line from the config file. The list of possible fields for the config file are shown in the table below.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3649,7 +3649,7 @@ ldap.groups.membership = member</code></pre>
 <div class="sect5">
 <h6 id="saml_configuration">SAML Configuration</h6>
 <div class="paragraph">
-<p>In order to configure Mobi to use SAML, you will need to create a file called <code>com.mobi.enterprise.auth.saml.api.SAMLConfigProvider.cfg</code> to the <code>$MOBI_DIST/etc/</code> directory. The must have the following fields.</p>
+<p>In order to configure Mobi to use SAML, you will need to create a file called <code>com.mobi.enterprise.auth.saml.api.SAMLConfigProvider.cfg</code> to the <code>$MOBI_HOME/etc/</code> directory. The must have the following fields.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3658,7 +3658,7 @@ ldap.groups.membership = member</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-<code>${karaf.etc}</code> is a reference to the <code>$MOBI_DIST/etc/</code> directory that the
+<code>${karaf.etc}</code> is a reference to the <code>$MOBI_HOME/etc/</code> directory that the
 application will understand and replace
 </td>
 </tr>
@@ -3702,13 +3702,13 @@ In order for the <code>certFile</code> to ba valid format, it must contain the a
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>certFile</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The file path to a file containing the X509 certificate for verifying the signature of SAML responses. Best practice is to put the file in the <code>$MOBI_DIST/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The file path to a file containing the X509 certificate for verifying the signature of SAML responses. Best practice is to put the file in the <code>$MOBI_HOME/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>keyFile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The optional file path to a file containing the PKCS8 key for verifying the signature of SAML responses. Best practice is to put the
-file in the <code>$MOBI_DIST/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
+file in the <code>$MOBI_HOME/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3790,7 +3790,7 @@ groupAttribute=Groups</code></pre>
 <div class="sect5">
 <h6 id="default_saml_token_duration">Default SAML Token Duration</h6>
 <div class="paragraph">
-<p>In order to configure the token duration for SAML logins, you must create a file called <code>com.mobi.enterprise.auth.rest.SAMLRest.cfg</code> with the following properties and put it in the <code>$MOBI_DIST/etc/</code> directory before starting the application, otherwise the token duration will use the default of one day. There is only one possible field for the config file as shown in the table below that is configurable and not required to set the token duration value.</p>
+<p>In order to configure the token duration for SAML logins, you must create a file called <code>com.mobi.enterprise.auth.rest.SAMLRest.cfg</code> with the following properties and put it in the <code>$MOBI_HOME/etc/</code> directory before starting the application, otherwise the token duration will use the default of one day. There is only one possible field for the config file as shown in the table below that is configurable and not required to set the token duration value.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3829,7 +3829,7 @@ tokenDurationMins = 1440</code></pre>
 <div class="sect5">
 <h6 id="oauthopenid_configuration">OAuth/OpenID Configuration</h6>
 <div class="paragraph">
-<p>In order to configure Mobi to use OAuth or OpenID, you will need to create two files in the <code>$MOBI_DIST/etc</code> directory: <code>com.mobi.enterprise.auth.oauth.api.OAuthConfigProvider.cfg</code> and <code>com.mobi.enterprise.auth.oauth.impl.token.OAuthTokenLoginModuleProvider.cfg</code>. The latter must be an empty file. The former can be used to configure a generic OAuth 2.0 Provider or an OpenID Provider. For either, the file must have the following fields.</p>
+<p>In order to configure Mobi to use OAuth or OpenID, you will need to create two files in the <code>$MOBI_HOME/etc</code> directory: <code>com.mobi.enterprise.auth.oauth.api.OAuthConfigProvider.cfg</code> and <code>com.mobi.enterprise.auth.oauth.impl.token.OAuthTokenLoginModuleProvider.cfg</code>. The latter must be an empty file. The former can be used to configure a generic OAuth 2.0 Provider or an OpenID Provider. For either, the file must have the following fields.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3916,7 +3916,7 @@ tokenDurationMins = 1440</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>keyFile</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The file path to a file containing the PKCS8 key for verifying the signature of JWT tokens. Best practice is to put the file in the <code>$MOBI_DIST/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The file path to a file containing the PKCS8 key for verifying the signature of JWT tokens. Best practice is to put the file in the <code>$MOBI_HOME/etc/</code> directory and make this value <code>${karaf.etc}/&lt;INSERT-FILE-NAME&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 </tr>
 </tbody>
@@ -3987,7 +3987,7 @@ openidConfigHostname=http://localhost:8080</code></pre>
 <div class="sect4">
 <h5 id="password_encryption_configuration">Password Encryption Configuration</h5>
 <div class="paragraph">
-<p>Mobi provides a way to automatically encrypt plaintext passwords stored within service configurations on startup and subsequent updates. The setup for this is very short. All you have to do is ensure that a file called <code>com.mobi.security.api.EncryptionService.cfg</code> exists in the <code>$MOBI_DIST/etc</code> directory and contains the following fields:</p>
+<p>Mobi provides a way to automatically encrypt plaintext passwords stored within service configurations on startup and subsequent updates. The setup for this is very short. All you have to do is ensure that a file called <code>com.mobi.security.api.EncryptionService.cfg</code> exists in the <code>$MOBI_HOME/etc</code> directory and contains the following fields:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5984,7 +5984,7 @@ Record Services when a user creates a new Record.
 <div id="footer">
 <div id="footer-text">
 Version 2.3<br>
-Last updated 2023-07-06 01:10:13 UTC
+Last updated 2023-07-05 18:50:45 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
