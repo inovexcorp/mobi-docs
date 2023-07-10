@@ -115,9 +115,37 @@
 <ul class="sectlevel3">
 <li><a href="#creating_new_ontologies">Creating New Ontologies</a></li>
 <li><a href="#uploading_existing_ontologies">Uploading Existing Ontologies</a></li>
-<li><a href="#editing_an_ontology">Editing an Ontology</a></li>
-<li><a href="#ontology_versioning">Ontology Versioning</a></li>
-<li><a href="#ontology_editor_reference">Ontology Editor Reference</a></li>
+<li><a href="#editing_an_ontology">Editing an Ontology</a>
+<ul class="sectlevel4">
+<li><a href="#ontology_project_tab">Ontology Project Tab</a></li>
+<li><a href="#overview_tab">Overview Tab</a></li>
+<li><a href="#classes_tab">Classes Tab</a></li>
+<li><a href="#properties_tab">Properties Tab</a></li>
+<li><a href="#individuals_tab">Individuals Tab</a></li>
+<li><a href="#schemes_tab">Schemes Tab</a></li>
+<li><a href="#concepts_tab">Concepts Tab</a></li>
+<li><a href="#search_tab">Search Tab</a></li>
+<li><a href="#visualization_tab">Visualization Tab</a></li>
+</ul>
+</li>
+<li><a href="#ontology_versioning">Ontology Versioning</a>
+<ul class="sectlevel4">
+<li><a href="#checking_out_branchestagscommits">Checking Out Branches/Tags/Commits</a></li>
+<li><a href="#viewing_saved_changes">Viewing Saved Changes</a></li>
+<li><a href="#merging_branches">Merging Branches</a></li>
+<li><a href="#commits_tab">Commits Tab</a></li>
+<li><a href="#entity_history">Entity History</a></li>
+</ul>
+</li>
+<li><a href="#ontology_editor_reference">Ontology Editor Reference</a>
+<ul class="sectlevel4">
+<li><a href="#edit_iri_overlay">Edit IRI Overlay</a></li>
+<li><a href="#axiom_overlay">Axiom Overlay</a></li>
+<li><a href="#property_value_displays">Property Value Displays</a></li>
+<li><a href="#button_stack">Button Stack</a></li>
+<li><a href="#extension_mappings">Extension Mappings</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#vocabulary-linking">Link (ENTERPRISE)</a></li>
@@ -125,7 +153,14 @@
 <ul class="sectlevel3">
 <li><a href="#creating_new_shapes_graphs">Creating New Shapes Graphs</a></li>
 <li><a href="#editing_a_shapes_graph">Editing a Shapes Graph</a></li>
-<li><a href="#shapes_graph_versioning">Shapes Graph Versioning</a></li>
+<li><a href="#shapes_graph_versioning">Shapes Graph Versioning</a>
+<ul class="sectlevel4">
+<li><a href="#branches_tags">Branches &amp; Tags</a></li>
+<li><a href="#viewing_saved_changes_on_shapes_graphs">Viewing Saved Changes on Shapes Graphs</a></li>
+<li><a href="#merging_branches_on_shapes_graphs">Merging Branches on Shapes Graphs</a></li>
+<li><a href="#uploading_changes_to_shapes_graphs">Uploading Changes to Shapes Graphs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#merge-requests-guide">Merge Requests</a>
@@ -140,7 +175,13 @@
 <li><a href="#editing_a_mapping">Editing a Mapping</a></li>
 <li><a href="#duplicating_a_mapping">Duplicating a Mapping</a></li>
 <li><a href="#running_a_mapping">Running a Mapping</a></li>
-<li><a href="#mapping_tool_reference">Mapping Tool Reference</a></li>
+<li><a href="#mapping_tool_reference">Mapping Tool Reference</a>
+<ul class="sectlevel4">
+<li><a href="#source_ontology_overlay">Source Ontology Overlay</a></li>
+<li><a href="#iri_template_overlay">IRI Template Overlay</a></li>
+<li><a href="#mapping_into_an_ontology">Mapping into an Ontology</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#datasets-manager-guide">Datasets Manager</a>
@@ -173,7 +214,19 @@
 </li>
 <li><a href="#configuration-guide">Configuration</a>
 <ul class="sectlevel3">
-<li><a href="#mobi">Mobi</a></li>
+<li><a href="#mobi">Mobi</a>
+<ul class="sectlevel4">
+<li><a href="#service_configuration">Service Configuration</a></li>
+<li><a href="#core_security_configuration">Core Security Configuration</a></li>
+<li><a href="#configure_default_authentication_token_jwt_duration">Configure Default Authentication Token (JWT) Duration</a></li>
+<li><a href="#ldap_configuration_enterprise">LDAP Configuration (ENTERPRISE)</a></li>
+<li><a href="#sso_configuration_enterprise">SSO Configuration (ENTERPRISE)</a></li>
+<li><a href="#password_encryption_configuration">Password Encryption Configuration</a></li>
+<li><a href="#ontology_cache_configuration">Ontology Cache Configuration</a></li>
+<li><a href="#banner_configuration_enterprise">Banner Configuration (ENTERPRISE)</a></li>
+<li><a href="#email_service_configuration">Email Service Configuration</a></li>
+</ul>
+</li>
 <li><a href="#apache_karaf">Apache Karaf</a></li>
 </ul>
 </li>
@@ -191,9 +244,21 @@
 </li>
 <li><a href="#installing_mobi">Installing Mobi</a>
 <ul class="sectlevel3">
-<li><a href="#pre_installation_configuration">Pre-Installation Configuration</a></li>
+<li><a href="#pre_installation_configuration">Pre-Installation Configuration</a>
+<ul class="sectlevel4">
+<li><a href="#create_service_account">Create Service Account</a></li>
+<li><a href="#install_java_17">Install Java 17</a></li>
+</ul>
+</li>
 <li><a href="#install_mobi">Install Mobi</a></li>
-<li><a href="#post_installation_configuration">Post-Installation Configuration</a></li>
+<li><a href="#post_installation_configuration">Post-Installation Configuration</a>
+<ul class="sectlevel4">
+<li><a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a></li>
+<li><a href="#change_the_default_web_port">Change the Default Web Port</a></li>
+<li><a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a></li>
+<li><a href="#installing_mobi_as_a_service">Installing Mobi as a Service</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -201,19 +266,20 @@
 <li><a href="#developer_guide">Developer Guide</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites_2">Prerequisites</a></li>
-<li><a href="#build_from_source">Build from Source</a>
-<ul class="sectlevel3">
-<li><a href="#ontologycache_configuration_file">OntologyCache Configuration File</a></li>
-<li><a href="#clearing_pre_existing_configurations_in_karaf">Clearing Pre-existing Configurations in Karaf</a></li>
-</ul>
-</li>
+<li><a href="#build_from_source">Build from Source</a></li>
 <li><a href="#load_dataset_data">Load Dataset Data</a></li>
 <li><a href="#accessing_swagger_rest_api_documentation">Accessing Swagger REST API Documentation</a></li>
 <li><a href="#translating_documents">Translating Documents</a>
 <ul class="sectlevel3">
 <li><a href="#utilizing_the_mobi_shell">Utilizing the Mobi Shell</a></li>
 <li><a href="#utilizing_the_rest_endpoints_and_swagger_ui">Utilizing the REST endpoints and Swagger UI</a></li>
-<li><a href="#translating_different_file_types">Translating Different File Types</a></li>
+<li><a href="#translating_different_file_types">Translating Different File Types</a>
+<ul class="sectlevel4">
+<li><a href="#xml">XML</a></li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#csv">CSV</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -270,7 +336,13 @@
 <li><a href="#settingformfield">setting:FormField</a></li>
 <li><a href="#settinghasdatavalue">setting:hasDataValue</a></li>
 <li><a href="#settingusesformfield">setting:usesFormField</a></li>
-<li><a href="#settingingroup">setting:inGroup</a></li>
+<li><a href="#settingingroup">setting:inGroup</a>
+<ul class="sectlevel4">
+<li><a href="#required_shacl_nodeshape">Required SHACL NodeShape</a></li>
+<li><a href="#required_shacl_propertyshape">Required SHACL PropertyShape</a></li>
+<li><a href="#required_preferencegroupapplicationsettinggroup">Required PreferenceGroup/ApplicationSettingGroup</a></li>
+</ul>
+</li>
 <li><a href="#example_rdf">Example RDF</a></li>
 </ul>
 </li>
@@ -352,8 +424,7 @@
 <div class="sect3">
 <h4 id="prerequisites">Prerequisites</h4>
 <div class="paragraph">
-<p>Mobi requires a Java SE 17 environment to run. Refer to <code><a href="http://www.oracle.com/technetwork/java/javase/" class="bare">http://www.oracle.com/technetwork/java/javase/</a></code> for details
-on how to download and install Java SE 1.17.</p>
+<p>Mobi requires a Java SE 17 environment to run. Refer to <code><a href="http://www.oracle.com/technetwork/java/javase/" class="bare">http://www.oracle.com/technetwork/java/javase/</a></code> for details on how to download and install Java SE 1.17.</p>
 </div>
 <div class="paragraph">
 <p>Make sure your <code>JAVA_HOME</code> environment variable correctly points to your Java 17 installation directory. For example on a Mac, this would resemble <code>/Library/Java/JavaVirtualMachines/openjdk-17.jdk</code>. On Windows, this would resemble <code>C:\Program Files\Java\openjdk-17.jdk</code></p>
@@ -365,12 +436,10 @@ on how to download and install Java SE 1.17.</p>
 <p>Download the appropriate binary distribution for your system using our <a href="https://mobi.inovexcorp.com/features/#download">download site</a>.</p>
 </div>
 <div class="paragraph">
-<p>The Mobi distribution comes packaged as a <code>.zip</code> file for Windows and a <code>tar.gz</code> file for Linux/OSX. Extract this
-file to a new directory on your system. For example, in <code>C:\Mobi</code> - from now on this directory will be referenced as
-<strong>MOBI_HOME</strong>.</p>
+<p>The Mobi distribution comes packaged as a <code>.zip</code> file for Windows and a <code>tar.gz</code> file for Linux/OSX. Extract this file to a new directory on your system. For example, in <code>C:\Mobi</code> - from now on this directory will be referenced as <code>$MOBI_HOME</code>.</p>
 </div>
 <div class="paragraph">
-<p>Open a command line console and change the directory to <strong>MOBI_HOME</strong>.</p>
+<p>Open a command line console and change the directory to <code>$MOBI_HOME</code>.</p>
 </div>
 <div class="paragraph">
 <p>To start the Mobi server, run the following command in Windows:</p>
@@ -417,8 +486,7 @@ You can check the status of the running server using the <code>bin/status</code>
 If you are using Mac or Windows Operating System, Docker Desktop will be available for use which provides a Dashboard GUI to manage docker images. If you are using a Linux operating system, you will interact with Docker via terminal commands.</p>
 </div>
 <div class="paragraph">
-<p>Mobi is available as a preconfigured Docker image on Docker Hub: <a href="https://hub.docker.com/r/inovexis/mobi/" class="bare">https://hub.docker.com/r/inovexis/mobi/</a>.
-You can find the Mobi image by searching for our organization "inovexis" in the DockerHub search bar.</p>
+<p>Mobi is available as a preconfigured Docker image on Docker Hub: <a href="https://hub.docker.com/r/inovexis/mobi/" class="bare">https://hub.docker.com/r/inovexis/mobi/</a>.   You can find the Mobi image by searching for our organization "inovexis" in the DockerHub search bar.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2610,7 +2678,7 @@ More Application Settings coming soon!
 <div class="sect2">
 <h3 id="configuration-guide">Configuration</h3>
 <div class="paragraph">
-<p>All default configuration files for Apache Karaf and Mobi are located inside the <code>{MOBI_HOME}/etc</code> directory.</p>
+<p>All default configuration files for Apache Karaf and Mobi are located inside the <code>$MOBI_HOME/etc</code> directory.</p>
 </div>
 <div class="sect3">
 <h4 id="mobi">Mobi</h4>
@@ -2654,13 +2722,13 @@ More Application Settings coming soon!
 <p>By default, all resources besides provenance data are stored in the system repository which is an RDF triplestore located in the <code>data/repos/system</code> directory of the Mobi distribution. The provenance data is stored within the prov repository. Each repository in Mobi is uniquely identified by its id. To change the data location, id, or title of either repository, edit the <span class="underline">dataDir</span>, <span class="underline">id</span>, and <span class="underline">title</span> properties respectively in the appropriate file. Apache Karaf will dynamically reload any changes made to this existing file.</p>
 </div>
 <div class="paragraph">
-<p>You can create new repositories to be used for storage in Mobi. First, choose either a "native" repository or a "memory" repository. These two types of repositories are defined in the <code>NativeRepositoryConfig</code> and <code>MemoryRepositoryConfig</code> classes in the <code>com.mobi.repository.impl.sesame</code> module. Once you have chosen the type of repository, make a new <code>.cfg</code> file in the <code>{MOBI_HOME}/etc</code> directory with a file name that starts with either "com.mobi.service.repository.native" or "com.mobi.service.repository.memory". In the file, set the <span class="underline">id</span>, <span class="underline">title</span>, and <span class="underline">dataDir</span> properties you wish for the repository. The file should look like this:</p>
+<p>You can create new repositories to be used for storage in Mobi. First, choose either a "native" repository or a "memory" repository. These two types of repositories are defined in the <code>NativeRepositoryConfig</code> and <code>MemoryRepositoryConfig</code> classes in the <code>com.mobi.repository.impl.sesame</code> module. Once you have chosen the type of repository, make a new <code>.cfg</code> file in the <code>$MOBI_HOME/etc</code> directory with a file name that starts with either "com.mobi.service.repository.native" or "com.mobi.service.repository.memory". In the file, set the <span class="underline">id</span>, <span class="underline">title</span>, and <span class="underline">dataDir</span> properties you wish for the repository. The file should look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>id=demo
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">id=demo
 title=Demonstration
-dataDir=path/to/directory</pre>
+dataDir=path/to/directory</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2671,7 +2739,7 @@ dataDir=path/to/directory</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>repository.target = (id=demo)</pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">repository.target = (id=demo)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2679,9 +2747,9 @@ dataDir=path/to/directory</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="security_configuration">Security Configuration</h5>
+<h5 id="core_security_configuration">Core Security Configuration</h5>
 <div class="paragraph">
-<p>The configuration for user authentication, authorization, and management are stored in the following files in the <code>{MOBI_HOME}/etc</code> directory:</p>
+<p>The configuration for user authentication, authorization, and management are stored in the following files in the <code>$MOBI_HOME/etc</code> directory:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Mobi Security Configuration Files</caption>
@@ -2714,676 +2782,6 @@ dataDir=path/to/directory</pre>
 </div>
 <div class="paragraph">
 <p>For more advanced authorization functionality, Mobi uses the an Attribute Based Access Control (ABAC) system called <a href="https://www.oasis-open.org/committees/xacml/">XACML</a>. Policies describing the attributes for allowing or denying individual access requests are managed by the <code>XACMLPolicyManager</code> service which is configured with the <code>com.mobi.security.policy.api.xacml.XACMLPolicyManager.cfg</code> file. The file contains an id of the repository to be used for storage, the location the XACML policy files should be stored in, and whether the policy file location should be created if it does not already exist. Apache Karaf will automatically detect any changes and reload the updated configurations.</p>
-</div>
-<div class="paragraph">
-<p>In addition to the aforementioned files, Enterprise Mobi also supports LDAP and SSO integrations which are explained in <a href="#post_installation_configuration">Post-Installation Configuration</a>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="email_service_configuration">Email Service Configuration</h5>
-<div class="paragraph">
-<p>The configuration for the Mobi Email Service is stored in the following file in the <code>{MOBI_HOME}/etc</code> directory:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Mobi Email Service Configuration Files</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Configuration File</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.email.api.EmailService.cfg</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for the Mobi Email Service</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The Mobi Email Service is built on the Apache Commons Email API. The Email Service provides the ability to connect to a provided SMTP server and send an email using a configured email account. By default, the service is configured to connect to a Gmail SMTP server in the <code>com.mobi.email.api.EmailService.cfg</code> file. The service has configurations for <code>smtpServer</code>, <code>port</code>, <code>emailAddress</code>, <code>emailPassword</code>, <code>security</code>, and <code>emailTemplate</code>. Please see below for different configurations of popular email services.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="email_template">Email Template</h5>
-<div class="paragraph">
-<p>The Mobi Email Email Service supplies a default email template that works across most email clients. The default file is located in the <code>{MOBI_HOME}/etc</code> directory. If you want to provide your own email template, modify the <code>emailTemplate</code> configuration to the new email template with either a relative or absolute path to the file. The email service will resolve relative file paths for an email template using the <code>{MOBI_HOME}/etc</code> directory as the base directory.</p>
-</div>
-<div class="paragraph">
-<p>The email service provides a method for doing a simple string replace on the <code>!|$MESSAGE!|$</code> binding within the template. For more complex HTML inserts, the service provides a method to replace all HTML between the two <code>!|$BODY!|$</code> bindings. Custom templates must have the aforementioned bindings (<code>!|$MESSAGE!|$</code> &amp; <code>!|$BODY!|$</code>). The <code>!|$MESSAGE!|$</code> binding must be between two <code>!|$BODY!|$</code> bindings. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
-...
-&lt;body&gt;
-!|$BODY!|$
-&lt;table&gt;
-    &lt;tbody&gt;
-    &lt;tr&gt;
-        &lt;td&gt;
-            &lt;p&gt;
-                &lt;!-- A simple message to replace --&gt;
-                !|$MESSAGE!|$
-            &lt;/p&gt;
-        &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-!|$BODY!|$
-...
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="smtp_configurations">SMTP Configurations</h5>
-<div class="sect5">
-<h6 id="gmail">Gmail</h6>
-<div class="paragraph">
-<p>To send emails with Gmail, you must also follow the steps <a href="https://myaccount.google.com/lesssecureapps">here</a> to allow less secure apps to access the gmail account. Gmail also has <a href="https://support.google.com/a/answer/166852">strict sending limits</a> that can impair functionality as your organization grows. Additionally, Gmail may flag a machine that it does not recognize and prevent access. If this occurs, log in to your gmail and <a href="https://myaccount.google.com/device-activity">grant the device access</a>.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>smtpServer = smtp.gmail.com
-emailAddress = my.email@gmail.com
-emailPassword = my-password
-port = 587
-security = STARTTLS
-emailTemplate = emailTemplate.html</pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="outlook">Outlook</h6>
-<div class="literalblock">
-<div class="content">
-<pre>smtpServer = smtp-mail.outlook.com
-emailAddress = my.email@outlook.com
-emailPassword = my-password
-port = 587
-security = STARTTLS
-emailTemplate = emailTemplate.html</pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="office_365">Office 365</h6>
-<div class="literalblock">
-<div class="content">
-<pre>smtpServer = smtp.office365.com
-emailAddress = my.email@yourdomain.com
-emailPassword = my-password
-port = 587
-security = STARTTLS
-emailTemplate = emailTemplate.html</pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="yahoo">Yahoo</h6>
-<div class="literalblock">
-<div class="content">
-<pre>smtpServer = smtp.mail.yahoo.com
-emailAddress = my.email@yahoo.com
-emailPassword = my-password
-port = 465
-security = STARTTLS
-emailTemplate = emailTemplate.html</pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="mailgun">Mailgun</h6>
-<div class="literalblock">
-<div class="content">
-<pre>smtpServer = smtp.mailgun.org
-emailAddress = my.email@mg.gitlab.com
-emailPassword = my-password
-port = 587
-security = STARTTLS
-emailTemplate = emailTemplate.html</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="apache_karaf">Apache Karaf</h4>
-<div class="paragraph">
-<p>The Karaf instance that runs Mobi can be configured using the configuration files located in the <code>{MOBI_HOME}/etc</code>
- directory.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Relevant Karaf Configuration Files</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Configuration File</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.url.mvn.cfg</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for Maven repositories used for bundle resolution and deployment</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.cfg</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for HTTPS connections</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The <code>org.ops4j.pax.url.mvn.cfg</code> file specifies how Apache Karaf will resolve Maven URLs. This file is set up so that
-Apache Karaf will use the basic Maven repositories along with your local Maven repository and the public Mobi remote
-repository to resolve artifacts.</p>
-</div>
-<div class="paragraph">
-<p>The <code>org.ops4j.pax.web.cfg</code> file configures the web service Apache Karaf uses to run Mobi. By default, Mobi only
-runs HTTPS on port 8443.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="mobi-shell-guide">Mobi Shell</h3>
-<div class="paragraph">
-<p>The Mobi Shell is a wrapper around the Karaf shell which provides additional commands and tools for working with Mobi data. To access the shell, run the <code>bin/client</code> script in <strong>MOBI_HOME</strong> (that&#8217;s <code>bin\client.bat</code> for you Windows users). The startup screen of the Mobi shell looks like the following.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">                 @#@@
-                @###@
-               @@@@@                   _     _
-   @@@       @@@@      _ __ ___   ___ | |__ (_)
-  @,,,@@@@@&amp;    @     | '_ ` _ \ / _ \| '_ \| |
-  @,,&amp;&amp;     @  @      | | | | | | (_) | |_) | |
-              @@      |_| |_| |_|\___/|_.__/|_|
-               @@
-              @///@
-              @////&amp;
-               @@@@
-
-
-  mobi (x.x.x)
-  Powered by Apache Karaf (4.0.6)
-
-Hit '&lt;tab&gt;' for a list of available commands
-and '[cmd] --help' for help on a specific command.
-Hit '&lt;ctrl-d&gt;' or 'osgi:shutdown' to shutdown mobi.
-
-karaf@mobi&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The Mobi specific commands all start with <code>mobi:</code>. To view the list of available commands, type <code>mobi:</code> and hit <kbd>TAB</kbd>. To get information about a particular command, type the name of the command and <code>--help</code> afterwards and run it. For example, running <code>mobi:import --help</code> would show you this.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi&gt;mobi:import --help
-DESCRIPTION
-        mobi:import
-
-	Imports objects to a repository or dataset
-
-SYNTAX
-        mobi:import [options] ImportFile
-
-ARGUMENTS
-        ImportFile
-                The file to be imported into the repository
-
-OPTIONS
-        -c, --continueOnError
-                If true, continue parsing even if there is an error on a line.
-        -d, --dataset
-                The id of the DatasetRecord the file will be imported to
-        -r, --repository
-                The id of the repository the file will be imported to
-        --help
-                Display this help message
-        -b, --batchSize
-                The number representing the triple transaction size for importing.
-                (defaults to 10000)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also run commands in the Mobi shell without opening it by running <code>bin/client "command"</code>. For example, to run the <code>mobi:repository-list</code> command, you would run <code>bin/client "mobi:repository-list"</code>. If the command you are running involves files with spaces in the name, make sure the spaces are escaped, meaning use <code>"\ "</code> instead of <code>" "</code>. The same goes for commands that include text within quotes, make sure the quotes are escaped as well.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="administration-guide">Administration Guide</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Mobi is made available as a compressed distribution package available <a href="https://mobi.inovexcorp.com/features/#download">here</a>. Deployment consists of unpacking this distribution to an appropriate location on the filesystem and modifying included configuration files. Mobi comes pre-bundled with an open-source, file-based RDF database. By default, all data, logs, and configurations will be stored in the extracted file location.</p>
-</div>
-<div class="sect2">
-<h3 id="mobi_requirements">Mobi Requirements</h3>
-<div class="sect3">
-<h4 id="hardware_requirements">Hardware Requirements</h4>
-<div class="paragraph">
-<p>We provide recommended hardware requirements as a guideline. These specifications are based on standard deployment environments. Larger production data or user requirements may require more powerful hardware configurations.</p>
-</div>
-<div class="paragraph">
-<p>The table below provides a summary of the recommended hardware for production servers and the minimum requirements for test servers.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Minimum</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Recommended</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Guidelines</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Available RAM</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 GB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8 GB or more</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mobi needs enough RAM to load large
-ontology and data files and run Mobi processes. The configurations
-provided refer to maximum Java heap size.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disk Space</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10 GB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">40 GB or more</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">By default, Mobi stores all data and
-configurations in the extracted file location.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CPU</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4 cores or more</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Multi-core configurations dramatically
-improve performance of the bundled application server and database.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="software_requirements">Software Requirements</h4>
-<div class="paragraph">
-<p>The table below provides a summary of the software requirements.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Minimum</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Recommended</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Guidelines</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Operating System</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RHEL/CentOS 6<br>
-Windows 7<br>
-OSX</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RHEL/CentOS 8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mobi runs within standard Java runtimes; however, we
-recommend RHEL/CentOS operating systems for on-premise or cloud-based
-server environments.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Java</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.17</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.17 (latest)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The latest versions of Java 17 include security
-and performance updates.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Web Browser</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chrome<br>
-Firefox<br>
-Safari<br>
-Edge</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chrome</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use the latest versions of web browsers for best
-compatibility, performance, and security.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="firewall_requirements">Firewall Requirements</h4>
-<div class="paragraph">
-<p>The table below lists the TCP ports to open on the Mobi host.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Port</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Application HTTPS port.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection. Mobi does not run on non-SSL ports by default.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="installing_mobi">Installing Mobi</h3>
-<div class="sect3">
-<h4 id="pre_installation_configuration">Pre-Installation Configuration</h4>
-<div class="sect4">
-<h5 id="create_service_account">Create Service Account</h5>
-<div class="paragraph">
-<p>Before installing Mobi, create a service account on the host server. The account will be used to run Mobi. The service account should meet the following requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The service account must have read and write permissions for the Mobi installation directory. On Linux, this is typically <code>/opt/mobi/mobi-distribution-&lt;version&gt;</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>On a standard RHEL/CentOS system, this can be created using the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo useradd -d /opt/mobi mobi</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="install_java_17">Install Java 17</h5>
-<div class="paragraph">
-<p>Mobi requires the latest version of Java 1.17 to operate. On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. So we suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/downloads/#java17">here</a> and running it manually using the following commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
-sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-If you are using a Red Hat system, you can install Java 17 with <code>sudo yum install java-17-openjdk</code>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>JAVA_HOME</code> environment variable must be set for the user running Mobi. On a standard RHEL/CentOS system (after running the rpm above) this can be set using the following commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
-echo 'export JAVA_HOME=/usr/java/jdk-17.0.4.1' &gt;&gt; ~/.bashrc
-exit</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="install_mobi">Install Mobi</h4>
-<div class="paragraph">
-<p>Follow the instructions below to install Mobi. These instructions assume
-that you have copied the Mobi distribution to the server.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-These instructions are prepared for a standard RHEL/CentOS deployment
-server.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Unpack Mobi to the installation parent directory (e.g. <strong>/opt/mobi</strong>)</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
-tar -xf $MOBI_HOME.tar.gz</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create a symlink to the latest distribution</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ln -s $MOBI_HOME latest</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Start the Mobi server</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd latest
-./bin/start</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To stop the Mobi server, run the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./bin/stop</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="post_installation_configuration">Post-Installation Configuration</h4>
-<div class="sect4">
-<h5 id="change_the_default_java_heap_size">Change the Default Java Heap Size</h5>
-<div class="paragraph">
-<p>Set the max heap size in <code>$MOBI_HOME/bin/setenv</code> (e.g.
-<code>JAVA_MAX_MEM=4G</code>). In version 1.21, to include the <code>JAVA_MAX_MEM</code> and <code>JAVA_MIN_MEM</code> variables in the Mobi startup, add the following line beneath them in the <code>setenv</code> file.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-All versions from 1.22 onwards have this line already added.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JAVA_OPTS="-Xms${JAVA_MIN_MEM} -Xmx${JAVA_MAX_MEM}"</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="change_the_default_web_port">Change the Default Web Port</h5>
-<div class="paragraph">
-<p>Change the default SSL port in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">org.osgi.service.http.port.secure = &lt;SSL_APPLICATION_PORT&gt;</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-We recommend running Mobi on the default port 8443 and using firewall
-configuration or a proxy server for SSL (port 443) termination and
-redirection. Mobi does not run on non-SSL ports by default.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="configure_custom_ssl_certificates">Configure Custom SSL Certificates</h5>
-<div class="paragraph">
-<p>Mobi comes bundled with default self-signed SSL certificates stored in a
-<a href="https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html">Java
-Keystore</a> file in <code>etc/keystore</code>. To provide your own SSL certificates,
-simply replace the default keystore file with your own:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp mycerts.jks $MOBI_HOME/etc/keystore</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If there is a keystore password, it can be configured in the
-<code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code> file using the following
-configuration properties:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Configuration Property</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.ssl.keystore.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password used for keystore
-integrity check</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.ssl.key.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password used for keystore</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="installing_mobi_as_a_service">Installing Mobi as a Service</h5>
-<div class="paragraph">
-<p>We recommend that you configure Mobi as a Linux service for starting Mobi automatically as the service user. Follow the instructions below to implement the service on a standard RHEL/CentOS environment.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The below steps should be run as the root user.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">
-Be sure to correctly configure the file locations and user.
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a file called <strong>mobi.service</strong> in the <code>/usr/lib/systemd/system</code> directory. For example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">[Unit]
-Description=Mobi Service.
-After=network.target
-StartLimitIntervalSec=30
-
-[Service]
-Type=forking
-PIDFile=/install_path/latest/karaf.pid
-User=mobi
-ExecStart=/install_path/latest/bin/start
-ExecStop=/install_path/latest/bin/stop
-ExecReload=/install_path/latest/bin/stop; /install_path/latest/bin/start
-Restart=always
-
-[Install]
-WantedBy=default.target</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Save and close the file, and then run the following commands to start
-and enable the new service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start mobi
-systemctl enable mobi</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Once the service is enabled, Mobi should be running. The Mobi process will start and stop automatically with the server. Any time you start and stop Mobi manually, run the following systemctl commands: <code>sudo systemctl stop mobi</code> and <code>sudo systemctl start mobi</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -4052,6 +3450,16 @@ If there is a default password in the Encryption Config (i.e. <code>CHANGEME</co
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LDAP (ENTERPRISE)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.enterprise.ldap.impl.engine.LDAPEngine.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.admin.password</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSO OAuth/OpenId (ENTERPRISE)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.enterprise.auth.oauth.api.OAuthConfigProvider.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clientSecret</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Email</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.mobi.email.api.EmailService.cfg</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>emailPassword</code></p></td>
@@ -4073,6 +3481,740 @@ If the master password is changed while Mobi is not running, all previously encr
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ontology_cache_configuration">Ontology Cache Configuration</h5>
+<div class="paragraph">
+<p>Mobi utilizes a caching mechanism within a triple store to improve performance when retrieving ontology data. The maintenance and cleanup of that cache is configured in the <code>com.mobi.cache.impl.repository.CleanupRepositoryCache.cfg</code> file in the <code>$MOBI_HOME/etc</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>This file is responsible for deleting stale ontologies within the repository after a specified period in order to preserve resources and improve processing. The format looks like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">repoId = ontologyCache
+expiry = 1800
+scheduler.expression=0 0 * * * ?</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="banner_configuration_enterprise">Banner Configuration (ENTERPRISE)</h5>
+<div class="paragraph">
+<p>In Enterprise deployments only, Mobi can be configured to show a banner at the top of every page with custom HTML and background color.  To enable the banner and configure the content, edit the <code>com.mobi.enterprise.branding.rest.BrandingRest.cfg</code> file in the <code>$MOBI_HOME/etc</code> directory. The default contents will look like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">enabled=false
+htmlBody=&lt;div&gt;Change me&lt;/div&gt;
+backgroundColor=white</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are three properties in the file that control how the banner is shown to the user. The <code>enabled`</code> property controls whether the banner should be shown and accepts either “true” or “false”. The <code>htmlBody</code> property accepts any valid HTML string that will be the body of the banner. The <code>backgroundColor</code> property accepts any valid hex string representing a color. This <a href="https://www.w3schools.com/colors/colors_picker.asp">W3School site</a> provides a helpful tool for picking HTML color that will output a hex string for you.</p>
+</div>
+<div class="paragraph">
+<p>An example configuration could look like this which will result in the the screenshots below. Note that hyperlinks are supported within the HTML body.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">enabled=false
+htmlBody=&lt;div&gt;Change me&lt;/div&gt;
+backgroundColor=white</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/configuration/login-banner.png" alt="login banner">
+</div>
+<div class="title">Figure 112. Mobi Login Screen with a banner</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/configuration/home-banner.png" alt="home banner">
+</div>
+<div class="title">Figure 113. Mobi Home Page with a banner</div>
+</div>
+<div class="sect5">
+<h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
+<div class="paragraph">
+<p>To use a multiline value for htmlBody, add a <code>\</code> (backslash) to the end of each line. See an example below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">enabled=true
+htmlBody= &lt;div&gt;\
+   Change me \
+   &lt;a href="url"&gt;http://www.google.com&lt;/a&gt; \
+ &lt;/div&gt;
+backgroundColor=#99ffce</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="inline_css">Inline CSS</h6>
+<div class="paragraph">
+<p>The <code>htmlBody</code> property supports inline CSS such as <code>&lt;p style=”color:red”&gt;This is RED.&lt;/p&gt;</code>. Inline CSS can be useful for adding custom styling to specific elements in the custom content and will override internal or external style sheets.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Because inline styles take precedence, you could accidentally override internal or external styles that you did not intend to. For example, changing the element positioning like in the configuration below could break the general layout of the application.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">enabled=true
+htmlBody= &lt;div style="position:absolute; top:80px; width:300px; height:300px;right:50%;background: black;"&gt;\
+   Change me \
+   &lt;a href="url"&gt;http://www.google.com&lt;/a&gt; \
+ &lt;/div&gt;
+backgroundColor=#99ffce</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="email_service_configuration">Email Service Configuration</h5>
+<div class="paragraph">
+<p>The configuration for the Mobi Email Service is stored in the <code>com.mobi.email.api.EmailService.cfg</code> file in the <code>$MOBI_HOME/etc</code> directory The Mobi Email Service is built on the Apache Commons Email API. The Email Service provides the ability to connect to a provided SMTP server and send an email using a configured email account. By default, the service is configured to connect to a Gmail SMTP server. The service has configurations for <code>smtpServer</code>, <code>port</code>, <code>emailAddress</code>, <code>emailPassword</code>, <code>security</code>, and <code>emailTemplate</code>. Please see below for different configurations of popular email services.</p>
+</div>
+<div class="sect5">
+<h6 id="gmail">Gmail</h6>
+<div class="paragraph">
+<p>To send emails with Gmail, you must also follow the steps <a href="https://myaccount.google.com/lesssecureapps">here</a> to allow less secure apps to access the gmail account. Gmail also has <a href="https://support.google.com/a/answer/166852">strict sending limits</a> that can impair functionality as your organization grows. Additionally, Gmail may flag a machine that it does not recognize and prevent access. If this occurs, log in to your gmail and <a href="https://myaccount.google.com/device-activity">grant the device access</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">smtpServer = smtp.gmail.com
+emailAddress = my.email@gmail.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="outlook">Outlook</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">smtpServer = smtp-mail.outlook.com
+emailAddress = my.email@outlook.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="office_365">Office 365</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">smtpServer = smtp.office365.com
+emailAddress = my.email@yourdomain.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="yahoo">Yahoo</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">smtpServer = smtp.mail.yahoo.com
+emailAddress = my.email@yahoo.com
+emailPassword = my-password
+port = 465
+security = STARTTLS
+emailTemplate = emailTemplate.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="mailgun">Mailgun</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">smtpServer = smtp.mailgun.org
+emailAddress = my.email@mg.gitlab.com
+emailPassword = my-password
+port = 587
+security = STARTTLS
+emailTemplate = emailTemplate.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="email_template">Email Template</h6>
+<div class="paragraph">
+<p>The Mobi Email Email Service supplies a default email template that works across most email clients. The default file is located in the <code>$MOBI_HOME/etc</code> directory. If you want to provide your own email template, modify the <code>emailTemplate</code> configuration to the new email template with either a relative or absolute path to the file. The email service will resolve relative file paths for an email template using the <code>$MOBI_HOME/etc</code> directory as the base directory.</p>
+</div>
+<div class="paragraph">
+<p>The email service provides a method for doing a simple string replace on the <code>!|$MESSAGE!|$</code> binding within the template. For more complex HTML inserts, the service provides a method to replace all HTML between the two <code>!|$BODY!|$</code> bindings. Custom templates must have the aforementioned bindings (<code>!|$MESSAGE!|$</code> &amp; <code>!|$BODY!|$</code>). The <code>!|$MESSAGE!|$</code> binding must be between two <code>!|$BODY!|$</code> bindings. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+...
+&lt;body&gt;
+!|$BODY!|$
+&lt;table&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;p&gt;
+                &lt;!-- A simple message to replace --&gt;
+                !|$MESSAGE!|$
+            &lt;/p&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+!|$BODY!|$
+...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="apache_karaf">Apache Karaf</h4>
+<div class="paragraph">
+<p>The Karaf instance that runs Mobi can be configured using the configuration files located in the <code>$MOBI_HOME/etc</code>
+ directory.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Relevant Karaf Configuration Files</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.url.mvn.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for Maven repositories used for bundle resolution and deployment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.cfg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurations for HTTPS connections</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <code>org.ops4j.pax.url.mvn.cfg</code> file specifies how Apache Karaf will resolve Maven URLs. This file is set up so that
+Apache Karaf will use the basic Maven repositories along with your local Maven repository and the public Mobi remote
+repository to resolve artifacts.</p>
+</div>
+<div class="paragraph">
+<p>The <code>org.ops4j.pax.web.cfg</code> file configures the web service Apache Karaf uses to run Mobi. By default, Mobi only
+runs HTTPS on port 8443.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mobi-shell-guide">Mobi Shell</h3>
+<div class="paragraph">
+<p>The Mobi Shell is a wrapper around the Karaf shell which provides additional commands and tools for working with Mobi data. To access the shell, run the <code>bin/client</code> script in <code>$MOBI_HOME</code> (that&#8217;s <code>bin\client.bat</code> for you Windows users). The startup screen of the Mobi shell looks like the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">                 @#@@
+                @###@
+               @@@@@                   _     _
+   @@@       @@@@      _ __ ___   ___ | |__ (_)
+  @,,,@@@@@&amp;    @     | '_ ` _ \ / _ \| '_ \| |
+  @,,&amp;&amp;     @  @      | | | | | | (_) | |_) | |
+              @@      |_| |_| |_|\___/|_.__/|_|
+               @@
+              @///@
+              @////&amp;
+               @@@@
+
+
+  mobi (x.x.x)
+  Powered by Apache Karaf (4.0.6)
+
+Hit '&lt;tab&gt;' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '&lt;ctrl-d&gt;' or 'osgi:shutdown' to shutdown mobi.
+
+karaf@mobi&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Mobi specific commands all start with <code>mobi:</code>. To view the list of available commands, type <code>mobi:</code> and hit <kbd>TAB</kbd>. To get information about a particular command, type the name of the command and <code>--help</code> afterwards and run it. For example, running <code>mobi:import --help</code> would show you this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi&gt;mobi:import --help
+DESCRIPTION
+        mobi:import
+
+	Imports objects to a repository or dataset
+
+SYNTAX
+        mobi:import [options] ImportFile
+
+ARGUMENTS
+        ImportFile
+                The file to be imported into the repository
+
+OPTIONS
+        -c, --continueOnError
+                If true, continue parsing even if there is an error on a line.
+        -d, --dataset
+                The id of the DatasetRecord the file will be imported to
+        -r, --repository
+                The id of the repository the file will be imported to
+        --help
+                Display this help message
+        -b, --batchSize
+                The number representing the triple transaction size for importing.
+                (defaults to 10000)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also run commands in the Mobi shell without opening it by running <code>bin/client "command"</code>. For example, to run the <code>mobi:repository-list</code> command, you would run <code>bin/client "mobi:repository-list"</code>. If the command you are running involves files with spaces in the name, make sure the spaces are escaped, meaning use <code>"\ "</code> instead of <code>" "</code>. The same goes for commands that include text within quotes, make sure the quotes are escaped as well.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="administration-guide">Administration Guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi is made available as a compressed distribution package available <a href="https://mobi.inovexcorp.com/features/#download">here</a>. Deployment consists of unpacking this distribution to an appropriate location on the filesystem and modifying included configuration files. Mobi comes pre-bundled with an open-source, file-based RDF database. By default, all data, logs, and configurations will be stored in the extracted file location.</p>
+</div>
+<div class="sect2">
+<h3 id="mobi_requirements">Mobi Requirements</h3>
+<div class="sect3">
+<h4 id="hardware_requirements">Hardware Requirements</h4>
+<div class="paragraph">
+<p>We provide recommended hardware requirements as a guideline. These specifications are based on standard deployment environments. Larger production data or user requirements may require more powerful hardware configurations.</p>
+</div>
+<div class="paragraph">
+<p>The table below provides a summary of the recommended hardware for production servers and the minimum requirements for test servers.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Minimum</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Recommended</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Guidelines</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Available RAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 GB or more</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mobi needs enough RAM to load large
+ontology and data files and run Mobi processes. The configurations
+provided refer to maximum Java heap size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disk Space</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">40 GB or more</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By default, Mobi stores all data and
+configurations in the extracted file location.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CPU</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 core</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 cores or more</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multi-core configurations dramatically
+improve performance of the bundled application server and database.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="software_requirements">Software Requirements</h4>
+<div class="paragraph">
+<p>The table below provides a summary of the software requirements.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Minimum</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Recommended</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Guidelines</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operating System</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RHEL/CentOS 6<br>
+Windows 7<br>
+OSX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RHEL/CentOS 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mobi runs within standard Java runtimes; however, we
+recommend RHEL/CentOS operating systems for on-premise or cloud-based
+server environments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.17 (latest)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The latest versions of Java 17 include security
+and performance updates.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chrome<br>
+Firefox<br>
+Safari<br>
+Edge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chrome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the latest versions of web browsers for best
+compatibility, performance, and security.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="firewall_requirements">Firewall Requirements</h4>
+<div class="paragraph">
+<p>The table below lists the TCP ports to open on the Mobi host.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Port</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application HTTPS port.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection. Mobi does not run on non-SSL ports by default.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing_mobi">Installing Mobi</h3>
+<div class="sect3">
+<h4 id="pre_installation_configuration">Pre-Installation Configuration</h4>
+<div class="sect4">
+<h5 id="create_service_account">Create Service Account</h5>
+<div class="paragraph">
+<p>Before installing Mobi, create a service account on the host server. The account will be used to run Mobi. The service account should meet the following requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The service account must have read and write permissions for the Mobi installation directory. On Linux, this is typically <code>/opt/mobi/mobi-distribution-&lt;version&gt;</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On a standard RHEL/CentOS system, this can be created using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo useradd -d /opt/mobi mobi</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="install_java_17">Install Java 17</h5>
+<div class="paragraph">
+<p>Mobi requires the latest version of Java 1.17 to operate. On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. So we suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/downloads/#java17">here</a> and running it manually using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you are using a Red Hat system, you can install Java 17 with <code>sudo yum install java-17-openjdk</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>JAVA_HOME</code> environment variable must be set for the user running Mobi. On a standard RHEL/CentOS system (after running the rpm above) this can be set using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
+echo 'export JAVA_HOME=/usr/java/jdk-17.0.4.1' &gt;&gt; ~/.bashrc
+exit</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install_mobi">Install Mobi</h4>
+<div class="paragraph">
+<p>Follow the instructions below to install Mobi. These instructions assume that you have copied the Mobi distribution to the server.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+These instructions are prepared for a standard RHEL/CentOS deployment
+server.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Unpack Mobi to the installation parent directory (e.g. <strong>/opt/mobi</strong>)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
+tar -xf $MOBI_HOME.tar.gz</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a symlink to the latest distribution</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ln -s $MOBI_HOME latest</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the Mobi server</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd latest
+./bin/start</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To stop the Mobi server, run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./bin/stop</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="post_installation_configuration">Post-Installation Configuration</h4>
+<div class="paragraph">
+<p>In addition to the steps below, Mobi supports a number of configurations to customize your installation and users' experience. See the <a href="#mobi">Mobi Configurations</a> section for more details.</p>
+</div>
+<div class="sect4">
+<h5 id="change_the_default_java_heap_size">Change the Default Java Heap Size</h5>
+<div class="paragraph">
+<p>Set the max heap size in <code>$MOBI_HOME/bin/setenv</code> (e.g. <code>JAVA_MAX_MEM=4G</code>). In version 1.21, to include the <code>JAVA_MAX_MEM</code> and <code>JAVA_MIN_MEM</code> variables in the Mobi startup, add the following line beneath them in the <code>setenv</code> file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+All versions from 1.22 onwards have this line already added.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JAVA_OPTS="-Xms${JAVA_MIN_MEM} -Xmx${JAVA_MAX_MEM}"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="change_the_default_web_port">Change the Default Web Port</h5>
+<div class="paragraph">
+<p>If required, change the default SSL port in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">org.osgi.service.http.port.secure = &lt;SSL_APPLICATION_PORT&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection. Mobi does not run on non-SSL ports by default.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="configure_custom_ssl_certificates">Configure Custom SSL Certificates</h5>
+<div class="paragraph">
+<p>Mobi comes bundled with default self-signed SSL certificates stored in a <a href="https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html">Java Keystore</a> file in <code>etc/keystore</code>. To provide your own SSL certificates, simply replace the default keystore file with your own:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp mycerts.jks $MOBI_HOME/etc/keystore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there is a keystore password, it can be configured in the <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code> file using the following configuration properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Configuration Property</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.ssl.keystore.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password used for keystore
+integrity check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.ops4j.pax.web.ssl.key.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password used for keystore</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="installing_mobi_as_a_service">Installing Mobi as a Service</h5>
+<div class="paragraph">
+<p>We recommend that you configure Mobi as a Linux service for starting Mobi automatically as the service user. Follow the instructions below to implement the service on a standard RHEL/CentOS environment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The below steps should be run as the root user.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Be sure to correctly configure the file locations and user.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a file called <strong>mobi.service</strong> in the <code>/usr/lib/systemd/system</code> directory. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">[Unit]
+Description=Mobi Service.
+After=network.target
+StartLimitIntervalSec=30
+
+[Service]
+Type=forking
+PIDFile=/install_path/latest/karaf.pid
+User=mobi
+ExecStart=/install_path/latest/bin/start
+ExecStop=/install_path/latest/bin/stop
+ExecReload=/install_path/latest/bin/stop; /install_path/latest/bin/start
+Restart=always
+
+[Install]
+WantedBy=default.target</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save and close the file, and then run the following commands to start
+and enable the new service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start mobi
+systemctl enable mobi</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once the service is enabled, Mobi should be running. The Mobi process will start and stop automatically with the server. Any time you start and stop Mobi manually, run the following systemctl commands: <code>sudo systemctl stop mobi</code> and <code>sudo systemctl start mobi</code>.</p>
 </div>
 </div>
 </div>
@@ -4158,52 +4300,6 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 <div class="paragraph">
 <p>The Mobi web application should now be accessible at <code><a href="https://localhost:8443/mobi/index.html" class="bare">https://localhost:8443/mobi/index.html</a></code>.</p>
-</div>
-<div class="sect3">
-<h4 id="ontologycache_configuration_file">OntologyCache Configuration File</h4>
-<div class="paragraph">
-<p>Mobi utilizes the Repository Cache Ontology API implementation to represent Ontologies.</p>
-</div>
-<div class="paragraph">
-<p>Configuration file for the CacheRepositoryCleanup job:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">com.mobi.cache.impl.repository.CleanupRepositoryCache.cfg</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This file is responsible for deleting stale ontologies within the repository after a specified period in order to preserve resources and improve processing. The format looks like the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">repoId = ontologyCache
-expiry = 1800
-scheduler.expression=0 0 * * * ?</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="clearing_pre_existing_configurations_in_karaf">Clearing Pre-existing Configurations in Karaf</h4>
-<div class="paragraph">
-<p>If Mobi has been run with the OWLAPI implementation prior to using the Repository Cache implementation, a configuration object will have been stored in Karaf and must be removed.</p>
-</div>
-<div class="paragraph">
-<p>From the Karaf terminal run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.owlapi.OntologyManager</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In order to revert back to the OWLAPI implementation after the Repository cache implementation has been launched, run the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-plaintext hljs" data-lang="plaintext">karaf@mobi()&gt; config:delete com.mobi.ontology.impl.repository.OntologyManager</code></pre>
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -4297,7 +4393,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 112. XML Example File</div>
+<div class="title">Figure 114. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -4308,7 +4404,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Ouput File">
 </div>
-<div class="title">Figure 113. XML Example Ontology File</div>
+<div class="title">Figure 115. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -4318,7 +4414,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 114. XML Example Data File</div>
+<div class="title">Figure 116. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4331,7 +4427,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 115. JSON Example File</div>
+<div class="title">Figure 117. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -4341,7 +4437,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 116. JSON Example Ontology File</div>
+<div class="title">Figure 118. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -4351,7 +4447,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 117. JSON Example Data File</div>
+<div class="title">Figure 119. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4364,7 +4460,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 118. CSV Example File</div>
+<div class="title">Figure 120. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -4374,7 +4470,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Ouput File">
 </div>
-<div class="title">Figure 119. CSV Example Ontology File</div>
+<div class="title">Figure 121. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -4384,7 +4480,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 120. CSV Example Data File</div>
+<div class="title">Figure 122. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -5984,7 +6080,7 @@ Record Services when a user creates a new Record.
 <div id="footer">
 <div id="footer-text">
 Version 2.3<br>
-Last updated 2023-07-05 18:50:45 UTC
+Last updated 2023-07-10 15:15:25 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
