@@ -372,7 +372,14 @@
 <ul class="sectlevel3">
 <li><a href="#mobi_system_policies">Mobi System Policies</a></li>
 <li><a href="#reload_system_policy_command">Reload System Policy Command</a></li>
-<li><a href="#mobi_policy_templates">Mobi Policy Templates</a></li>
+<li><a href="#mobi_policy_templates">Mobi Policy Templates</a>
+<ul class="sectlevel4">
+<li><a href="#allow_everyone">Allow "Everyone"</a></li>
+<li><a href="#allow_creator_or_specific_user">Allow "Creator" or Specific User</a></li>
+<li><a href="#allow_specific_group">Allow Specific Group</a></li>
+<li><a href="#allow_admin_users">Allow admin Users</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -5005,22 +5012,15 @@ GRAPH example:ng {
 <h2 id="settings_framework">Appendix C: Settings Framework</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Settings Framework was designed to allow the tracking and editing of Settings within Mobi.
-The framework was designed to be easily extensible such that a new setting can be added to the platform with only
-some RDF and a few code changes.</p>
+<p>The Settings Framework was designed to allow the tracking and editing of Settings within Mobi. The framework was designed to be easily extensible such that a new setting can be added to the platform with only some RDF and a few code changes.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="#preferences">Preferences Tab</a> is powered by the User Preference definitions stored within the system which can be
-tailored to populate different types of forms depending on the type of data to be stored.</p>
+<p>The <a href="#preferences">Preferences Tab</a> is powered by the User Preference definitions stored within the system which can be tailored to populate different types of forms depending on the type of data to be stored.</p>
 </div>
 <div class="sect2">
 <h3 id="setting_rdf_definition">Setting RDF Definition</h3>
 <div class="paragraph">
-<p>In order to introduce new Settings to Mobi, a developer must create an RDF representation of the
-Setting they want to add to the application. The Setting Framework uses <a href="https://www.w3.org/TR/shacl/">SHACL</a> to
-define settings. Setting RDF must consist of exactly one SHACL NodeShape and one SHACL PropertyShape in order to
-be recognized as a Setting by Mobi. Requirements for the structure of these SHACL shapes is
-outlined below.</p>
+<p>In order to introduce new Settings to Mobi, a developer must create an RDF representation of the Setting they want to add to the application. The Setting Framework uses <a href="https://www.w3.org/TR/shacl/">SHACL</a> to define settings. Setting RDF must consist of exactly one SHACL NodeShape and one SHACL PropertyShape in order to be recognized as a Setting by Mobi. Requirements for the structure of these SHACL shapes is outlined below.</p>
 </div>
 <div class="paragraph">
 <p>The following prefixes will be used in the rest of this appendix:</p>
@@ -5039,42 +5039,39 @@ outlined below.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>owl:</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2002/07/owl#" class="bare">http://www.w3.org/2002/07/owl#</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2002/07/owl#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rdfs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2000/01/rdf-schema#" class="bare">http://www.w3.org/2000/01/rdf-schema#</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2000/01/rdf-schema#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shacl:</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/ns/shacl#" class="bare">http://www.w3.org/ns/shacl#</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/shacl#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>setting:</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://mobi.com/ontologies/setting#" class="bare">http://mobi.com/ontologies/setting#</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/setting#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://www.w3.org/2001/XMLSchema#" class="bare">http://www.w3.org/2001/XMLSchema#</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2001/XMLSchema#</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>For an explanation of what each SHACL class and property represent, read the descriptions given here:
-<code><a href="https://www.w3.org/TR/shacl/" class="bare">https://www.w3.org/TR/shacl/</a></code>. The following are descriptions of Mobi specific properties.</p>
+<p>For an explanation of what each SHACL class and property represent, read the descriptions given <a href="https://www.w3.org/TR/shacl/">here</a>. The following are descriptions of Mobi specific properties.</p>
 </div>
 <div class="sect3">
 <h4 id="settingpreference">setting:Preference</h4>
 <div class="paragraph">
-<p>The <code>setting:Preference</code> class acts as the parent class of all preferences within Mobi. Mobi preferences always
-have an <code>rdfs:subClassOf</code> <code>setting:Preference</code> and are also of type <code>sh:NodeShape</code>.</p>
+<p>The <code>setting:Preference</code> class acts as the parent class of all preferences within Mobi. Mobi preferences always have an <code>rdfs:subClassOf</code> <code>setting:Preference</code> and are also of type <code>sh:NodeShape</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settingapplicationsetting">setting:ApplicationSetting</h4>
 <div class="paragraph">
-<p>The <code>setting:ApplicationSetting</code> class acts as the parent class of all application settings within Mobi.
-Mobi application settings always have an <code>rdfs:subClassOf</code> <code>setting:ApplicationSetting</code> and are also of type <code>sh:NodeShape</code>.</p>
+<p>The <code>setting:ApplicationSetting</code> class acts as the parent class of all application settings within Mobi. Mobi application settings always have an <code>rdfs:subClassOf</code> <code>setting:ApplicationSetting</code> and are also of type <code>sh:NodeShape</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5083,8 +5080,7 @@ Mobi application settings always have an <code>rdfs:subClassOf</code> <code>sett
 <div class="title">Note</div>
 </td>
 <td class="content">
-From here on, when referring to either <code>setting:Preference</code> or <code>setting:ApplicationSetting</code> the phrase setting subType
-may be used.
+From here on, when referring to either <code>setting:Preference</code> or <code>setting:ApplicationSetting</code> the phrase setting subType may be used.
 </td>
 </tr>
 </table>
@@ -5093,43 +5089,37 @@ may be used.
 <div class="sect3">
 <h4 id="settingpreferencegroup">setting:PreferenceGroup</h4>
 <div class="paragraph">
-<p>Every Mobi preference must have a <code>setting:inGroup</code> of a instance of <code>setting:PreferenceGroup</code>. These preference groups are
-meant to group together semantically related preferences.</p>
+<p>Every Mobi preference must have a <code>setting:inGroup</code> of a instance of <code>setting:PreferenceGroup</code>. These preference groups are meant to group together semantically related preferences.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settingapplicationsettinggroup">setting:ApplicationSettingGroup</h4>
 <div class="paragraph">
-<p>Every Mobi application setting must have a <code>setting:inGroup</code> of a instance of <code>setting:ApplicationSettingGroup</code>.
-These application setting groups are meant to group together semantically related application settings.</p>
+<p>Every Mobi application setting must have a <code>setting:inGroup</code> of a instance of <code>setting:ApplicationSettingGroup</code>. These application setting groups are meant to group together semantically related application settings.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settingformfield">setting:FormField</h4>
 <div class="paragraph">
-<p>Instances of the <code>setting:FormField</code> class are used by Mobi settings to specify the form input that is used by the UI to
-select setting values.</p>
+<p>Instances of the <code>setting:FormField</code> class are used by Mobi settings to specify the form input that is used by the UI to select setting values.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settinghasdatavalue">setting:hasDataValue</h4>
 <div class="paragraph">
-<p>The <code>setting:hasDataValue</code> property is used by instances of setting subTypes to point to the current value of that
-setting. All Settings must point to a Property Shape that has an <code>sh:path</code> of <code>setting:hasDataValue</code>.</p>
+<p>The <code>setting:hasDataValue</code> property is used by instances of setting subTypes to point to the current value of that setting. All Settings must point to a Property Shape that has an <code>sh:path</code> of <code>setting:hasDataValue</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settingusesformfield">setting:usesFormField</h4>
 <div class="paragraph">
-<p>The <code>setting:usesFormField</code> property is used by the required <code>sh:PropertyShape</code> of a Mobi Setting to designate the type of form
-input that will be used by the frontend to accept setting values for that specific setting.</p>
+<p>The <code>setting:usesFormField</code> property is used by the required <code>sh:PropertyShape</code> of a Mobi Setting to designate the type of form input that will be used by the frontend to accept setting values for that specific setting.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="settingingroup">setting:inGroup</h4>
 <div class="paragraph">
-<p>The <code>setting:inGroup</code> property specifies either the <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> that
-a Mobi Setting belongs too. It is used to semantically group related Settings in the UI.</p>
+<p>The <code>setting:inGroup</code> property specifies either the <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> that a Mobi Setting belongs too. It is used to semantically group related Settings in the UI.</p>
 </div>
 <div class="sect4">
 <h5 id="required_shacl_nodeshape">Required SHACL NodeShape</h5>
@@ -5148,8 +5138,7 @@ a Mobi Setting belongs too. It is used to semantically group related Settings in
 <p>Must have a <code>shacl:property</code> that points to the required SHACL PropertyShape for the setting</p>
 </li>
 <li>
-<p>Must have a <code>setting:inGroup</code> of an IRI in the system of type
-<code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code></p>
+<p>Must have a <code>setting:inGroup</code> of an IRI in the system of type <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code></p>
 </li>
 </ul>
 </div>
@@ -5181,8 +5170,7 @@ a Mobi Setting belongs too. It is used to semantically group related Settings in
 </div>
 </li>
 <li>
-<p>Must have a <code>setting:usesFormField</code> that has one of the following values that will affect
-which type of form input is shown in the UI for this preference</p>
+<p>Must have a <code>setting:usesFormField</code> that has one of the following values that will affect which type of form input is shown in the UI for this preference</p>
 <div class="ulist">
 <ul>
 <li>
@@ -5195,16 +5183,13 @@ which type of form input is shown in the UI for this preference</p>
 </div>
 </li>
 <li>
-<p>Must have a <code>setting:inGroup</code> of a valid instance of the
-<code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> class.</p>
+<p>Must have a <code>setting:inGroup</code> of a valid instance of the <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> class.</p>
 </li>
 <li>
-<p>May have optional <code>shacl:minCount</code> and/or <code>shacl:maxCount</code> fields denoting the
-min and max number of possible values for the preference which will be enforced in the UI.</p>
+<p>May have optional <code>shacl:minCount</code> and/or <code>shacl:maxCount</code> fields denoting the min and max number of possible values for the preference which will be enforced in the UI.</p>
 </li>
 <li>
-<p>May have optional <code>shacl:pattern</code> which may have a regex that controls what values may be used and
-will be enforced by the UI.</p>
+<p>May have optional <code>shacl:pattern</code> which may have a regex that controls what values may be used and will be enforced by the UI.</p>
 </li>
 </ul>
 </div>
@@ -5226,8 +5211,7 @@ Support for more datatypes and form fields coming soon!
 <div class="ulist">
 <ul>
 <li>
-<p>At least one instance of <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> must exist which has an
-<code>rdfs:label</code>.</p>
+<p>At least one instance of <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> must exist which has an <code>rdfs:label</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -5314,12 +5298,10 @@ Predefined Property Groups coming soon
 <div class="ulist">
 <ul>
 <li>
-<p>Create an RDF file with your custom setting definition in the <code>src/main/resources</code> directory of a Mobi bundle.
-This can be any valid RDF format, such a Turtle. A list of supported RDF formats can be found here:
-<a href="#uploading_existing_ontologies">Uploading Existing Ontologies</a></p>
+<p>Create an RDF file with your custom setting definition in the <code>src/main/resources</code> directory of a Mobi bundle. This can be any valid RDF format, such a Turtle. A list of supported RDF formats can be found under <a href="#uploading_existing_ontologies">Uploading Existing Ontologies</a>.</p>
 </li>
 <li>
-<p>Create a pom.xml based on the following example pom in the appropriate Mobi bundle.</p>
+<p>Create a <code>pom.xml`</code> based on the following example pom in the appropriate Mobi bundle.</p>
 </li>
 </ul>
 </div>
@@ -5424,18 +5406,13 @@ This can be any valid RDF format, such a Turtle. A list of supported RDF formats
 </div>
 </div>
 <div class="paragraph">
-<p>Be sure to replace references to "My ontology" and "My bundle" with your actual ontology and bundle. Also make sure to
-have the <code>&lt;packaging&gt;bundle&lt;/packaging&gt;</code> and the <code>com.mobi.rdf.orm</code> dependency. On your next Mobi build, interfaces,
-implementation classes, and factory classes will be created based on your ontology.</p>
+<p>Be sure to replace references to "My ontology" and "My bundle" with your actual ontology and bundle. Also make sure to have the <code>&lt;packaging&gt;bundle&lt;/packaging&gt;</code> and the <code>com.mobi.rdf.orm</code> dependency. On your next Mobi build, interfaces, implementation classes, and factory classes will be created based on your ontology.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="load_setting_rdf_into_mobi_repo">Load Setting RDF into Mobi Repo</h4>
 <div class="paragraph">
-<p>In order for Setting RDF to be recognized by Mobi, it must be loaded into the <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code>
-graph. This can be done one of two ways. The first option is to upload the RDF via Mobi Command Line. To do this, create
-a trig file with a graph of <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code> that has the same contents as your setting RDF.
-The following is an example:</p>
+<p>In order for Setting RDF to be recognized by Mobi, it must be loaded into the <code>http://mobi.com/setting-management</code> graph. This can be done one of two ways. The first option is to upload the RDF via Mobi Command Line. To do this, create a trig file with a graph of <code>http://mobi.com/setting-management</code> that has the same contents as your setting RDF. The following is an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5467,9 +5444,7 @@ setting:inGroup :MyTestPreferenceGroup .
 </div>
 </div>
 <div class="paragraph">
-<p>Next, start up Mobi, and run the following command in the Mobi Shell:
-<code>mobi:import -r system /path/to/my/trigfile.trig</code>. At this point, the preference should now be present and editable in
-the Mobi UI.</p>
+<p>Next, start up Mobi, and run the following command in the Mobi Shell: <code>mobi:import -r system /path/to/my/trigfile.trig</code>. At this point, the preference should now be present and editable in the Mobi UI.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5478,16 +5453,13 @@ the Mobi UI.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-This will only work if you have already built using the rdf-orm-plugin described earlier in the documentation to
-generate Java classes for the setting RDF.
+This will only work if you have already built using the <code>rdf-orm-plugin</code> described earlier in the documentation to generate Java classes for the setting RDF.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The second option to load your Setting RDF into the Mobi Repository is to add code to the activate
-method of a service in your corresponding Mobi bundle. The following methods can be used to help add code into the
-Mobi Repository.</p>
+<p>The second option to load your Setting RDF into the Mobi Repository is to add code to the activate method of a service in your corresponding Mobi bundle. The following methods can be used to help add code into the Mobi Repository.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5495,8 +5467,7 @@ Mobi Repository.</p>
 <p>The <code>Models.createModel()</code> method to turn an <code>InputStream</code> into a <code>Model</code>.</p>
 </li>
 <li>
-<p><code>getRepository().getConnection().add(&#8230;&#8203;)</code> from the <code>CatalogConfigProvider</code> class used to add a model to the repo. Be
-sure to pass the <code><a href="http://mobi.com/setting-management" class="bare">http://mobi.com/setting-management</a></code> iri as the context parameter value.</p>
+<p><code>getRepository().getConnection().add(&#8230;&#8203;)</code> from the <code>CatalogConfigProvider</code> class used to add a model to the repo. Be sure to pass the <code>http://mobi.com/setting-management</code> iri as the context parameter value.</p>
 </li>
 </ul>
 </div>
@@ -5513,9 +5484,7 @@ sure to pass the <code><a href="http://mobi.com/setting-management" class="bare"
 <div class="sect2">
 <h3 id="using_a_stored_setting">Using a Stored Setting</h3>
 <div class="paragraph">
-<p>In order to use the value of a stored setting, the setting service will be used in conjunction with one or more
-of the ORM generated classes (classes generated in the <a href="#generate_java_classes_from_setting_rdf">Generate Java Classes from Setting RDF</a> section).
-The following is an example of how to extract the value of a boolean preference that exists in the system:</p>
+<p>In order to use the value of a stored setting, the setting service will be used in conjunction with one or more of the ORM generated classes (classes generated in the <a href="#generate_java_classes_from_setting_rdf">Generate Java Classes from Setting RDF</a> section). The following is an example of how to extract the value of a boolean preference that exists in the system:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5534,15 +5503,12 @@ if (myPreferenceOptional.isPresent()) {
 <h2 id="mobi_security_policies">Appendix D: Mobi Security Policies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobi utilizes <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xacml">XACML</a> standards to support
-Attribute-Based Access Control (ABAC). See the ABAC section for more detail.</p>
+<p>Mobi utilizes <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xacml">XACML</a> standards to support Attribute-Based Access Control (ABAC). See the ABAC section for more detail.</p>
 </div>
 <div class="sect2">
 <h3 id="attribute_based_access_control">Attribute-Based Access Control</h3>
 <div class="paragraph">
-<p>Attribute-Based Access Control is an alternative to the traditional Role-Based Access Control (RBAC) - an authorization
-model where users are permitted to access resources based on the roles assigned to the user. As the name implies, ABAC
-evaluates a combination of Attributes to determine the user&#8217;s access permissions.</p>
+<p>Attribute-Based Access Control is an alternative to the traditional Role-Based Access Control (RBAC) - an authorization model where users are permitted to access resources based on the roles assigned to the user. As the name implies, ABAC evaluates a combination of Attributes to determine the user&#8217;s access permissions.</p>
 </div>
 <div class="paragraph">
 <p>The base Attributes in Mobi&#8217;s ABAC model are:</p>
@@ -5566,9 +5532,7 @@ to access. Resource attributes in Mobi are typically the IRIs of object.</p>
 <div class="sect3">
 <h4 id="attribute_based_access_control_workflow">Attribute-Based Access Control Workflow</h4>
 <div class="paragraph">
-<p>As an example, a policy in Mobi may state "Only users who have the admin role may view Ontology Record 1." When a
-request is made, Mobi&#8217;s XACML Engine (discussed below) will evaluate the request and grant view permission if the
-request has the following attributes:</p>
+<p>As an example, a policy in Mobi may state "Only users who have the admin role may view Ontology Record 1." When a request is made, Mobi&#8217;s XACML Engine (discussed below) will evaluate the request and grant view permission if the request has the following attributes:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5591,8 +5555,7 @@ request has the following attributes:</p>
 <div class="sect2">
 <h3 id="xacml">XACML</h3>
 <div class="paragraph">
-<p>eXtensible Access Control Markup Language (XACML) is an XML based language that enables security policy definitions and
-request evaluation to determine if a user has access to given resource. It is composed of the following components:</p>
+<p>eXtensible Access Control Markup Language (XACML) is an XML based language that enables security policy definitions and request evaluation to determine if a user has access to given resource. It is composed of the following components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5600,17 +5563,13 @@ request evaluation to determine if a user has access to given resource. It is co
 <p><strong>Policy Decision Point (PDP)</strong>: Evaluates requests against authorization policies before issuing access decisions</p>
 </li>
 <li>
-<p><strong>Policy Enforcement Point (PEP)</strong>: Intercepts user&#8217;s access request to a resource, makes a decision request to the PDP
-to obtain the access decision
-(i.e. access to the resource is approved or rejected), and acts on the received decision</p>
+<p><strong>Policy Enforcement Point (PEP)</strong>: Intercepts user&#8217;s access request to a resource, makes a decision request to the PDP to obtain the access decision (i.e. access to the resource is approved or rejected), and acts on the received decision</p>
 </li>
 <li>
-<p><strong>Policy Information Point (PIP)</strong>: The system entity that acts as a source of attribute values (i.e. a resource,
-subject, environment)</p>
+<p><strong>Policy Information Point (PIP)</strong>: The system entity that acts as a source of attribute values (i.e. a resource, subject, environment)</p>
 </li>
 <li>
-<p><strong>Policy Retrieval Point (PRP)</strong>: Point where the XACML access authorization policies are stored, typically a database
-or the filesystem.</p>
+<p><strong>Policy Retrieval Point (PRP)</strong>: Point where the XACML access authorization policies are stored, typically a database or the filesystem.</p>
 </li>
 </ul>
 </div>
@@ -5620,9 +5579,7 @@ or the filesystem.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The XACML specification supports both Attribute-Based Access Control and Role-Based Access Control. Mobi&#8217;s
-implementation of XACML only supports ABAC. Request make to the PEP are evaluated in the PDP and return whether or not
-a user can access a Resource based on the ABAC schema defined above.</p>
+<p>The XACML specification supports both Attribute-Based Access Control and Role-Based Access Control. Mobi&#8217;s implementation of XACML only supports ABAC. Request make to the PEP are evaluated in the PDP and return whether or not a user can access a Resource based on the ABAC schema defined above.</p>
 </div>
 <div class="paragraph">
 <p>Mobi&#8217;s XACML definitions are structured using combinations of the following top level elements:</p>
@@ -5630,33 +5587,27 @@ a user can access a Resource based on the ABAC schema defined above.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Policy</strong>: contains a set of Rule elements and a specified procedure for combining the results of their evaluation.
-It is the basic unit of the policy used by the PDP, and so it is intended to form the basis of an authorization decision</p>
+<p><strong>Policy</strong>: contains a set of Rule elements and a specified procedure for combining the results of their evaluation. It is the basic unit of the policy used by the PDP, and so it is intended to form the basis of an authorization decision</p>
 </li>
 <li>
-<p><strong>Rule</strong>: contains a Boolean expression that can be evaluated in isolation, but that is not intended to be accessed in
-isolation by a PDP. A Rule can be comprised of the following sub-elements:</p>
+<p><strong>Rule</strong>: contains a Boolean expression that can be evaluated in isolation, but that is not intended to be accessed in isolation by a PDP. A Rule can be comprised of the following sub-elements:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Target</strong>: defines the set of requests to which the rule is intended to apply in the form of a logical expression on
-attributes in the request.</p>
+<p><strong>Target</strong>: defines the set of requests to which the rule is intended to apply in the form of a logical expression on attributes in the request.</p>
 </li>
 <li>
-<p><strong>Effect</strong>: indicates the rule-writer&#8217;s intended consequence of a "True" evaluation for the rule.  Two values are
-allowed: "Permit" and "Deny".</p>
+<p><strong>Effect</strong>: indicates the rule-writer&#8217;s intended consequence of a "True" evaluation for the rule.  Two values are allowed: "Permit" and "Deny".</p>
 </li>
 <li>
 <p><strong>Condition</strong>: represents a Boolean expression that refines the applicability of the rule beyond the predicates implied
 by its target.  Therefore, it may be absent.</p>
 </li>
 <li>
-<p><strong>Obligation Expressions</strong>: An operation specified in a rule, policy or policy set that should be performed by the PEP
-in conjunction with the enforcement of an authorization decision.  These are currently unused in Mobi policies.</p>
+<p><strong>Obligation Expressions</strong>: An operation specified in a rule, policy or policy set that should be performed by the PEP in conjunction with the enforcement of an authorization decision.  These are currently unused in Mobi policies.</p>
 </li>
 <li>
-<p><strong>Advice Expressions</strong>: A supplementary piece of information in a policy or policy set which is provided to the PEP with
-the decision of the PDP. These are currently unused in Mobi policies.</p>
+<p><strong>Advice Expressions</strong>: A supplementary piece of information in a policy or policy set which is provided to the PEP with the decision of the PDP. These are currently unused in Mobi policies.</p>
 </li>
 </ul>
 </div>
@@ -5723,19 +5674,18 @@ the decision of the PDP. These are currently unused in Mobi policies.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The Resource is the Mobi Catalog <code><a href="http://mobi.com/catalog-local" class="bare">http://mobi.com/catalog-local</a></code></p>
+<p>The Resource is the Mobi Catalog <code>http://mobi.com/catalog-local</code></p>
 </li>
 <li>
-<p>The Action is Create <code><a href="http://mobi.com/ontologies/policy#Create" class="bare">http://mobi.com/ontologies/policy#Create</a></code></p>
+<p>The Action is Create <code>http://mobi.com/ontologies/policy#Create</code></p>
 </li>
 <li>
-<p>The Action Attribute for the RDF Type is an Ontology Record <code><a href="http://mobi.com/ontologies/ontology-editor#OntologyRecord" class="bare">http://mobi.com/ontologies/ontology-editor#OntologyRecord</a></code></p>
+<p>The Action Attribute for the RDF Type is an Ontology Record <code>http://mobi.com/ontologies/ontology-editor#OntologyRecord</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Any request that have these 3 criteria are evaluated against the rule section. If either rule resolves to be True, then
-the request&#8217;s response is a <code>Permit</code> as defined in the <code>Effect</code> field in each <code>Rule</code> element.</p>
+<p>Any request that have these 3 criteria are evaluated against the rule section. If either rule resolves to be True, then the request&#8217;s response is a <code>Permit</code> as defined in the <code>Effect</code> field in each <code>Rule</code> element.</p>
 </div>
 <div class="paragraph">
 <p>The first <code>Rule</code> states that the user making the request must be a user in Mobi:</p>
@@ -5743,7 +5693,7 @@ the request&#8217;s response is a <code>Permit</code> as defined in the <code>Ef
 <div class="ulist">
 <ul>
 <li>
-<p><code>hasUserRole</code> (<code><a href="http://mobi.com/ontologies/user/management#hasUserRole" class="bare">http://mobi.com/ontologies/user/management#hasUserRole</a></code>) of <code>user</code> (<code><a href="http://mobi.com/roles/user" class="bare">http://mobi.com/roles/user</a></code>)</p>
+<p><code>hasUserRole</code> (<code>http://mobi.com/ontologies/user/management#hasUserRole</code>) of <code>user</code> (<code>http://mobi.com/roles/user</code>)</p>
 </li>
 </ul>
 </div>
@@ -5753,22 +5703,18 @@ the request&#8217;s response is a <code>Permit</code> as defined in the <code>Ef
 <div class="ulist">
 <ul>
 <li>
-<p><code>username</code> (<code><a href="http://mobi.com/ontologies/user/management#username" class="bare">http://mobi.com/ontologies/user/management#username</a></code>) must equal <code>admin</code></p>
+<p><code>username</code> (<code>http://mobi.com/ontologies/user/management#username</code>) must equal <code>admin</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These match operator is defined by the <code>MatchId</code> field of the <code>Match</code> element. Most Mobi policies use the basic <code>equals</code>
-operator <code>urn:oasis:names:tc:xacml:1.0:function:string-equal</code>. See the
-<a href="http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#_Toc325047234">XACML Functions</a> section of the
-specification to see other possible operations.</p>
+<p>These match operator is defined by the <code>MatchId</code> field of the <code>Match</code> element. Most Mobi policies use the basic <code>equals</code> operator <code>urn:oasis:names:tc:xacml:1.0:function:string-equal</code>. See the <a href="http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#_Toc325047234">XACML Functions</a> section of the specification to see other possible operations.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="xacml_workflow">XACML Workflow</h4>
 <div class="paragraph">
-<p>Let&#8217;s modify our previous example to only allow the <code>admin</code> user to create Ontology Records by deleting the <code>Rule</code> with
-the <code>hasUserRole</code> section. Our new modified policy now looks like this:</p>
+<p>Let&#8217;s modify our previous example to only allow the <code>admin</code> user to create Ontology Records by deleting the <code>Rule</code> with the <code>hasUserRole</code> section. Our new modified policy now looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5813,13 +5759,13 @@ the <code>hasUserRole</code> section. Our new modified policy now looks like thi
 <div class="ulist">
 <ul>
 <li>
-<p>Resource is <code><a href="http://mobi.com/catalog-local" class="bare">http://mobi.com/catalog-local</a></code></p>
+<p>Resource is <code>http://mobi.com/catalog-local</code></p>
 </li>
 <li>
-<p>Action is <code><a href="http://mobi.com/ontologies/policy#Create" class="bare">http://mobi.com/ontologies/policy#Create</a></code></p>
+<p>Action is <code>http://mobi.com/ontologies/policy#Create</code></p>
 </li>
 <li>
-<p>Action Attribute for Type is <code><a href="http://mobi.com/ontologies/ontology-editor#OntologyRecord" class="bare">http://mobi.com/ontologies/ontology-editor#OntologyRecord</a></code></p>
+<p>Action Attribute for Type is <code>http://mobi.com/ontologies/ontology-editor#OntologyRecord</code></p>
 </li>
 <li>
 <p>Subject is user with username <code>batman</code></p>
@@ -5858,19 +5804,16 @@ the <code>hasUserRole</code> section. Our new modified policy now looks like thi
 <p>The XACML request is then passed along to the Policy Decision Point</p>
 </li>
 <li>
-<p>The Policy Decision Point reaches out to the Policy Information Point and Policy Retrieval Point to retrieve additional
-attributes and relevant policies to evaluate against.</p>
+<p>The Policy Decision Point reaches out to the Policy Information Point and Policy Retrieval Point to retrieve additional attributes and relevant policies to evaluate against.</p>
 </li>
 <li>
 <p>The Policy Decision Point evaluates the request against any relevant policies. In this case it is our policy listed above.</p>
 </li>
 <li>
-<p>The Policy Decision Point sees that the User making the request is <code>batman</code> and not <code>admin</code>. Using a deny unless permit model
-the Policy Decision Point returns <code>Deny</code> as the response to the request.</p>
+<p>The Policy Decision Point sees that the User making the request is <code>batman</code> and not <code>admin</code>. Using a deny unless permit model the Policy Decision Point returns <code>Deny</code> as the response to the request.</p>
 </li>
 <li>
-<p>The Policy Enforcement Point propagates this <code>Deny</code> out, never actually entering the code for the REST request, and
-returns a 401 Unauthorized error to the system making the REST request.</p>
+<p>The Policy Enforcement Point propagates this <code>Deny</code> out, never actually entering the code for the REST request, and returns a 401 Unauthorized error to the system making the REST request.</p>
 </li>
 </ol>
 </div>
@@ -5881,8 +5824,7 @@ returns a 401 Unauthorized error to the system making the REST request.</p>
 <div class="sect3">
 <h4 id="mobi_system_policies">Mobi System Policies</h4>
 <div class="paragraph">
-<p>Mobi stores default system policies in the <code>${karaf.etc}/policies/systemPolicies</code> directory. Custom XACML system policies
-should be added to this directory. On initial startup these policies are loaded into the Repository and Virtual Filesystem.</p>
+<p>Mobi stores default system policies in the <code>${karaf.etc}/policies/systemPolicies</code> directory. Custom XACML system policies should be added to this directory. On initial startup these policies are loaded into the Repository and Virtual Filesystem.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -5891,8 +5833,7 @@ should be added to this directory. On initial startup these policies are loaded 
 <div class="title">Warning</div>
 </td>
 <td class="content">
-Any edits made to these policies after initial system startup will not be applied unless a <code>mobi:reload-system-policy</code> command
-is run from the Karaf terminal.
+Any edits made to these policies after initial system startup will not be applied unless a <code>mobi:reload-system-policy</code> command is run from the Karaf terminal.
 </td>
 </tr>
 </table>
@@ -5901,8 +5842,7 @@ is run from the Karaf terminal.
 <div class="sect3">
 <h4 id="reload_system_policy_command">Reload System Policy Command</h4>
 <div class="paragraph">
-<p>A helper utility exists in the Karaf terminal for reloading manually edited system policies. The command take a path to
-a system policy.</p>
+<p>A helper utility exists in the Karaf terminal for reloading manually edited system policies. The command take a path to a system policy.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5951,6 +5891,18 @@ policy template types:</p>
 <p><strong>Policy Policy</strong>: A policy for managing the Record Policy and adjusting who can edit the permissions of a Record Policy</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Unlike System Policies, these policies do not need to be reloaded after editing. They are picked up by the Mobi Record Services when a user creates a new Record.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The following policy templates can be found in the <code>${karaf.etc}/policies/policyTemplates</code> directory with their system defaults:</p>
@@ -6021,9 +5973,7 @@ policy template types:</p>
 </div>
 </li>
 <li>
-<p><strong>policyPolicy.xml</strong>: The default policy template for managing access control for a Record. This policy is tied to each
-type of Record and is associated with the Update Permission for the Record. If the User has the Update Permission, then
-they can also change who else can Read/Delete/Manage/Modify a given Record.</p>
+<p><strong>policyPolicy.xml</strong>: The default policy template for managing access control for a Record. This policy is tied to each type of Record and is associated with the Update Permission for the Record. If the User has the Update Permission, then they can also change who else can Read/Delete/Manage/Modify a given Record.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -6038,9 +5988,7 @@ they can also change who else can Read/Delete/Manage/Modify a given Record.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>These default policy templates for Records can be manually adjusted in the filesystem to reflect any organization
-specific need for access control for Records. The templates use a few tokens to do string replacement on when processed
-by the Mobi Record Services on creation. These tokens are:</p>
+<p>These default policy templates for Records can be manually adjusted in the filesystem to reflect any organization specific need for access control for Records. The templates use a few tokens to do string replacement on when processed by the Mobi Record Services on creation. These tokens are:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6059,18 +6007,67 @@ permissions for a given Record</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Unlike System Policies, these policies do not need to be reloaded after editing. They are picked up by the Mobi
-Record Services when a user creates a new Record.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The most common patterns utilized within the rules of the policy templates are described below. Pay close attention to the values on the <code>AttributeDesignator</code> element as they will change for each case.</p>
+</div>
+<div class="sect4">
+<h5 id="allow_everyone">Allow "Everyone"</h5>
+<div class="paragraph">
+<p>To allow any authenticated user within Mobi to execute an action, the <code>Target</code> of the <code>Rule</code> should include a <code>Match</code> block that looks like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;http://mobi.com/roles/user&lt;/AttributeValue&gt;
+    &lt;AttributeDesignator AttributeId="http://mobi.com/ontologies/user/management#hasUserRole" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Match&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="allow_creator_or_specific_user">Allow "Creator" or Specific User</h5>
+<div class="paragraph">
+<p>To allow only the creator of the Record to execute an action, the <code>Target</code> of the <code>Rule</code> should include a <code>Match</code> block that looks like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;%USERIRI%&lt;/AttributeValue&gt;
+    &lt;AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Match&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to hardcode a specific User, change the <code>%USERIRI%</code> to that user&#8217;s IRI.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="allow_specific_group">Allow Specific Group</h5>
+<div class="paragraph">
+<p>To allow only users in a specific group to execute an action, the <code>Target</code> of the <code>Rule</code> should include a <code>Match</code> block that looks like this with substituting <code>%GROUPIRI%</code> for the IRI of the Group in question (<code>%GROUPIRI%</code> is not a recognizing substitution within the platform).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;%GROUPIRI%&lt;/AttributeValue&gt;
+    &lt;AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="http://mobi.com/policy/prop-path(%5E%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Fmember%3E)" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Match&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="allow_admin_users">Allow admin Users</h5>
+<div class="paragraph">
+<p>To allow only all admin users to execute an action, the <code>Target</code> of the <code>Rule</code> should include a <code>Match</code> block that looks like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal"&gt;
+    &lt;AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"&gt;admin&lt;/AttributeValue&gt;
+    &lt;AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="http://mobi.com/ontologies/user/management#username" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/&gt;
+&lt;/Match&gt;</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -6080,7 +6077,7 @@ Record Services when a user creates a new Record.
 <div id="footer">
 <div id="footer-text">
 Version 2.3<br>
-Last updated 2023-07-10 15:15:25 UTC
+Last updated 2023-07-17 12:37:20 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
