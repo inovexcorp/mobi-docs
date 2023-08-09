@@ -484,6 +484,18 @@ You can check the status of the running server using the <code>bin/status</code>
 <div class="paragraph">
 <p>The Mobi web application should now be accessible at <code><a href="https://localhost:8443/mobi/index.html" class="bare">https://localhost:8443/mobi/index.html</a></code>. The default login credentials are <code>admin:admin</code>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Due to the self-signed SSL certificate that Mobi comes with, your browser will likely show you a certificate warning when first loaded. This is safe to proceed past. See <a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a> for more details.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -567,6 +579,18 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 </div>
 <div class="paragraph">
 <p>The Mobi image should now be running with the web application accessible at <code><a href="https://localhost:8443/mobi/index.html" class="bare">https://localhost:8443/mobi/index.html</a></code>.  The default login credentials are <code>admin:admin</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Due to the self-signed SSL certificate that Mobi comes with, your browser will likely show you a certificate warning when first loaded. This is safe to proceed past. See <a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a> for more details.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>You can use the CLI tool to login in karaf.  Once you click on the CLI button, it will open up a terminal window where you can login into karaf.</p>
@@ -4058,6 +4082,21 @@ tar -xf $MOBI_HOME.tar.gz</code></pre>
 </ol>
 </div>
 <div class="paragraph">
+<p>All Mobi prepackaged bundles, services, and required artifacts and dependencies will be automatically deployed by the runtime once started. The Mobi web application should now be accessible at <code><a href="https://localhost:8443/avm/index.html" class="bare">https://localhost:8443/avm/index.html</a></code> (or substitute <code>localhost</code> with the hostname/IP address of the machine running the process dependant on firewall configurations). The default login credentials are <code>admin:admin</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Due to the self-signed SSL certificate that Mobi comes with, your browser will likely show you a certificate warning when first loaded. This is safe to proceed past. See <a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a> for more details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>To stop the Mobi server, run the following command:</p>
 </div>
 <div class="listingblock">
@@ -4120,7 +4159,10 @@ We recommend running Mobi on the default port 8443 and using firewall configurat
 <div class="sect4">
 <h5 id="configure_custom_ssl_certificates">Configure Custom SSL Certificates</h5>
 <div class="paragraph">
-<p>Mobi comes bundled with default self-signed SSL certificates stored in a <a href="https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html">Java Keystore</a> file in <code>etc/keystore</code>. To provide your own SSL certificates, simply replace the default keystore file with your own:</p>
+<p>Mobi comes bundled with default self-signed SSL certificates stored in a <a href="https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html">Java Keystore</a> file in <code>etc/keystore</code>. <strong>This self-signed certificate is why your browser will most likely show you a certificate warning when browsing to the web application.</strong></p>
+</div>
+<div class="paragraph">
+<p>To provide your own SSL certificates, simply replace the default keystore file with your own:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4153,6 +4195,18 @@ integrity check</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>.p12</code> and <code>.jks</code> files should both be supported
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="installing_mobi_as_a_service">Installing Mobi as a Service</h5>
@@ -6077,7 +6131,7 @@ permissions for a given Record</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.3<br>
-Last updated 2023-07-10 15:15:25 UTC
+Last updated 2023-07-10 15:15:19 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>

@@ -73,9 +73,6 @@
 body {
     margin-top: 50px;
 }
-body #header #toc {
-    margin-top: 50px !important;
-}
 .tocSwitch {
     position: fixed;
     top: 55px;
@@ -90,6 +87,7 @@ body #header #toc {
     }
     #toc {
         display: block !important;
+        padding-top: 50px !important;
     }
 }
 @media screen and (max-width: 768px) {
