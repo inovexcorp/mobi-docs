@@ -254,6 +254,7 @@
 <li><a href="#post_installation_configuration">Post-Installation Configuration</a>
 <ul class="sectlevel4">
 <li><a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a></li>
+<li><a href="#set_the_host_name">Set the Host Name</a></li>
 <li><a href="#change_the_default_web_port">Change the Default Web Port</a></li>
 <li><a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a></li>
 <li><a href="#installing_mobi_as_a_service">Installing Mobi as a Service</a></li>
@@ -261,6 +262,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#upgrading_mobi">Upgrading Mobi</a></li>
 </ul>
 </li>
 <li><a href="#developer_guide">Developer Guide</a>
@@ -4134,6 +4136,17 @@ All versions from 1.22 onwards have this line already added.
 </div>
 </div>
 <div class="sect4">
+<h5 id="set_the_host_name">Set the Host Name</h5>
+<div class="paragraph">
+<p>If the Mobi installation will be communicating with external systems, most of those connections utilize a core hostname configuration in order to build the appropriate callback URLs. This setting is within <code>$MOBI_HOME/etc/com.mobi.platform.server.cfg</code> and defaults to <a href="https://localhost:8443" class="bare">https://localhost:8443</a>. If your external systems are not hosted on the same machine, this needs to be a resolvable host that can be reached, for example a DNS record you have configured in your enterprise.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">hostName = &lt;APP_HOST_NAME&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="change_the_default_web_port">Change the Default Web Port</h5>
 <div class="paragraph">
 <p>If required, change the default SSL port in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code></p>
@@ -4278,6 +4291,85 @@ systemctl enable mobi</code></pre>
 <p>Once the service is enabled, Mobi should be running. The Mobi process will start and stop automatically with the server. Any time you start and stop Mobi manually, run the following systemctl commands: <code>sudo systemctl stop mobi</code> and <code>sudo systemctl start mobi</code>.</p>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrading_mobi">Upgrading Mobi</h3>
+<div class="paragraph">
+<p>Upgrades of the Mobi platform are performed via a backup/restore process where a <code>.zip</code> file is created of all the system data of the current installation and loaded into the new version installation. This process will handle any migration steps required when migrating to newer versions. The basic steps are outlined below and are applicable for any upgrades within major version (e.g. 2.1 to 2.4).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>$MOBI_HOME</code> is the extracted directory from your current Mobi distribution (e.g. <code>/path/to/mobi-distribution-2.3.2</code>).
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the following command to create a zipped backup of your old distribution. The name of the backup can be whatever you choose as long as it is a valid zip file name.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$MOBI_HOME/bin/client "mobi:backup -f /path/to/mobi-backup.zip"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Shut down your old installation. If you installed Mobi as service, then use the appropriate <code>systemctl stop mobi</code> command.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$MOBI_HOME/bin/stop</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Unpack and start up the new distribution. If you created a symlink for your installation, make sure to update that link with <code>ln -sfn $NEW_MOBI_HOME latest</code>. If you installed Mobi as a service, the use the appropriate <code>systemctl start mobi</code> command after updating the symlink.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xf $NEW_MOBI_HOME.tar.gz
+$NEW_MOBI_HOME/bin/start</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the following command with the path to your zipped backup to restore your data into the new installation. This process can take several minutes, but when it completes you will see a message that looks like "Restarting all services" and the application will restart with the new data.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$NEW_MOBI_HOME/bin/client "mobi:restore /path/to/mobi-backup.zip"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The Mobi server can take several seconds to start up. If the <code>client</code> script fails, try again after a few seconds. If the server is not starting, check the logs in <code>$NEW_MOBI_HOME/data/log/karaf.log</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+There are two files which are not included in the backup whose contents will need to be manually updated in the new distribution. The <code>$NEW_MOBI_HOME/bin/setenv</code> file contains the Java Max and Min Memory settings that should be updated to the desired levels post upgrade (See <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>). The <code>$NEW_MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file holds a variable for the <span class="underline">hostName</span> of the application (See <a href="#set_the_host_name">Set the Host Name</a>). This will need to be manually updated to the previous value to support certain connections with other applications.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -6131,7 +6223,7 @@ permissions for a given Record</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.3<br>
-Last updated 2023-07-10 15:15:19 UTC
+Last updated 2023-07-10 15:15:25 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
