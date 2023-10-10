@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 2.3</span>
+<span id="revnumber">version 2.4</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -210,6 +210,7 @@
 <li><a href="#groups_2">Groups</a></li>
 <li><a href="#permissions">Permissions</a></li>
 <li><a href="#application_settings">Application Settings</a></li>
+<li><a href="#licensing">Licensing (ENTERPRISE)</a></li>
 </ul>
 </li>
 <li><a href="#configuration-guide">Configuration</a>
@@ -250,7 +251,11 @@
 <li><a href="#install_java_17">Install Java 17</a></li>
 </ul>
 </li>
-<li><a href="#install_mobi">Install Mobi</a></li>
+<li><a href="#install_mobi">Install Mobi</a>
+<ul class="sectlevel4">
+<li><a href="#server-id-license-file">Server ID and License File (ENTERPRISE)</a></li>
+</ul>
+</li>
 <li><a href="#post_installation_configuration">Post-Installation Configuration</a>
 <ul class="sectlevel4">
 <li><a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a></li>
@@ -335,9 +340,9 @@
 <li><a href="#settingapplicationsetting">setting:ApplicationSetting</a></li>
 <li><a href="#settingpreferencegroup">setting:PreferenceGroup</a></li>
 <li><a href="#settingapplicationsettinggroup">setting:ApplicationSettingGroup</a></li>
-<li><a href="#settingformfield">setting:FormField</a></li>
+<li><a href="#wfformfield">wf:FormField</a></li>
 <li><a href="#settinghasdatavalue">setting:hasDataValue</a></li>
-<li><a href="#settingusesformfield">setting:usesFormField</a></li>
+<li><a href="#wfusesformfield">wf:usesFormField</a></li>
 <li><a href="#settingingroup">setting:inGroup</a>
 <ul class="sectlevel4">
 <li><a href="#required_shacl_nodeshape">Required SHACL NodeShape</a></li>
@@ -380,6 +385,49 @@
 <li><a href="#allow_creator_or_specific_user">Allow "Creator" or Specific User</a></li>
 <li><a href="#allow_specific_group">Allow Specific Group</a></li>
 <li><a href="#allow_admin_users">Allow admin Users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#workflows">Appendix E: Workflows</a>
+<ul class="sectlevel2">
+<li><a href="#workflow_rdf_definition">Workflow RDF Definition</a>
+<ul class="sectlevel3">
+<li><a href="#wworkflow">w:Workflow</a></li>
+<li><a href="#wtrigger">w:Trigger</a></li>
+<li><a href="#waction">w:Action</a></li>
+</ul>
+</li>
+<li><a href="#workflows_system_configuration">Workflows System Configuration</a>
+<ul class="sectlevel3">
+<li><a href="#dagu_workflow_engine">Dagu Workflow Engine</a></li>
+</ul>
+</li>
+<li><a href="#creating_and_using_workflows">Creating and Using Workflows</a>
+<ul class="sectlevel3">
+<li><a href="#create_a_workflow">Create a Workflow</a></li>
+<li><a href="#activatedeactivate_a_workflow">Activate/Deactivate a Workflow</a></li>
+<li><a href="#update_a_workflow_definition">Update a Workflow Definition</a></li>
+<li><a href="#manually_initiate_a_workflow_execution">Manually Initiate a Workflow Execution</a></li>
+<li><a href="#retrieving_workflow_provenance_and_logs">Retrieving Workflow Provenance and Logs</a>
+<ul class="sectlevel4">
+<li><a href="#retrieve_workflow_activity">Retrieve Workflow Activity</a></li>
+<li><a href="#retrieve_all_workflow_activities">Retrieve All Workflow Activities</a></li>
+<li><a href="#retrieve_specific_workflow_activity_logs">Retrieve Specific Workflow Activity Logs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#extending_workflows">Extending Workflows</a>
+<ul class="sectlevel3">
+<li><a href="#triggeraction_rdf_definition">Trigger/Action RDF Definition</a></li>
+<li><a href="#adding_custom_triggersactions">Adding Custom Triggers/Actions</a>
+<ul class="sectlevel4">
+<li><a href="#create_workflow_extension_bundle_with_rdf">Create Workflow Extension Bundle with RDF</a></li>
+<li><a href="#create_workflow_extension_services">Create Workflow Extension Services</a></li>
+<li><a href="#deploy_osgi_bundle">Deploy OSGi Bundle</a></li>
 </ul>
 </li>
 </ul>
@@ -1183,16 +1231,49 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="sect4">
 <h5 id="search_tab">Search Tab</h5>
 <div class="paragraph">
-<p>The Search Tab allows you to perform a keyword search through all the entities within the saved state of the opened ontology and its imports.</p>
+<p>The Search Tab has two views, Find and Query, accessible through the dropdown. By default, clicking on the Search Tab will take you to the Find View.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ontology-editor/search_tab_dropdown.png" alt="search tab dropdown">
+</div>
+<div class="title">Figure 24. Search Tab Dropdown</div>
+</div>
+<div class="sect5">
+<h6 id="find_view">Find View</h6>
+<div class="paragraph">
+<p>The Find view allows you to perform a keyword search through all the entities within the saved state of the opened ontology and its imports.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_search.png" alt="ontology editor tab search">
 </div>
-<div class="title">Figure 24. Ontology Editor Search Tab</div>
+<div class="title">Figure 25. Ontology Editor Search Tab</div>
 </div>
 <div class="paragraph">
-<p>The left side of the tab contains a simple search bar and a list of search results. To perform a search, type a string into the search bar and press the <kbd>ENTER</kbd> key. The results are separated by type headers which are collapsible. Each result is displayed with its display name. Properties are displayed with a symbol representing the data type of the range property. Clicking on a result will load that entity&#8217;s information into the right section of this tab. The right section displays the entity&#8217;s display name, IRI, types, and properties. The parts of the property values that match the search text will be highlighted. The right section also includes a <b class="button">Go To</b> button that will open the entity in the appropriate tab. Double clicking on an entity in the list will also open that entity in the appropriate tab.</p>
+<p>The left side of the Find view contains a simple search bar and a list of search results. To perform a search, type a string into the search bar and press the <kbd>ENTER</kbd> key. The results are separated by type headers which are collapsible. Each result is displayed with its display name. Properties are displayed with a symbol representing the data type of the range property. Clicking on a result will load that entity&#8217;s information into the right section of this tab. The right section displays the entity&#8217;s display name, IRI, types, and properties. The parts of the property values that match the search text will be highlighted. The right section also includes a <b class="button">Go To</b> button that will open the entity in the appropriate tab. Double clicking on an entity in the list will also open that entity in the appropriate tab.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="query_view">Query View</h6>
+<div class="paragraph">
+<p>The Query view allows you to perform a SPARQL query against the opened ontology. Similar to the <a href="#query">Discover Query Page</a>, the ontology Query view provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a toggle of whether to include data from the entire imports closure, and a <b class="button">Submit</b> button. Clicking <b class="button">Submit</b> executes the entered query against the ontology and updates the bottom section with the results.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ontology-editor/search_tab_query.png" alt="search tab query">
+</div>
+<div class="title">Figure 26. Query View</div>
+</div>
+<div class="paragraph">
+<p>The bottom section displays the results of the most recently submitted SPARQL query (powered by <a href="https://triply.cc/docs/yasgui-api#yasr">YASR</a>). The section has separate tabs for rendering the query result set depending on the type of SPARQL query submitted. SELECT query results are displayed under the Table tab where the headers of the table are the variables specified in the SPARQL query. The Table comes with features such as filtering, page size, sorting and pagination. CONSTRUCT query results can be displayed under the Turtle, JSON-LD and RDF/XML tabs. The query results are limited to 500 triples/rows for rendering, but the entire result set can be downloaded using the button in the upper right corner of the bottom section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ontology-editor/search_tab_query_construct.png" alt="search tab query construct">
+</div>
+<div class="title">Figure 27. Construct Query</div>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -1204,7 +1285,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/pizza_graph.png" alt="pizza graph">
 </div>
-<div class="title">Figure 25. Pizza Ontology Graph</div>
+<div class="title">Figure 28. Pizza Ontology Graph</div>
 </div>
 <div class="paragraph">
 <p>The ontology visualization feature enables users to easily understand data within an Ontology by allowing them to navigate across the classes and their relationships. The feature allows users to zoom, pan, select, drag, hover, and click nodes and links.</p>
@@ -1216,13 +1297,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/warning_commit_inprogress.png" alt="warning commit inprogress">
 </div>
-<div class="title">Figure 26. Uncommited changes state</div>
+<div class="title">Figure 29. Uncommitted changes state</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/warning_over_node_limit.png" alt="warning over node limit">
 </div>
-<div class="title">Figure 27. Over the limit state</div>
+<div class="title">Figure 30. Over the limit state</div>
 </div>
 <div class="paragraph">
 <p>The side panel of the Visualization tab displays a searchable list of all the classes in the import closure (i.e. direct and imported) grouped by parent ontology. The checkboxes next to each class indicate whether a class is currently shown in the visualization and can be toggled to customize the displayed graph. Selecting the checkbox next to a class will update the graph by adding a new node with the class name, subclass relationships with other displayed classes, and object properties with other displayed classes. Deselecting the checkbox next to a class will remove these three things. Selecting a class in the side panel will highlight the node in the graph if displayed. Selecting a node in the graph will also highlight in the side panel. The side panel also includes a "Filter" dropdown with three options to help find the classes of interest in the list.</p>
@@ -1244,7 +1325,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/sidebard_imported_open.png" alt="sidebard imported open">
 </div>
-<div class="title">Figure 28. Side Panel: classes grouped by parent ontology</div>
+<div class="title">Figure 31. Side Panel: classes grouped by parent ontology</div>
 </div>
 <div class="paragraph">
 <p>The side panel can be hidden or shown with a button.</p>
@@ -1253,13 +1334,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_close_button.png" alt="sidepanel close button">
 </div>
-<div class="title">Figure 29. Side Panel Close Button</div>
+<div class="title">Figure 32. Side Panel Close Button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_open_button.png" alt="sidepanel open button">
 </div>
-<div class="title">Figure 30. Side Panel Open Button</div>
+<div class="title">Figure 33. Side Panel Open Button</div>
 </div>
 <div class="sect5">
 <h6 id="imported_ontologies">Imported Ontologies</h6>
@@ -1270,13 +1351,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/visualization/imported_ontology.png" alt="imported ontology">
 </div>
-<div class="title">Figure 31. Imported Ontologies</div>
+<div class="title">Figure 34. Imported Ontologies</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/update_imports.png" alt="update imports">
 </div>
-<div class="title">Figure 32. Refresh import</div>
+<div class="title">Figure 35. Refresh import</div>
 </div>
 </div>
 </div>
@@ -1310,7 +1391,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/check_out_tag.png" alt="check out tag">
 </div>
-<div class="title">Figure 33. Ontology checked out at a tag</div>
+<div class="title">Figure 36. Ontology checked out at a tag</div>
 </div>
 <div class="paragraph">
 <p>To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1325,7 +1406,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_changes.png" alt="ontology editor tab changes">
 </div>
-<div class="title">Figure 34. Ontology Editor Changes Tab</div>
+<div class="title">Figure 37. Ontology Editor Changes Tab</div>
 </div>
 <div class="paragraph">
 <p>Within each collapsible block in the list are the added and deleted triples for a particular entity IRI. If there are no changes to the ontology, this page will be empty. To commit these changes, select the <b class="button">Commit Changes</b> button in the <a href="#button_stack">Button Stack</a>. To remove these changes, click <b class="button">Remove All Changes</b>.</p>
@@ -1337,13 +1418,13 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/pull_latest_changes.png" alt="pull latest changes">
 </div>
-<div class="title">Figure 35. Pull in latest changes message</div>
+<div class="title">Figure 38. Pull in latest changes message</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/behind_head.png" alt="behind head">
 </div>
-<div class="title">Figure 36. Behind the head with saved changes</div>
+<div class="title">Figure 39. Behind the head with saved changes</div>
 </div>
 </div>
 <div class="sect4">
@@ -1358,7 +1439,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/merge_view.png" alt="merge view">
 </div>
-<div class="title">Figure 37. Merge branches view</div>
+<div class="title">Figure 40. Merge branches view</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1370,7 +1451,7 @@ Clicking on an item in the hierarchy will load that concept&#8217;s information 
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_main.png" alt="merge conflicts main">
 </div>
-<div class="title">Figure 38. List of all merge conflicts</div>
+<div class="title">Figure 41. List of all merge conflicts</div>
 </div>
 <div class="paragraph">
 <p>When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the <b class="button">Back to List</b> button to go back to the list of all the conflicts or the <b class="button">Previous</b> or <b class="button">Next</b> buttons to iterate through the list of conflicts.</p>
@@ -1391,7 +1472,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_resolution.png" alt="merge conflicts resolution">
 </div>
-<div class="title">Figure 39. Merge conflict resolution view.</div>
+<div class="title">Figure 42. Merge conflict resolution view.</div>
 </div>
 <div class="paragraph">
 <p>Once all conflicts have been resolved, the <b class="button">Submit with Resolutions</b> button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.</p>
@@ -1406,7 +1487,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/commit_history_table.png" alt="commit history table">
 </div>
-<div class="title">Figure 40. Commit history table of a branch</div>
+<div class="title">Figure 43. Commit history table of a branch</div>
 </div>
 </div>
 <div class="sect4">
@@ -1418,7 +1499,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/entity_history.png" alt="entity history">
 </div>
-<div class="title">Figure 41. Entity History view</div>
+<div class="title">Figure 44. Entity History view</div>
 </div>
 </div>
 </div>
@@ -1433,7 +1514,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/edit_iri_overlay.png" alt="edit iri overlay">
 </div>
-<div class="title">Figure 42. Edit IRI overlay</div>
+<div class="title">Figure 45. Edit IRI overlay</div>
 </div>
 </div>
 <div class="sect4">
@@ -1445,7 +1526,7 @@ Currently the editor only supports accepting entire changes. We are working on i
 <div class="content">
 <img src="images/ontology-editor/axiom_value_editor.png" alt="axiom value editor" width="50%">
 </div>
-<div class="title">Figure 43. Axiom Overlay Editor with an example</div>
+<div class="title">Figure 46. Axiom Overlay Editor with an example</div>
 </div>
 </div>
 <div class="sect4">
@@ -1469,7 +1550,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/property_value_display.png" alt="property value display">
 </div>
-<div class="title">Figure 44. A property value display with multiple values</div>
+<div class="title">Figure 47. A property value display with multiple values</div>
 </div>
 </div>
 <div class="sect4">
@@ -1481,7 +1562,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/button_stack.png" alt="button stack">
 </div>
-<div class="title">Figure 45. Collapsed button stack</div>
+<div class="title">Figure 48. Collapsed button stack</div>
 </div>
 <div class="paragraph">
 <p>To add a new entity to the ontology, click on the main <b class="button">Create Entity</b> button in the stack. This will open an overlay with options for what kind of entity to create and once you have selected an option, an appropriate overlay will be shown for creating that type of entity. After creating the entity, a snackbar will appear at the bottom allowing you to navigate directly to your new entity.</p>
@@ -1490,13 +1571,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_entity_button.png" alt="create entity button">
 </div>
-<div class="title">Figure 46. Create Entity button</div>
+<div class="title">Figure 49. Create Entity button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/new_snackbar.png" alt="new snackbar">
 </div>
-<div class="title">Figure 47. New Entity snackbar</div>
+<div class="title">Figure 50. New Entity snackbar</div>
 </div>
 <div class="paragraph">
 <p>If you have made changes to an ontology, the <b class="button">Commit Changes</b> button will become active. Clicking on this button will bring up the Add Commit overlay.</p>
@@ -1505,7 +1586,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/commit_changes_button.png" alt="commit changes button">
 </div>
-<div class="title">Figure 48. Commit button</div>
+<div class="title">Figure 51. Commit button</div>
 </div>
 <div class="paragraph">
 <p>The Add Commit overlay provides a textarea for you to enter in a <span class="underline">Comment</span> that will be associated with that commit. This commit usually specifies what changes where made in the commit so that others can read the message and understand what happened at that point in time. You can still commit your changes if you are not currently viewing the head commit of the current branch. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will add all your saved changes to a new commit object whose parent is the commit you were viewing and close the overlay.</p>
@@ -1514,7 +1595,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/add_commit_overlay.png" alt="add commit overlay" width="50%">
 </div>
-<div class="title">Figure 49. Add commit overlay</div>
+<div class="title">Figure 52. Add commit overlay</div>
 </div>
 <div class="paragraph">
 <p>See the <a href="#merging_branches">Merging Branches</a> section for details on how the merging branches works.</p>
@@ -1523,7 +1604,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/merge_branch_button.png" alt="merge branch button">
 </div>
-<div class="title">Figure 50. Merge Branch button</div>
+<div class="title">Figure 53. Merge Branch button</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Create Branch</b> button allows you to create a new branch from the commit and branch you are viewing, including past commits. This action can be performed even if you have unsaved or saved changes. Clicking on the button will bring up the Create New Branch overlay.</p>
@@ -1532,7 +1613,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_branch_button.png" alt="create branch button">
 </div>
-<div class="title">Figure 51. Create Branch button</div>
+<div class="title">Figure 54. Create Branch button</div>
 </div>
 <div class="paragraph">
 <p>The Create New Branch overlay provides fields for entering information about the branch as a whole. The <span class="underline">Title</span> field (required) will set the <code>dcterms:title</code> of the branch. The <span class="underline">Description</span> field will set the <code>dcterms:description</code> of the branch. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new branch with the entered information whose head commit was the commit you were viewing and close the overlay.</p>
@@ -1541,7 +1622,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_branch_overlay.png" alt="create branch overlay" width="50%">
 </div>
-<div class="title">Figure 52. Create new branch overlay</div>
+<div class="title">Figure 55. Create new branch overlay</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Create Tag</b> button allows you to create a human readable and persistent pointer to the commit you are currently viewing. Clicking this button will bring up an overlay where you can type in the title for the Tag and customize it&#8217;s IRI. Once the Tag is created, the ontology will open the ontology in read-only mode at the tagged commit.</p>
@@ -1550,7 +1631,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_tag_button.png" alt="create tag button">
 </div>
-<div class="title">Figure 53. Create Tag button</div>
+<div class="title">Figure 56. Create Tag button</div>
 </div>
 <div class="paragraph">
 <p>The <b class="button">Upload Changes</b> button allows you to upload a new version of your ontology from a file and apply the changes. Clicking this button will bring up an overlay where you can select the file with the changed ontology. Uploaded changes will not be automatically committed, but will allow you to review changes before making a new Commit.</p>
@@ -1559,7 +1640,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/upload_changes_button.png" alt="upload changes button">
 </div>
-<div class="title">Figure 54. Upload Changes button</div>
+<div class="title">Figure 57. Upload Changes button</div>
 </div>
 </div>
 <div class="sect4">
@@ -1653,7 +1734,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/full_tool_initial_view.png" alt="The Vocabulary Linking Tool">
 </div>
-<div class="title">Figure 55. The Vocabulary Linking Tool</div>
+<div class="title">Figure 58. The Vocabulary Linking Tool</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Vocabulary Linking Tool shows a form on the left for selecting the vocabularies and a space for matched terms to be displayed. To select a vocabulary, you must select the Ontology Record and a Branch. All selected semantic relations you wish to add will be committed to the selected branches for both vocabularies.</p>
@@ -1665,7 +1746,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/config_modal.png" alt="The vocabulary linking configuration modal" width="50%">
 </div>
-<div class="title">Figure 56. The vocabulary linking configuration modal</div>
+<div class="title">Figure 59. The vocabulary linking configuration modal</div>
 </div>
 <div class="paragraph">
 <p>After you have selected 2 different ontologies, click on <b class="button">Analyze</b> and the right section of the view will update with the matched terms in a paginated list.</p>
@@ -1674,7 +1755,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/linking_results.png" alt="Example vocabulary linking results">
 </div>
-<div class="title">Figure 57. Example vocabulary linking results</div>
+<div class="title">Figure 60. Example vocabulary linking results</div>
 </div>
 <div class="paragraph">
 <p>The top of the results section shows a checkbox for selecting or deselecting all the results in addition to two dropdowns. One is for filtering the results based on whether terms have already been semantically linked. The other is for sorting the results based on the highest matched percentage of all the labels of each matched term pair.</p>
@@ -1686,13 +1767,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/matched_pair.png" alt="Example matched vocabulary terms">
 </div>
-<div class="title">Figure 58. Example pair of matched vocabulary terms</div>
+<div class="title">Figure 61. Example pair of matched vocabulary terms</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/vocabulary-linking/previously_linked.png" alt="Previously linked vocabulary matches">
 </div>
-<div class="title">Figure 59. Matched vocabulary terms that are already linked</div>
+<div class="title">Figure 62. Matched vocabulary terms that are already linked</div>
 </div>
 <div class="paragraph">
 <p>To mark which terms you wish to link, select which relation you wish to use from the select in the expanded section and check the box next to the pair. The options are “Exact Match”, “Close Match”, or “Related”.  Use the following as a reference for what each type of relation means:</p>
@@ -1728,7 +1809,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/success.png" alt="Successful linking" width="50%">
 </div>
-<div class="title">Figure 60. A success message linking vocabularies</div>
+<div class="title">Figure 63. A success message linking vocabularies</div>
 </div>
 </div>
 <div class="sect2">
@@ -1743,7 +1824,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shacl_overview.png" alt="Shapes Overview Page">
 </div>
-<div class="title">Figure 61. Shapes Editor Overview page</div>
+<div class="title">Figure 64. Shapes Editor Overview page</div>
 </div>
 <div class="paragraph">
 <p>The main Shapes Editor page includes a new action-bar where all the action buttons for a shapes graph record are located. From the action-bar, users can create, filter, and open different shapes graph records, branches, and tags.</p>
@@ -1752,7 +1833,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/action_bar.png" alt="action bar" width="100%">
 </div>
-<div class="title">Figure 62. Shapes Editor Action Bar</div>
+<div class="title">Figure 65. Shapes Editor Action Bar</div>
 </div>
 <div class="paragraph">
 <p>When opening a shapes graph record, the editor will load the previous branch and/or commit you were viewing. If you have not previously opened the record or in the case that the branch you were viewing no longer exists, the editor will load the HEAD commit of the shape graph&#8217;s master branch. For an explanation of commits and branches, see the section on <a href="#shapes_graph_versioning">Shapes Graph Versioning</a>.</p>
@@ -1764,7 +1845,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shapes_details.png" alt="shapes details">
 </div>
-<div class="title">Figure 63. Shapes Record Details</div>
+<div class="title">Figure 66. Shapes Record Details</div>
 </div>
 <div class="sect3">
 <h4 id="creating_new_shapes_graphs">Creating New Shapes Graphs</h4>
@@ -1775,7 +1856,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/create_shapes.png" alt="create shapes" width="50%">
 </div>
-<div class="title">Figure 64. New Shapes Record Form</div>
+<div class="title">Figure 67. New Shapes Record Form</div>
 </div>
 <div class="paragraph">
 <p>The Title field populates the <code>dcterms:title</code> annotations of the new shapes graph record and the Description field populates the <code>dcterms:description</code> annotations of the new shapes graph record. The keywords field will attach the entered values as keywords to the new record.</p>
@@ -1829,7 +1910,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/versioning_dropdown.png" alt="versioning dropdown" width="40%">
 </div>
-<div class="title">Figure 65. Branches Dropdown</div>
+<div class="title">Figure 68. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1847,7 +1928,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/changes_page.png" alt="changes page">
 </div>
-<div class="title">Figure 66. Changes Page</div>
+<div class="title">Figure 69. Changes Page</div>
 </div>
 <div class="paragraph">
 <p>The Changes Page displays all the uncommitted changes and the commit history graph for the opened shapes graph record. This provides users the ability to upload changes without committing and allows a user the opportunity to review proposed changes to a shapes graph in a more digestible manner before adding any commits to the commit history. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the shape graph, resetting to the state of the current commit.</p>
@@ -1865,7 +1946,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 67. Merge Branches button</div>
+<div class="title">Figure 70. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether or not you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -1874,7 +1955,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_page.png" alt="merge page">
 </div>
-<div class="title">Figure 68. Merge View</div>
+<div class="title">Figure 71. Merge View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1889,7 +1970,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/upload_changes_button.png" alt="upload changes button" width="10%">
 </div>
-<div class="title">Figure 69. Upload Changes button</div>
+<div class="title">Figure 72. Upload Changes button</div>
 </div>
 </div>
 </div>
@@ -1897,7 +1978,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="sect2">
 <h3 id="merge-requests-guide">Merge Requests</h3>
 <div class="paragraph">
-<p>The Mobi Merge Requests module allows users to create long lived representations of a merge between two branches of a record to provide checks and balances before including changes into the object the record represents. Each merge request is connected to a particular Record in the local Catalog and specifies a "source" and "target" branch. The request represents what would occur if the "source" branch were merged into the "target" branch.</p>
+<p>The Mobi Merge Requests module allows users to create long lived representations of a merge between two branches of a record to provide checks and balances before including changes into the object the record represents. Each merge request is connected to a particular Versioned RDF Record in the local Catalog and specifies a "source" and "target" branch. The request represents what would occur if the "source" branch were merged into the "target" branch.</p>
 </div>
 <div class="paragraph">
 <p>To reach the Merge Requests module, click on the link in the left menu.</p>
@@ -1906,22 +1987,22 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
 </div>
-<div class="title">Figure 70. The Merge Requests module</div>
+<div class="title">Figure 73. The Merge Requests module</div>
 </div>
 <div class="paragraph">
-<p>The initial view of the Merge Requests module displays a list of all currently open merge requests within the application sorted by created date descending along with a button to <a href="#create_a_merge_request">create a merge request</a>. To view all accepted merge requests, change the selected filter next to the search bar. Each merge request in the list displays a preview of the request metadata and a button to delete the request. Clicking on a merge request in the list opens a display of the individual merge request.</p>
+<p>The initial view of the Merge Requests module displays a list of all currently open merge requests. The list can be searched and sorted by the issued date and title, and the list can also be filtered by multiple parameters: the request status, the creator, the assignees, or the attached Record. The search bar, sort options, and the <a href="#create_a_merge_request">create a merge request</a> button are in the page&#8217;s top right corner. Each merge request in the list displays a preview of the request metadata, an icon representing the type of Versioned RDF Record associated with the request, and a button to delete the request. Clicking on a merge request in the list displays the individual merge request.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/merge-requests/individual_request.png" alt="individual request">
 </div>
-<div class="title">Figure 71. An Individual Merge Request</div>
+<div class="title">Figure 74. An Individual Merge Request</div>
 </div>
 <div class="paragraph">
 <p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, and a button to go back to the main list of merge requests.</p>
 </div>
 <div class="paragraph">
-<p>The discussion tab allows users to comment and discuss the changes within the request to facilitates more collaboration in a distributed environment. You can create new comments to start new threads of communication or you can reply to existing comments and further the discussion. Comments can only be removed by the creators of the comment.</p>
+<p>The discussion tab allows users to comment and discuss the changes within the request to facilitate more collaboration in a distributed environment. You can create new comments to start new threads of communication or you can reply to existing comments and further the discussion. Comments can only be removed by the creators of the comment.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1945,12 +2026,12 @@ The comment editor supports GitHub flavored Markdown which you can find more inf
 <div class="content">
 <img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
 </div>
-<div class="title">Figure 72. Editing Merge Request Metadata</div>
+<div class="title">Figure 75. Editing Merge Request Metadata</div>
 </div>
 <div class="sect3">
 <h4 id="create_a_merge_request">Create a Merge Request</h4>
 <div class="paragraph">
-<p>To create a merge request, click <b class="button">New Request</b> on the initial view of the Merge Requests module. Creating a merge request is a three part process. The first step is to select which record in Mobi that request should be attached to by searching within the displayed paginated list of records. Once you have selected a record, click <b class="button">Next</b>.</p>
+<p>To create a merge request, click <b class="button">New Request</b> on the initial view of the Merge Requests module. Creating a merge request is a three part process. The first step is to select which record in Mobi to attached to the new request by searching within the displayed paginated list of records. All types of Versioned RDF Records are supported by the tool. This currently includes: Ontology Records, Shapes Graph Records, Mapping Records, and Workflow Records. Once you have selected a record, click <b class="button">Next</b>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1968,7 +2049,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step1.png" alt="step1">
 </div>
-<div class="title">Figure 73. Creating a Merge Request: Step 1 - Select a Record</div>
+<div class="title">Figure 76. Creating a Merge Request: Step 1 - Select a Record</div>
 </div>
 <div class="paragraph">
 <p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click <b class="button">Next</b>.</p>
@@ -1977,7 +2058,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step2.png" alt="step2">
 </div>
-<div class="title">Figure 74. Creating a Merge Request: Step 2 - Select Branches</div>
+<div class="title">Figure 77. Creating a Merge Request: Step 2 - Select Branches</div>
 </div>
 <div class="paragraph">
 <p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click <b class="button">Submit</b> and a new Merge Request with your selections will be created.</p>
@@ -1986,22 +2067,22 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step3.png" alt="step3">
 </div>
-<div class="title">Figure 75. Creating a Merge Request: Step 3 - Request Metadata</div>
+<div class="title">Figure 78. Creating a Merge Request: Step 3 - Request Metadata</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="accepting_a_merge_request">Accepting a Merge Request</h4>
 <div class="paragraph">
-<p>A merge request can be accepted only if there are no conflicts between the source and target branch and the user accepting the request has permission to modify the target (see <a href="#Ontology Managing">[Ontology Managing]</a>). If there are conflicts between the source and target branches, a notification will be shown with the option to resolve the conflicts from within the Merge Requests module. Resolving conflicts behaves the same as in the <a href="#merging_branches">Ontology Editor</a>, except that the resolution will become a commit on the source branch.</p>
+<p>A merge request can be accepted only if there are no conflicts between the source and target branch and the user accepting the request has permission to modify the target (see <a href="#Ontology Managing">[Ontology Managing]</a> though the same permission handling applies to other types of Versioned RDF Records as well). If there are conflicts between the source and target branches, a notification will be shown with the option to resolve the conflicts from within the Merge Requests module. Resolving conflicts behaves the same as in the <a href="#merging_branches">Ontology Editor</a>, except that the resolution will become a commit on the source branch.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/merge-requests/conflicts.png" alt="conflicts">
 </div>
-<div class="title">Figure 76. Conflicts on a Merge Request</div>
+<div class="title">Figure 79. Conflicts on a Merge Request</div>
 </div>
 <div class="paragraph">
-<p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance.</p>
+<p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance and governance tracking.</p>
 </div>
 </div>
 </div>
@@ -2017,13 +2098,13 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
 </div>
-<div class="title">Figure 77. Mapping Tool button</div>
+<div class="title">Figure 80. Mapping Tool button</div>
 </div>
 <div class="paragraph">
 <p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
 </div>
 <div class="paragraph">
-<p>The initial view of the Mapping Tool shows the Mapping Select Page which contains a searchable paginated list of the mappings within the local Mobi repository. Each mapping is displayed with a portion of its metadata along with a dropdown menu with buttons to preview, <a href="#duplicating_a_mapping">duplicating</a>, <a href="#editing_a_mapping">editing</a>, <a href="#running_a_mapping">running</a>, download, and delete the mapping. The Preview button will bring up a display of the classes and properties it maps along with the title of the source ontology. If the selected source ontology no longer exists in the local Mobi repository, you will not be able to edit, run, or duplicate the mapping. Click <b class="button">New Mapping</b> to <a href="#creating_a_mapping">create</a>.</p>
+<p>The initial view of the Mapping Tool shows the Mapping Select Page which contains a searchable paginated list of the mappings within the local Mobi repository. Each mapping is displayed with a portion of its metadata along with a dropdown menu with buttons to preview, <a href="#duplicating_a_mapping">duplicate</a>, <a href="#editing_a_mapping">edit</a>, <a href="#running_a_mapping">run</a>, download, and delete the mapping. The Preview button will bring up a display of the mapped classes and properties along with the title of the source ontology. If the selected source ontology no longer exists in the local Mobi repository, you will not be able to edit, run, or duplicate the mapping. Click <b class="button">New Mapping</b> to <a href="#creating_a_mapping">create</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="creating_a_mapping">Creating a Mapping</h4>
@@ -2034,7 +2115,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
 </div>
-<div class="title">Figure 78. Create Mapping Overlay</div>
+<div class="title">Figure 81. Create Mapping Overlay</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking <b class="button">Continue</b> brings you to the Edit Mapping Page.</p>
@@ -2043,10 +2124,10 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
 </div>
-<div class="title">Figure 79. File Upload Page for Creating a Mapping</div>
+<div class="title">Figure 82. File Upload Page for Creating a Mapping</div>
 </div>
 <div class="paragraph">
-<p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with each class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
+<p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with the class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2064,7 +2145,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
 </div>
-<div class="title">Figure 80. Edit Mapping Page Edit Tab</div>
+<div class="title">Figure 83. Edit Mapping Page Edit Tab</div>
 </div>
 <div class="paragraph">
 <p>When creating a mapping, the first thing you will see is the <a href="#source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking <b class="button">Add Class</b> opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
@@ -2076,25 +2157,41 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <p>The <span class="underline">Properties</span> section lists all the property mappings for the selected class mapping with a button to add a new property mapping. Object property mappings are displayed with the name of the class mapping whose instances will be used as the range of the property. Data or Annotation property mappings are displayed with the name of the column whose values will be used as the range of the property, a preview of what the first value would be, the datatype for the mapped value, and the language for the values if specified. Each property mapping also provides a button to edit and delete. If a data property mapping is invalid, meaning it points to a column that does not exist in the delimited file, it must be handled before the mapping can be saved or run.</p>
 </div>
 <div class="paragraph">
-<p>Clicking <b class="button">Add Property</b> opens an overlay where you can select a property in the imports closure of the source ontology that has not been deprecated or a common annotation. The common annotations that can be mapped are <code>rdfs:label</code>, <code>rdfs:comment</code>, <code>dcterms:title</code>, and <code>dcterms:description</code>. If you select a data property or an annotation, a select box appears containing identifiers for each column in the delimited file along with a preview of the first value of the selected column. At this point, you can also specify a manual datatype override which the mapper will use over the range of the property if set. You can also specify the language for the property values by selecting <code>rdfs:langString</code> as the type and then a language select will appear underneath. If you select an object property, a select box appears containing the titles of all class mappings of the appropriate type along with an option to create a new class mapping.</p>
+<p>Clicking <b class="button">Add Property</b> opens an overlay where you can select a property in the imports closure of the source ontology that has not been deprecated or a common annotation. The common annotations that can be mapped are <code>rdfs:label</code>, <code>rdfs:comment</code>, <code>dcterms:title</code>, and <code>dcterms:description</code>. The list of properties from the imports closure is determined by searching for properties that meet the following criteria.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The class (or a superclass) of the class mapping is a direct <code>rdfs:domain</code> on the property (or one of the property&#8217;s super properties)</p>
+</li>
+<li>
+<p>The class (or a superclass) of the class mapping is enumerated in a <code>owl:unionOf</code> restriction on the <code>rdfs:domain</code> of the property (or one of the property&#8217;s super properties)</p>
+</li>
+<li>
+<p>The property and none of its super properties has no <code>rdfs:domain</code> defined</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you select a data property or an annotation, a select box appears containing identifiers for each column in the delimited file along with a preview of the first value of the selected column. At this point, you can also specify a manual datatype override which the mapper will use over the range of the property if set. If a property has more than one <code>rdfs:range</code> value, the datatype override box will be displayed and you must select which type the generated values must be. You can also specify the language for the property values by selecting <code>rdfs:langString</code> as the type and then a language select will appear underneath. If you select an object property, a select box appears containing the titles of all class mappings of the appropriate types along with an option to create a new class mapping.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
-<div class="title">Figure 81. Create Property Mapping Overlay for a Data/Annotation Property</div>
+<div class="title">Figure 84. Create Property Mapping Overlay for a Data/Annotation Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
 </div>
-<div class="title">Figure 82. Create Property Mapping Overlay for an Object Property</div>
+<div class="title">Figure 85. Create Property Mapping Overlay for an Object Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
 </div>
-<div class="title">Figure 83. Language Selection for a Data/Annotation Property</div>
+<div class="title">Figure 86. Language Selection for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>Clicking the main <b class="button">Save</b> button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the <b class="button">Save</b> button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking <b class="button">Submit</b> in an overlay will save the current state of the mapping and run it.</p>
@@ -2127,25 +2224,25 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/save_run_options.png" alt="save run options">
 </div>
-<div class="title">Figure 84. Options for saving and running a mapping</div>
+<div class="title">Figure 87. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="editing_a_mapping">Editing a Mapping</h4>
 <div class="paragraph">
-<p>To edit a mapping, click <b class="button">Edit</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to use as a standard for the mapping. If the delimited file you choose does not contain enough columns for the mapping’s data property mappings, a list of the missing columns are displayed under the file select. However, you can still edit the mapping as long as those data properties are fixed. From there, editing the mapping works the same as <a href="#creating_a_mapping">creating a mapping</a>.</p>
+<p>To edit a mapping, click <b class="button">Edit</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to use as a standard for the mapping. If the delimited file you choose does not contain enough columns for the mapping&#8217;s data property mappings, a list of the missing columns are displayed under the file select. However, you can still edit the mapping as long as those data properties are fixed. From there, editing the mapping works the same as <a href="#creating_a_mapping">creating a mapping</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
 </div>
-<div class="title">Figure 85. File Upload Page for Editing a Mapping</div>
+<div class="title">Figure 88. File Upload Page for Editing a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
 </div>
-<div class="title">Figure 86. File Upload Page for Editing a Mapping with missing columns</div>
+<div class="title">Figure 89. File Upload Page for Editing a Mapping with missing columns</div>
 </div>
 </div>
 <div class="sect3">
@@ -2175,13 +2272,13 @@ To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
 </div>
-<div class="title">Figure 87. File Upload Page for Running a Mapping</div>
+<div class="title">Figure 90. File Upload Page for Running a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
 </div>
-<div class="title">Figure 88. File Upload Page for Running a Mapping with missing columns</div>
+<div class="title">Figure 91. File Upload Page for Running a Mapping with missing columns</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Run Mapping</b> will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
@@ -2202,7 +2299,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/run_options.png" alt="run options">
 </div>
-<div class="title">Figure 89. Options for saving and running a mapping</div>
+<div class="title">Figure 92. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2216,10 +2313,29 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
 </div>
-<div class="title">Figure 90. Source Ontology Overlay</div>
+<div class="title">Figure 93. Source Ontology Overlay</div>
 </div>
 <div class="paragraph">
-<p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. Class mappings and property mappings are incompatible if the class or property that is referenced no longer exists in the imports closure of the source ontology. Property mappings are also incompatible if they are a different type or have a different range.</p>
+<p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. The criteria for incompatible mappings are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The referenced class or property no longer exists in the imports closure of the source ontology</p>
+</li>
+<li>
+<p>The referenced class or property is now deprecated</p>
+</li>
+<li>
+<p>The referenced property has changed from a datatype property to an object property or vice versa</p>
+</li>
+<li>
+<p>The range of the referenced object property has changed such that the target class mapping is no longer valid</p>
+</li>
+<li>
+<p>The class of the range class mapping of the referenced object property is incompatible</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -2276,7 +2392,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
 </div>
-<div class="title">Figure 91. The Datasets Manager</div>
+<div class="title">Figure 94. The Datasets Manager</div>
 </div>
 <div class="paragraph">
 <p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The <b class="button">Upload Data</b> button allows you to upload graph data to the dataset from a file.</p>
@@ -2290,7 +2406,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
 </div>
-<div class="title">Figure 92. New Dataset Overlay</div>
+<div class="title">Figure 95. New Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository</span> field allows you to specity the identifier of the repository registered within AVM where the dataset and all associated named graphs will be stored. The default option is the system repository and should be used in most cases. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create the dataset with the provided metadata.</p>
@@ -2314,7 +2430,7 @@ The ability to create new repositories in Mobi is coming soon!
 <div class="content">
 <img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
 </div>
-<div class="title">Figure 93. Edit Dataset Overlay</div>
+<div class="title">Figure 96. Edit Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking <b class="button">Update</b> will update the dataset record with the new metadata.</p>
@@ -2369,7 +2485,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
 </div>
-<div class="title">Figure 94. The Discover Page</div>
+<div class="title">Figure 97. The Discover Page</div>
 </div>
 <div class="sect3">
 <h4 id="explore">Explore</h4>
@@ -2380,7 +2496,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_classes.png" alt="explore classes">
 </div>
-<div class="title">Figure 95. Explore tab with classes</div>
+<div class="title">Figure 98. Explore tab with classes</div>
 </div>
 <div class="paragraph">
 <p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking <b class="button">Explore Data</b> opens the instances view.</p>
@@ -2389,7 +2505,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_instances.png" alt="explore instances">
 </div>
-<div class="title">Figure 96. Explore Tab with instances</div>
+<div class="title">Figure 99. Explore Tab with instances</div>
 </div>
 <div class="paragraph">
 <p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking <b class="button">View <em>Class Name</em></b> opens the single instance view. Clicking <b class="button">Create <em>Class Name</em></b> opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
@@ -2398,7 +2514,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance.png" alt="explore single instance">
 </div>
-<div class="title">Figure 97. Explore Tab with single instance</div>
+<div class="title">Figure 100. Explore Tab with single instance</div>
 </div>
 <div class="paragraph">
 <p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking <b class="button">Edit</b> opens the single instance editor.</p>
@@ -2407,7 +2523,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
 </div>
-<div class="title">Figure 98. Explore Tab with single instance editor</div>
+<div class="title">Figure 101. Explore Tab with single instance editor</div>
 </div>
 <div class="paragraph">
 <p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#edit_iri_overlay">Edit IRI Overlay</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the <kbd>ENTER</kbd> key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
@@ -2437,7 +2553,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
 </div>
-<div class="title">Figure 99. Query tab</div>
+<div class="title">Figure 102. Query tab</div>
 </div>
 <div class="paragraph">
 <p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a <b class="button">Submit</b> button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking <b class="button">Submit</b> executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
@@ -2449,7 +2565,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_construct_query.png" alt="discover construct query">
 </div>
-<div class="title">Figure 100. Construct query</div>
+<div class="title">Figure 103. Construct query</div>
 </div>
 </div>
 </div>
@@ -2465,7 +2581,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 101. My Account link</div>
+<div class="title">Figure 104. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -2495,7 +2611,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 102. Profile Tab</div>
+<div class="title">Figure 105. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2507,7 +2623,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 103. Groups Tab</div>
+<div class="title">Figure 106. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2519,7 +2635,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 104. Password Tab</div>
+<div class="title">Figure 107. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2531,7 +2647,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 105. Preferences Tab</div>
+<div class="title">Figure 108. Preferences Tab</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2559,7 +2675,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 106. Administration link</div>
+<div class="title">Figure 109. Administration link</div>
 </div>
 <div class="paragraph">
 <p>There are four main tabs of the Administration page:</p>
@@ -2580,6 +2696,9 @@ Default preferences coming soon!
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>If you are running a Mobi Enterprise installation, there is a fifth tab for <a href="#licensing">Licensing</a> available as well.</p>
+</div>
 <div class="sect3">
 <h4 id="users">Users</h4>
 <div class="paragraph">
@@ -2589,7 +2708,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 107. Users Tab</div>
+<div class="title">Figure 110. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -2619,7 +2738,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 108. Create User Overlay</div>
+<div class="title">Figure 111. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2631,7 +2750,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 109. Groups Tab</div>
+<div class="title">Figure 112. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -2649,7 +2768,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 110. Create group overlay</div>
+<div class="title">Figure 113. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2673,7 +2792,7 @@ More permissions coming soon!
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 111. Permissions Tab</div>
+<div class="title">Figure 114. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2705,6 +2824,19 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/application_settings_tab.png" alt="application settings tab">
 </div>
+<div class="title">Figure 115. Application Settings Tab</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="licensing">Licensing (ENTERPRISE)</h4>
+<div class="paragraph">
+<p>The Licensing tab available in enterprise installations allows you to view and update the current license of the server (see the section on <a href="#server-id-license-file">adding a license file</a>). The values displayed are pulled from the current license file contents on the installation server and any updates made will be persisted back to that file. The page displays the unique Server ID of the installation, the Owner of the license, the expiration date of the license, the policy attached to the license metadata (older licenses may not have this set), and the full license string that is stored within the license file. To update the license contents, click the pencil button shown on hover, replace the field contents with the complete new license string, and click the save icon.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/licensing_tab.png" alt="licensing tab">
+</div>
+<div class="title">Figure 116. Application Settings Tab</div>
 </div>
 </div>
 </div>
@@ -3561,13 +3693,13 @@ backgroundColor=white</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 112. Mobi Login Screen with a banner</div>
+<div class="title">Figure 117. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 113. Mobi Home Page with a banner</div>
+<div class="title">Figure 118. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -3835,6 +3967,18 @@ OPTIONS
 <div class="sectionbody">
 <div class="paragraph">
 <p>Mobi is made available as a compressed distribution package available <a href="https://mobi.inovexcorp.com/features/#download">here</a>. Deployment consists of unpacking this distribution to an appropriate location on the filesystem and modifying included configuration files. Mobi comes pre-bundled with an open-source, file-based RDF database. By default, all data, logs, and configurations will be stored in the extracted file location.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Mobi Enterprise will not start without a valid license file. You will need to collect your server ID from the installation and provide it to the sales or support team so they can create your unique license file.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="mobi_requirements">Mobi Requirements</h3>
@@ -4104,6 +4248,44 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./bin/stop</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="server-id-license-file">Server ID and License File (ENTERPRISE)</h5>
+<div class="paragraph">
+<p>If you are running Mobi Enterprise, then the installation will have stopped immediately after attempting to start in the previous section. This is because Mobi Enterprise requires a valid license file to run. Follow the steps below to collect your Mobi Server ID and get a add a license file to your installation.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Running the <code>bin/start</code> script from the previous section will output your unique server ID to the <code>$MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file. Open that file and copy the Server ID from the <code>serverId</code> property. It should look like the following.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serverId = "{UUID}"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Send this Server ID to the sales or support team so they can generate you a valid license file.</p>
+</li>
+<li>
+<p>Copy the provided license file to the <code>$MOBI_HOME/etc/</code> directory.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp license.lic $MOBI_HOME/etc/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now you can start the Mobi installation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd latest
+./bin/start</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -4546,7 +4728,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 114. XML Example File</div>
+<div class="title">Figure 119. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -4557,7 +4739,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Ouput File">
 </div>
-<div class="title">Figure 115. XML Example Ontology File</div>
+<div class="title">Figure 120. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -4567,7 +4749,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 116. XML Example Data File</div>
+<div class="title">Figure 121. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4580,7 +4762,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 117. JSON Example File</div>
+<div class="title">Figure 122. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -4590,7 +4772,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 118. JSON Example Ontology File</div>
+<div class="title">Figure 123. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -4600,7 +4782,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 119. JSON Example Data File</div>
+<div class="title">Figure 124. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4613,7 +4795,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 120. CSV Example File</div>
+<div class="title">Figure 125. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -4623,7 +4805,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Ouput File">
 </div>
-<div class="title">Figure 121. CSV Example Ontology File</div>
+<div class="title">Figure 126. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -4633,7 +4815,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 122. CSV Example Data File</div>
+<div class="title">Figure 127. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -5192,12 +5374,16 @@ GRAPH example:ng {
 <td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2000/01/rdf-schema#</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shacl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sh:</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/shacl#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>setting:</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/setting#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wf:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">https://mobi.solutions/ontologies/form#</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:</code></p></td>
@@ -5245,9 +5431,9 @@ From here on, when referring to either <code>setting:Preference</code> or <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="settingformfield">setting:FormField</h4>
+<h4 id="wfformfield">wf:FormField</h4>
 <div class="paragraph">
-<p>Instances of the <code>setting:FormField</code> class are used by Mobi settings to specify the form input that is used by the UI to select setting values.</p>
+<p>Instances of the <code>wf:FormField</code> class are used by Mobi settings to specify the form input that is used by the UI to select setting values.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5257,9 +5443,9 @@ From here on, when referring to either <code>setting:Preference</code> or <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="settingusesformfield">setting:usesFormField</h4>
+<h4 id="wfusesformfield">wf:usesFormField</h4>
 <div class="paragraph">
-<p>The <code>setting:usesFormField</code> property is used by the required <code>sh:PropertyShape</code> of a Mobi Setting to designate the type of form input that will be used by the frontend to accept setting values for that specific setting.</p>
+<p>The <code>wf:usesFormField</code> property is used by the required <code>sh:PropertyShape</code> of a Mobi Setting to designate the type of form input that will be used by the frontend to accept setting values for that specific setting.</p>
 </div>
 </div>
 <div class="sect3">
@@ -5272,19 +5458,19 @@ From here on, when referring to either <code>setting:Preference</code> or <code>
 <div class="ulist">
 <ul>
 <li>
-<p>Must be of type <code>owl:Class</code> as well as type <code>shacl:Nodeshape</code></p>
+<p>Must be of type <code>owl:Class</code> as well as type <code>sh:Nodeshape</code>.</p>
 </li>
 <li>
-<p>Must have an <code>rdfs:subClassOf</code> of <code>setting:Preference</code> or <code>setting:ApplicationSetting</code></p>
+<p>Must have an <code>rdfs:subClassOf</code> of <code>setting:Preference</code> or <code>setting:ApplicationSetting</code>.</p>
 </li>
 <li>
-<p>Must have an <code>shacl:description</code> that will be shown above the Setting in the UI</p>
+<p>Must have an <code>sh:description</code> that will be shown above the Setting in the UI.</p>
 </li>
 <li>
-<p>Must have a <code>shacl:property</code> that points to the required SHACL PropertyShape for the setting</p>
+<p>Must have a <code>sh:property</code> that points to the required SHACL PropertyShape for the setting.</p>
 </li>
 <li>
-<p>Must have a <code>setting:inGroup</code> of an IRI in the system of type <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code></p>
+<p>Must have a <code>setting:inGroup</code> of an IRI in the system of type <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code>.</p>
 </li>
 </ul>
 </div>
@@ -5294,13 +5480,13 @@ From here on, when referring to either <code>setting:Preference</code> or <code>
 <div class="ulist">
 <ul>
 <li>
-<p>Must be of type <code>shacl:PropertyShape</code></p>
+<p>Must be of type <code>sh:PropertyShape</code>.</p>
 </li>
 <li>
-<p>Must have an <code>shacl:path</code> of <code>setting:hasDataValue</code></p>
+<p>Must have an <code>sh:path</code> of <code>setting:hasDataValue</code>.</p>
 </li>
 <li>
-<p>A <code>shacl:datatype</code> of one of the following values</p>
+<p>A <code>sh:datatype</code> of one of the following values:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -5316,26 +5502,35 @@ From here on, when referring to either <code>setting:Preference</code> or <code>
 </div>
 </li>
 <li>
-<p>Must have a <code>setting:usesFormField</code> that has one of the following values that will affect which type of form input is shown in the UI for this preference</p>
+<p>Must have a <code>wf:usesFormField</code> that has one of the following values that will affect which type of form input is shown in the UI for this preference:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>setting:ToggleInput</code></p>
+<p><code>wf:ToggleInput</code></p>
 </li>
 <li>
-<p><code>setting:TextInput</code></p>
+<p><code>wf:TextInput</code></p>
+</li>
+<li>
+<p><code>wf:CheckboxInput</code></p>
+</li>
+<li>
+<p><code>wf:RadioInput</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
+<p>If using a <code>wf:CheckboxInput</code> or <code>wf:RadioInput</code>, must have a <code>sh:in</code> with a list of the valid values for the input.</p>
+</li>
+<li>
 <p>Must have a <code>setting:inGroup</code> of a valid instance of the <code>setting:PreferenceGroup</code> or <code>setting:ApplicationSettingGroup</code> class.</p>
 </li>
 <li>
-<p>May have optional <code>shacl:minCount</code> and/or <code>shacl:maxCount</code> fields denoting the min and max number of possible values for the preference which will be enforced in the UI.</p>
+<p>May have optional <code>sh:minCount</code> and/or <code>sh:maxCount</code> fields denoting the min and max number of possible values for the preference which will be enforced in the UI.</p>
 </li>
 <li>
-<p>May have optional <code>shacl:pattern</code> which may have a regex that controls what values may be used and will be enforced by the UI.</p>
+<p>May have optional <code>sh:pattern</code> which may have a regex that controls what values may be used and will be enforced by the UI.</p>
 </li>
 </ul>
 </div>
@@ -5399,6 +5594,7 @@ Predefined Property Groups coming soon
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
 @prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
+@prefix wf: &lt;https://mobi.solutions/ontologies/form#&gt;.
 @prefix : &lt;http://mobi.com/ontologies/test#&gt;.
 @base &lt;http://mobi.com/ontologies/test&gt;.
 
@@ -5413,7 +5609,7 @@ Predefined Property Groups coming soon
     sh:datatype xsd:boolean;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    setting:usesFormField setting:ToggleInput .
+    wf:usesFormField wf:ToggleInput .
 
 :MyTestPreferenceGroup a setting:PreferenceGroup ;
     rdfs:label "My Test Preference Group"@en .</code></pre>
@@ -5432,7 +5628,7 @@ Predefined Property Groups coming soon
 <p>Create Setting RDF to model the new Setting</p>
 </li>
 <li>
-<p>Generate Java classes from the Setting RDF using the Mobi rdf-orm-plugin</p>
+<p>Generate Java classes from the Setting RDF using the Mobi <code>rdf-orm-plugin</code></p>
 </li>
 <li>
 <p>Load the Setting RDF into the Mobi Repository</p>
@@ -5441,15 +5637,15 @@ Predefined Property Groups coming soon
 </div>
 <div class="sect3">
 <h4 id="generate_java_classes_from_setting_rdf">Generate Java Classes from Setting RDF</h4>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Create an RDF file with your custom setting definition in the <code>src/main/resources</code> directory of a Mobi bundle. This can be any valid RDF format, such a Turtle. A list of supported RDF formats can be found under <a href="#uploading_existing_ontologies">Uploading Existing Ontologies</a>.</p>
 </li>
 <li>
-<p>Create a <code>pom.xml`</code> based on the following example pom in the appropriate Mobi bundle.</p>
+<p>Create a <code>pom.xml</code> based on the following example XML in the appropriate Mobi bundle. Replace <code>${mobi.version}</code> with the appropriate version of Mobi the bundle will be deployed to.</p>
 </li>
-</ul>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5458,26 +5654,26 @@ Predefined Property Groups coming soon
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
     &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
     &lt;groupId&gt;org.example&lt;/groupId&gt;
-    &lt;artifactId&gt;Testsf&lt;/artifactId&gt;
+    &lt;artifactId&gt;test&lt;/artifactId&gt;
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
     &lt;name&gt;${project.groupId}.${project.artifactId}&lt;/name&gt;
     &lt;packaging&gt;bundle&lt;/packaging&gt;
     &lt;parent&gt;
         &lt;artifactId&gt;mobi-parent&lt;/artifactId&gt;
         &lt;groupId&gt;com.mobi&lt;/groupId&gt;
-        &lt;version&gt;1.20.0&lt;/version&gt;
+        &lt;version&gt;${mobi.version}&lt;/version&gt;
         &lt;relativePath&gt;&lt;/relativePath&gt;
     &lt;/parent&gt;
     &lt;dependencies&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;com.mobi&lt;/groupId&gt;
             &lt;artifactId&gt;rdf.orm&lt;/artifactId&gt;
-            &lt;version&gt;1.20.0&lt;/version&gt;
+            &lt;version&gt;${mobi.version}&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;com.mobi&lt;/groupId&gt;
             &lt;artifactId&gt;setting.api&lt;/artifactId&gt;
-            &lt;version&gt;1.20.0&lt;/version&gt;
+            &lt;version&gt;${mobi.version}&lt;/version&gt;
         &lt;/dependency&gt;
     &lt;/dependencies&gt;
     &lt;repositories&gt;
@@ -5513,7 +5709,7 @@ Predefined Property Groups coming soon
             &lt;plugin&gt;
                 &lt;groupId&gt;com.mobi.orm&lt;/groupId&gt;
                 &lt;artifactId&gt;rdf-orm-maven-plugin&lt;/artifactId&gt;
-                &lt;version&gt;1.20.0&lt;/version&gt;
+                &lt;version&gt;${mobi.version}&lt;/version&gt;
                 &lt;executions&gt;
                     &lt;execution&gt;
                         &lt;id&gt;generateOrmSources&lt;/id&gt;
@@ -5526,17 +5722,17 @@ Predefined Property Groups coming soon
                             &lt;generates&gt;
                                 &lt;ontology&gt;
                                     &lt;ontologyFile&gt;${project.basedir}/src/main/resources/myontologyfile.ttl&lt;/ontologyFile&gt;
-                                    &lt;outputPackage&gt;my.bundle.ontologies&lt;/outputPackage&gt;
+                                    &lt;outputPackage&gt;org.example.test.ontologies&lt;/outputPackage&gt;
                                     &lt;ontologyName&gt;MyOntologyName&lt;/ontologyName&gt;
                                 &lt;/ontology&gt;
                             &lt;/generates&gt;
                             &lt;references&gt;
                                 &lt;ontology&gt;
-                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/rdf.orm.ontologies/1.20.0/rdf.orm.ontologies-1.20.0.jar!shacl.ttl&lt;/ontologyFile&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/rdf.orm.ontologies/${mobi.version}/rdf.orm.ontologies-${mobi.version}.jar!shacl.ttl&lt;/ontologyFile&gt;
                                     &lt;outputPackage&gt;com.mobi.ontologies.shacl&lt;/outputPackage&gt;
                                 &lt;/ontology&gt;
                                 &lt;ontology&gt;
-                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/setting.api/1.20.0/setting.api-1.20.0.jar!setting.ttl&lt;/ontologyFile&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/setting.api/${mobi.version}/setting.api-${mobi.version}.jar!setting.ttl&lt;/ontologyFile&gt;
                                     &lt;outputPackage&gt;com.mobi.setting.api.ontologies&lt;/outputPackage&gt;
                                     &lt;ontologyName&gt;Setting&lt;/ontologyName&gt;
                                 &lt;/ontology&gt;
@@ -5567,22 +5763,23 @@ Predefined Property Groups coming soon
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
 @prefix setting: &lt;http://mobi.com/ontologies/preference#&gt;.
+@prefix wf: &lt;https://mobi.solutions/ontologies/form#&gt;.
 @prefix : &lt;http://mobi.com/ontologies/test#&gt;.
 @base &lt;http://mobi.com/ontologies/test&gt;.
 
 &lt;http://mobi.com/setting-management&gt; {
 :MyBooleanPreference a owl:Class, sh:NodeShape;
-rdfs:subClassOf setting:Preference;
-sh:description "What value do you want for your Boolean Preference?" ;
-sh:property :MyBooleanPreferencePropertyShape;
-setting:inGroup :MyTestPreferenceGroup .
+    rdfs:subClassOf setting:Preference;
+    sh:description "What value do you want for your Boolean Preference?";
+    sh:property :MyBooleanPreferencePropertyShape;
+    setting:inGroup :MyTestPreferenceGroup.
 
     :MyBooleanPreferencePropertyShape a sh:PropertyShape;
         sh:path setting:hasDataValue;
         sh:datatype xsd:boolean;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        setting:usesFormField setting:ToggleInput .
+        wf:usesFormField wf:ToggleInput .
 
     :MyTestPreferenceGroup a setting:PreferenceGroup ;
         rdfs:label "My Test Preference Group"@en .
@@ -6219,11 +6416,1650 @@ permissions for a given Record</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="workflows">Appendix E: Workflows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi supports the automation of actions and activities within the platform using an extensible framework called Workflows. Workflows are defined using a simple RDF schema and managed via the Mobi Catalog via Versioned RDF Records. The framework is built to support different underlying software, or Workflow Engines, to run the actual Workflows while keeping the RDF definition agnostic of the chosen engine.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+A UI module for creating and maintaining Workflows is coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A Workflow is made up of a central set of configurations, an optional trigger to initiate the Workflow without manual interaction, and a set of actions to be executed. This appendix will describe the RDF structure of a Workflow and the "out-of-the-box" supported functionality as well as how to extend the framework with additional types of triggers and actions.</p>
+</div>
+<div class="sect2">
+<h3 id="workflow_rdf_definition">Workflow RDF Definition</h3>
+<div class="paragraph">
+<p>All workflows managed by the system must follow the same general structure that is validated via SHACL constraints. All extended types of actions and triggers comes with their own SHACL definitions to ensure compliance as well.</p>
+</div>
+<div class="paragraph">
+<p>The following prefixes will be used in the rest of this appendix. All RDF examples will be provided in either <a href="https://www.w3.org/TR/turtle/">Turtle</a> or JSON-LD format:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Prefix</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Namespace</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2002/07/owl#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prov:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/prov#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rdfs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2000/01/rdf-schema#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shacl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/shacl#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2001/XMLSchema#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>um:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/user/management#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vfs:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/documents#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.solutions/ontologies/workflows#</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>A complete example of a compliant Workflow RDF definition is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix w: &lt;http://mobi.solutions/ontologies/workflows#&gt;.
+@prefix : &lt;http://mobi.solutions/test#&gt;.
+@base &lt;http://mobi.solutions/test&gt;.
+
+:WorkflowA a w:Workflow ;
+    w:hasAction :TestActionA .
+
+:TestActionA a w:TestAction, w:Action ;
+    w:testMessage "This is a test." .</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wworkflow">w:Workflow</h4>
+<div class="paragraph">
+<p>Every Workflow RDF definition must have exactly one <code>w:Workflow</code> object with a unique subject IRI. This object is used to hold top level metadata about the Workflow&#8217;s execution as well as links to the optional <code>w:Trigger</code> used to initiate executions and the list of <code>w:Action</code> definitions to conduct when the Workflow executes. It can have a max of 1 value for <code>w:hasTrigger</code> and must have a minimum of one value for <code>w:hasAction</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wtrigger">w:Trigger</h4>
+<div class="paragraph">
+<p>Instances of <code>w:Trigger</code> specify configuration details for how an execution of the Workflow can be initiated by the system outside of manual user interaction. If a workflow execution should be initiated based off an event occurring elsewhere in the platform, there is a specific subtype of <code>w:Trigger</code> called <code>w:EventTrigger</code> which provides additional functionality in the Java OSGi services side. This is one of the areas of extensibility of the framework where custom subtypes of <code>w:Trigger</code> can be loaded into the platform and made available to the core framework.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is recommended that each <code>w:Trigger</code> instance be defined with all super types as well.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The "out of the box" supported <code>w:Trigger</code> types are described below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More Trigger types coming soon!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Trigger Type</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Fields</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:ScheduledTrigger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables triggering of a Workflow on a scheduled basis based on a configured cron expression.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:cron</code> - A string containing a valid <a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html">Quartz compatible expression</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:CommitToBranchTrigger</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables triggering of a Workflow when a Commit is made on a configured Branch on a configured Versioned RDF Record. Subtype of <code>w:EventTrigger</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:watchesRecord</code> - The IRI of the Versioned RDF Record to watch for events from<br>
+<code>w:watchesBranch</code> - The IRI of the Branch to watch for new Commits to be added</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="waction">w:Action</h4>
+<div class="paragraph">
+<p>Instances of <code>w:Action</code> describe what a Workflow should do when it is executed. These are sequentially executed in tern. Logs are stored from the execution of each individual action in addition to the overall workflow logs. This is one of the areas of extensibility of the framework where custom subtypes of <code>w:Action</code> can be loaded into the platform and made available to the core framework. The exact implementation of each of these Actions is dependant on the chosen underlying Workflow Engine.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is recommended that each <code>w:Action</code> instance be defined with all super types as well.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The "out of the box" supported <code>w:Action</code> types are described below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More Action types are coming soon!
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Action Type</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Fields</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:TestAction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Outputs a static log message to the workflow execution logs. Meant for testing Workflow executions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w:testMessage</code> - A static string to be output in the workflow execution logs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="workflows_system_configuration">Workflows System Configuration</h3>
+<div class="paragraph">
+<p>The Workflows framework supports different implementations of the underlying engine used for actual execution of the defined Workflows. The chosen engine does not affect the Workflow RDF definition, but does affect how the execution logs will be structured. Workflows can thus be defined and managed by the platform, but execution of the Workflow requires a Workflow Engine to be installed and configured. By default, Mobi supports <a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a> as the Workflow Engine of choice.</p>
+</div>
+<div class="sect3">
+<h4 id="dagu_workflow_engine">Dagu Workflow Engine</h4>
+<div class="paragraph">
+<p><a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a> is a free and open source workflow engine that defines executions as Directed Acrylic Graphs (or DAGs) and supports interaction with Mobi via REST. To utilize Dagu in executing Workflows, you will need to install the software, and then configure Mobi&#8217;s connection to Dagu.</p>
+</div>
+<div class="paragraph">
+<p>Install Dagu according to their <a href="https://dagu.readthedocs.io/en/latest/installation.html">installation instructions</a>. Mobi supports interaction with Dagu both locally (i.e., on the same server) or remotely. The following table describes the recommended Dagu installation method based on the OS of the system Mobi is installed on and the desired Dagu location.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The default port of 8080 for Dagu is fine when installing Dagu locally on the Mobi server.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Mobi OS</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Dagu Location</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Supported Dagu Installation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unix</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Local</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brew, Bash script, Binary, Docker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unix</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remote</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brew, Bash script, Binary, Docker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Local</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remote</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brew, Bash script, Binary, Docker</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>To configure Mobi&#8217;s connection to Dagu, create a file called <code>com.mobi.workflows.impl.dagu.DaguWorkflowEngine.cfg</code> with the following properties and put it in the <code>$MOBI_HOME/etc/</code> directory.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Property Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Required</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>daguHost</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The full URL of the Dagu server (ex: <a href="http://localhost:8080" class="bare">http://localhost:8080</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>logDir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The full path to the directory where the Dagu generated Workflow execution logs should be stored. This is recommended to be somewhere in the <code>$MOBI_HOME/data</code> directory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>local</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the Dagu installation is local to the Mobi server or remote.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pollInterval</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of seconds between calls to Dagu to check on a Workflow&#8217;s execution status.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pollTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of seconds before Mobi will treat the workflow execution as failed if it has not completed.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">300</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example file would look like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">daguHost=http://localhost:8080
+logDir=${karaf.home}/data/virtualFiles/dagu
+local=true
+pollInterval=10
+pollTimeout=300</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating_and_using_workflows">Creating and Using Workflows</h3>
+<div class="paragraph">
+<p>Complete management and execution of Workflows can be accomplished through Mobi&#8217;s extensive REST API suite. Common flows when maintaining Workflows are described below. The described REST requests can be performed via a REST API client like <a href="https://www.postman.com/">Postman</a> or using the provided <a href="#Swagger Documentation">Accessing Swagger REST API Documentation</a> from the installation. If you are using a separate software like Postman, be sure to authenticate either using Basic Auth or the dedicated POST <code>$MOBI_HOST/mobirest/session</code> endpoint, passing the <code>username</code> and <code>password</code> as query parameters.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+A UI module for creating and maintaining Workflows is coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="create_a_workflow">Create a Workflow</h4>
+<div class="paragraph">
+<p>To create a workflow, follow the steps below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a file containing the RDF definition of your Workflow. An example file is shown below.</p>
+<div class="listingblock">
+<div class="title">workflow.ttl</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix w: &lt;http://mobi.solutions/ontologies/workflows#&gt;.
+@prefix : &lt;http://mobi.solutions/test#&gt;.
+@base &lt;http://mobi.solutions/test&gt;.
+
+:WorkflowA a w:Workflow ;
+    w:hasAction :TestActionA .
+
+:TestActionA a w:TestAction, w:Action ;
+    w:testMessage "This is a test." .</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Send a POST REST request to <code>$MOBI_HOST/mobirest/workflows</code> with the following form data contents. The response from this endpoint will include the IRI of the newly created Workflow Record, which will the unique identifier for your Workflow needed for any further requests.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Parameter</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>file</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The required binary RDF file containing your workflow definition</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The required title for the Workflow Record you are creating</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional description for the Workflow Record you are creating</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>markdown</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional markdown overview of the Workflow Record you are creating</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>keywords</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional list of keywords to associate with the Workflow Record you are creating</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Once created, the Workflow Record will appear in the Catalog UI in the application so record metadata and permissions can be adjusted from there.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="activatedeactivate_a_workflow">Activate/Deactivate a Workflow</h4>
+<div class="paragraph">
+<p>When a Workflow Record is first created, it is inactive to start, meaning that even manually initiating an execution will not succeed. This is done to ensure that all required edits to the Workflow can be performed without fear of it executing before the changes are complete. To activate a Workflow and enable it to run, you will need to update the Workflow Record metadata following the steps below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will return the full JSON-LD of your Workflow&#8217;s metadata, which should look like below.</p>
+<div class="listingblock">
+<div class="title">Example Workflow Record JSON-LD</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Thing",
+            "http://mobi.solutions/ontologies/workflows#WorkflowRecord",
+            "http://mobi.com/ontologies/catalog#VersionedRecord",
+            "http://mobi.com/ontologies/catalog#VersionedRDFRecord",
+            "http://mobi.com/ontologies/catalog#Record"
+        ],
+        "http://mobi.com/ontologies/catalog#branch": [
+            {
+                "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
+            }
+        ],
+        "http://mobi.com/ontologies/catalog#catalog": [
+            {
+                "@id": "http://mobi.com/catalog-local"
+            }
+        ],
+        "http://mobi.com/ontologies/catalog#masterBranch": [
+            {
+                "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
+            }
+        ],
+        "http://mobi.solutions/ontologies/workflows#active": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+                "@value": "true"
+            }
+        ],
+        "http://mobi.solutions/ontologies/workflows#latestActivity": [
+            {
+                "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a"
+            }
+        ],
+        "http://mobi.solutions/ontologies/workflows#workflowIRI": [
+            {
+                "@id": "http://test.com/workflows-example#WorkflowB"
+            }
+        ],
+        "http://purl.org/dc/terms/issued": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                "@value": "2023-09-15T08:55:30.954519-04:00"
+            }
+        ],
+        "http://purl.org/dc/terms/modified": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                "@value": "2023-09-15T08:57:28.801002-04:00"
+            }
+        ],
+        "http://purl.org/dc/terms/publisher": [
+            {
+                "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+            }
+        ],
+        "http://purl.org/dc/terms/title": [
+            {
+                "@value": "Workflow B"
+            }
+        ]
+    }
+]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the returned JSON-LD. Send a PUT REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. The paste the Record JSON-LD into the body of the request and change the <code>@value</code> value of <code>http://mobi.solutions/ontologies/workflows#active</code> to the desired activation state (<code>true</code> for active and <code>false</code> for inactive).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update_a_workflow_definition">Update a Workflow Definition</h4>
+<div class="paragraph">
+<p>Workflows are managed by Workflow Records, which are types of Versioned RDF Records. This means that all changes to the definition of the Workflow must go through the standard graph-versioning flow in order for the changes to be recognized by the system. Thus, to update the definition of a Workflow, you will need to follow steps similar to those below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a GET REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/branches/master</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will return the full JSON-LD of the MASTER Branch of the Workflow Record. We will need both the IRI of the Branch and the IRI of the head Commit for the subsequent requests. An example response is shown below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a",
+    "@type": [
+        "http://www.w3.org/2002/07/owl#Thing",
+        "http://mobi.com/ontologies/catalog#Branch"
+    ],
+    "http://mobi.com/ontologies/catalog#head": [
+        {
+            "@id": "https://mobi.com/commits#d78190647e4e9b2e8555c036349fbf8928417c50"
+        }
+    ],
+    "http://purl.org/dc/terms/description": [
+        {
+            "@value": "The master branch."
+        }
+    ],
+    "http://purl.org/dc/terms/issued": [
+        {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-09-15T08:55:30.955812-04:00"
+        }
+    ],
+    "http://purl.org/dc/terms/modified": [
+        {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-09-15T08:55:31.003336-04:00"
+        }
+    ],
+    "http://purl.org/dc/terms/publisher": [
+        {
+            "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+        }
+    ],
+    "http://purl.org/dc/terms/title": [
+        {
+            "@value": "MASTER"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make a GET REST request to <code>$MOBI_HOST/mobirest/commits/ENCODED_COMMIT_IRI/resource</code> where <code>ENCODED_COMMIT_IRI</code> is replaced by the URL encoded version of the IRI of the head Commit retrieved from the last call. This will return the compiled RDF of the latest/current version of the Workflow definition. An example response is below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "@id": "http://test.com/workflows-example#WorkflowB",
+        "@type": [
+            "http://mobi.solutions/ontologies/workflows#Workflow"
+        ],
+        "http://mobi.solutions/ontologies/workflows#hasAction": [
+            {
+                "@id": "http://test.com/workflows-example#WorkflowBAction"
+            }
+        ]
+    },
+    {
+        "@id": "http://test.com/workflows-example#WorkflowBAction",
+        "@type": [
+            "http://mobi.solutions/ontologies/workflows#Action",
+            "http://mobi.solutions/ontologies/workflows#TestAction"
+        ],
+        "http://mobi.solutions/ontologies/workflows#testMessage": [
+            {
+                "@value": "This is a test from Workflow B"
+            }
+        ]
+    }
+]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make a PUT REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/in-progress-commit</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record with the following form data contents. If successful, the endpoint will return an empty 200 response.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Parameter</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>additions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The new desired Workflow definition in JSON-LD RDF format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deletions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The contents of the previous compiled resource call with the full JSON-LD of the current Workflow RDF definition</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Make a POST REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/branches/ENCODED_BRANCH_IRI/commits</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ENCODED_BRANCH_IRI</code> is replaced the URL encoded version of the IRI of the MASTER Branch of the Workflow Record. This will commit the changes you uploaded in the previous call to the system and make the uploaded RDF the latest/current Workflow definition, updating the associated trigger service if appropriate. The response from this endpoint will be the IRI of the newly created Commit.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="manually_initiate_a_workflow_execution">Manually Initiate a Workflow Execution</h4>
+<div class="paragraph">
+<p>Workflows can be configured with automated triggers that will initiate executions, but a Workflow can always be triggered manually following the steps below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Send a POST REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will initiate an execution of the target Workflow in an asynchronous process and provide the IRI of the generated <code>w:WorkflowExecutionActivity</code> in the response to be used in subsequent calls to fetch the status and logs.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="retrieving_workflow_provenance_and_logs">Retrieving Workflow Provenance and Logs</h4>
+<div class="paragraph">
+<p>As Workflows are executed, provenance is tracked for each execution along with logs with more details about the complete workflow execution and each individual action. The RDF structure of this data can be summarized in the image below, with the key classes described underneath.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
+</div>
+<div class="title">Figure 128. RDF Structure of Workflow Provenance</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>w:WorkflowExecutionActivity</code> - Every execution of a Workflow is tracked with an instance of this class. They will have properties for the start/end time, the IRI of the User who initiated the execution, a boolean indicating the success of the execution, a relationship to the <code>vfs:BinaryFile</code> for the log file generated by the execution, and a relationship back to the Workflow Record in question.</p>
+</li>
+<li>
+<p><code>vfs:BinaryFile</code> - Used to represent a file stored on a file system that the platform has access to.</p>
+</li>
+<li>
+<p><code>w:ActionExecution</code> - Represents an individual execution of a single <code>w:Action</code> within a Workflow. They will have properties for the start/end time, a boolean indicating the success of the action, and a relationship to the <code>vfs:BinaryFile</code> for the log file generated by the individual <code>w:Action</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This can all be retrieved via various REST endpoints provided by the platform. Common scenarios are described below with the appropriate REST endpoints.</p>
+</div>
+<div class="sect4">
+<h5 id="retrieve_workflow_activity">Retrieve Workflow Activity</h5>
+<div class="paragraph">
+<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions/ACTIVITY_ID</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ACTIVITY_ID</code> is either replaced by <code>latest</code>, to get the latest execution details, or the URL encoded version of the IRI of a specific <code>w:WorkflowExecutionActivity</code>. The response will be the full JSON-LD of the <code>w:WorkflowExecutionActivity</code> requested. An example response is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example Workflow Activity JSON-LD</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a",
+    "@type": [
+        "http://www.w3.org/ns/prov#Activity",
+        "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
+        "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "http://mobi.solutions/ontologies/workflows#logs": [
+        {
+            "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.14:42:49.158.cbfd8c5c.log"
+        }
+    ],
+    "http://mobi.solutions/ontologies/workflows#succeeded": [
+        {
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+            "@value": "true"
+        }
+    ],
+    "http://www.w3.org/ns/prov#endedAtTime": [
+        {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-09-15T14:42:59.176399-04:00"
+        }
+    ],
+    "http://www.w3.org/ns/prov#startedAtTime": [
+        {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2023-09-15T14:42:48.974369-04:00"
+        }
+    ],
+    "http://www.w3.org/ns/prov#used": [
+        {
+            "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
+        }
+    ],
+    "http://www.w3.org/ns/prov#wasAssociatedWith": [
+        {
+            "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="retrieve_all_workflow_activities">Retrieve All Workflow Activities</h5>
+<div class="paragraph">
+<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/provenance</code> and provide the URL encoded version of the IRI of the target Workflow Record as the value of the <code>entity</code> query parameters. The response will be a JSON object containing a key called <code>activities</code>, which will include a sorted array of all the provenance activities about the target Workflow Record, including all <code>w:WorkflowExecutionActivity</code> and the initial creation activity. An example response is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example Full Workflow Activities</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "activities": [
+        {
+            "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a",
+            "@type": [
+                "http://www.w3.org/ns/prov#Activity",
+                "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
+                "http://www.w3.org/2002/07/owl#Thing"
+            ],
+            "http://mobi.solutions/ontologies/workflows#logs": [
+                {
+                    "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.14:42:49.158.cbfd8c5c.log"
+                }
+            ],
+            "http://mobi.solutions/ontologies/workflows#succeeded": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+                    "@value": "true"
+                }
+            ],
+            "http://www.w3.org/ns/prov#endedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T14:42:59.176399-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#startedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T14:42:48.974369-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#used": [
+                {
+                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
+                }
+            ],
+            "http://www.w3.org/ns/prov#wasAssociatedWith": [
+                {
+                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+                }
+            ]
+        },
+        {
+            "@id": "http://mobi.com/activities/86c8db82-066d-4531-8526-2f6c39556567",
+            "@type": [
+                "http://www.w3.org/ns/prov#Activity",
+                "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
+                "http://www.w3.org/2002/07/owl#Thing"
+            ],
+            "http://mobi.solutions/ontologies/workflows#logs": [
+                {
+                    "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.13:19:53.994.67ebcf55.log"
+                }
+            ],
+            "http://mobi.solutions/ontologies/workflows#succeeded": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+                    "@value": "true"
+                }
+            ],
+            "http://www.w3.org/ns/prov#endedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T09:20:04.09355-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#startedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T09:19:53.86763-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#used": [
+                {
+                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
+                }
+            ],
+            "http://www.w3.org/ns/prov#wasAssociatedWith": [
+                {
+                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+                }
+            ]
+        },
+        {
+            "@id": "http://mobi.com/activities/f2df2cde-7eec-4fb7-aa22-4e4ec6cabfd8",
+            "@type": [
+                "http://www.w3.org/ns/prov#Activity",
+                "http://mobi.com/ontologies/prov#CreateActivity",
+                "http://www.w3.org/2002/07/owl#Thing"
+            ],
+            "http://www.w3.org/ns/prov#atLocation": [
+                {
+                    "@value": "9832af45-7488-3b7c-928e-0618de48a3e3"
+                }
+            ],
+            "http://www.w3.org/ns/prov#endedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T08:55:31.854546-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#generated": [
+                {
+                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
+                }
+            ],
+            "http://www.w3.org/ns/prov#startedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T08:55:30.942226-04:00"
+                }
+            ],
+            "http://www.w3.org/ns/prov#wasAssociatedWith": [
+                {
+                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+                }
+            ]
+        }
+    ],
+    "entities": [
+        {
+            "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc",
+            "@type": [
+                "http://www.w3.org/2002/07/owl#Thing",
+                "http://www.w3.org/ns/prov#Entity",
+                "http://mobi.solutions/ontologies/workflows#WorkflowRecord",
+                "http://mobi.com/ontologies/catalog#VersionedRecord",
+                "http://mobi.com/ontologies/catalog#VersionedRDFRecord",
+                "http://mobi.com/ontologies/catalog#Record"
+            ],
+            "http://mobi.com/ontologies/catalog#branch": [
+                {
+                    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
+                }
+            ],
+            "http://mobi.com/ontologies/catalog#catalog": [
+                {
+                    "@id": "http://mobi.com/catalog-local"
+                }
+            ],
+            "http://mobi.com/ontologies/catalog#masterBranch": [
+                {
+                    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
+                }
+            ],
+            "http://mobi.solutions/ontologies/workflows#active": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+                    "@value": "true"
+                }
+            ],
+            "http://mobi.solutions/ontologies/workflows#latestActivity": [
+                {
+                    "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a"
+                }
+            ],
+            "http://mobi.solutions/ontologies/workflows#workflowIRI": [
+                {
+                    "@id": "http://test.com/workflows-example#WorkflowB"
+                }
+            ],
+            "http://purl.org/dc/terms/issued": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T08:55:30.954519-04:00"
+                }
+            ],
+            "http://purl.org/dc/terms/modified": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T08:57:28.801002-04:00"
+                }
+            ],
+            "http://purl.org/dc/terms/publisher": [
+                {
+                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
+                }
+            ],
+            "http://purl.org/dc/terms/title": [
+                {
+                    "@value": "Workflow B"
+                }
+            ],
+            "http://www.w3.org/ns/prov#atLocation": [
+                {
+                    "@value": "system"
+                }
+            ],
+            "http://www.w3.org/ns/prov#generatedAtTime": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2023-09-15T08:55:31.853903-04:00"
+                }
+            ]
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="retrieve_specific_workflow_activity_logs">Retrieve Specific Workflow Activity Logs</h5>
+<div class="paragraph">
+<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions/ENCODED_ACTIVITY_IRI/logs</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ENCODED_ACTIVITY_IRI</code> is replaced by the URL encoded version of the IRI of a specific <code>w:WorkflowExecutionActivity</code>. The response will be the plain text contents of the logs file generated by the overall Workflow execution in question. An example response is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example Workflow Execution Logs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">2023/09/15 14:42:49 server is running at "/tmp/@dagu-98d3918e09cf5791eee7ad55c6ac67cadbab484e-4c93e3159bb697634261e271087fbeb1.sock"
+2023/09/15 14:42:49 start running: http://test.com/workflows-example#WorkflowBAction
+2023/09/15 14:42:49 http://test.com/workflows-example#WorkflowBAction finished
+2023/09/15 14:42:49 schedule finished.
+2023/09/15 14:42:49
+Summary -&gt;
++--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+| REQUESTID                            | NAME                                     | STARTED AT          | FINISHED AT         |   STATUS | PARAMS                                                                                                                                                                                                 | ERROR |
++--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+| cbfd8c5c-56e3-4861-aefc-f3b833336322 | 98d3918e09cf5791eee7ad55c6ac67cadbab484e | 2023-09-15 14:42:49 | 2023-09-15 14:42:49 | finished | "https://localhost:8443" "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb2JpLmNvbVwvIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2OTQ4ODk3NjksInNjb3BlIjoic2VsZiBcLyoifQ.aEpjpZZMW5mucXQSQ35fU7_aVxj5_yj-hU_fH7mbFZQ" |       |
++--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Details -&gt;
++---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+
+| # | STEP                                              | STARTED AT          | FINISHED AT         | STATUS   | COMMAND                             | ERROR |
++---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+
+| 1 | http://test.com/workflows-example#WorkflowBAction | 2023-09-15 14:42:49 | 2023-09-15 14:42:49 | finished | echo This is a test from Workflow B |       |
++---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extending_workflows">Extending Workflows</h3>
+<div class="paragraph">
+<p>The Workflows feature is designed to be extensible, in that customers and third parties can develop their own types of triggers and actions specific to their enterprise needs. This can be accomplished with only some RDF and a few code changes, but does require a coding background.</p>
+</div>
+<div class="sect3">
+<h4 id="triggeraction_rdf_definition">Trigger/Action RDF Definition</h4>
+<div class="paragraph">
+<p>In order to introduce a new <code>w:Trigger</code> or <code>w:Action</code> to Mobi, a developer must create an RDF representation of the Trigger/Action they want to add. The Workflows framework uses <a href="https://www.w3.org/TR/shacl/">SHACL</a> to define constraints on the attributes of the new Triggers/Actions and to describe how these attributes should be set in the UI.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+A UI module for creating and maintaining Workflows is coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A full example of a <code>w:Trigger</code> and <code>w:Action</code> definition is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix w: &lt;http://mobi.solutions/ontologies/workflows#&gt;.
+@prefix wf: &lt;https://mobi.solutions/ontologies/form#&gt;.
+@prefix : &lt;http://mobi.solutions/example/extension#&gt;.
+@base &lt;http://mobi.solutions/example/extension&gt;.
+
+:NewTrigger a owl:Class, sh:NodeShape, rdfs:Class ;
+    rdfs:subClassOf w:Trigger ;
+    rdfs:label "New Trigger"@en ;
+    rdfs:comment "A specification for a new type of Trigger."@en ;
+    sh:property :newTriggerPropertyShape .
+
+:newTriggerPropertyShape a sh:PropertyShape ;
+    wf:usesFormField wf:TextInput ;
+    sh:path :newTriggerAttribute ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+:newTriggerAttribute a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "new trigger attribute"@en ;
+    rdfs:comment "An attribute for a new trigger type."@en ;
+    rdfs:domain :NewTrigger ;
+    rdfs:range xsd:string .
+
+:NewAction a owl:Class, sh:NodeShape, rdfs:Class ;
+    rdfs:subClassOf w:Action ;
+    rdfs:label "New Action"@en ;
+    rdfs:comment "A new extended action."@en ;
+    sh:property :newActionPropertyShape.
+
+:newActionPropertyShape a sh:PropertyShape ;
+    wf:usesFormField wf:TextInput ;
+    sh:path :newActionAttribute ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+:newActionAttribute a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "new action attribute"@en ;
+    rdfs:comment "An attribute for the new action."@en ;
+    rdfs:domain :NewAction ;
+    rdfs:range xsd:string .</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Every new <code>w:Trigger</code> or <code>w:Action</code> definition must also be defined as a <code>sh:NodeShape</code> and a <code>rdfs:Class</code></p>
+</li>
+<li>
+<p>Every new <code>w:Trigger</code> or <code>w:Action</code> must have a <code>rdfs:subClassOf</code> predicate with the appropriate parent type</p>
+</li>
+<li>
+<p>Any configurable properties desired for the new <code>w:Trigger</code> or <code>w:Action</code> must be defined as new <code>owl:DatatypeProperty</code> or <code>owl:ObjectProperty</code> instances</p>
+</li>
+<li>
+<p>Every new <code>w:Trigger</code> or <code>w:Action</code> must have associated SHACL Property Shapes defined that describe any desired constraints on the values of the configurable properties</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Must have a <code>sh:path</code> of one of the configurable properties of the new <code>w:Trigger</code> or <code>w:Action</code></p>
+</li>
+<li>
+<p>Must have a <code>wf:usesFormField</code> predicate with one of the following values: <code>wf:TextInput</code>, <code>wf:ToggleInput</code>, <code>wf:CheckboxInput</code>, or <code>wf:RadioInput</code></p>
+</li>
+<li>
+<p>Can have any of the available <a href="https://www.w3.org/TR/shacl/#core-components">SHACL Constraint predicates</a> to describe what is a valid value for the property</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding_custom_triggersactions">Adding Custom Triggers/Actions</h4>
+<div class="paragraph">
+<p>In order to load a new Trigger or Action into Mobi, there are four steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create RDF to model the new Trigger/Action inside of a new OSGi bundle.</p>
+</li>
+<li>
+<p>Generate Java classes from the Trigger/Action RDF using the Mobi <code>rdf-orm-plugin</code>.</p>
+</li>
+<li>
+<p>For new Triggers, develop <code>TriggerService</code> and <code>TriggerHandler</code> implementations. For new Actions, develop an <code>ActionHandler</code> implementation.</p>
+</li>
+<li>
+<p>Deploy your OSGi bundle to the platform.</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="create_workflow_extension_bundle_with_rdf">Create Workflow Extension Bundle with RDF</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure your development environment matches the requirements in the <a href="#developer_guide">Developer Guide</a>. Create a Maven project somewhere on your system.</p>
+</li>
+<li>
+<p>Include RDF file containing your new Trigger/Action definition in the <code>src/main/resources</code> directory of your project.</p>
+</li>
+<li>
+<p>Adapt the <code>pom.xml</code> of your Maven project to look like the contents below. Each change is called out with explanations.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;!-- Replace this with your desired group ID, artifact ID, and version numbers --&gt;
+    &lt;groupId&gt;my.plugin&lt;/groupId&gt;
+    &lt;artifactId&gt;root&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;my.plugin&lt;/name&gt;
+
+    &lt;!-- Select the Maven bundle plug-in, maven-bundle-plugin, to perform packaging for this project. This setting on its own, however, has no effect until you explicitly add the bundle plug-in to your POM. --&gt;
+    &lt;packaging&gt;bundle&lt;/packaging&gt;
+    &lt;!-- Sets the full bundle name--&gt;
+    &lt;name&gt;${project.groupId}.${project.artifactId}&lt;/name&gt;
+
+    &lt;!-- These properties are utilized to set defaults and centralize dependency versions --&gt;
+    &lt;properties&gt;
+        &lt;!-- Declares UTF-8 as the default encoding --&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;!-- Sets a timestamp format for the builds (this will be important for your bundle versions) --&gt;
+        &lt;maven.build.timestamp.format&gt;yyyyMMddHHmm&lt;/maven.build.timestamp.format&gt;
+        &lt;!-- Set the default versions for the plugin you will be using to generate bundles and important dependencies --&gt;
+        &lt;maven-bundle-plugin.version&gt;5.1.4&lt;/maven-bundle-plugin.version&gt;
+
+        &lt;osgi-service-jaxrs.version&gt;1.0.0&lt;/osgi-service-jaxrs.version&gt;
+        &lt;osgi-service-cm.version&gt;1.6.1&lt;/osgi-service-cm.version&gt;
+        &lt;osgi-service-component&gt;1.5.0&lt;/osgi-service-component&gt;
+        &lt;osgi-component-annotations.version&gt;1.5.0&lt;/osgi-component-annotations.version&gt;
+        &lt;osgi-metatype-annotations.version&gt;1.4.1&lt;/osgi-metatype-annotations.version&gt;
+        &lt;osgi-versioning.version&gt;1.1.2&lt;/osgi-versioning.version&gt;
+        &lt;osgi.version&gt;8.0.0&lt;/osgi.version&gt;
+        &lt;rdf4j.version&gt;4.2.3&lt;/rdf4j.version&gt;
+
+        &lt;!-- Replace this with the version of Mobi you are deploying into. NOTE: Workflows are only supported from version 2.4 onwards --&gt;
+        &lt;mobi.version&gt;2.4.0&lt;/mobi.version&gt;
+    &lt;/properties&gt;
+
+    &lt;!-- Establishes the dependencies for several libraries you will need to compile our code and complete the project --&gt;
+    &lt;dependencies&gt;
+        &lt;!-- These dependencies are needed for compiling the OSGi services --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mobi&lt;/groupId&gt;
+            &lt;artifactId&gt;rdf.orm&lt;/artifactId&gt;
+            &lt;version&gt;${mobi.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mobi&lt;/groupId&gt;
+            &lt;artifactId&gt;workflows.api&lt;/artifactId&gt;
+            &lt;version&gt;${mobi.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Include  --&gt;
+        &lt;!-- OSGi and other dependencies we'll need when defining the services --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;osgi.core&lt;/artifactId&gt;
+            &lt;version&gt;${osgi.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;org.osgi.service.cm&lt;/artifactId&gt;
+            &lt;version&gt;${osgi-service-cm.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;org.osgi.service.component&lt;/artifactId&gt;
+            &lt;version&gt;${osgi-service-component}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;osgi.annotation&lt;/artifactId&gt;
+            &lt;version&gt;${osgi.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;org.osgi.service.metatype.annotations&lt;/artifactId&gt;
+            &lt;version&gt;${osgi-metatype-annotations.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;org.osgi.service.component.annotations&lt;/artifactId&gt;
+            &lt;version&gt;${osgi-component-annotations.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.osgi&lt;/groupId&gt;
+            &lt;artifactId&gt;org.osgi.annotation.versioning&lt;/artifactId&gt;
+            &lt;version&gt;${osgi-versioning.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.eclipse.rdf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;rdf4j-model-api&lt;/artifactId&gt;
+            &lt;version&gt;${rdf4j.version}&lt;/version&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;com.github.jsonld-java&lt;/groupId&gt;
+                    &lt;artifactId&gt;*&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;!-- Defines some defaults for plugins you will be using for building the bundle --&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.felix&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${maven-bundle-plugin.version}&lt;/version&gt;
+                &lt;extensions&gt;true&lt;/extensions&gt;
+                &lt;configuration&gt;
+                    &lt;obrRepository&gt;NONE&lt;/obrRepository&gt;
+                    &lt;!-- Instructs the plugin how to generate our MANIFEST.MF file for the OSGi bundle --&gt;
+                    &lt;instructions&gt;
+                        &lt;Bundle-SymbolicName&gt;${project.groupId}.${project.artifactId}&lt;/Bundle-SymbolicName&gt;
+                        &lt;Bundle-Name&gt;My Plugin&lt;/Bundle-Name&gt; &lt;!-- Replace this with your desired bundle name --&gt;
+                        &lt;!-- Ensures the OSGi bundle version is our Maven project version --&gt;
+                        &lt;Bundle-Version&gt;${project.version}&lt;/Bundle-Version&gt;
+                        &lt;Export-Package&gt;
+                            &lt;!-- Include this line if you are creating a new trigger --&gt;
+                            com.mobi.workflows.api.trigger;provide:=true,
+                            &lt;!-- Include this line if you are creating a new action --&gt;
+                            com.mobi.workflows.api.action;provide:=true,
+                        &lt;/Export-Package&gt;
+                        &lt;_metatype&gt;*&lt;/_metatype&gt;
+                        &lt;build&gt;${maven.build.timestamp}&lt;/build&gt;
+                        &lt;!-- Substitutes the build timestamp for SNAPSHOT in the bundle version. Will be important for later steps --&gt;
+                        &lt;_snapshot&gt;${maven.build.timestamp}&lt;/_snapshot&gt;
+                    &lt;/instructions&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;!-- Tells the Maven project to compile with the appropriate Java version --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;release&gt;17&lt;/release&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;!-- This plugin is needed to generate the Java classes for your new Trigger/Action --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;com.mobi.orm&lt;/groupId&gt;
+                &lt;artifactId&gt;rdf-orm-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${mobi.version}&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generateOrmSources&lt;/id&gt;
+                        &lt;phase&gt;generate-sources&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-orm&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;inherited&gt;false&lt;/inherited&gt;
+                        &lt;configuration&gt;
+                            &lt;generates&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;${project.basedir}/src/main/resources/filename.ttl&lt;/ontologyFile&gt; &lt;!-- Replace this with your file name --&gt;
+                                    &lt;outputPackage&gt;my.plugin.workflows&lt;/outputPackage&gt; &lt;!-- Replace this with your desired output package name --&gt;
+                                    &lt;ontologyName&gt;MyOntologyName&lt;/ontologyName&gt; &lt;!-- Replace this with your desired name for the definitions in your file. Will be used as the top level class name --&gt;
+                                &lt;/ontology&gt;
+                            &lt;/generates&gt;
+                            &lt;references&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/rdf.orm.ontologies/${mobi.version}/rdf.orm.ontologies-${mobi.version}.jar!prov-o.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.ontologies.provo&lt;/outputPackage&gt;
+                                &lt;/ontology&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/prov.api/${mobi.version}/prov.api-${mobi.version}.jar!mobi_prov.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.prov.api.ontologies.mobiprov&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;MobiProv&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/vfs/${mobi.version}/vfs-${mobi.version}.jar!mobi_documents.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.vfs.ontologies.documents&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;Documents&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/catalog.api/${mobi.version}/catalog.api-${mobi.version}.jar!mcat.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.catalog.api.ontologies.mcat&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;MCAT&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                                &lt;ontology&gt;
+                                    &lt;ontologyFile&gt;jar:http://nexus.inovexcorp.com/nexus/repository/public-maven-prod-group/com/mobi/workflows.api/${mobi.version}/workflows.api-${mobi.version}.jar!workflows.ttl&lt;/ontologyFile&gt;
+                                    &lt;outputPackage&gt;com.mobi.workflows.api.ontologies.workflows&lt;/outputPackage&gt;
+                                    &lt;ontologyName&gt;Workflows&lt;/ontologyName&gt;
+                                &lt;/ontology&gt;
+                            &lt;/references&gt;
+                            &lt;outputLocation&gt;${project.basedir}/src/main/java&lt;/outputLocation&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+    &lt;!-- Repositories that your project will be pulling the Mobi dependencies from --&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;inovex&lt;/id&gt;
+            &lt;url&gt;https://nexus.inovexcorp.com/nexus/content/repositories/public-maven-prod-group/&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+    &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;inovex&lt;/id&gt;
+            &lt;url&gt;https://nexus.inovexcorp.com/nexus/content/repositories/public-maven-prod-group/&lt;/url&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+&lt;/project&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="create_workflow_extension_services">Create Workflow Extension Services</h5>
+<div class="paragraph">
+<p>In the Maven project you created in the last section, you will need to implement different services depending on whether you are adding a Trigger or an Action. Each option is described in the sections below.</p>
+</div>
+<div class="sect5">
+<h6 id="trigger_extension_services">Trigger Extension Services</h6>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a class that implements the <code>com.mobi.workflows.api.trigger.TriggerHandler</code> generic interface and extends the <code>com.mobi.workflows.api.trigger.BaseTriggerHandler</code> generic abstract class.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Include a static String field with your desired name for the service in the OSGi runtime. The class should look like this to start.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package my.plugin.trigger;
+
+import com.mobi.workflows.api.trigger.BaseTriggerHandler;
+import com.mobi.workflows.api.trigger.TriggerHandler;
+import my.plugin.workflows.NewTrigger;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+
+public class NewTriggerHandler extends BaseTriggerHandler&lt;NewTrigger&gt; implements TriggerHandler&lt;NewTrigger&gt; {
+    static final String NAME = "my.plugin.trigger.NewTriggerHandler";
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the following annotation to the class definition to instruct the runtime that this is an OSGi service.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component(
+    immediate = true,
+    name = NewTriggerHandler.NAME,
+    service = { TriggerHandler.class, NewTriggerHandler.class })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a protected method to activate the service that calls a method from the abstract class.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Activate
+protected void start() {
+    startService();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>setPid</code> method from the <code>BaseTriggerHandler</code> class that returns your service&#8217;s name.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void setPid() {
+    this.pid = NewTriggerService.NAME;
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>getTypeIRI</code> method from the <code>TriggerHandler</code> interface that returns the IRI of your Trigger definition.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public String getTypeIRI() {
+    return NewTrigger.TYPE;
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>getShaclDefinition</code> method from the <code>TriggerHandler</code> interface that returns an <code>InputStream</code> of the contents of the RDF file in the bundle. You should be able to just replace the name of the file in the code snippet below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public InputStream getShaclDefinition() {
+    return NewTriggerHandler.class.getResourceAsStream("/filename.ttl");
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>setConfigurationProperties</code> method from the <code>BaseTriggerHandler</code> class that retrieves the properties from the RDF definition of an instance of your new Trigger type and sets appropriate OSGi service properties on the provided map. An example is shown below, but the exact contents of this method depend on the logic required for your new Trigger.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void setConfigurationProperties(NewTrigger trigger, Map&lt;String, Object&gt; properties) {
+    String attribute = trigger.getNewTriggerAttribute()
+            .orElseThrow(() -&gt; new IllegalArgumentException("NewTrigger missing required newTriggerAttribute property"));
+    properties.put("customProperty", attribute);
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a class that implements the <code>com.mobi.workflows.api.trigger.TriggerService</code> and extends either the <code>com.mobi.workflows.api.trigger.BaseTriggerService</code> or the <code>com.mobi.workflows.api.trigger.BaseEventTriggerService</code> depends on whether the new Trigger subclasses <code>w:Trigger</code> or <code>w:EventTrigger</code> respectively. If extending the <code>BaseEventTriggerService</code>, be sure to implement <code>org.osgi.service.event.EventHandler</code> as well. The contents of this class will depend largely on how the new Trigger is meant to behave, but there are a few key changes that should be made.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Include a static String field with your desired name for the service in the OSGi runtime. The class should look like this to start.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package my.plugin.trigger;
+
+import com.mobi.workflows.api.trigger.BaseTriggeService;
+import com.mobi.workflows.api.trigger.TriggerService;
+import my.plugin.workflows.NewTrigger;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventConstants;
+import org.osgi.service.event.EventHandler;
+
+import java.util.Map;
+
+public class NewTriggerService extends BaseTriggerService&lt;NewTrigger&gt; implements TriggerService&lt;NewTrigger&gt; {
+    static final String NAME = "my.plugin.trigger.NewTriggerService";
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a protected method to activate the service and update on modification that calls a method from the abstract class and performs any other startup logic needed. including fetching the OSGi properties set by the new TriggerHandler implementation you created.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Activate
+@Modified
+protected void start(Map&lt;String, Object&gt; properties) {
+    startService(properties);
+    this.attribute = vf.createIRI(properties.get("customProperty").toString());
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the following annotation to the class definition to instruct the runtime that this is an OSGi service.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component(
+    immediate = true,
+    name = NewTriggerService.NAME,
+    service = { TriggerService.class, NewTriggerService.class },
+    configurationPolicy = ConfigurationPolicy.REQUIRE)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the new Trigger is a just a subclass of <code>w:Trigger</code>, include any methods or logic needed by the new Trigger requirements, but utilize the <code>trigger</code> method from the <code>BaseTriggerService</code> class to kick off the workflow.</p>
+</li>
+<li>
+<p>If the new Trigger is a subclass of <code>w:EventTrigger</code> include the following changes as well.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Include the <code>EventHandler</code> class in the list of <code>service</code> classes in the <code>@Component</code> annotation and include a <code>property</code> with the name of the OSGi Event Topic you are subscribing to.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component(
+    immediate = true,
+    name = NewTriggerService.NAME,
+    service = { TriggerService.class, NewTriggerService.class, EventHandler.class },
+    property = EventConstants.EVENT_TOPIC + "=TOPIC_NAME",
+    configurationPolicy = ConfigurationPolicy.REQUIRE)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>handleEvent</code> method from the <code>EventHandler</code> interface that will validate anything required in the event that is caught by your service and if everything is valid, calls the <code>trigger</code> method from the <code>BaseTriggerService</code> class. An example is shown below, but the exact logic will depend on your new Trigger requirements.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void handleEvent(Event event) {
+    String someProperty = event.getProperty("someProperty").toString();
+    if (someProperty.equals(this.attribute)) {
+        this.trigger();
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="action_extension_services">Action Extension Services</h6>
+<div class="paragraph">
+<p>Creating a new Action depends on identifying how to conduct your desired&#8217;s Action within the chosen Workflow Engine framework. The following example assumes you are using the default <a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a>-based Workflow Engine. Interaction with the Mobi platform via Dagu is intended to be conducted via REST and there are several utility methods provided by the services to assist with that interact. Read through the Dagu documentation and the Mobi REST API documentation to identify how to accomplish your desired tasks using Dagu steps before creating the extension service.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a class that implements the <code>com.mobi.workflows.api.action.ActionHandler</code> generic interface.</p>
+</li>
+<li>
+<p>Include a static String field with your desired name for the service in the OSGi runtime. The class should look like this to start.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package my.plugin.action;
+
+import com.mobi.workflows.api.action.ActionHandler;
+import my.plugin.workflows.NewAction;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+
+public class NewActionHandler implements ActionHandler&lt;NewAction&gt; {
+    static final String NAME = "my.plugin.action.NewActionHandler";
+}</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add the following annotation to the class definition to instruct the runtime that this is an OSGi service.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component(
+    immediate = true,
+    name = NewActionHandler.NAME,
+    service = { ActionHandler.class, NewActionHandler.class })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>getTypeIRI</code> method from the <code>ActionHandler</code> interface that returns the IRI of your Action definition.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public String getTypeIRI() {
+    return NewAction.TYPE;
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>getShaclDefinition</code> method from the <code>ActionHandler</code> interface that returns an <code>InputStream</code> of the contents of the RDF file in the bundle. You should be able to just replace the name of the file in the code snippet below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public InputStream getShaclDefinition() {
+    return NewActionHandler.class.getResourceAsStream("/filename.ttl");
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an implementation of the <code>createDefinition</code> method from the <code>ActionHandler</code> interface that returns a <code>com.mobi.workflows.impl.dagu.actions.DaguActionDefinition</code> containing the Dagu step definitions that accomplish your desired Action behavior based on the provided instance of the new Action. The <code>DaguActionDefinition</code> class provides a a few utility methods to assist with creating the string definition. In general, it is recommended that each Dagu step name is associated with the IRI of the new Action instance itself in some manner. A simple example of a <code>createDefinition</code> method is shown below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public ActionDefinition createDefinition(NewAction action) {
+    String attribute = action.getNewActionAttribute()
+            .orElseThrow(() -&gt; new IllegalStateException("NewAction must have an attribute"));
+    String step = "- name: " + action.getResource() + "\n"
+            + "  command: echo \"" + attribute + "\"";
+    return new DaguActionDefinition(step);
+}</code></pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The <code>DaguActionDefinition.getStepsToCheckEmptyVariable</code> method will return a String containing Dagu step definitions that will validate that an environment variable set by a previous step has a value. The inputs are the environment variable name and the name of the parent step.</p>
+</li>
+<li>
+<p>The <code>DaguActionDefinition.getPlatformCurlString</code> method will return a String containing a <code>curl</code> command that will hit a specific REST endpoint on the host Mobi application. The inputs are a string containing any additional flags needed for the <code>curl</code> command and the REST endpoint path in question (i.e. the path for the endpoint after <code>$MOBI_HOST/mobirest/</code>).</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deploy_osgi_bundle">Deploy OSGi Bundle</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once all the steps above are complete for the new Triggers/Actions being added to the platform, all that&#8217;s left is to build the OSGi bundle and deploy it to your Mobi installation.</p>
+</li>
+<li>
+<p>In the root of your Maven project, run <code>mvn clean install</code> to build the OSGi bundle. Be sure that the build succeeds. If the build succeeds, your OSGI bundle for has now been created within the <code>target</code> directory of the bundle and has been installed in your local maven repository.</p>
+</li>
+<li>
+<p>To deploy the bundle to your Mobi installation, you can copy the <code>.jar</code> file generated in your project&#8217;s <code>target</code> directory into the <code>$MOBI_HOME/deploy</code> directory of your running installation.</p>
+</li>
+<li>
+<p>Validate that the bundle was installed and activated properly by opening the Mobi Karaf Client with <code>bin/client</code> for Unix (or <code>bin\client.bat</code> for Windows) and then running <code>bundle:list</code>. You should see your bundle&#8217;s Name listed with the version you specified in the <code>pom.xml</code> and a state of "Active".</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now that your bundle is active and your extension services are running, the platform can execute and manage any Workflows defined that utilize the newly defined Triggers/Actions provided in the bundle!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.3<br>
-Last updated 2023-07-10 15:15:25 UTC
+Version 2.4<br>
+Last updated 2023-10-10 18:38:07 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
