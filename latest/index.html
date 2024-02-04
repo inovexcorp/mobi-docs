@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 2.4</span>
+<span id="revnumber">version 2.5</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -149,6 +149,11 @@
 </ul>
 </li>
 <li><a href="#vocabulary-linking">Link (ENTERPRISE)</a></li>
+<li><a href="#Publish">Publish (ENTERPRISE)</a>
+<ul class="sectlevel3">
+<li><a href="#graphdb_publishing">GraphDB Publishing</a></li>
+</ul>
+</li>
 <li><a href="#shapes-editor-guide">Shapes Editor (BETA)</a>
 <ul class="sectlevel3">
 <li><a href="#creating_new_shapes_graphs">Creating New Shapes Graphs</a></li>
@@ -167,6 +172,7 @@
 <ul class="sectlevel3">
 <li><a href="#create_a_merge_request">Create a Merge Request</a></li>
 <li><a href="#accepting_a_merge_request">Accepting a Merge Request</a></li>
+<li><a href="#closing_a_merge_request">Closing a Merge Request</a></li>
 </ul>
 </li>
 <li><a href="#mapping-tool-guide">Mapping Tool</a>
@@ -218,6 +224,7 @@
 <li><a href="#mobi">Mobi</a>
 <ul class="sectlevel4">
 <li><a href="#service_configuration">Service Configuration</a></li>
+<li><a href="#graphdb_publish_connection_configuration_enterprise">GraphDB Publish Connection Configuration (ENTERPRISE)</a></li>
 <li><a href="#core_security_configuration">Core Security Configuration</a></li>
 <li><a href="#configure_default_authentication_token_jwt_duration">Configure Default Authentication Token (JWT) Duration</a></li>
 <li><a href="#ldap_configuration_enterprise">LDAP Configuration (ENTERPRISE)</a></li>
@@ -430,6 +437,15 @@
 <li><a href="#deploy_osgi_bundle">Deploy OSGi Bundle</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#publish_framework_examples_enterprise">Appendix F: Publish Framework Examples (ENTERPRISE)</a>
+<ul class="sectlevel2">
+<li><a href="#graphdb_publish_example">GraphDB Publish Example</a>
+<ul class="sectlevel3">
+<li><a href="#rest_request">REST Request</a></li>
 </ul>
 </li>
 </ul>
@@ -754,7 +770,7 @@ docker container stop {container id for mobi}</code></pre>
 <div class="title">Figure 5. My Activity</div>
 </div>
 <div class="paragraph">
-<p>Mobi Enterprise also has a <a href="#vocabulary-linking">Vocabulary Linking</a> module for discovering relationships between vocabularies for enhanced semantic integration.</p>
+<p>Mobi Enterprise also has a <a href="#vocabulary-linking">Vocabulary Linking</a> module for discovering relationships between vocabularies for enhanced semantic integration and a <a href="#Publish">Publishing Tool</a> to send ontologies and vocabularies to a configurable list of external systems.</p>
 </div>
 <div class="sect2">
 <h3 id="catalog-guide">Catalog</h3>
@@ -1166,7 +1182,7 @@ The <b class="button">Hide deprecated entities</b> filter will remove all indivi
 Clicking on an item in the list will load that individual&#8217;s information into the other sections in this tab.</p>
 </div>
 <div class="paragraph">
-<p>The title of the selected individual, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the individual and view its change history (see <a href="#entity_history">Entity History</a>). The IRI can be copied quickly by clicking on it. The section to the center and right of the tab allow you to add, remove, and edit Data, Object, and Annotation Properties for the selected individual. The options for Data and Object Properties are populated from the ontology and its imports. The user entered values in both the annotation and datatype property overlays are validated against the type field of the overlay. Imported individuals cannot be edited.</p>
+<p>The title of the selected individual, its IRI, and its type(s) are displayed at the top of the tab along with buttons to delete the individual and view its change history (see <a href="#entity_history">Entity History</a>). The IRI can be copied quickly by clicking on it. The section to the center and right of the tab allow you to add, remove, and edit Data, Object, and Annotation Properties for the selected individual. The options for Data and Object Properties are populated from the ontology and its imports. Furthermore, the Object Property Overlay also pre-filters the list of values based on the range of the property selected. The user entered values in both the annotation and datatype property overlays are validated against the type field of the overlay. Imported individuals cannot be edited.</p>
 </div>
 <div class="paragraph">
 <p>The types of an individual are editable by clicking the pencil icon at the end of the types list. The overlay allows you to add and remove types from the ontology and its imports. The "Named Individual" type is required.</p>
@@ -1813,6 +1829,75 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 </div>
 </div>
 <div class="sect2">
+<h3 id="Publish">Publish (ENTERPRISE)</h3>
+<div class="paragraph">
+<p>The Publish Page is an <strong>Enterprise only</strong> feature that allows you to push ontologies and vocabularies to external systems such as a <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> instance. This enables downstream processing and usage of the models and vocabularies to support full semantic solutions. The publish capability is extensible and custom publish targets can be easily added via the Extensible Publishing Framework.</p>
+</div>
+<div class="paragraph">
+<p>To reach the Publish Page, click on the link found under Ontology Editor in the left menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_landing.png" alt="publish landing">
+</div>
+<div class="title">Figure 64. The Publish Page</div>
+</div>
+<div class="paragraph">
+<p>The initial view of the Publish Page shows a list of all the current Ontology Records in Mobi. Each record is displayed with a title, the ontology IRI, and the provenance data of the latest publish successfully completed. To publish an ontology to an external system, click the checkbox found on the corresponding Ontology Record and click the <b class="button">Publish Ontology</b> button, prompting a configuration modal to appear. This modal displays a list of all registered publish services. Each publish service comes with its own configuration options to customize how the model or vocabulary is sent to the external system.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_overlay.png" alt="publish overlay">
+</div>
+<div class="title">Figure 65. The publish modal</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_modal_options.png" alt="publish modal options">
+</div>
+<div class="title">Figure 66. The publish modal with registered services.</div>
+</div>
+<div class="paragraph">
+<p>If no services are registered an error message will be displayed on the publish modal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_overlay_no_services.png" alt="publish overlay no services">
+</div>
+<div class="title">Figure 67. The publish modal with no registered services</div>
+</div>
+<div class="paragraph">
+<p>To view more details about the publish history of a particular Ontology Record, click on the record in the Publish Landing Page. The Publish History page displays each publish executed for the ontology as well as relevant metadata including the user who published, the head commit at the time of publishing, and the time of the publish.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_records.png" alt="publish records">
+</div>
+<div class="title">Figure 68. Record of all publishes for an ontology</div>
+</div>
+<div class="sect3">
+<h4 id="graphdb_publishing">GraphDB Publishing</h4>
+<div class="paragraph">
+<p>Mobi Enterprise comes with a publish service for pushing ontologies and vocabularies to an external GraphDB instance. This publish service will publish the HEAD of the MASTER branch of the selected ontology into a remote GraphDB repository. By default, the service will put the ontology data into named graph of the ontology IRI unless a different named graph is specified. The service provides a toggle for overwriting the existing published ontology data in the named graph if it exists in GraphDB or appending the published ontology data to a graph with pre-existing data.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_modal_graphdb.png" alt="publish modal graphdb">
+</div>
+<div class="title">Figure 69. Publish to GraphDB</div>
+</div>
+<div class="paragraph">
+<p>After selecting the target GraphDB repository (and optionally a target named graph), click <b class="button">Submit</b>, and Mobi Enterprise will publish the ontology data to the external system.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/graphdb_published_ontology.png" alt="graphdb published ontology">
+</div>
+<div class="title">Figure 70. A published ontology in GraphDB.</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="shapes-editor-guide">Shapes Editor (BETA)</h3>
 <div class="paragraph">
 <p>The Mobi web-based shapes graph editor is an experimental feature that provides users with a Distributed Management System for local and community development of (<a href="https://www.w3.org/TR/shacl/#shapes">SHACL Shapes</a>). The Shapes Editor features a customizable user interface, constraint capture, collaboration, shapes graph reuse, and extensibility.</p>
@@ -1824,7 +1909,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shacl_overview.png" alt="Shapes Overview Page">
 </div>
-<div class="title">Figure 64. Shapes Editor Overview page</div>
+<div class="title">Figure 71. Shapes Editor Overview page</div>
 </div>
 <div class="paragraph">
 <p>The main Shapes Editor page includes a new action-bar where all the action buttons for a shapes graph record are located. From the action-bar, users can create, filter, and open different shapes graph records, branches, and tags.</p>
@@ -1833,7 +1918,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/action_bar.png" alt="action bar" width="100%">
 </div>
-<div class="title">Figure 65. Shapes Editor Action Bar</div>
+<div class="title">Figure 72. Shapes Editor Action Bar</div>
 </div>
 <div class="paragraph">
 <p>When opening a shapes graph record, the editor will load the previous branch and/or commit you were viewing. If you have not previously opened the record or in the case that the branch you were viewing no longer exists, the editor will load the HEAD commit of the shape graph&#8217;s master branch. For an explanation of commits and branches, see the section on <a href="#shapes_graph_versioning">Shapes Graph Versioning</a>.</p>
@@ -1845,7 +1930,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/shapes_details.png" alt="shapes details">
 </div>
-<div class="title">Figure 66. Shapes Record Details</div>
+<div class="title">Figure 73. Shapes Record Details</div>
 </div>
 <div class="sect3">
 <h4 id="creating_new_shapes_graphs">Creating New Shapes Graphs</h4>
@@ -1856,7 +1941,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/shacl-editor/create_shapes.png" alt="create shapes" width="50%">
 </div>
-<div class="title">Figure 67. New Shapes Record Form</div>
+<div class="title">Figure 74. New Shapes Record Form</div>
 </div>
 <div class="paragraph">
 <p>The Title field populates the <code>dcterms:title</code> annotations of the new shapes graph record and the Description field populates the <code>dcterms:description</code> annotations of the new shapes graph record. The keywords field will attach the entered values as keywords to the new record.</p>
@@ -1910,7 +1995,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/versioning_dropdown.png" alt="versioning dropdown" width="40%">
 </div>
-<div class="title">Figure 68. Branches Dropdown</div>
+<div class="title">Figure 75. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To delete a branch or tag, click on the delete icon next to the branch/tag in the drop-down menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1928,7 +2013,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/changes_page.png" alt="changes page">
 </div>
-<div class="title">Figure 69. Changes Page</div>
+<div class="title">Figure 76. Changes Page</div>
 </div>
 <div class="paragraph">
 <p>The Changes Page displays all the uncommitted changes and the commit history graph for the opened shapes graph record. This provides users the ability to upload changes without committing and allows a user the opportunity to review proposed changes to a shapes graph in a more digestible manner before adding any commits to the commit history. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the shape graph, resetting to the state of the current commit.</p>
@@ -1946,7 +2031,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 70. Merge Branches button</div>
+<div class="title">Figure 77. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether or not you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -1955,7 +2040,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_page.png" alt="merge page">
 </div>
-<div class="title">Figure 71. Merge View</div>
+<div class="title">Figure 78. Merge View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1970,7 +2055,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/upload_changes_button.png" alt="upload changes button" width="10%">
 </div>
-<div class="title">Figure 72. Upload Changes button</div>
+<div class="title">Figure 79. Upload Changes button</div>
 </div>
 </div>
 </div>
@@ -1987,7 +2072,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
 </div>
-<div class="title">Figure 73. The Merge Requests module</div>
+<div class="title">Figure 80. The Merge Requests module</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Merge Requests module displays a list of all currently open merge requests. The list can be searched and sorted by the issued date and title, and the list can also be filtered by multiple parameters: the request status, the creator, the assignees, or the attached Record. The search bar, sort options, and the <a href="#create_a_merge_request">create a merge request</a> button are in the page&#8217;s top right corner. Each merge request in the list displays a preview of the request metadata, an icon representing the type of Versioned RDF Record associated with the request, and a button to delete the request. Clicking on a merge request in the list displays the individual merge request.</p>
@@ -1996,13 +2081,13 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/merge-requests/individual_request.png" alt="individual request">
 </div>
-<div class="title">Figure 74. An Individual Merge Request</div>
+<div class="title">Figure 81. An Individual Merge Request</div>
 </div>
 <div class="paragraph">
-<p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, and a button to go back to the main list of merge requests.</p>
+<p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, a button to close the request, and a button to go back to the main list of merge requests.</p>
 </div>
 <div class="paragraph">
-<p>The discussion tab allows users to comment and discuss the changes within the request to facilitate more collaboration in a distributed environment. You can create new comments to start new threads of communication or you can reply to existing comments and further the discussion. Comments can only be removed by the creators of the comment.</p>
+<p>The discussion tab allows users to comment and discuss the changes within the request to facilitate more collaboration in a distributed environment. You can create new comments to start new threads of communication or you can reply to existing comments and further the discussion. Comments can also be edited and deleted by the user who created the comment.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2026,7 +2111,7 @@ The comment editor supports GitHub flavored Markdown which you can find more inf
 <div class="content">
 <img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
 </div>
-<div class="title">Figure 75. Editing Merge Request Metadata</div>
+<div class="title">Figure 82. Editing Merge Request Metadata</div>
 </div>
 <div class="sect3">
 <h4 id="create_a_merge_request">Create a Merge Request</h4>
@@ -2049,7 +2134,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step1.png" alt="step1">
 </div>
-<div class="title">Figure 76. Creating a Merge Request: Step 1 - Select a Record</div>
+<div class="title">Figure 83. Creating a Merge Request: Step 1 - Select a Record</div>
 </div>
 <div class="paragraph">
 <p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click <b class="button">Next</b>.</p>
@@ -2058,7 +2143,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step2.png" alt="step2">
 </div>
-<div class="title">Figure 77. Creating a Merge Request: Step 2 - Select Branches</div>
+<div class="title">Figure 84. Creating a Merge Request: Step 2 - Select Branches</div>
 </div>
 <div class="paragraph">
 <p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click <b class="button">Submit</b> and a new Merge Request with your selections will be created.</p>
@@ -2067,7 +2152,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step3.png" alt="step3">
 </div>
-<div class="title">Figure 78. Creating a Merge Request: Step 3 - Request Metadata</div>
+<div class="title">Figure 85. Creating a Merge Request: Step 3 - Request Metadata</div>
 </div>
 </div>
 <div class="sect3">
@@ -2079,10 +2164,22 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/conflicts.png" alt="conflicts">
 </div>
-<div class="title">Figure 79. Conflicts on a Merge Request</div>
+<div class="title">Figure 86. Conflicts on a Merge Request</div>
 </div>
 <div class="paragraph">
 <p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance and governance tracking.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="closing_a_merge_request">Closing a Merge Request</h4>
+<div class="paragraph">
+<p>A merge request can be closed so that the history of the proposed changes and the discussion can be kept, but the merge will not be performed. Users can still make comments on a closed merge request, but it cannot be edited or reopened.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/merge-requests/closed_mr.png" alt="closed mr">
+</div>
+<div class="title">Figure 87. A Closed Merge Request</div>
 </div>
 </div>
 </div>
@@ -2098,7 +2195,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
 </div>
-<div class="title">Figure 80. Mapping Tool button</div>
+<div class="title">Figure 88. Mapping Tool button</div>
 </div>
 <div class="paragraph">
 <p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
@@ -2115,7 +2212,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
 </div>
-<div class="title">Figure 81. Create Mapping Overlay</div>
+<div class="title">Figure 89. Create Mapping Overlay</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking <b class="button">Continue</b> brings you to the Edit Mapping Page.</p>
@@ -2124,7 +2221,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
 </div>
-<div class="title">Figure 82. File Upload Page for Creating a Mapping</div>
+<div class="title">Figure 90. File Upload Page for Creating a Mapping</div>
 </div>
 <div class="paragraph">
 <p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with the class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
@@ -2145,7 +2242,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
 </div>
-<div class="title">Figure 83. Edit Mapping Page Edit Tab</div>
+<div class="title">Figure 91. Edit Mapping Page Edit Tab</div>
 </div>
 <div class="paragraph">
 <p>When creating a mapping, the first thing you will see is the <a href="#source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking <b class="button">Add Class</b> opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
@@ -2179,19 +2276,19 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
-<div class="title">Figure 84. Create Property Mapping Overlay for a Data/Annotation Property</div>
+<div class="title">Figure 92. Create Property Mapping Overlay for a Data/Annotation Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
 </div>
-<div class="title">Figure 85. Create Property Mapping Overlay for an Object Property</div>
+<div class="title">Figure 93. Create Property Mapping Overlay for an Object Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
 </div>
-<div class="title">Figure 86. Language Selection for a Data/Annotation Property</div>
+<div class="title">Figure 94. Language Selection for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>Clicking the main <b class="button">Save</b> button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the <b class="button">Save</b> button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking <b class="button">Submit</b> in an overlay will save the current state of the mapping and run it.</p>
@@ -2224,37 +2321,37 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/save_run_options.png" alt="save run options">
 </div>
-<div class="title">Figure 87. Options for saving and running a mapping</div>
+<div class="title">Figure 95. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="editing_a_mapping">Editing a Mapping</h4>
 <div class="paragraph">
-<p>To edit a mapping, click <b class="button">Edit</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to use as a standard for the mapping. If the delimited file you choose does not contain enough columns for the mapping&#8217;s data property mappings, a list of the missing columns are displayed under the file select. However, you can still edit the mapping as long as those data properties are fixed. From there, editing the mapping works the same as <a href="#creating_a_mapping">creating a mapping</a>.</p>
+<p>To edit a mapping, click <b class="button">Edit</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error and giving you the option to continue and have the tool automatically remove incompatible mappings. If you continue or the check passes, you are brought to the File Upload Page where you must upload a delimited file to use as a standard for the mapping. If the delimited file you choose does not contain enough columns for the mapping&#8217;s data property mappings, a list of the missing columns are displayed under the file select. However, you can still edit the mapping as long as those data properties are fixed. From there, editing the mapping works the same as <a href="#creating_a_mapping">creating a mapping</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
 </div>
-<div class="title">Figure 88. File Upload Page for Editing a Mapping</div>
+<div class="title">Figure 96. File Upload Page for Editing a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
 </div>
-<div class="title">Figure 89. File Upload Page for Editing a Mapping with missing columns</div>
+<div class="title">Figure 97. File Upload Page for Editing a Mapping with missing columns</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="duplicating_a_mapping">Duplicating a Mapping</h4>
 <div class="paragraph">
-<p>To duplicate a mapping, click <b class="button">Duplicate</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, the Create Mapping overlay will appear allowing you to choose new values for the <span class="underline">Title</span>, <span class="underline">Description</span>, and <span class="underline">Keywords</span>. The rest of the process is the same as <a href="#editing_a_mapping">editing a mapping</a> including how missing columns are handled.</p>
+<p>To duplicate a mapping, click <b class="button">Duplicate</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error and giving you the option to continue and have the tool automatically remove incompatible mappings. If you continue or the check passes, the Create Mapping overlay will appear allowing you to choose new values for the <span class="underline">Title</span>, <span class="underline">Description</span>, and <span class="underline">Keywords</span>. The rest of the process is the same as <a href="#editing_a_mapping">editing a mapping</a> including how missing columns are handled.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="running_a_mapping">Running a Mapping</h4>
 <div class="paragraph">
-<p>To run a mapping against delimited data without editing it, click <b class="button">Run</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error. If it passes, you are brought to the File Upload Page where you must upload a delimited file to be used when generating RDF data. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. The classes and properties that will be created using the mapping are displayed under the file select. The columns that must be present in the delimited file are highlighted in the table on the right. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table. If the delimited file you choose does not contain enough columns for the mapping’s data property mappings, the properties that are missing columns turn red and you will not be able to run the mapping.</p>
+<p>To run a mapping against delimited data without editing it, click <b class="button">Run</b> on the Mapping Select Page. The application performs a quick check to see if the source ontology or its imported ontologies changed in such a way that the mapping is no longer valid. If this check does not pass, an overlay is displayed informing you of the error and giving you the option to continue and have the tool automatically remove incompatible mappings. If you continue or the check passes, you are brought to the File Upload Page where you must upload a delimited file to be used when generating RDF data. You can also check whether or not the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. The classes and properties that will be created using the mapping are displayed under the file select. The columns that must be present in the delimited file are highlighted in the table on the right. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table. If the delimited file you choose does not contain enough columns for the mapping’s data property mappings, the properties that are missing columns turn red and you will not be able to run the mapping.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2272,13 +2369,13 @@ To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
 </div>
-<div class="title">Figure 90. File Upload Page for Running a Mapping</div>
+<div class="title">Figure 98. File Upload Page for Running a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
 </div>
-<div class="title">Figure 91. File Upload Page for Running a Mapping with missing columns</div>
+<div class="title">Figure 99. File Upload Page for Running a Mapping with missing columns</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Run Mapping</b> will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
@@ -2299,7 +2396,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/run_options.png" alt="run options">
 </div>
-<div class="title">Figure 92. Options for saving and running a mapping</div>
+<div class="title">Figure 100. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2313,7 +2410,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
 </div>
-<div class="title">Figure 93. Source Ontology Overlay</div>
+<div class="title">Figure 101. Source Ontology Overlay</div>
 </div>
 <div class="paragraph">
 <p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. The criteria for incompatible mappings are as follows:</p>
@@ -2392,7 +2489,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
 </div>
-<div class="title">Figure 94. The Datasets Manager</div>
+<div class="title">Figure 102. The Datasets Manager</div>
 </div>
 <div class="paragraph">
 <p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The <b class="button">Upload Data</b> button allows you to upload graph data to the dataset from a file.</p>
@@ -2406,7 +2503,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
 </div>
-<div class="title">Figure 95. New Dataset Overlay</div>
+<div class="title">Figure 103. New Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository</span> field allows you to specity the identifier of the repository registered within AVM where the dataset and all associated named graphs will be stored. The default option is the system repository and should be used in most cases. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create the dataset with the provided metadata.</p>
@@ -2430,7 +2527,7 @@ The ability to create new repositories in Mobi is coming soon!
 <div class="content">
 <img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
 </div>
-<div class="title">Figure 96. Edit Dataset Overlay</div>
+<div class="title">Figure 104. Edit Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking <b class="button">Update</b> will update the dataset record with the new metadata.</p>
@@ -2485,7 +2582,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
 </div>
-<div class="title">Figure 97. The Discover Page</div>
+<div class="title">Figure 105. The Discover Page</div>
 </div>
 <div class="sect3">
 <h4 id="explore">Explore</h4>
@@ -2496,7 +2593,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_classes.png" alt="explore classes">
 </div>
-<div class="title">Figure 98. Explore tab with classes</div>
+<div class="title">Figure 106. Explore tab with classes</div>
 </div>
 <div class="paragraph">
 <p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking <b class="button">Explore Data</b> opens the instances view.</p>
@@ -2505,7 +2602,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_instances.png" alt="explore instances">
 </div>
-<div class="title">Figure 99. Explore Tab with instances</div>
+<div class="title">Figure 107. Explore Tab with instances</div>
 </div>
 <div class="paragraph">
 <p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking <b class="button">View <em>Class Name</em></b> opens the single instance view. Clicking <b class="button">Create <em>Class Name</em></b> opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
@@ -2514,7 +2611,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance.png" alt="explore single instance">
 </div>
-<div class="title">Figure 100. Explore Tab with single instance</div>
+<div class="title">Figure 108. Explore Tab with single instance</div>
 </div>
 <div class="paragraph">
 <p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking <b class="button">Edit</b> opens the single instance editor.</p>
@@ -2523,7 +2620,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
 </div>
-<div class="title">Figure 101. Explore Tab with single instance editor</div>
+<div class="title">Figure 109. Explore Tab with single instance editor</div>
 </div>
 <div class="paragraph">
 <p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#edit_iri_overlay">Edit IRI Overlay</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the <kbd>ENTER</kbd> key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
@@ -2553,7 +2650,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
 </div>
-<div class="title">Figure 102. Query tab</div>
+<div class="title">Figure 110. Query tab</div>
 </div>
 <div class="paragraph">
 <p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a <b class="button">Submit</b> button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking <b class="button">Submit</b> executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
@@ -2565,7 +2662,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_construct_query.png" alt="discover construct query">
 </div>
-<div class="title">Figure 103. Construct query</div>
+<div class="title">Figure 111. Construct query</div>
 </div>
 </div>
 </div>
@@ -2575,13 +2672,13 @@ Editing the instance IRI might break relationships within the dataset.
 <p>The My Account page of Mobi provides users with a way to configure their own account and customize various aspects of the application to suit their needs.</p>
 </div>
 <div class="paragraph">
-<p>To reach the My Account page, click on the display of your username in the left menu.</p>
+<p>To reach the My Account page, click on the display of your username/name in the left menu.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 104. My Account link</div>
+<div class="title">Figure 112. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -2611,7 +2708,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 105. Profile Tab</div>
+<div class="title">Figure 113. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2623,7 +2720,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 106. Groups Tab</div>
+<div class="title">Figure 114. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2635,7 +2732,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 107. Password Tab</div>
+<div class="title">Figure 115. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2647,7 +2744,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 108. Preferences Tab</div>
+<div class="title">Figure 116. Preferences Tab</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2675,7 +2772,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 109. Administration link</div>
+<div class="title">Figure 117. Administration link</div>
 </div>
 <div class="paragraph">
 <p>There are four main tabs of the Administration page:</p>
@@ -2708,7 +2805,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 110. Users Tab</div>
+<div class="title">Figure 118. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -2738,7 +2835,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 111. Create User Overlay</div>
+<div class="title">Figure 119. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2750,7 +2847,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 112. Groups Tab</div>
+<div class="title">Figure 120. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -2768,7 +2865,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 113. Create group overlay</div>
+<div class="title">Figure 121. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -2792,7 +2889,7 @@ More permissions coming soon!
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 114. Permissions Tab</div>
+<div class="title">Figure 122. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2824,7 +2921,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/application_settings_tab.png" alt="application settings tab">
 </div>
-<div class="title">Figure 115. Application Settings Tab</div>
+<div class="title">Figure 123. Application Settings Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -2836,7 +2933,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/licensing_tab.png" alt="licensing tab">
 </div>
-<div class="title">Figure 116. Application Settings Tab</div>
+<div class="title">Figure 124. Application Settings Tab</div>
 </div>
 </div>
 </div>
@@ -2909,6 +3006,77 @@ dataDir=path/to/directory</code></pre>
 </div>
 <div class="paragraph">
 <p>Apache Karaf will automatically detect the changes and reload the new configuration.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="graphdb_publish_connection_configuration_enterprise">GraphDB Publish Connection Configuration (ENTERPRISE)</h5>
+<div class="paragraph">
+<p>To enable Publish to a GraphDB instance, you must configure Mobi Enterprise with connection details about the GraphDB server. To do this, create a file called <code>com.mobi.enterprise.graphdb.impl-{The ID of the graphdb config}.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory. The file must have the following fields.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Property Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Required</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ID of the graphdb config (dev, prod, etc&#8230;&#8203;)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connection.string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The protocol, hostname, and port of the configured GraphDB server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username for the configured GraphDB server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password for the configured GraphDB server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeout.connect</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The connection timeout in number of milliseconds when communicating with the GraphDB server.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeout.read</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The read timeout in number of milliseconds when communicating with the GraphDB server.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30000</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example file would look like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">id = prod
+connection.string = http://localhost:7200
+username = admin
+password = root</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -3693,13 +3861,13 @@ backgroundColor=white</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 117. Mobi Login Screen with a banner</div>
+<div class="title">Figure 125. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 118. Mobi Home Page with a banner</div>
+<div class="title">Figure 126. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -4728,7 +4896,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 119. XML Example File</div>
+<div class="title">Figure 127. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -4739,7 +4907,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Ouput File">
 </div>
-<div class="title">Figure 120. XML Example Ontology File</div>
+<div class="title">Figure 128. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -4749,7 +4917,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 121. XML Example Data File</div>
+<div class="title">Figure 129. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4762,7 +4930,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 122. JSON Example File</div>
+<div class="title">Figure 130. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -4772,7 +4940,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 123. JSON Example Ontology File</div>
+<div class="title">Figure 131. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -4782,7 +4950,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 124. JSON Example Data File</div>
+<div class="title">Figure 132. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -4795,7 +4963,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 125. CSV Example File</div>
+<div class="title">Figure 133. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -4805,7 +4973,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Ouput File">
 </div>
-<div class="title">Figure 126. CSV Example Ontology File</div>
+<div class="title">Figure 134. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -4815,7 +4983,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 127. CSV Example Data File</div>
+<div class="title">Figure 135. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -7070,7 +7238,7 @@ A UI module for creating and maintaining Workflows is coming soon!
 <div class="content">
 <img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
 </div>
-<div class="title">Figure 128. RDF Structure of Workflow Provenance</div>
+<div class="title">Figure 136. RDF Structure of Workflow Provenance</div>
 </div>
 <div class="ulist">
 <ul>
@@ -8055,11 +8223,137 @@ public ActionDefinition createDefinition(NewAction action) {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="publish_framework_examples_enterprise">Appendix F: Publish Framework Examples (ENTERPRISE)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi Enterprise comes with an extensible framework for publishing ontologies and vocabularies to external systems. This framework utilizes SHACL to configure the publish services and validate publish requests. Mobi Enterprise comes with a publish service configured to publish to <a href="https://www.ontotext.com/products/graphdb">GraphDB</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="graphdb_publish_example">GraphDB Publish Example</h3>
+<div class="paragraph">
+<p>Below is the GraphDB publish SHACL configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix dct: &lt;http://purl.org/dc/terms/&gt;.
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
+@prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
+@prefix webForm: &lt;https://mobi.solutions/ontologies/form#&gt;.
+@prefix : &lt;http://mobi.com/ontologies/publish/graphdb/owl#&gt;.
+@base &lt;http://mobi.com/ontologies/publish/graphdb/owl&gt;.
+
+:GraphDBPublishService a setting:PublishService;
+    setting:publishType "Publish to a GraphDB Repository" ;
+    setting:concurrency "-1"^^xsd:nonNegativeInteger .
+
+:GraphDBPublishNodeShape a owl:Class, sh:NodeShape;
+    rdfs:subClassOf setting:PublishSetting;
+    dct:description "Publish to GraphDB as an Ontology" ;
+    sh:property :GraphDBRepositoryIdPropertyShape, :GraphDBNamedGraphIRIPropertyShape, :GraphDBOverwritePropertyShape;
+    setting:inGroup :PublishGraphDBGroup ;
+    sh:targetClass :GraphDBPublish .
+
+:GraphDBRepositoryIdPropertyShape a sh:PropertyShape;
+    sh:path :repositoryId;
+    sh:name "Repository ID";
+    sh:datatype xsd:string;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    webForm:usesFormField webForm:TextInput .
+
+:GraphDBNamedGraphIRIPropertyShape a sh:PropertyShape;
+    sh:path :namedGraphIRI;
+    sh:name "Named Graph IRI (Optional)";
+    sh:datatype xsd:string;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:pattern "{SOME IRI REGEX}";
+    webForm:usesFormField webForm:TextInput .
+
+:GraphDBOverwritePropertyShape a sh:PropertyShape;
+    sh:path :overwrite;
+    sh:name "Overwrite Existing Data";
+    sh:datatype xsd:string;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:defaultValue "true"^^xsd:boolean ;
+    webForm:usesFormField webForm:ToggleInput .
+
+:repositoryId a owl:AnnotationProperty;
+   rdfs:label "Repository ID"@en;
+   rdfs:domain sh:PropertyShape .
+
+:overwrite a owl:DatatypeProperty;
+   rdfs:label "Overwrite"@en;
+   rdfs:domain sh:PropertyShape;
+   rdfs:range xsd:boolean .
+
+:namedGraphIRI a owl:ObjectProperty;
+   rdfs:label "Named Graph IRI"@en;
+   rdfs:domain sh:PropertyShape;
+   rdfs:range rdfs:Literal .
+
+:PublishGraphDBGroup a setting:PublishGroup ;
+    rdfs:label "Publish GraphDB"@en .</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This configuration defines the GraphDB publish service (<code>setting:PublishService</code>) the associated inputs (<code>sh:PropertyShape</code>), any regex for those inputs (<code>sh:pattern</code>), and the number of inputs for a given field (<code>sh:minCount</code> and <code>sh:maxCount</code>). The configuration also defines form fields creating the web form in the <a href="#Publish">Publishing tool</a> publish modal via the <code>webForm:usesFormField</code> predicate.</p>
+</div>
+<div class="paragraph">
+<p>The <code>:GraphDBRepositoryIdPropertyShape</code> defines a required field of the repository ID to publish to using the <code>:repositoryId</code>. The <code>:GraphDBNamedGraphIRIPropertyShape</code> defines an optional field for the named graph in GraphDB to publish the ontology/vocabulary data into using the <code>:namedGraphIRI</code> field. This field is additionally required to match a regex pattern defined by the <code>sh:pattern</code> field. Lastly, the <code>:GraphDBOverwritePropertyShape</code> defines a required boolean field of whether to overwrite the existing data in the publish named graph or append using the <code>:overwrite</code> field.</p>
+</div>
+<div class="sect3">
+<h4 id="rest_request">REST Request</h4>
+<div class="paragraph">
+<p>The publish framework has a generic endpoint as the entrypoint for all publish activities. The endpoint is a POST endpoint that takes the ontology/vocabulary <code>recordId</code> and an optional <code>commitId</code> to publish as query params. The body of the request is a JSON-LD model, <code>jsonModel</code>, that defines the inputs for the publish as defined by the publish service configuration.</p>
+</div>
+<div class="paragraph">
+<p>Below is an example request to publish a record to a configured GraphDB instance:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/postman_publish.png" alt="postman publish">
+</div>
+<div class="title">Figure 137. GraphDB Postman Request</div>
+</div>
+<div class="paragraph">
+<p>The body of the request represented in turtle is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix ns0: &lt;http://mobi.com/ontologies/publish/graphdb/owl#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix ns1: &lt;http://mobi.com/ontologies/setting#&gt; .
+
+&lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublishNodeShape1706231794535&gt;
+  a &lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublish&gt; ; # An instance of the publish service to execute
+  ns0:namedGraphIRI "http://mobi.com/named-graph"^^xsd:string ; # the named graph IRI to publish the ontology/vocabulary data to
+  ns0:overwrite "true"^^xsd:string ; # overwrite the existing data in the graph if it exists
+  ns0:repositoryId "testRepo"^^xsd:string . # the GraphDB repository ID to publish data into
+
+ns0:GraphDBPublishService
+  a &lt;http://mobi.com/ontologies/setting#PublishService&gt; ; # The publish service to execute
+  ns1:concurrency "-1"^^xsd:nonNegativeInteger ; # Not required
+  ns1:publishType "Publish to a GraphDB Repository"^^xsd:string . # Not required</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This request is for a publish of the ontology record <code>https://mobi.com/records#607850ec-86fe-4e17-b47c-36765b946fbb</code> at the HEAD commit (since the <code>commitId</code> query param is omitted). The body of the request defines what publish service type to execute and the inputs for the associated publish service. See comments in turtle for explanation of fields.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.4<br>
-Last updated 2023-10-10 18:38:07 UTC
+Version 2.5<br>
+Last updated 2024-02-04 19:42:07 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
