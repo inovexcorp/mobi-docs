@@ -4315,13 +4315,7 @@ We recommend running Mobi on the default port 8443 and using firewall configurat
 <div class="sect4">
 <h5 id="install_java_17">Install Java 17</h5>
 <div class="paragraph">
-<p>Mobi requires the latest version of Java 1.17 to operate. On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. So we suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/downloads/#java17">here</a> and running it manually using the following commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
-sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code></pre>
-</div>
+<p>Mobi requires the latest version of Java 1.17 to operate. Refer to <a href="http://www.oracle.com/technetwork/java/javase/" class="bare">http://www.oracle.com/technetwork/java/javase/</a> for details on how to download and install Java SE 1.17.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4330,18 +4324,30 @@ sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-If you are using a Red Hat system, you can install Java 17 with <code>sudo yum install java-17-openjdk</code>
+If you are using a Red Hat system, you can install Java 17 with <code>sudo yum install java-17-openjdk</code> prior to version 8 and <code>sudo dnf install java-17-openjdk-devel</code> on versions 8+.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. We suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/downloads/#java17">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> to install.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>JAVA_HOME</code> environment variable must be set for the user running Mobi. On a standard RHEL/CentOS system (after running the rpm above) this can be set using the following commands:</p>
+<p>The <code>JAVA_HOME</code> environment variable must be set for the user running AVM. On a Red Hat system, the path looks something like <code>/usr/lib/jvm/java-17-openjdk</code>. On a standard RHEL/CentOS system (after running the rpm above), the path looks something like <code>/usr/java/jdk-17.0.4.1</code>. Either way, the variable can be set using the following commands:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
-echo 'export JAVA_HOME=/usr/java/jdk-17.0.4.1' &gt;&gt; ~/.bashrc
+echo 'export JAVA_HOME=/path/to/java/home' &gt;&gt; ~/.bashrc
 exit</code></pre>
 </div>
 </div>
@@ -8353,7 +8359,7 @@ ns0:GraphDBPublishService
 <div id="footer">
 <div id="footer-text">
 Version 2.5<br>
-Last updated 2024-02-26 15:38:09 UTC
+Last updated 2024-02-04 19:42:07 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
