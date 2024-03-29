@@ -4576,6 +4576,35 @@ integrity check</p></td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>In addition to the keystore, Mobi also comes bundled with a custom truststore at <code>$MOBI_HOME/etc/truststore</code> to store any SSL certificates required for connecting to external systems. Common needs for this include the <strong>Enterprise</strong> SSO and Publishing capabilities. The truststore that Mobi uses can be changed with the following properties in the <code>$MOBI_HOME/etc/system.properties</code> file.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Configuration Property</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>javax.net.ssl.trustStorePassword</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password used for truststore integrity check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>javax.net.ssl.trustStore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the truststore Mobi will utilize</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>javax.net.ssl.trustStoreType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of truststore specified, such as <code>jks</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect4">
 <h5 id="installing_mobi_as_a_service">Installing Mobi as a Service</h5>
