@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 3.0</span>
+<span id="revnumber">version 3.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -234,6 +234,7 @@
 <li><a href="#permissions">Permissions</a></li>
 <li><a href="#application_settings">Application Settings</a></li>
 <li><a href="#licensing">Licensing (ENTERPRISE)</a></li>
+<li><a href="#ldapsso">LDAP/SSO (ENTERPRISE)</a></li>
 </ul>
 </li>
 <li><a href="#configuration-guide">Configuration</a>
@@ -243,11 +244,12 @@
 <li><a href="#service_configuration">Service Configuration</a></li>
 <li><a href="#core_security_configuration">Core Security Configuration</a></li>
 <li><a href="#configure_default_authentication_token_jwt_duration">Configure Default Authentication Token (JWT) Duration</a></li>
-<li><a href="#ldap_configuration_enterprise">LDAP Configuration (ENTERPRISE)</a></li>
+<li><a href="#ldap_config">LDAP Configuration (ENTERPRISE)</a></li>
 <li><a href="#sso_configuration_enterprise">SSO Configuration (ENTERPRISE)</a></li>
 <li><a href="#password_encryption_configuration">Password Encryption Configuration</a></li>
+<li><a href="#imports_resolver_configuration">Imports Resolver Configuration</a></li>
 <li><a href="#ontology_cache_configuration">Ontology Cache Configuration</a></li>
-<li><a href="#anzo_publish_connection_configuration_enterprise">Anzo Publish Connection Configuration (ENTERPRISE)</a></li>
+<li><a href="#anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</a></li>
 <li><a href="#graphdb_publish_connection_configuration_enterprise">GraphDB Publish Connection Configuration (ENTERPRISE)</a></li>
 <li><a href="#workflow_engine_configuration">Workflow Engine Configuration</a></li>
 <li><a href="#banner_configuration_enterprise">Banner Configuration (ENTERPRISE)</a></li>
@@ -472,6 +474,7 @@
 </li>
 <li><a href="#publish_framework_examples_enterprise">Appendix G: Publish Framework Examples (ENTERPRISE)</a>
 <ul class="sectlevel2">
+<li><a href="#core_publish_definitions">Core Publish Definitions</a></li>
 <li><a href="#graphdb_publish_example">GraphDB Publish Example</a>
 <ul class="sectlevel3">
 <li><a href="#graphdb_publish_rest_request">GraphDB Publish REST Request</a></li>
@@ -1810,10 +1813,10 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="sect2">
 <h3 id="Publish">Publish (ENTERPRISE)</h3>
 <div class="paragraph">
-<p>The Publish Page is an <strong>Enterprise only</strong> feature that allows you to push ontologies and vocabularies to external systems such as a <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> instance or an <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a> instance. This enables downstream processing and usage of the models and vocabularies to support full semantic solutions. The publish capability is extensible and custom publish targets can be easily added via the Extensible Publishing Framework.</p>
+<p>The Publish Page is an <strong>Enterprise only</strong> feature that allows you to push versioned RDF data to external systems such as a <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> instance or an <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a> instance. This enables downstream processing and usage of models, vocabularies, and shapes graphs to support full semantic solutions. The publish capability is extensible and custom publish targets can be easily added via the Extensible Publishing Framework.</p>
 </div>
 <div class="paragraph">
-<p>To reach the Publish Page, click on the link found under Ontology Editor in the left menu.</p>
+<p>To reach the Publish Page, click on the link in the left menu.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1822,7 +1825,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="title">Figure 59. The Publish Page</div>
 </div>
 <div class="paragraph">
-<p>The initial view of the Publish Page shows a list of all the current Ontology Records in Mobi. Each record is displayed with a title, the ontology IRI, and the provenance data of the latest publish successfully completed. To publish an ontology to an external system, click the checkbox found on the corresponding Ontology Record and click the <b class="button">Publish Ontology</b> button, prompting a configuration modal to appear. This modal displays a list of all registered publish services. Each publish service comes with its own configuration options to customize how the model or vocabulary is sent to the external system.</p>
+<p>The initial view of the Publish Page shows a filterable, searchable, and paginated list of all the current Versioned RDF Records in Mobi, including Ontology Records and Shapes Graph Records. Each Record is displayed with a title, an icon representing the type of Record, the identifier IRI for the latest data in the Record, and the provenance data of the latest publish successfully completed. To publish a Record to an external system, click the checkbox found on the corresponding row and click the <b class="button">Publish Record</b> button, prompting a configuration modal to appear. This modal displays a list of all registered publish services compatible with the type of Record you selected. Each publish service comes with its own configuration options to customize how the data is sent to the external system.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1837,7 +1840,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="title">Figure 61. The publish modal with registered services.</div>
 </div>
 <div class="paragraph">
-<p>If no services are registered an error message will be displayed on the publish modal.</p>
+<p>If no services are registered or no services are compatible with the type of Record you selected, an error message will be displayed on the publish modal.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1846,7 +1849,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="title">Figure 62. The publish modal with no registered services</div>
 </div>
 <div class="paragraph">
-<p>To view more details about the publish history of a particular Ontology Record, click on the record in the Publish Landing Page. The Publish History page displays each publish executed for the ontology as well as relevant metadata including the user who published, the head commit at the time of publishing, and the time of the publish.</p>
+<p>To view more details about the publish history of a particular Versioned RDF Record, click on the Record in the Publish Landing Page. The Publish History page displays each publish executed for the Record as well as relevant metadata including the user who published, the head commit at the time of publishing, and the time of the publish.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1857,7 +1860,19 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="sect3">
 <h4 id="graphdb_publishing">GraphDB Publishing</h4>
 <div class="paragraph">
-<p>Mobi Enterprise comes with a publish service for pushing ontologies and vocabularies to an external GraphDB instance. This publish service will publish the HEAD of the MASTER branch of the selected ontology into a remote GraphDB repository. By default, the service will put the ontology data into named graph of the ontology IRI unless a different named graph is specified. The service provides a toggle for overwriting the existing published ontology data in the named graph if it exists in GraphDB or appending the published ontology data to a graph with pre-existing data.</p>
+<p>Mobi Enterprise comes with a publish service for pushing ontologies, vocabularies, and shapes graphs to an external GraphDB instance. This publish service will publish the HEAD of the MASTER branch of the selected Ontology or Shapes Graph Record into a remote GraphDB repository. By default, the service will put the data into named graph of the ontology/shapes graph IRI unless a different named graph is specified. The service provides a toggle for overwriting the existing published data in the named graph if it exists in GraphDB or appending the published data to a graph with pre-existing data.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+GraphDB repositories are configured with <a href="https://graphdb.ontotext.com/documentation/10.7/shacl-validation.html#creating-and-configuring-a-shacl-repository">a specific named graph for SHACL shapes graphs</a> by default. Pay close attention to the named graph IRI you enter and whether you check the overwrite box as overwriting the SHACL data within that managed graph will remove any other SHACL data within it.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1866,7 +1881,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="title">Figure 64. Publish to GraphDB</div>
 </div>
 <div class="paragraph">
-<p>After selecting the target GraphDB repository (and optionally a target named graph), click <b class="button">Submit</b>, and Mobi Enterprise will publish the ontology data to the external system.</p>
+<p>After selecting the target GraphDB repository (and optionally a target named graph), click <b class="button">Submit</b>, and Mobi Enterprise will publish the data to the external system.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1878,7 +1893,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="sect3">
 <h4 id="anzo_publishing">Anzo Publishing</h4>
 <div class="paragraph">
-<p>Mobi Enterprise comes with two publish services for pushing ontologies and vocabularies to an external Anzo instance&#8217;s Catalog. Both of these publish service will publish the HEAD of the MASTER branch of the selected ontology and allow you to specify which configured Anzo instance to publish to. The "Publish to Anzo as SKOS Concepts" service allows AVM users to select whether to publish the concept hierarchy, the class hierarchy or both as SKOS vocabulary concepts.</p>
+<p>Mobi Enterprise comes with two publish services for pushing ontologies and vocabularies to an external Anzo instance&#8217;s Catalog. Both of these publish service will allow you to specify which configured Anzo instance to publish to. The "Publish to Anzo as SKOS Concepts" service allows Mobi users to select whether to publish the concept hierarchy, the class hierarchy or both as SKOS vocabulary concepts.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1896,7 +1911,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="title">Figure 67. OWL Publish to Anzo</div>
 </div>
 <div class="paragraph">
-<p>After selecting either the entity types or target location, click <b class="button">Submit</b>, and Mobi Enterprise with push the ontology/vocabulary data to Anzo.</p>
+<p>After selecting either the entity types or target location, click <b class="button">Submit</b>, and Mobi Enterprise will push the ontology/vocabulary data to Anzo.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2396,13 +2411,16 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 </ul>
 </div>
 <div class="paragraph">
-<p>If you select a data property or an annotation, a select box appears containing identifiers for each column in the delimited file along with a preview of the first value of the selected column. At this point, you can also specify a manual datatype override which the mapper will use over the range of the property if set. If a property has more than one <code>rdfs:range</code> value, the datatype override box will be displayed and you must select which type the generated values must be. You can also specify the language for the property values by selecting <code>rdfs:langString</code> as the type and then a language select will appear underneath. If you select an object property, a select box appears containing the titles of all class mappings of the appropriate types along with an option to create a new class mapping.</p>
+<p>If you select a data property or an annotation, a select box appears containing identifiers for each column in the delimited file along with a preview of the first value of the selected column. At this point, you can also specify a manual datatype override which the mapper will use over the range of the property if set. If a property has more than one <code>rdfs:range</code> value, the datatype override box will be displayed and you must select which type the generated values must be. You can also specify the language for the property values by selecting <code>rdfs:langString</code> as the type and then a language select will appear underneath.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
 <div class="title">Figure 98. Create Property Mapping Overlay for a Data/Annotation Property</div>
+</div>
+<div class="paragraph">
+<p>If you select an object property, a select field appears containing the titles of all class mappings of the appropriate type along with an option to create a new class mapping. The list of class mappings displayed is determined by the rdfs:range that is set on the selected property and its super-properties. If no range has been set on the property or there is a range of <code>owl:Thing</code> a full list of class mappings becomes available alongside the ability to create a new class mapping with all classes within the imports closure being an option.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2812,18 +2830,6 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="paragraph">
 <p>From the landing page, you can download and delete one or more workflows if you have the permissions by checking the box next to all the workflows of interest. You can also start a manual execution of a workflow by checking the box next to it and clicking the run button.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Only one workflow can be running at a time across the entire installation. The ability to have multiple concurrently executing workflows is coming soon!
-</td>
-</tr>
-</table>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/workflow_controls.png" alt="workflow controls">
@@ -2866,13 +2872,19 @@ Only one workflow can be running at a time across the entire installation. The a
 <div class="sect3">
 <h4 id="individual_workflow_page">Individual Workflow Page</h4>
 <div class="paragraph">
-<p>The Individual Workflow page will display all metadata about the workflow record along with the full execution history, the commit history, and a visualization of the workflow components. The page also includes the same active status toggle and buttons to run, delete, and download the workflow as on the Workflows landing page. If the page is in edit mode (see <a href="#editing_workflows">Editing Workflows</a>), the download button will include any in progress changes made to the workflow.</p>
+<p>The Individual Workflow page will display all metadata about the workflow record along with the full execution history, the commit history, and a visualization of the workflow components that can be expanded to fill the entire screen. The page also includes the same active status toggle and buttons to run, delete, and download the workflow as on the Workflows landing page. If the page is in edit mode (see <a href="#editing_workflows">Editing Workflows</a>), the download button will include any in progress changes made to the workflow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/individual_workflow_page.png" alt="individual workflow page">
 </div>
 <div class="title">Figure 122. Individual Workflow Page</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/workflows/fullscreen_individual_workflow_page.png" alt="fullscreen individual workflow page">
+</div>
+<div class="title">Figure 123. Full-Screen Individual Workflow Page</div>
 </div>
 <div class="paragraph">
 <p>The graphical display of the Workflow will display the Trigger, if set, as a yellow square and all configured Actions as green circles. Every workflow can have at most one Trigger and must have at least one Action. If a Trigger has not been configured for the workflow, "Default Trigger" will be displayed on the Trigger node. The nodes will display the type of the Trigger/Action and clicking on a node will bring up a summary of the configuration for the component.</p>
@@ -2881,7 +2893,7 @@ Only one workflow can be running at a time across the entire installation. The a
 <div class="content">
 <img src="images/workflows/component_details.png" alt="component details">
 </div>
-<div class="title">Figure 123. Workflow Component Details for an Action</div>
+<div class="title">Figure 124. Workflow Component Details for an Action</div>
 </div>
 <div class="paragraph">
 <p>The Workflow Execution History is presented in a filterable, paginated table with the latest executions displayed at the beginning. Each execution is displayed with its status, user who started the execution, start time, and running time and each row can be expanded to provide further details about each Action that was executed during the run. Each execution also has a button to open a page to view the detailed logs output by that run. The page will display metadata about the execution you are viewing along with a dropdown selector to load the overall execution logs or the logs output from an individual action. Each log file can also be downloaded for further investigation.</p>
@@ -2890,7 +2902,7 @@ Only one workflow can be running at a time across the entire installation. The a
 <div class="content">
 <img src="images/workflows/logs_viewer.png" alt="logs viewer">
 </div>
-<div class="title">Figure 124. Workflow Execution Log Viewer</div>
+<div class="title">Figure 125. Workflow Execution Log Viewer</div>
 </div>
 </div>
 <div class="sect3">
@@ -2905,7 +2917,7 @@ Only one workflow can be running at a time across the entire installation. The a
 <div class="title">Note</div>
 </td>
 <td class="content">
-If the new version of the Workflow being uploaded is invalid, the modal will display a SHACL validation report detailing what invalid triples need ot be addressed.
+If the new version of the Workflow being uploaded is invalid, the modal will display a SHACL validation report detailing what invalid triples need to be addressed.
 </td>
 </tr>
 </table>
@@ -2914,7 +2926,7 @@ If the new version of the Workflow being uploaded is invalid, the modal will dis
 <div class="content">
 <img src="images/workflows/edit_workflow_page.png" alt="edit workflow page">
 </div>
-<div class="title">Figure 125. Individual Workflow Page in Edit Mode</div>
+<div class="title">Figure 126. Individual Workflow Page in Edit Mode</div>
 </div>
 <div class="paragraph">
 <p>In edit mode, the nodes in the graphical display will have a menu that can be opened with a right click so that each component can edited individually. Right clicking on the Trigger node will provide the options to remove any existing Trigger configuration (trash icon), to add/edit the Trigger configuration (pencil icon), or to add a new Action (plus icon). Right clicking on an Action node will provide the options to remove the Action configuration or to edit the Action configuration.</p>
@@ -2963,13 +2975,13 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/workflows/edit_scheduled_trigger.png" alt="edit scheduled trigger">
 </div>
-<div class="title">Figure 126. Scheduled Trigger</div>
+<div class="title">Figure 127. Scheduled Trigger</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/edit_commit_to_branch_trigger.png" alt="edit commit to branch trigger">
 </div>
-<div class="title">Figure 127. Commit To Branch Trigger</div>
+<div class="title">Figure 128. Commit To Branch Trigger</div>
 </div>
 </div>
 <div class="sect4">
@@ -2991,13 +3003,13 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/workflows/add_test_action.png" alt="add test action">
 </div>
-<div class="title">Figure 128. Test Action</div>
+<div class="title">Figure 129. Test Action</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/add_http_request_action.png" alt="add http request action">
 </div>
-<div class="title">Figure 129. HTTP Request Action</div>
+<div class="title">Figure 130. HTTP Request Action</div>
 </div>
 </div>
 </div>
@@ -3014,7 +3026,7 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 130. My Account link</div>
+<div class="title">Figure 131. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -3044,7 +3056,7 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 131. Profile Tab</div>
+<div class="title">Figure 132. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3056,7 +3068,7 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 132. Groups Tab</div>
+<div class="title">Figure 133. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3068,7 +3080,7 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 133. Password Tab</div>
+<div class="title">Figure 134. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3080,7 +3092,7 @@ A Workflow must always have at least one Action.
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 134. Preferences Tab</div>
+<div class="title">Figure 135. Preferences Tab</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3108,7 +3120,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 135. Administration link</div>
+<div class="title">Figure 136. Administration link</div>
 </div>
 <div class="paragraph">
 <p>There are four main tabs of the Administration page:</p>
@@ -3127,6 +3139,9 @@ Default preferences coming soon!
 <li>
 <p><a href="#application_settings">Application Settings</a></p>
 </li>
+<li>
+<p><a href="#ldapsso">LDAP/SSO (ENTERPRISE)</a></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -3141,7 +3156,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 136. Users Tab</div>
+<div class="title">Figure 137. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -3165,13 +3180,13 @@ The default Admin user can not be deleted.
 <p>The right side of the tab contains blocks for viewing and editing the selected user&#8217;s permissions and viewing the user&#8217;s groups. Clicking on the title of a group will open it in the <a href="#groups">Groups section</a>.</p>
 </div>
 <div class="paragraph">
-<p>To create a user, click <b class="button">Create User</b> and the Create User overlay will appear. The <span class="underline">Username</span> field (required) must be unique within the application. The <span class="underline">Password</span> fields (required) allow you to enter in the password for the new user. The <span class="underline">First Name</span>, <span class="underline">Last Name</span>, and <span class="underline">Email</span> fields are not required, but allow you to enter in basic profile information for the new user. The last section contains a checkbox for setting whether the new user is an administrator. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new user with the entered information.</p>
+<p>To create a user, click <b class="button">Create User</b> and the Create User overlay will appear. The <span class="underline">Username</span> field (required) must be unique within the application. The <span class="underline">Password</span> fields (required) allow you to enter the password for the new user. The <span class="underline">First Name</span>, <span class="underline">Last Name</span>, and <span class="underline">Email</span> fields are not required, but allow you to enter in basic profile information for the new user. The last section contains a checkbox for setting whether the new user is an administrator. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new user with the entered information.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 137. Create User Overlay</div>
+<div class="title">Figure 138. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3183,7 +3198,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 138. Groups Tab</div>
+<div class="title">Figure 139. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -3192,16 +3207,16 @@ The default Admin user can not be deleted.
 <p>The right side of the tab contains the selected group&#8217;s title and two rows of blocks. The top row contains blocks that allow you to edit the group&#8217;s description and permissions. If a group has the "Admin" role, all members within that group are considered administrators.</p>
 </div>
 <div class="paragraph">
-<p>The bottom row contains a block that allows you to view, add, and remove the group&#8217;s members. To add another user to the group, click <b class="button">Add Member</b> and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. Selecting a user in this drop down will automatically add them to the group. To remove a user from the table, click on the corresponding delete button at the end of the row. Any changes in this table will immediately be applied. Clicking on a username in this table will open that user&#8217;s information in the <a href="#users">Users section</a>.</p>
+<p>The bottom row contains a block that allows you to view, add, and remove the group&#8217;s members. To add another user to the group, click <b class="button">Add Member</b> and that line in the table will transform into a dropdown selector of all the users in Mobi that have not already been selected. Selecting a user in this dropdown will automatically add them to the group. To remove a user from the table, click on the corresponding delete button at the end of the row. Any changes in this table will immediately be applied. Clicking on a username in this table will open that user&#8217;s information in the <a href="#users">Users section</a>.</p>
 </div>
 <div class="paragraph">
-<p>To create a group, click <b class="button">Create Group</b> and the Create Group overlay will appear. The <span class="underline">Group Title</span> field (required) allows you to specify a name for the group. The <span class="underline">Description</span> field allows you to enter in a description about what the group represents. At the bottom of the overlay is a table for adding users to the group. Your user account will be added automatically. To add others to the group, click <b class="button">Add Member</b> and that line in the table will transform into a drop down selector of all the users in Mobi that have not already been selected. To remove a user from the table, click on the corresponding delete button at the end of the row. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new group with the entered information and add the listed users to it.</p>
+<p>To create a group, click <b class="button">Create Group</b> and the Create Group overlay will appear. The <span class="underline">Group Title</span> field (required) allows you to specify a name for the group. The <span class="underline">Description</span> field allows you to enter a description about what the group represents. At the bottom of the overlay is a table for adding users to the group. Your user account will be added automatically. To add others to the group, click <b class="button">Add Member</b> and that line in the table will transform into a dropdown selector of all the users in Mobi that have not already been selected. To remove a user from the table, click on the corresponding delete button at the end of the row. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create a new group with the entered information and add the listed users to it.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 139. Create group overlay</div>
+<div class="title">Figure 140. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3225,7 +3240,7 @@ More permissions coming soon!
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 140. Permissions Tab</div>
+<div class="title">Figure 141. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3257,7 +3272,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/application_settings_tab.png" alt="application settings tab">
 </div>
-<div class="title">Figure 141. Application Settings Tab</div>
+<div class="title">Figure 142. Application Settings Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3269,7 +3284,307 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/licensing_tab.png" alt="licensing tab">
 </div>
-<div class="title">Figure 142. Application Settings Tab</div>
+<div class="title">Figure 143. Application Settings Tab</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ldapsso">LDAP/SSO (ENTERPRISE)</h4>
+<div class="paragraph">
+<p>The "LDAP/SSO" tab available in enterprise installations provides a clear view of your current LDAP/SSO configurations, allowing you to easily review the settings used by the application for authentication. The values displayed are pulled from the configuration file contents on the installation server and any updates made will be persisted back to those files. If a configuration is not set, the left hand link will be italicized.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+To learn about the available LDAP and SSO configuration files, see <a href="#ldap_config">LDAP Configuration (ENTERPRISE)</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/connections_tab.png" alt="connections tab">
+</div>
+<div class="title">Figure 144. LDAP/SSO Tab</div>
+</div>
+<div class="paragraph">
+<p>If an LDAP configuration is set using the associated form, users can log into the application with the Users/Groups defined in your organization&#8217;s directory. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/ldap_config.png" alt="ldap config">
+</div>
+<div class="title">Figure 145. LDAP Configuration Form</div>
+</div>
+<div class="paragraph">
+<p>The LDAP form is separated into two sections. The "Connection" section contains the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Hostname</strong>: The hostname for the LDAP server.</p>
+</li>
+<li>
+<p><strong>Disable Authentication</strong>: This checkbox, when checked, disables direct authentication to the LDAP engine.</p>
+</li>
+<li>
+<p><strong>Expiry</strong>: The number of milliseconds before a User from the LDAP engine should be retrieved again.</p>
+</li>
+<li>
+<p><strong>Timeout</strong>: The number of seconds Mobi will keep trying to reach the LDAP server before it gives up.</p>
+</li>
+<li>
+<p><strong>Anonymous Connection</strong>: This is a checkbox. When unchecked, it displays the following subfields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Admin DN</strong>: This is a required text field for the administrator&#8217;s distinguished name (LDAP DN).</p>
+</li>
+<li>
+<p><strong>Admin Password</strong>: This is a required password field for the administrator&#8217;s password.</p>
+</li>
+<li>
+<p>The administrator account is expected to have appropriate permissions to query all users, groups, and attributes desired</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The "Data Retrieval" section contains the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Users Base</strong>: The base DN at which to start looking for users on the LDAP server.</p>
+</li>
+<li>
+<p><strong>Filter Users</strong>: When checked, it displays a field to set an LDAP filter for retrieved users. Any user that does not meet this filter will not be authenticated.</p>
+</li>
+<li>
+<p><strong>User ID</strong>: The field name on users that the Mobi application will use as the username to log in.</p>
+</li>
+<li>
+<p><strong>User First Name</strong>: The field name on users whose value is the first name of the user.</p>
+</li>
+<li>
+<p><strong>User Last Name</strong>: The field name on users whose value is the last name of the user.</p>
+</li>
+<li>
+<p><strong>User Email</strong>: The field name on users whose value is the email address of the user.</p>
+</li>
+<li>
+<p><strong>User Membership</strong>: The field name on users whose values are the groups they are a part of.</p>
+</li>
+<li>
+<p><strong>User Membership Values</strong>: The format of the user membership field. Should be set to the field name on groups that the values of the user membership field uses. If this is not set, Mobi assumes the values are full group DNs.</p>
+</li>
+<li>
+<p><strong>Groups Base</strong>: The base DN at which to start looking for groups on the LDAP server.</p>
+</li>
+<li>
+<p><strong>Filter Groups</strong>: When checked, it displays a field an LDAP filter for retrieved groups. Any group that does not meet this filter will not be represented in Mobi.</p>
+</li>
+<li>
+<p><strong>Group ID</strong>: The field name for groups' ids.</p>
+</li>
+<li>
+<p><strong>Group Name</strong>: The field name for groups' names/titles.</p>
+</li>
+<li>
+<p><strong>Group Description</strong>: The field name on groups whose value is the description of the group.</p>
+</li>
+<li>
+<p><strong>Group Membership</strong>: The field name on groups whose values are the users that are a part of the group.</p>
+</li>
+<li>
+<p><strong>Group Membership Values</strong>: The format of the group membership field. Should be set to the field name on users that the values of the group membership field uses. If this is not set, Mobi assumes the values are full user DNs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, Mobi can be configured to integrate with an SSO provider for authentication. LDAP can be configured alongside the SSO provider to retrieve additional user details, but it is not required. If SSO is configured with LDAP, it is recommended to disable direct authentication against the LDAP directory by checking the "Disable Authentication" box in the LDAP form. Mobi supports <a href="https://wiki.oasis-open.org/security/FrontPage">SAML</a>, <a href="https://oauth.net/2/">OAuth 2.0</a>, and <a href="https://openid.net/developers/specs/">OpenID</a> SSO providers.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If a SAML or OAuth/OpenID configuration is present and not set to standalone, the LDAP link on the left hand side will notify you if you are missing the required LDAP configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/saml_config.png" alt="saml config">
+</div>
+<div class="title">Figure 146. SAML Configuration Form</div>
+</div>
+<div class="paragraph">
+<p>The SAML form provides options to customize the connection from Mobi, acting as a Service Provider (SP), to a SAML Identity Property (IdP) and how to pull various user details out of the SAML responses. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+When removing the configuration, any uploaded files will not be removed from disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In SAML flows, the Identity Property (IdP) will often require the Reply URL, at minimum, so that the IdP will know where to return the authorized user details. For Mobi, that Reply URL should be set to <code>$MOBI_HOST/mobirest/auth/saml</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The SAML form contains the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Title</strong>: The title for the SSO provider. This title will be used in the UI for triggering the SSO authentication in the format of “Login with <em>title”</em></p>
+</li>
+<li>
+<p><strong>ID Attribute</strong>: The name of the <code>Attribute</code> in the SAML response where the username can be found. If configured with LDAP, this must match the values of the <strong>User ID</strong> attribute. Defaults to using the <code>&lt;NameId&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Entity ID</strong>: The SP EntityId. The SSO provider must be configured to expect requests with this SP EntityId.</p>
+</li>
+<li>
+<p><strong>SSO URL</strong>: The URL for the SingleSignOnService from the IdP. This is where Mobi will redirect to.</p>
+</li>
+<li>
+<p><strong>SSO Binding</strong>: The <a href="https://docs.oasis-open.org/security/saml/v2.0/saml-bindings-2.0-os.pdf">binding</a> to be used for the SAML Requests. Options are HTTP Redirect or HTTP POST. The default is HTTP Redirect.</p>
+</li>
+<li>
+<p><strong>Token Duration Mins.</strong>: How long in minutes a token generated through a SAML flow should last. If not specified, will use a default of 1 day.</p>
+</li>
+<li>
+<p><strong>Certificate File</strong>: The file containing the X509 certificate for verifying the signature of SAML responses.</p>
+</li>
+<li>
+<p><strong>Key File</strong>: The optional file containing the PKCS8 key for verifying the signature of SAML responses.</p>
+</li>
+<li>
+<p><strong>Standalone</strong>: Whether the SAML configuration should be used by itself or with a LDAP backend as well. If unchecked, an LDAP configuration is required. If checked, the following fields are shown:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>First Name Attribute</strong>: The optional name of the attribute in the SAML responses that contains the first name of the authenticated user.</p>
+</li>
+<li>
+<p><strong>Last Name Attribute</strong>: The optional name of the attribute in the SAML responses that contains the last name of the authenticated user.</p>
+</li>
+<li>
+<p><strong>Email Name Attribute</strong>: The optional name of the attribute in the SAML responses that contains the email name of the authenticated user.</p>
+</li>
+<li>
+<p><strong>Group Attribute</strong>: The optional name of the attribute in the SAML responses that contains the groups of the authenticated user. The values of this attribute will be used as the Group&#8217;s title in Mobi.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/oauth_config.png" alt="oauth config">
+</div>
+<div class="title">Figure 147. OAuth/OpenID Configuration Form</div>
+</div>
+<div class="paragraph">
+<p>The OAuth/OpenID form provides options to customize the connection from Mobi to either a generic OAuth 2.0 Provider or an OpenID provider. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared. Certain fields are the same between both OAuth and OpenID configurations and others that are unique to one vs. the other. The form contains a radio button to allow you to specify which type of provider is configured.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+When removing the configuration, any uploaded files will not be removed from disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The OAuth/OpenID form contains the following fields for both types of providers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Title</strong>: The title for the SSO provider. This title will be used in the UI for triggering the SSO authentication in the format of “Login with <em>title”</em></p>
+</li>
+<li>
+<p><strong>Client ID</strong>: The ID for the Mobi installation. The OAuth/OpenID provider must be configured to expect requests with this ID.</p>
+</li>
+<li>
+<p><strong>Scope</strong>: The OAuth scopes to include in the authentication request.</p>
+</li>
+<li>
+<p><strong>Client Secret</strong>: The optional client secret to use in requests to the OAuth/OpenID provider.</p>
+</li>
+<li>
+<p><strong>User Identifier Claim</strong>: An optional property to specify which claim in the returned JWT contains the user&#8217;s username. If configured with LDAP, these values must match the values for the LDAP <strong>User ID</strong> attribute. Defaults to using the <code>sub</code> of the JWT.</p>
+</li>
+<li>
+<p><strong>Standalone</strong>: Whether the SAML configuration should be used by itself or with a LDAP backend as well. If unchecked, an LDAP configuration is required. If checked, the following fields are shown:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Group Claim</strong>: The optional claim in the returned JTW that contains the groups the user is a part of. The values of this attribute will be used as the Group&#8217;s title in Mobi.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the form is set to OAuth, the following fields are displayed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Grant Type</strong>: The OAuth 2.0 <a href="https://oauth.net/2/grant-types/">grant type</a> to use for authentication. Mobi currently supports the Code and Implicit flows.</p>
+</li>
+<li>
+<p><strong>Redirect URL</strong>: The URL for the OAuth/OpenID provider. This is where Mobi will redirect to.</p>
+</li>
+<li>
+<p><strong>Token URL</strong>: The URL to hit to retrieve the token in the Code grant type flow.</p>
+</li>
+<li>
+<p><strong>Key File</strong>: The file containing the PKCS8 key for verifying the signature of returned JWT tokens.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the form is set to OpenID, the following fields are displayed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>OpenID Configuration Hostname</strong>: The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3446,7 +3761,7 @@ tokenDurationMins = 1440</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="ldap_configuration_enterprise">LDAP Configuration (ENTERPRISE)</h5>
+<h5 id="ldap_config">LDAP Configuration (ENTERPRISE)</h5>
 <div class="paragraph">
 <p>In Enterprise deployments only, Mobi can be configured so that users can log into the application with the Users/Groups defined in your organization&#8217;s directory, you must create a file called <code>com.mobi.enterprise.ldap.impl.engine.LDAPEngine.cfg</code> with the following properties and put it in the <code>$MOBI_HOME/etc/</code> directory before starting the application. If a property is not required, you can delete the line from the config file. The list of possible fields for the config file are shown in the table below.</p>
 </div>
@@ -3473,14 +3788,8 @@ tokenDurationMins = 1440</code></pre>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.server</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the ldap server (ex: localhost)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The port of the LDAP server (ex: <code>10389</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.hostname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the ldap server (ex: <a href="https://localhost:10389" class="bare">https://localhost:10389</a>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -3489,12 +3798,6 @@ tokenDurationMins = 1440</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The number of seconds it will keep trying to reach the LDAP server before it gives up (ex: <code>30</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.ssl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to connect to the LDAP engine with SSL (ex: false)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ldap.disable-auth</code></p></td>
@@ -3618,8 +3921,7 @@ tokenDurationMins = 1440</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">repository.target = (id=system)
-ldap.server = localhost
-ldap.port = 10389
+ldap.hostname = http://localhost:10389
 ldap.timeout = 30
 ldap.admin.dn = uid=admin,ou=system
 ldap.admin.password = secret
@@ -3714,7 +4016,7 @@ file in the <code>$MOBI_HOME/etc/</code> directory and make this value <code>${k
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>idAttribute</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <code>Attribute</code> in the SAML response where the username can be found. Defaults to using the <code>&lt;UserId&gt;</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <code>Attribute</code> in the SAML response where the username can be found. Defaults to using the <code>&lt;NameId&gt;</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -4085,6 +4387,51 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 </div>
 <div class="sect4">
+<h5 id="imports_resolver_configuration">Imports Resolver Configuration</h5>
+<div class="paragraph">
+<p>When resolving imported ontologies from the web, Mobi uses a default set of configuration for making those connections, but in some deployments it may be beneficial to tweak the timeouts utilized when making those external web connections. To customize the read and connection timeouts, create a file called <code>com.mobi.ontology.utils.imports.ImportsResolver.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory with the following fields.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Property Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Required</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectionTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The connection timeout in milliseconds when attempting to resolve a web ontology URI.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>readTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The read timeout in milliseconds when attempting to resolve a web ontology URI.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10000</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example file would look like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">connectionTimeout = 5000
+readTimeout = 20000</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="ontology_cache_configuration">Ontology Cache Configuration</h5>
 <div class="paragraph">
 <p>Mobi utilizes a caching mechanism within a triple store to improve performance when retrieving ontology data. The maintenance and cleanup of that cache is configured in the <code>com.mobi.cache.impl.repository.CleanupRepositoryCache.cfg</code> file in the <code>$MOBI_HOME/etc</code> directory.</p>
@@ -4101,7 +4448,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="anzo_publish_connection_configuration_enterprise">Anzo Publish Connection Configuration (ENTERPRISE)</h5>
+<h5 id="anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</h5>
 <div class="paragraph">
 <p>To enable Publishing to an Anzo instance, you must configure Mobi Enterprise with connection details about an Anzo server. More than one Anzo connection can be configured at a time. To do this, create a file called <code>com.mobi.enterprise.anzo.connector.api-{The ID of the anzo config}.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory. The file must have the following fields.</p>
 </div>
@@ -4147,13 +4494,13 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.username</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account AVM should use when connecting to the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account Mobi should use when connecting to the Anzo server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account AVM should use when connecting to the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account Mobi should use when connecting to the Anzo server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -4267,7 +4614,7 @@ password = root</code></pre>
 <p><a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a> is a free and open source workflow engine that defines executions as Directed Acrylic Graphs (or DAGs) and supports interaction with Mobi via REST. To utilize Dagu in executing Workflows, you will need to install the software, and then configure Mobi&#8217;s connection to Dagu.</p>
 </div>
 <div class="paragraph">
-<p>Install Dagu 1.11 according to their <a href="https://dagu.readthedocs.io/en/latest/installation.html">installation instructions</a>. <strong>It is recommended that you configure Dagu with <a href="https://dagu.readthedocs.io/en/latest/auth.html">Basic Authentication</a> enabled such that only authorized users can execute DAGs in your installation.</strong> Mobi supports interaction with Dagu both locally (i.e., on the same server) or remotely. The following table describes the recommended Dagu installation method based on the OS of the system Mobi is installed on and the desired Dagu location.</p>
+<p>Install Dagu 1.13 according to their <a href="https://dagu.readthedocs.io/en/latest/installation.html">installation instructions</a>. <strong>It is recommended that you configure Dagu with <a href="https://dagu.readthedocs.io/en/latest/auth.html">Basic Authentication</a> enabled such that only authorized users can execute DAGs in your installation.</strong> Mobi supports interaction with Dagu both locally (i.e., on the same server) or remotely. The following table describes the recommended Dagu installation method based on the OS of the system Mobi is installed on and the desired Dagu location.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4276,7 +4623,7 @@ password = root</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-Mobi currently does not support Dagu versions above 1.11.
+Mobi currently only supports Dagu version 1.13.
 </td>
 </tr>
 </table>
@@ -4390,6 +4737,12 @@ The default port of 8080 for Dagu is fine when installing Dagu locally on the Mo
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>concurrencyLimit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number corresponding to how many workflows can be run concurrently</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -4403,7 +4756,8 @@ local=true
 pollInterval=10
 pollTimeout=300
 username=test
-password=test</code></pre>
+password=test
+concurrencyLimit=100</code></pre>
 </div>
 </div>
 </div>
@@ -4437,13 +4791,13 @@ backgroundColor=#99ffce</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 143. Mobi Login Screen with a banner</div>
+<div class="title">Figure 148. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 144. Mobi Home Page with a banner</div>
+<div class="title">Figure 149. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -5256,7 +5610,7 @@ systemctl enable mobi</code></pre>
 <div class="sect3">
 <h4 id="configure_anzo_for_mobi_publishing_enterprise">Configure Anzo for Mobi Publishing (ENTERPRISE)</h4>
 <div class="paragraph">
-<p>To enable publishing to Anzo from Mobi, follow the instructions under <a href="#anzo_publish_connection_configuration_enterprise">Anzo Publish Connection Configuration (ENTERPRISE)</a> to configuration the Anzo connection. Then Anzo must be configured using two plugins provided by your service team:</p>
+<p>To enable publishing to Anzo from Mobi, follow the instructions under <a href="#anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</a> to configuration the Anzo connection. Then Anzo must be configured using two plugins provided by your service team:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5275,7 +5629,7 @@ systemctl enable mobi</code></pre>
 <div class="content">
 <img src="images/administration-guide/mobi-bundles.png" alt="mobi bundles">
 </div>
-<div class="title">Figure 145. Mobi Plugins</div>
+<div class="title">Figure 150. Mobi Plugins</div>
 </div>
 <div class="paragraph">
 <p><code>STOP</code> and <code>START</code> the "AVM Ontology Loader" bundle.</p>
@@ -5284,7 +5638,7 @@ systemctl enable mobi</code></pre>
 <div class="content">
 <img src="images/administration-guide/plugin-configuration.png" alt="plugin configuration" width="100%">
 </div>
-<div class="title">Figure 146. Plugin Configuration</div>
+<div class="title">Figure 151. Plugin Configuration</div>
 </div>
 <div class="paragraph">
 <p>If you are unable to get a successful publish after stopping and starting the bundle, restart the Anzo server.</p>
@@ -5296,7 +5650,7 @@ systemctl enable mobi</code></pre>
 <div class="content">
 <img src="images/administration-guide/anzo-data-store.png" alt="anzo data store">
 </div>
-<div class="title">Figure 147. Anzo Data Store Configuration</div>
+<div class="title">Figure 152. Anzo Data Store Configuration</div>
 </div>
 <div class="paragraph">
 <p>If this Data Location does not meet your environment&#8217;s needs, you can either change the included Anzo Data Source or change the bundle&#8217;s service to use an existing Anzo Data Source within your installation. To do so, follow the steps below:</p>
@@ -5578,7 +5932,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 148. XML Example File</div>
+<div class="title">Figure 153. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -5589,7 +5943,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Ouput File">
 </div>
-<div class="title">Figure 149. XML Example Ontology File</div>
+<div class="title">Figure 154. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -5599,7 +5953,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 150. XML Example Data File</div>
+<div class="title">Figure 155. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -5612,7 +5966,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 151. JSON Example File</div>
+<div class="title">Figure 156. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -5622,7 +5976,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 152. JSON Example Ontology File</div>
+<div class="title">Figure 157. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -5632,7 +5986,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 153. JSON Example Data File</div>
+<div class="title">Figure 158. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -5645,7 +5999,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 154. CSV Example File</div>
+<div class="title">Figure 159. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -5655,7 +6009,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Ouput File">
 </div>
-<div class="title">Figure 155. CSV Example Ontology File</div>
+<div class="title">Figure 160. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -5665,7 +6019,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 156. CSV Example Data File</div>
+<div class="title">Figure 161. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -8228,7 +8582,7 @@ More Action types are coming soon!
 <div class="content">
 <img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
 </div>
-<div class="title">Figure 157. RDF Structure of Workflow Provenance</div>
+<div class="title">Figure 162. RDF Structure of Workflow Provenance</div>
 </div>
 <div class="ulist">
 <ul>
@@ -8698,7 +9052,7 @@ Details -&gt;
         &lt;rdf4j.version&gt;4.3.2&lt;/rdf4j.version&gt;
 
         &lt;!-- Replace this with the version of Mobi you are deploying into. NOTE: Workflows are only supported from version 2.4 onwards --&gt;
-        &lt;mobi.version&gt;3.0.0&lt;/mobi.version&gt;
+        &lt;mobi.version&gt;3.1.0&lt;/mobi.version&gt;
     &lt;/properties&gt;
 
     &lt;!-- Establishes the dependencies for several libraries you will need to compile our code and complete the project --&gt;
@@ -9202,88 +9556,146 @@ public ActionDefinition createDefinition(NewAction action) {
 <h2 id="publish_framework_examples_enterprise">Appendix G: Publish Framework Examples (ENTERPRISE)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobi Enterprise comes with an extensible framework for publishing ontologies and vocabularies to external systems. This framework is built on top of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework and utilizes the SHACL definitions to validate publish requests. Mobi Enterprise comes with the ability to publish to <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> and to <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a>.</p>
+<p>Mobi Enterprise comes with an extensible framework for publishing versioned RDF managed by records (including ontologies, vocabularies, and shapes graphs) to external systems. This framework is built on top of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework and utilizes the SHACL definitions to validate publish requests. Mobi Enterprise comes with the ability to publish to <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> and to <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a>.</p>
 </div>
 <div class="paragraph">
-<p>The publish framework has a generic POST <code>$MOBI_HOST/mobirest/publish</code> endpoint as the entrypoint for all publish activities. The endpoint takes the ontology/vocabulary <code>recordId</code> and an optional <code>commitId</code> to publish as query params. The body of the request is a JSON-LD model, <code>jsonModel</code>, that defines the inputs for the publish as defined by the publish service configuration.</p>
+<p>The publish framework has a generic POST <code>$MOBI_HOST/mobirest/publish</code> endpoint as the entrypoint for all publish activities. The body of a request to the endpoint should be a JSON-LD serialization of a collection of RDF that defines the inputs for the publish as defined by the publish service configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All examples in this Appendix will be in Turtle RDF serialization and use the following prefixes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Prefix</th>
+<th class="tableblock halign-left valign-top">Namespace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sh</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/shacl#/</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pub</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/publish#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">https://mobi.solutions/ontologies/form#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>graphdb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/publish/graphdb/owl#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzoowl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/publish/anzo/owl#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzoskos</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/publish/anzo/skos#</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="core_publish_definitions">Core Publish Definitions</h3>
+<div class="paragraph">
+<p>At the core of the Publish Framework is a collection of classes and properties defining the extension points for a new integration. A diagram of these definitions is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/core_publish_model.png" alt="core publish model">
+</div>
+<div class="title">Figure 163. Core Publish Framework</div>
+</div>
+<div class="paragraph">
+<p>A <code>pub:PublishService</code> represents the capability of the platform to push data from Mobi to a certain type of external system with a human readable name and how many concurrent publishes can be made with the specific service. The instances of this class are what populate the dropdown in the Publish Configuration modal in the UI (see <a href="#Publish">Publish (ENTERPRISE)</a>). The <code>pub:PublishConfig</code> class represents an individual request to publish a Versioned RDF Record to an external system. Instances of this class are required to have a <code>pub:useService</code> predicate pointing to which Publish Service to use along with the IRI of the Versioned RDF Record to publish. It can also optionally have a pointer to a specific Commit of that Versioned RDF Record that should be published. In the absence of this predicate on an instance of <code>pub:PublishConfig</code>, the head Commit of the MASTER Branch will be used.</p>
+</div>
+<div class="paragraph">
+<p>An extension of the core framework will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define a new instance of <code>pub:PublishService</code> representing the new publish capability</p>
+</li>
+<li>
+<p>Define a subclass of <code>pub:PublishConfig</code> that is also a SHACL Node Shape aligned with the requirements of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework</p>
+</li>
+<li>
+<p>Define the configuration properties for the new type of Publish along with SHACL Property Shapes aligned with the requirements of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework</p>
+</li>
+<li>
+<p>Define a SHACL Property Shape for the <code>pub:useService</code> predicate with <code>sh:defaultValue</code> and <code>sh:hasValue</code> set to the IRI of the new instance of <code>PublishService</code> and with <code>wf:usesFormField</code> set to <code>wf:HiddenTextInput</code></p>
+</li>
+<li>
+<p>Include a constraint on <code>pub:RecordPropertyShape</code> to restrict the types of Versioned RDF Records that the service supports</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given this framework, the JSON-LD sent to the generic publish endpoint should look like the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix pub: &lt;http://mobi.com/ontologies/publish#&gt; .
+@prefix : &lt;http://mobi.solutions/example#&gt; .
+
+:test a :CustomPublishConfig, pub:PublishConfig ; # An instance of the publish configuration to execute
+  pub:record &lt;https://mobi.com/records#7dbc162b-592c-4742-bf10-4c156c381781&gt; ; # the required IRI of the Versioned RDF Record to publish
+  pub:useService :CustomPublishService ; # the required value for this property given the publish configuration
+  pub:commit &lt;https://mobi.com/commits#7dbc162b-592c-4742-bf10-4c156c381781&gt; ; # the optional IRI of the Commit to publish
+  # any additional custom properties for the type of publish configuration
+  .</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="graphdb_publish_example">GraphDB Publish Example</h3>
 <div class="paragraph">
-<p>Below is the GraphDB publish SHACL configuration:</p>
+<p>The GraphDB Publish SHACL configurations define:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix dct: &lt;http://purl.org/dc/terms/&gt;.
-@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
-@prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
-@prefix webForm: &lt;https://mobi.solutions/ontologies/form#&gt;.
-@prefix : &lt;http://mobi.com/ontologies/publish/graphdb/owl#&gt;.
-@base &lt;http://mobi.com/ontologies/publish/graphdb/owl&gt;.
-
-:GraphDBPublishService a setting:PublishService;
-    setting:publishType "Publish to a GraphDB Repository" ;
-    setting:concurrency "-1"^^xsd:nonNegativeInteger .
-
-:GraphDBPublishNodeShape a owl:Class, sh:NodeShape ;
-    rdfs:subClassOf setting:PublishSetting ;
-    dct:description "Publish to GraphDB as an Ontology" ;
-    sh:property :GraphDBRepositoryIdPropertyShape, :GraphDBNamedGraphIRIPropertyShape, :GraphDBOverwritePropertyShape ;
-    setting:inGroup :PublishGraphDBGroup ;
-    sh:targetClass :GraphDBPublish .
-
-:GraphDBRepositoryIdPropertyShape a sh:PropertyShape ;
-    sh:path :repositoryId ;
-    sh:name "Repository ID" ;
-    sh:datatype xsd:string ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    webForm:usesFormField webForm:TextInput .
-
-:GraphDBNamedGraphIRIPropertyShape a sh:PropertyShape ;
-    sh:path :namedGraphIRI ;
-    sh:name "Named Graph IRI (Optional)" ;
-    sh:datatype xsd:string ;
-    sh:minCount 0 ;
-    sh:maxCount 1 ;
-    sh:pattern "{SOME IRI REGEX}" ;
-    webForm:usesFormField webForm:TextInput .
-
-:GraphDBOverwritePropertyShape a sh:PropertyShape ;
-    sh:path :overwrite ;
-    sh:name "Overwrite Existing Data" ;
-    sh:datatype xsd:string ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    sh:defaultValue "true"^^xsd:boolean ;
-    webForm:usesFormField webForm:ToggleInput .
-
-:repositoryId a owl:AnnotationProperty ;
-   rdfs:label "Repository ID"@en ;
-   rdfs:domain sh:PropertyShape .
-
-:overwrite a owl:DatatypeProperty ;
-   rdfs:label "Overwrite"@en ;
-   rdfs:domain sh:PropertyShape ;
-   rdfs:range xsd:boolean .
-
-:namedGraphIRI a owl:ObjectProperty ;
-   rdfs:label "Named Graph IRI"@en ;
-   rdfs:domain sh:PropertyShape ;
-   rdfs:range rdfs:Literal .
-
-:PublishGraphDBGroup a setting:PublishGroup ;
-    rdfs:label "Publish GraphDB"@en .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This configuration defines the GraphDB publish service (<code>setting:PublishService</code>), the associated inputs (<code>sh:PropertyShape</code>), any regex for those inputs (<code>sh:pattern</code>), and the number of inputs for a given field (<code>sh:minCount</code> and <code>sh:maxCount</code>). The configuration also defines form fields creating the web form in the <a href="#Publish">Publishing tool</a> publish modal via the <code>webForm:usesFormField</code> predicate.</p>
-</div>
-<div class="paragraph">
-<p>The <code>:GraphDBRepositoryIdPropertyShape</code> defines a required field of the repository ID to publish to using the <code>:repositoryId</code>. The <code>:GraphDBNamedGraphIRIPropertyShape</code> defines an optional field for the named graph in GraphDB to publish the ontology/vocabulary data into using the <code>:namedGraphIRI</code> field. This field is additionally required to match a regex pattern defined by the <code>sh:pattern</code> field. Lastly, the <code>:GraphDBOverwritePropertyShape</code> defines a required boolean field of whether to overwrite the existing data in the publish named graph or append using the <code>:overwrite</code> field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The GraphDB Publish Service (<code>graphdb:GraphDBPublishService</code>) with an unlimited concurrency</p>
+</li>
+<li>
+<p>The GraphDB Publish Configuration (<code>graphdb:GraphDBPublish</code>)</p>
+</li>
+<li>
+<p>A property for the ID of the repository to publish to along constraints to make it a required field (<code>graphdb:repositoryId</code>)</p>
+</li>
+<li>
+<p>A property for the IRI of the named graph the record data should land in along with constraints to ensure a max of 1 valid IRI value (<code>graphdb:namedGraphIRI</code>)</p>
+</li>
+<li>
+<p>A property for whether to overwrite the target named graph with the new data along with constraints to make it a required field and have a default of <code>true</code> (<code>graphdb:overwrite</code>)</p>
+</li>
+<li>
+<p>Required value for <code>pub:useService</code> of <code>graphdb:GraphDBPublishService</code></p>
+</li>
+<li>
+<p>Support for both <code>OntologyRecord</code> and <code>ShapesGraphRecord</code></p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="graphdb_publish_rest_request">GraphDB Publish REST Request</h4>
@@ -9294,154 +9706,76 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_graphdb.png" alt="postman graphdb">
 </div>
-<div class="title">Figure 158. GraphDB Postman Request</div>
+<div class="title">Figure 164. GraphDB Postman Request</div>
 </div>
 <div class="paragraph">
-<p>The body of the request represented in turtle is:</p>
+<p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix ns0: &lt;http://mobi.com/ontologies/publish/graphdb/owl#&gt; .
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix pub: &lt;http://mobi.com/ontologies/publish#&gt; .
+@prefix graphdb: &lt;http://mobi.com/ontologies/publish/graphdb/owl#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix ns1: &lt;http://mobi.com/ontologies/setting#&gt; .
 
-&lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublishNodeShape1706231794535&gt;
-  a &lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublish&gt; ; # An instance of the publish service to execute
-  ns0:namedGraphIRI "http://mobi.com/named-graph"^^xsd:string ; # the named graph IRI to publish the ontology/vocabulary data to
-  ns0:overwrite "true"^^xsd:string ; # overwrite the existing data in the graph if it exists
-  ns0:repositoryId "testRepo"^^xsd:string . # the GraphDB repository ID to publish data into
-
-ns0:GraphDBPublishService
-  a ns1:PublishService ; # The publish service to execute
-  ns1:concurrency "-1"^^xsd:nonNegativeInteger ; # Not required
-  ns1:publishType "Publish to a GraphDB Repository"^^xsd:string . # Not required</code></pre>
+&lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublish1722971285905&gt;
+  a graphdb:GraphDBPublish ; # The type of publish configuration
+  pub:commit &lt;https://mobi.com/commits#c8687ca9a4baa3339ac8344788a408af6046bafd&gt; ; # The IRI of the Commit on the Record to publish
+  pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
+  pub:useService &lt;http://mobi.com/ontologies/publish/graphdb/owl#GraphDBPublishService&gt; ; # The PublishService to use, required to line up with the type of publish configuration
+  graphdb:overwrite true ; # overwrite the existing data in the graph if it exists
+  graphdb:repositoryId "testRepo"^^xsd:string . # the GraphDB repository ID to publish data into</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>This request is for a publish of the ontology record <code>https://mobi.com/records#607850ec-86fe-4e17-b47c-36765b946fbb</code> at the HEAD commit (since the <code>commitId</code> query param is omitted). The body of the request defines what publish service type to execute and the inputs for the associated publish service. See comments in turtle for explanation of fields.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="anzo_publish_example">Anzo Publish Example</h3>
 <div class="paragraph">
-<p>There are two ways to publish to Anzo: as a SKOS vocabulary into a Dataset or as a OWL model. Both utilize the same SHACL Property Shape for the property specifying which Anzo server to publish to. That Property Shape is shown below.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
-@prefix webForm: &lt;https://mobi.solutions/ontologies/form#&gt;.
-@prefix : &lt;http://mobi.com/ontologies/publish/anzo#&gt;.
-@prefix config: &lt;http://mobi.com/config#&gt;.
-@base &lt;http://mobi.com/ontologies/publish/anzo&gt;.
-
-:AnzoConfigIdPropertyShape a sh:PropertyShape;
-    sh:path config:hasId;
-    sh:datatype xsd:string;
-    sh:name "Publishing Config"^^xsd:string ;
-    sh:minCount 0 ;
-    sh:maxCount 1 ;
-    webForm:usesFormField webForm:DropdownInput ;
-    webForm:sparqlSelectQuery """
-    			SELECT DISTINCT ?value
-                WHERE {
-                    ?s a &lt;http://mobi.com/config#AnzoConfiguration&gt; .
-                    ?s &lt;http://mobi.com/config#hasId&gt; ?value .
-                }
-    			""" .</code></pre>
-</div>
+<p>There are two ways to publish Ontology Records to Anzo: as a SKOS vocabulary within a Dataset or as an OWL model. Both utilize the same SHACL Property Shape for the property specifying which Anzo server to publish to (<code>http://mobi.com/config#hasId</code>). This property is required and must line up with the ID of an Anzo Configuration within the platform, i.e. instances of `http://mobi.com/config#AnzoConfiguration` (see <a href="#anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</a>).</p>
 </div>
 <div class="paragraph">
-<p>The <code>sh:PropertyShape</code> defines the requirement for at most one value of <code>config:hasId</code> to be present on the publish request and that the acceptable values will be fetched from the repository based on the presence of instances of `http://mobi.com/config#AnzoConfiguration`.</p>
+<p>The Anzo Publish OWL SHACL configurations define:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Anzo OWL Publish Service (<code>anzoowl:AnzoOwlPublishService</code>) with an unlimited concurrency</p>
+</li>
+<li>
+<p>The Anzo OWL Publish Configuration (<code>anzoowl:AnzoOwlPublish</code>)</p>
+</li>
+<li>
+<p>A property for whether to publish the data as an Anzo Model or an Anzo Dataset along constraints to make it a required field of one value, list the acceptable values of "As Model" or "As Dataset", and set the default to "As Model" (<code>anzoowl:publishMode</code>)</p>
+</li>
+<li>
+<p>Required value for <code>pub:useService</code> of <code>anzoowl:AnzoOwlPublishService</code></p>
+</li>
+<li>
+<p>Support only for <code>OntologyRecord</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Below is the Anzo OWL publish SHACL configuration:</p>
+<p>The Anzo Publish SKOS SHACL configurations define:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix dct: &lt;http://purl.org/dc/terms/&gt;.
-@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
-@prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
-@prefix webForm: &lt;https://mobi.solutions/ontologies/form#&gt;.
-@prefix : &lt;http://mobi.com/ontologies/publish/anzo/owl#&gt;.
-@prefix anzoConfig: &lt;http://mobi.com/ontologies/publish/anzo#&gt;.
-@base &lt;http://mobi.com/ontologies/publish/anzo/owl&gt;.
-
-:AnzoOwlPublishService a setting:PublishService;
-    setting:publishType "Publish to Anzo as OWL Dataset/Model" ;
-    setting:concurrency "-1"^^xsd:nonNegativeInteger .
-
-:DatasetModelNodeShape a owl:Class, sh:NodeShape;
-    rdfs:subClassOf setting:PublishSetting;
-    dct:description "Publish to Anzo as OWL Dataset/Model" ;
-    sh:property :DatasetModelPropertyShape;
-    sh:property anzoConfig:AnzoConfigIdPropertyShape;
-    setting:inGroup :PublishOwlGroup ;
-    sh:targetClass :AnzoOwlPublish .
-
-:DatasetModelPropertyShape a sh:PropertyShape;
-    sh:path setting:hasDataValue;
-    sh:datatype xsd:string;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    sh:in ("As Model" "As Dataset") ;
-    sh:defaultValue "As Model" ;
-    webForm:usesFormField webForm:RadioInput .
-
-:PublishOwlGroup a setting:PublishGroup ;
-    rdfs:label "Publish Owl"@en .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This configuration defines the Anzo OWL publish service (<code>setting:PublishService</code>), the associated input (<code>sh:PropertyShape</code>), and the acceptable values for that input. The configuration also defines the form field creating the web form in the <a href="#Publish">Publishing tool</a> publish modal via the <code>webForm:usesFormField</code> predicate. The <code>:DatasetModelPropertyShape</code> defines a required field of whether the OWL ontology data should be stored in Anzo as a Model or as a Dataset (<code>sh:in</code>). You can only specify one of these options.</p>
-</div>
-<div class="paragraph">
-<p>Below is the Anzo SKOS publish SHACL configuration:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix dct: &lt;http://purl.org/dc/terms/&gt;.
-@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
-@prefix setting: &lt;http://mobi.com/ontologies/setting#&gt;.
-@prefix webForm: &lt;https://mobi.solutions/ontologies/form#&gt;.
-@prefix : &lt;http://mobi.com/ontologies/publish/anzo/skos#&gt;.
-@prefix anzoConfig: &lt;http://mobi.com/ontologies/publish/anzo#&gt;.
-@base &lt;http://mobi.com/ontologies/publish/anzo/skos&gt;.
-
-:AnzoSkosPublishService a setting:PublishService;
-    setting:publishType "Publish to Anzo as SKOS Concepts" ;
-    setting:concurrency "-1"^^xsd:nonNegativeInteger .
-
-:ClassesConceptsNodeShape a owl:Class, sh:NodeShape;
-    rdfs:subClassOf setting:PublishSetting;
-    dct:description "Publish to Anzo as SKOS Concepts" ;
-    sh:property :ClassesConceptsPropertyShape;
-    sh:property anzoConfig:AnzoConfigIdPropertyShape;
-    setting:inGroup :PublishSkosGroup ;
-    sh:targetClass :AnzoSkosPublish .
-
-:ClassesConceptsPropertyShape a sh:PropertyShape;
-    sh:path setting:hasDataValue;
-    sh:datatype xsd:string;
-    sh:in ("Concepts" "Classes") ;
-    sh:defaultValue "Concepts" ;
-    sh:minCount 1 ;
-    sh:maxCount 2 ;
-    webForm:usesFormField webForm:CheckboxInput .
-
-:PublishSkosGroup a setting:PublishGroup ;
-    rdfs:label "Publish Skos"@en .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This configuration defines the Anzo SKOS publish service (<code>setting:PublishService</code>), the associated input (<code>sh:PropertyShape</code>), and the acceptable values for that input. The configuration also define the form field creating the web form in the <a href="#Publish">Publishing tool</a> publish modal via the <code>webForm:usesFormField</code> predicate. The <code>:ClassesConceptsPropertyShape</code> defines a required field of whether to pull SKOS Concepts from the specified record and/or to transform the OWL Class hierarchy into SKOS concepts within the generated Anzo Dataset (<code>sh:in</code>). You can specify one or both of these options.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Anzo SKOS Publish Service (<code>anzoskos:AnzoSkosPublishService</code>) with an unlimited concurrency</p>
+</li>
+<li>
+<p>The Anzo SKOS Publish Configuration (<code>anzoskos:AnzoSkosPublish</code>)</p>
+</li>
+<li>
+<p>A property for whether to publish whether to pull SKOS Concepts from the specified record and/or to transform the OWL Class hierarchy into SKOS concepts within the generated Anzo Dataset along constraints to ensure there&#8217;s at least one value, list the acceptable values of "Concepts" and "Classes", and set the default to "Concepts" (<code>anzoskos:publishMode</code>)</p>
+</li>
+<li>
+<p>Required value for <code>pub:useService</code> of <code>anzoskos:AnzoSkosPublishService</code></p>
+</li>
+<li>
+<p>Support only for <code>OntologyRecord</code></p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="anzo_publish_rest_request">Anzo Publish REST Request</h4>
@@ -9452,30 +9786,26 @@ ns0:GraphDBPublishService
 <div class="content">
 <img src="images/publishing/postman_anzo_owl.png" alt="postman anzo owl">
 </div>
-<div class="title">Figure 159. Anzo OWL Postman Request</div>
+<div class="title">Figure 165. Anzo OWL Postman Request</div>
 </div>
 <div class="paragraph">
-<p>The body of the request represented in turtle is:</p>
+<p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">@prefix ns0: &lt;http://mobi.com/config#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix ns1: &lt;http://mobi.com/ontologies/setting#&gt; .
+@prefix pub: &lt;http://mobi.com/ontologies/publish#&gt; .
+@prefix anzoowl: &lt;http://mobi.com/ontologies/publish/anzo/owl#&gt; .
 
-&lt;http://mobi.com/ontologies/publish/anzo/owl#DatasetModelNodeShape1706242679029&gt;
-  a &lt;http://mobi.com/ontologies/publish/anzo/owl#AnzoOwlPublish&gt; ; # An instance of the publish service to execute
-  ns0:hasId "dev"^^xsd:string ; # The Anzo config (instance) to publish to (See below)
-  ns1:hasDataValue "As Model"^^xsd:string . # Publish to an Anzo model. If this value was "As Dataset", it would publish to an Anzo Dataset
-
-&lt;http://mobi.com/ontologies/publish/anzo/owl#AnzoOwlPublishService&gt;
-  a ns1:PublishService ; # The publish service to execute
-  ns1:concurrency "-1"^^xsd:nonNegativeInteger ; # Not required
-  ns1:publishType "Publish to Anzo as OWL Dataset/Model"^^xsd:string . # Not required</code></pre>
+&lt;http://mobi.com/ontologies/publish/anzo/owl#AnzoOwlPublish1722972802499&gt;
+  a anzoowl:AnzoOwlPublish ; # The type of publish configuration
+  ns0:hasId "demo"^^xsd:string ; # The Anzo config (instance) to publish to
+  pub:commit &lt;https://mobi.com/commits#c8687ca9a4baa3339ac8344788a408af6046bafd&gt; ; # The IRI of the Commit on the Record to publish
+  pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
+  pub:useService anzoowl:AnzoOwlPublishService ; # The PublishService to use, required to line up with the type of publish configuration
+  anzoowl:publishMode "As Model"^^xsd:string . # Publish to an Anzo model. If this value was "As Dataset", it would publish to an Anzo Dataset</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>This request is for a publish of the ontology record <code>https://mobi.com/records#607850ec-86fe-4e17-b47c-36765b946fbb</code> at the HEAD commit (since the <code>commitId</code> query param is omitted). The body of the request defines what publish service type to execute and the inputs for the associated publish service. See comments in turtle for explanation of fields.</p>
 </div>
 <div class="paragraph">
 <p>Below is an example request to publish a record as SKOS to a configured Anzo instance:</p>
@@ -9484,30 +9814,26 @@ ns0:GraphDBPublishService
 <div class="content">
 <img src="images/publishing/postman_anzo_skos.png" alt="postman anzo skos">
 </div>
-<div class="title">Figure 160. Anzo SKOS Postman Request</div>
+<div class="title">Figure 166. Anzo SKOS Postman Request</div>
 </div>
 <div class="paragraph">
-<p>The body of the request represented in turtle is:</p>
+<p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">@prefix ns0: &lt;http://mobi.com/config#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix ns1: &lt;http://mobi.com/ontologies/setting#&gt; .
+@prefix pub: &lt;http://mobi.com/ontologies/publish#&gt; .
+@prefix anzoskos: &lt;http://mobi.com/ontologies/publish/anzo/skos#&gt; .
 
-&lt;http://mobi.com/ontologies/publish/anzo/skos#ClassesConceptsNodeShape1706242418991&gt;
-  a &lt;http://mobi.com/ontologies/publish/anzo/skos#AnzoSkosPublish&gt; ; # An instance of the publish service to execute
-  ns0:hasId "dev"^^xsd:string ; # The Anzo config (instance) to publish to (See below)
-  ns1:hasDataValue "Concepts"^^xsd:string, "Classes"^^xsd:string . # Publish both Concepts and Classes to an Anzo dataset as SKOS Concepts
-
-&lt;http://mobi.com/ontologies/publish/anzo/skos#AnzoSkosPublishService&gt;
-  a ns1:PublishService ; # The publish service to execute
-  ns1:concurrency "-1"^^xsd:nonNegativeInteger ; # Not required
-  ns1:publishType "Publish to Anzo as SKOS Concepts"^^xsd:string . # Not required</code></pre>
+&lt;http://mobi.com/ontologies/publish/anzo/skos#AnzoSkosPublish1722973197969&gt;
+  a anzoskos:AnzoSkosPublish ; # The type of publish configuration
+  ns0:hasId "demo"^^xsd:string ; # The Anzo config (instance) to publish to
+  pub:commit &lt;https://mobi.com/commits#7932ffdabee02aed1063ac6f691b21f7bff2e0b3&gt; ; # The IRI of the Commit on the Record to publish
+  pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
+  pub:useService anzoskos:AnzoSkosPublishService ; # The PublishService to use, required to line up with the type of publish configuration
+  anzoskos:publishMode "Concepts"^^xsd:string, "Classes"^^xsd:string . # Publish both Concepts and Classes to an Anzo dataset as SKOS Concepts</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>This request is for a publish of the ontology record <code>https://mobi.com/records#607850ec-86fe-4e17-b47c-36765b946fbb</code> at the HEAD commit (since the <code>commitId</code> query param is omitted). The body of the request defines what publish service type to execute and the inputs for the associated publish service. See comments in turtle for explanation of fields.</p>
 </div>
 </div>
 </div>
@@ -9516,8 +9842,8 @@ ns0:GraphDBPublishService
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.0<br>
-Last updated 2024-06-08 20:45:37 UTC
+Version 3.1<br>
+Last updated 2024-08-31 03:19:35 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
