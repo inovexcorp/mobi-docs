@@ -238,6 +238,7 @@
 <li><a href="#version_2_3_1">Version 2.3.1</a></li>
 <li><a href="#version_2_3_2">Version 2.3.2</a></li>
 <li><a href="#version_2_3_3">Version 2.3.3</a></li>
+<li><a href="#version_2_3_4_enterprise_only">Version 2.3.4 (ENTERPRISE ONLY)</a></li>
 </ul>
 </li>
 </ul>
@@ -2118,6 +2119,28 @@ This version includes a critical fix to reduce duplication of system policies on
 <ul>
 <li>
 <p>Fixed an issue where accepting a merge request with the branch deletion checkbox enabled would cause an endless spinner</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="version_2_3_4_enterprise_only">Version 2.3.4 (ENTERPRISE ONLY)</h4>
+<div class="paragraph">
+<p>Hotfix 2.3.4 of Mobi Enterprise was released on March 14, 2025.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Added ability to specify the client authentication method for OAuth/OpenID SSO configurations</p>
+</li>
+<li>
+<p>Added ability to skip SSL certificate verification with LDAP configurations</p>
+</li>
+<li>
+<p>Updated OpenID SSO configurations to refetch the latest public keys if a token&#8217;s signing algorithm could not be found in the cached list</p>
+</li>
+<li>
+<p>Fixed an issue where LDAP configurations with an admin account would not perform proper password validation on user logins</p>
 </li>
 </ul>
 </div>
@@ -5274,7 +5297,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-11 01:43:37 UTC
+Last updated 2025-05-17 17:58:46 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
