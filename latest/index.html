@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 4.1</span>
+<span id="revnumber">version 4.2</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -157,11 +157,16 @@
 </ul>
 </li>
 <li><a href="#vocabulary-linking">Link (ENTERPRISE)</a></li>
-<li><a href="#shapes-editor-guide">Shapes Editor (BETA)</a>
+<li><a href="#shapes-editor-guide">Shapes Editor (GAMMA)</a>
 <ul class="sectlevel3">
 <li><a href="#creating_new_shapes_graphs">Creating New Shapes Graphs</a></li>
 <li><a href="#uploading_existing_shapes_graphs">Uploading Existing Shapes Graphs</a></li>
-<li><a href="#editing_a_shapes_graph">Editing a Shapes Graph</a></li>
+<li><a href="#editing_a_shapes_graph">Editing a Shapes Graph</a>
+<ul class="sectlevel4">
+<li><a href="#shapes_graph_project_tab">Shapes Graph Project Tab</a></li>
+<li><a href="#node_shapes_tab">Node Shapes Tab</a></li>
+</ul>
+</li>
 <li><a href="#shapes_graph_versioning">Shapes Graph Versioning</a>
 <ul class="sectlevel4">
 <li><a href="#branches_tags_in_shapes_graphs">Branches &amp; Tags in Shapes Graphs</a></li>
@@ -171,12 +176,17 @@
 <li><a href="#merging_branches_on_shapes_graphs">Merging Branches on Shapes Graphs</a></li>
 </ul>
 </li>
+<li><a href="#shapes_editor_reference">Shapes Editor Reference</a>
+<ul class="sectlevel4">
+<li><a href="#create_node_shape_button">Create Node Shape Button</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#Publish">Publish (ENTERPRISE)</a>
 <ul class="sectlevel3">
 <li><a href="#graphdb_publishing">GraphDB Publishing</a></li>
-<li><a href="#anzo_publishing">Anzo Publishing</a></li>
+<li><a href="#graph_studio_publishing">Graph Studio Publishing</a></li>
 </ul>
 </li>
 <li><a href="#merge-requests-guide">Merge Requests</a>
@@ -257,7 +267,7 @@
 <li><a href="#password_encryption_configuration">Password Encryption Configuration</a></li>
 <li><a href="#imports_resolver_configuration">Imports Resolver Configuration</a></li>
 <li><a href="#ontology_cache_configuration">Ontology Cache Configuration</a></li>
-<li><a href="#anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</a></li>
+<li><a href="#graph_studio_publish_config">Graph Studio Publish Connection Configuration (ENTERPRISE)</a></li>
 <li><a href="#graphdb_publish_config">GraphDB Publish Connection Configuration (ENTERPRISE)</a></li>
 <li><a href="#workflow_engine_configuration">Workflow Engine Configuration</a></li>
 <li><a href="#banner_configuration_enterprise">Banner Configuration (ENTERPRISE)</a></li>
@@ -287,11 +297,7 @@
 <li><a href="#install_java_17">Install Java 17</a></li>
 </ul>
 </li>
-<li><a href="#install_mobi">Install Mobi</a>
-<ul class="sectlevel4">
-<li><a href="#server-id-license-file">Server ID and License File (ENTERPRISE)</a></li>
-</ul>
-</li>
+<li><a href="#install_mobi">Install Mobi</a></li>
 <li><a href="#post_installation_configuration">Post-Installation Configuration</a>
 <ul class="sectlevel4">
 <li><a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a></li>
@@ -491,9 +497,23 @@
 <li><a href="#graphdb_publish_rest_request">GraphDB Publish REST Request</a></li>
 </ul>
 </li>
-<li><a href="#anzo_publish_example">Anzo Publish Example</a>
+<li><a href="#graph_studio_publish_example">Graph Studio Publish Example</a>
 <ul class="sectlevel3">
-<li><a href="#anzo_publish_rest_request">Anzo Publish REST Request</a></li>
+<li><a href="#graph_studio_publish_rest_request">Graph Studio Publish REST Request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#docker_deployments">Appendix H: Docker Deployments</a>
+<ul class="sectlevel2">
+<li><a href="#license_file_enterprise">License File (Enterprise)</a></li>
+<li><a href="#backing_up_data">Backing Up Data</a></li>
+<li><a href="#upgrading_versions">Upgrading Versions</a></li>
+<li><a href="#restoring_data_from_a_backup">Restoring Data from a Backup</a></li>
+<li><a href="#reverting_to_a_previous_version">Reverting to a Previous Version</a>
+<ul class="sectlevel3">
+<li><a href="#directory_mounted_etc_and_data_directories_default">Directory Mounted <code>etc</code> and <code>data</code> Directories (default)</a></li>
+<li><a href="#volume_mounted_etc_and_data_directories">Volume Mounted <code>etc</code> and <code>data</code> Directories</a></li>
 </ul>
 </li>
 </ul>
@@ -615,8 +635,20 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <p>The easiest way to get started with Mobi on Docker is to download and install <a href="https://docs.docker.com/get-docker/" class="bare">https://docs.docker.com/get-docker/</a>.
 If you are using Mac or Windows Operating System, Docker Desktop will be available for use which provides a Dashboard GUI to manage docker images. If you are using a Linux operating system, you will interact with Docker via terminal commands.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For more detailed instructions on how to use Mobi with Docker, please refer to <a href="#docker_deployments">Docker Deployments</a> in the Appendix.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Mobi is available as a preconfigured Docker image on Docker Hub: <a href="https://hub.docker.com/r/inovexis/mobi/" class="bare">https://hub.docker.com/r/inovexis/mobi/</a>.   You can find the Mobi image by searching for our organization "inovexis" in the DockerHub search bar.</p>
+<p>Mobi is available as a pre-configured Docker image on Docker Hub: <a href="https://hub.docker.com/r/inovexis/mobi/" class="bare">https://hub.docker.com/r/inovexis/mobi/</a>. You can find the Mobi image by searching for our organization "inovexis" in the DockerHub search bar.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -661,12 +693,39 @@ inovexis/mobi       latest              6a5c8e447ec0        3 months ago        
 </div>
 </div>
 <div class="paragraph">
-<p>You can then run Mobi using the standard <code>docker run</code> command.  We recommend running Mobi on port 8443 rather than the random default value.</p>
+<p>You can then create a Mobi container directly with something like <code>docker run -dp 443:8443 inovexis/mobi</code> or using the Docker Compose. For the latter, create a new directory on your machine and create a file named <code>docker-compose.yml</code> with the following content:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">% docker run -dp 8443:8443 inovexis/mobi
-fb324e907ad8254e587e88e1014291850050ed8d6493463a8dabdd8ac9367430</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">name: mobi
+services:
+  mobi:
+    container_name: mobi
+    image: inovexis/mobi:4.2.0 # image name with tag (It is recommended to pin a version and not use latest)
+    ports:
+      - "443:8443"
+    command: bash -c '/opt/mobi/mobi-distribution/docker/docker-start.sh'
+    volumes:
+      - ./data:/opt/mobi/mobi-distribution/data # persist data volume (triplestore, logs, policies, etc)
+      - ./etc:/opt/mobi/mobi-distribution/etc # persist etc volume (karaf configuration files)
+      - ./backups:/opt/mobi/mobi-distribution/backups # optional directory mount to access backups on host machine
+      - ./restore:/opt/mobi/mobi-distribution/restore # optional directory mount to restore a backup
+      - ./license:/root/.mobi # directory mount for enterprise license file. **ENTERPRISE ONLY**
+  dagu:
+    container_name: dagu
+    image: ghcr.io/dagu-org/dagu:1.13.1
+    command: sh -c "rm -f /home/dagu/.dagu/dags/hello_world.yaml &amp;&amp; exec dagu start-all"
+volumes:
+  data:
+  etc:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the Mobi container using the following command from the location of your <code>docker-compose.yml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker compose up -d</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -685,7 +744,7 @@ fb324e907ad8254e587e88e1014291850050ed8d6493463a8dabdd8ac9367430</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">% docker container list
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-9abedac96a93        inovexis/mobi       "/usr/local/bin/mvn-…"   4 seconds ago       Up 2 seconds        0.0.0.0:8443-&gt;8443/tcp   flamboyant_panini</code></pre>
+9abedac96a93        inovexis/mobi       "/usr/local/bin/mvn-…"   4 seconds ago       Up 2 seconds        0.0.0.0:443-&gt;8443/tcp   Mobi</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -704,7 +763,7 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 </table>
 </div>
 <div class="paragraph">
-<p>You can use the CLI tool to login in karaf.  Once you click on the CLI button, it will open up a terminal window where you can login into karaf.</p>
+<p>You can use the Exec tool to login in Karaf. Once you click on the Exec tab, it will open up a terminal window where you can login into karaf.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -712,54 +771,13 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 </div>
 <div class="title">Figure 3. Docker Dashboard CLI</div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">user@machine ~ % docker exec -it fb324e907ad8254e587e88e1014291850050ed8d6493463a8dabdd8ac9367430 /bin/sh; exit
-# ls -al # command to list directories
-total 24
-drwxr-xr-x 1 root root 4096 Jul 23 21:52 .
-drwxr-xr-x 1 root root 4096 Jul 23 21:52 ..
-drwxr-xr-x 1 root root 4096 Oct 29 15:43 mobi-distribution-1.17.78
-# ./mobi-distribution-x.xx.xx/bin/client # command to login into karaf
-Logging in as karaf
-
-
-
-
-                       @@@@@
-                      @#####@
-                      @#####@
-                     @@@@@@&amp;
-    &amp;@%           @@@@@@@                       _     _
-  @/,,,&amp;@@@@@@@@@&amp;   @@         _ __ ___   ___ | |__ (_)
-  @,,,,,@@@@@@.     &amp;@         | '_ ` _ \ / _ \| '_ \| |
-  @,,,,/@      @@&amp;  @@         | | | | | | (_) | |_) | |
-    @*@           @@@@         |_| |_| |_|\___/|_.__/|_|
-                   &amp;@@
-                    @@@
-                    @&amp;//@@
-                   @//////@
-                   @%////@@
-                    @@@@@
-
-  mobi (x.xx.xx).
-  Powered by Apache Karaf
-
-Hit '&lt;tab&gt;' for a list of available commands
-and '[cmd] --help' for help on a specific command.
-Hit '&lt;ctrl-d&gt;' or 'osgi:shutdown' to shutdown mobi.
-
-
-karaf@mobi()&gt;</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>To start or stop the container, you could either use the terminal or Docker Dashboard GUI.</p>
+<p>To start or stop the container, you could either use the terminal (from the location of <code>docker-compose.yml</code>) or Docker Dashboard GUI.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">docker container start {container id for mobi}
-docker container stop {container id for mobi}</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">docker compose up -d
+docker compose down</code></pre>
 </div>
 </div>
 </div>
@@ -1100,7 +1118,7 @@ Supported ontology file types are <code>.owl</code>, <code>.ttl</code>, <code>.x
 <div class="sect3">
 <h4 id="editing_an_ontology">Editing an Ontology</h4>
 <div class="paragraph">
-<p>The Ontology Editor provides an interface for developing <a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a> ontologies with additional features directed towards developing imple Knowledge Organization System (<a href="https://www.w3.org/2004/02/skos/">SKOS</a>) vocabularies and extensions thereof, including support for (<a href="https://www.w3.org/TR/skos-reference/skos-xl.html">SKOS-XL</a>)</p>
+<p>The Ontology Editor provides an interface for developing <a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a> ontologies with additional features directed towards developing Simple Knowledge Organization System (<a href="https://www.w3.org/2004/02/skos/">SKOS</a>) vocabularies and extensions thereof, including support for (<a href="https://www.w3.org/TR/skos-reference/skos-xl.html">SKOS-XL</a>)</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1184,7 +1202,7 @@ To learn more about OWL ontologies, see the <a href="https://www.w3.org/TR/2012/
 <p>On the lower left side of this tab is a section containing a list of all direct and indirect ontology imports. If an imported ontology could not be resolved, it will appear red. To add a new imported ontology, click on the plus button and either enter the IRI of an ontology available on the web or select an ontology within Mobi. To refresh the cached versions of the imported ontologies and attempt to resolve any unresolved imports, click on the refresh button.</p>
 </div>
 <div class="paragraph">
-<p>On the right of this tab is a card used to generate a preview of the ontology as RDF. There is a drop down with several different RDF serializations to choose from. Clicking <b class="button">Refresh</b> will generate a preview of the saved state of the ontology in the specified RDF format in the area below. The preview will be limited to the first 5000 results. Additionally, there is a button for downloading the ontology in the selected format.</p>
+<p>On the right of this tab is a card used to generate a preview of the ontology as RDF. There is a drop down with several different RDF serializations to choose from. Clicking <b class="button">Refresh</b> will generate a preview of the saved state of the ontology in the specified RDF format in the area below. The preview will be limited to the first 5000 results.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1420,7 +1438,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="sect4">
 <h5 id="visualization_tab">Visualization Tab</h5>
 <div class="paragraph">
-<p>The Visualization Tab depicts the ontology in a force-directed graph layout. Each node represents a class, with dotted lines symbolizing the relationship between parent class and subclass, and solid lines representing the object properties.</p>
+<p>The Visualization Tab depicts the ontology in a force-directed graph layout. Each node represents a class, with dotted lines symbolizing the relationship between parent class and subclass, and solid lines representing the object properties. This enables users to easily understand data within an ontology by allowing them to navigate across the classes and their relationships.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1429,7 +1447,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="title">Figure 32. Pizza Ontology Graph</div>
 </div>
 <div class="paragraph">
-<p>The Ontology Visualization feature enables users to easily understand data within an ontology by allowing them to navigate across the classes and their relationships. The feature allows users to zoom, pan, select, drag, hover, and click nodes and links.</p>
+<p>The feature allows users to zoom, pan, select, drag, hover, and click nodes and links. There is also a help menu in the bottom left hand corner with shortcuts and helpful hints for using the tool.</p>
 </div>
 <div class="paragraph">
 <p>The number of classes displayed is limited to 500. Any in progress changes you have will not be rendered until they are committed. After initial graph calculation, the state of the graph will persist while users keep the ontology open. The graph will only be re-rendered when there is a new commit.</p>
@@ -1560,7 +1578,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <p>Every edit made to an entity within an ontology is automatically saved and an indicator is shown in the action-bar. Users are able to reach the changes page by clicking the <b class="button">Show Changes</b> button found in the right-hand side of the action-bar.</p>
 </div>
 <div class="paragraph">
-<p>The changes page displays all saved and uncommitted changes in the opened ontology. Saving changes without committing allows a user to edit an ontology through a number of browser sessions before making any commits to the commit history. These changes are unique to the user, and are available to other users once a commit is performed. They are grouped by individual entity and display the triples on the entity grouped by property. When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the ontology, resetting to the state of the current commit.</p>
+<p>The changes page displays all saved and uncommitted changes in the opened ontology. Saving changes without committing allows a user to edit an ontology through a number of browser sessions before making any commits to the commit history. These changes are unique to the user, and are available to other users once a commit is performed. They are grouped by individual entity and display the triples on the entity grouped by property. When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes made to the ontology, resetting to the state of the current commit.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1901,9 +1919,21 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 </div>
 </div>
 <div class="sect2">
-<h3 id="shapes-editor-guide">Shapes Editor (BETA)</h3>
+<h3 id="shapes-editor-guide">Shapes Editor (GAMMA)</h3>
 <div class="paragraph">
-<p>The Mobi web-based Shapes Editor is an innovative feature that provides users with a Distributed Management System for local and community development of (<a href="https://www.w3.org/TR/shacl/#shapes">SHACL Shapes</a>). The Shapes Editor features constraint capture, collaboration, shapes graph reuse, and extensibility.</p>
+<p>The Mobi web-based Shapes Editor is an innovative feature that provides users with a Distributed Management System for local and community development of <a href="https://www.w3.org/TR/shacl/">SHACL</a> Shapes Graphs. The Shapes Editor features constraint capture, collaboration, shapes graph reuse, and extensibility.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+For the best development experience, we recommend separating your ontology and shapes graph development into two different Mobi records, one for the ontology and one for the shapes graph. This allows you to take advantage of Mobi&#8217;s <a href="#ontology-editor-guide">Ontology Editor</a> and Shapes Editor features to their fullest extent.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>To reach the Shapes Editor, click on the link in the left menu.</p>
@@ -1950,7 +1980,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <p>Shapes graphs in Mobi will always include an OWL ontology object to capture high level information about the shapes graph, following best practices from the SHACL W3C specification (see <a href="https://www.w3.org/TR/shacl/#sparql-prefixes">this section</a> as an example).</p>
 </div>
 <div class="paragraph">
-<p>The <span class="underline">Shapes Graph IRI</span> is the unique identifier for the new shapes graph. The editor pre-populates this field with a default namespace and a local name generated from the <span class="underline">Title</span> field.  You can always override this behavior. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotations of both the new Shapes Graph Record and the ontology object within the new record. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotations of both the new Shapes Graph Record and the ontology object within the new record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new Shapes Graph Record. When the dialog is submitted, the new shapes graph will automatically be opened into the editor.</p>
+<p>The <span class="underline">Shapes Graph IRI</span> is the unique identifier for the new shapes graph. The editor pre-populates this field with a configurable default namespace and a local name generated from the <span class="underline">Title</span> field.  You can always override this behavior. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotations of both the new Shapes Graph Record and the ontology object within the new record. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotations of both the new Shapes Graph Record and the ontology object within the new record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new Shapes Graph Record. When the dialog is submitted, the new shapes graph will automatically be opened into the editor.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1980,16 +2010,16 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="sect3">
 <h4 id="editing_a_shapes_graph">Editing a Shapes Graph</h4>
 <div class="paragraph">
-<p>Once a Shapes Graph Record has been opened, the overview page displays a list of high-level information surrounding the shapes graph. This includes a shapes graph&#8217;s annotations, properties, imports, and a preview of the shapes graph serialized as RDF in <a href="https://www.w3.org/TR/turtle/">Turtle</a> syntax. Mobi will capture this high level information about a shapes graph with an OWL ontology object, following best practices from the SHACL W3C specification (see <a href="https://www.w3.org/TR/shacl/#sparql-prefixes">this section</a> as an example).</p>
+<p>The Shapes Editor provides an interface for developing <a href="https://www.w3.org/TR/shacl#shapes">SHACL Shapes</a> alongside the <a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a> ontologies that support them, with full integration into the <a href="#ontology-editor-guide">Ontology Editor</a>.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Tip</div>
 </td>
 <td class="content">
-In-app shapes graph editing features are coming soon. In this BETA version, updates can be uploaded using the <a href="#uploading_changes_to_shapes_graphs">Upload Changes feature</a>
+To learn more about SHACL shapes graphs, see the W3C Specification or check out resources like <a href="https://book.validatingrdf.com/bookHtml011.html">this chapter</a> from the book "Validating RDF Data" by Jose E. Labra Gayo, Eric Prud’hommeaux, Iovka Boneva, and Dimitris Kontokostas.
 </td>
 </tr>
 </table>
@@ -1998,7 +2028,224 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/shapes_details.png" alt="shapes details">
 </div>
-<div class="title">Figure 67. Shapes Record Details</div>
+<div class="title">Figure 67. Shapes Editor</div>
+</div>
+<div class="paragraph">
+<p>The Shapes Editor contains various tabs supporting activities for shapes graph development, search, and version control.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="#shapes_graph_project_tab">Shapes Graph Project Tab</a></p>
+</li>
+<li>
+<p>The <a href="#node_shapes_tab">Node Shapes Tab</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a detailed description of the versioning components, refer to the <a href="#shapes_graph_versioning">Shapes Graph Versioning</a> section.</p>
+</div>
+<div class="sect4">
+<h5 id="shapes_graph_project_tab">Shapes Graph Project Tab</h5>
+<div class="paragraph">
+<p>The Shapes Graph Project Tag displays high-level information about the shapes graph. This includes a shapes graph&#8217;s annotations, properties, imports, and a preview of the shapes graph serialized as RDF in <a href="https://www.w3.org/TR/turtle/">Turtle</a> syntax. Mobi will capture this high level information about a shapes graph with an OWL ontology object, following best practices from the SHACL W3C specification (see <a href="https://www.w3.org/TR/shacl/#sparql-prefixes">this section</a> as an example).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/project_tab.png" alt="project tab">
+</div>
+<div class="title">Figure 68. Shapes Editor Project Tab</div>
+</div>
+<div class="paragraph">
+<p>The top of this tab contains the title of the shapes graph and its editable IRI. The IRI shown is the Version IRI, ontology IRI, or a blank node identifier. The IRI can be copied quickly by clicking on it.</p>
+</div>
+<div class="paragraph">
+<p>On the upper left side of this tab is a section containing a list of all the applied OWL Ontology Properties and Annotations. There are controls included to add, remove, and edit these properties.</p>
+</div>
+<div class="paragraph">
+<p>On the lower left side of this tab is a section containing a list of all direct and indirect ontology/shapes graph imports. If an import could not be resolved, it will appear red. To add a new import, click on the plus button and either enter the IRI of an ontology/shapes graph available on the web or select an Ontology Record or Shapes Graph Record within Mobi. To refresh the cached versions of the imports and attempt to resolve any unresolved imports, click on the refresh button.</p>
+</div>
+<div class="paragraph">
+<p>On the right of this tab is a card used to generate a preview of the shapes graph as RDF. There is a drop down with several different RDF serializations to choose from. Clicking <b class="button">Refresh</b> will generate a preview of the saved state of the shapes graph in the specified RDF format in the area below. The preview will be limited to the first 5000 results.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="node_shapes_tab">Node Shapes Tab</h5>
+<div class="paragraph">
+<p>The Node Shapes Tab allows you to view, create, and delete <a href="https://www.w3.org/TR/shacl/#node-shapes">node shapes</a> with their associated constraints represented with <a href="https://www.w3.org/TR/shacl/#property-shapes">property shapes</a> in the opened shapes graph. A Node Shape in SHACL collects all the constraints to be applied against the <em>Target</em>, i.e. a set of "focus nodes" within your graph. A Property Shape specifies the constraints to be applied against the values at the end of a property path through your graph starting from the focus nodes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/node_shapes_tab.png" alt="node shapes tab">
+</div>
+<div class="title">Figure 69. Node Shapes Tab</div>
+</div>
+<div class="paragraph">
+<p>The left side of the tab contains a searchable list of all the node shapes, including imported ones, with metadata about them. The search bar will filter the list to node shapes with annotations or local names containing your search query. Clicking on an item in the hierarchy will load that node shape&#8217;s information into the other sections in this tab.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The Node Shapes list will only contain node shapes with a defined IRI, not blank nodes. Keep an eye out for support for blank node shapes in upcoming versions.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The title of the selected node shape, its IRI, and its type(s) are displayed at the top of the tab along with a button to delete the node shape. The IRI can be copied quickly by clicking on it. The middle sections in this tab allow you to add, remove, and edit the Properties and Target for the selected node shape. Imported node shapes cannot be edited.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If any unsupported SHACL properties are utilized on the selected node shape, a warning symbol will be shown. Current unsupported predicates include the following. Keep an eye out for support in upcoming versions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sh:or</code></p>
+</li>
+<li>
+<p><code>sh:and</code></p>
+</li>
+<li>
+<p><code>sh:not</code></p>
+</li>
+<li>
+<p><code>sh:xone</code></p>
+</li>
+<li>
+<p><code>sh:group</code></p>
+</li>
+<li>
+<p><code>sh:defaultValue</code></p>
+</li>
+<li>
+<p><code>sh:node</code></p>
+</li>
+<li>
+<p><code>sh:qualifiedValueShape</code></p>
+</li>
+<li>
+<p><code>sh:qualifiedMaxCount</code></p>
+</li>
+<li>
+<p><code>sh:qualifiedMinCount</code></p>
+</li>
+<li>
+<p><code>sh:ignoredProperties</code></p>
+</li>
+<li>
+<p><code>sh:severity</code></p>
+</li>
+<li>
+<p><code>sh:sparql</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/editing_target.png" alt="editing target">
+</div>
+<div class="title">Figure 70. Editing a Node Shape target</div>
+</div>
+<div class="paragraph">
+<p>The Target for the selected node shape can be edited by clicking the pencil button next to the section title. This will turn the display editable, but changes will not be saved unless the save icon is clicked next to the section title. The options for a node shapes Target are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.w3.org/TR/shacl/#targetNode"><strong>Specific Instance:</strong></a> Allows you to enter a fixed IRI of a node in the graph to target with this shape</p>
+</li>
+<li>
+<p><a href="https://www.w3.org/TR/shacl/#targetClass"><strong>Types of Instance:</strong></a> Allows you to select a class from the imports closure or enter a class IRI to target with this shape</p>
+</li>
+<li>
+<p><a href="https://www.w3.org/TR/shacl/#targetObjectsOf"><strong>Object Of:</strong></a> Allows you to target the values of a selected object property from the imports closure or an entered an object property IRI</p>
+</li>
+<li>
+<p><a href="https://www.w3.org/TR/shacl/#targetSubjectsOf"><strong>Subject Of:</strong></a> Allows you to target the nodes with a selected a property from the imports closure or an entered a property IRI</p>
+</li>
+<li>
+<p><a href="https://www.w3.org/TR/shacl/#implicit-targetClass"><strong>Implicit:</strong></a> Indicates that the node shape targets instances defined a type of the node shape&#8217;s IRI</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/constraints_list.png" alt="constraints list">
+</div>
+<div class="title">Figure 71. Constraints List</div>
+</div>
+<div class="paragraph">
+<p>The right side of the tab contains a list of all the constraints set on the selected node shape, separated by property shape. Each property shape is displayed with its title, property path being constrained, error message if set, and list of constraints. The property path will be displayed with the following syntax which is also described in the help icon next to the section header:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Forward Slash <code>/</code></dt>
+<dd>
+<p>Represents a sequential path</p>
+</dd>
+<dt class="hdlist1">Vertical Bar <code>|</code></dt>
+<dd>
+<p>Represents an alternative path</p>
+</dd>
+<dt class="hdlist1">Caret <code>^</code></dt>
+<dd>
+<p>Represents an inverse path</p>
+</dd>
+<dt class="hdlist1">Asterisk <code>*</code></dt>
+<dd>
+<p>Represents a path to be followed zero or more times</p>
+</dd>
+<dt class="hdlist1">Plus <code>+</code></dt>
+<dd>
+<p>Represents a path to be followed one or more times</p>
+</dd>
+<dt class="hdlist1">Question Mark <code>?</code></dt>
+<dd>
+<p>Represents a path to be followed zero or one time</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Property shapes can be removed using the <b class="button">Delete</b> button in the footer of the relevant card and added using the plus button in the section header. The Create Constraint(s) Modal allows you to set the <span class="underline">Name</span> and <span class="underline">Message</span> of the generated Property Shape, configure the path, and associate any number of constraints.</p>
+</div>
+<table class="tableblock frame-none grid-none stretch">
+<caption class="title">Table 3. Create Constraint(s) Modal Empty and Filled</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/shacl-editor/create_constraint_empty.png" alt="create constraint empty"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="images/shacl-editor/create_constraint_filled.png" alt="create constraint filled"></span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>To add to the path, hover over either the bottom or the right side of a path block to either add to the sequence or add an alternative path. The Add Property to Path modal allows you to either select a property from the imports closure or enter a custom property IRI and select whether the path should be inversely followed and any cardinality characteristics (zero or more, one or more, zero or one).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/add_path_node_modal.png" alt="add path node modal">
+</div>
+<div class="title">Figure 72. Add Property to Path Modal</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2007,7 +2254,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <p>Just like <a href="#ontology_versioning">ontologies</a>, each shapes graph in Mobi is versioned similarly to the <a href="https://git-scm.com/">Git</a> Version Control System, whereby all changes to a shapes graph are collected into a chain of "commits" which form a commit history called a "branch". Thus, every version in the history of a shapes graph can be generated by selecting a commit and applying all the changes in the branch back to the initial commit.</p>
 </div>
 <div class="paragraph">
-<p>Every shapes graph is also initialized with a MASTER branch that contains the initial commit. Changes to the shapes graph can be uploaded to the MASTER branch or can be uploaded into separate branches. Changes uploaded on these branches exists in isolation until they are merged into the MASTER branch, joining any other changes committed in the meantime. When merging two branches, the Shapes Editor does its best to combine any changes made on both branches. If a conflict occurs, the editor allows the user to resolve them manually. More information on merging branches can be found in the section on <a href="#merging_branches_on_shapes_graphs">Merging Branches</a>.</p>
+<p>Every shapes graph is also initialized with a MASTER branch that contains the initial commit. Work can be done on this MASTER branch or can be split out into separate branches. Work done on these branches exist in isolation until they are merged back into the MASTER branch, joining any other changes committed in the meantime. When merging two branches, the Shapes Editor does its best to combine any changes made on both branches. If a conflict occurs, the editor allows the user to resolve them manually. More information on merging branches can be found in the section on <a href="#merging_branches_on_shapes_graphs">Merging Branches</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="branches_tags_in_shapes_graphs">Branches &amp; Tags in Shapes Graphs</h5>
@@ -2015,7 +2262,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <p>In order to create a branch or tag, click the corresponding button in the action-bar. The branch or tag will be associated with the commit that is currently checked out.</p>
 </div>
 <table class="tableblock frame-none grid-none stretch">
-<caption class="title">Table 3. Create Branch and Create Tag buttons</caption>
+<caption class="title">Table 4. Create Branch and Create Tag buttons</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2028,13 +2275,13 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 </tbody>
 </table>
 <div class="paragraph">
-<p>The branches dropdown provides a searchable list of branches and tags which can be checked out. To checkout a branch or tag, simply select the branch in the dropdown menu. Checking out a tag will open the ontology at the tagged commit in read-only mode. If you have checked out a commit from the commit history table, the commit will be in the dropdown list and show as selected. Note that the ability to check out a branch or tag will be disabled if you have any uncommitted changes on the current branch.</p>
+<p>The branches dropdown provides a searchable list of branches and tags which can be checked out. To checkout a branch or tag, simply select the branch in the dropdown menu. Checking out a tag will open the shapes graph at the tagged commit in read-only mode. If you have checked out a commit from the commit history table, the commit will be in the dropdown list and show as selected. Note that the ability to check out a branch or tag will be disabled if you have any uncommitted changes on the current branch.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/shacl-editor/branches_dropdown.png" alt="branches dropdown" width="40%">
 </div>
-<div class="title">Figure 68. Branches Dropdown</div>
+<div class="title">Figure 73. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To edit the metadata of a branch or tag that is not checked out, click the pencil icon next to it in the dropdown menu. You cannot edit the MASTER branch of a shapes graph. To delete a branch or tag, click on the delete icon next to the branch/tag in the dropdown menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -2049,22 +2296,22 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/upload_changes_button.png" alt="upload changes button">
 </div>
-<div class="title">Figure 69. Upload Changes button</div>
+<div class="title">Figure 74. Upload Changes button</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="viewing_saved_changes_on_shapes_graphs">Viewing Saved Changes on Shapes Graphs</h5>
 <div class="paragraph">
-<p>Changes that have been uploaded to a Shapes Graph Record are automatically saved and an indicator is shown in the action-bar. Users are able to reach the changes page by clicking the <b class="button">Show Changes</b> button found in the right-hand side of the action-bar.</p>
+<p>Changes that have been made to a Shapes Graph Record are automatically saved and an indicator is shown in the action-bar. Users are able to reach the changes page by clicking the <b class="button">Show Changes</b> button found in the right-hand side of the action-bar.</p>
 </div>
 <div class="paragraph">
-<p>The changes page displays all saved and uncommitted changes in the opened shape graph. Saving changes without committing allows a user to edit an shape graph through a number of browser sessions before making any commits to the commit history. These changes are unique to the user, and are available to other users once a commit is performed. They are grouped by individual entity and display the triples on the entity grouped by property. When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes uploaded into the shape graph, resetting to the state of the current commit.</p>
+<p>The changes page displays all saved and uncommitted changes in the opened shape graph. Saving changes without committing allows a user to edit an shape graph through a number of browser sessions before making any commits to the commit history. These changes are unique to the user, and are available to other users once a commit is performed. They are grouped by individual entity and display the triples on the entity grouped by property. When a “Show Full” toggle is active, the changes display is updated to include all the other triples on that changed entity. Clicking the <b class="button">Remove All Changes</b> button will clear all the changes made to the shape graph, resetting to the state of the current commit.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/shacl-editor/changes_page.png" alt="changes page">
 </div>
-<div class="title">Figure 70. Changes Page</div>
+<div class="title">Figure 75. Changes Page</div>
 </div>
 <div class="paragraph">
 <p>The commit history graph displays of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the graph. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. The graph displays any Tags and Branches associated with visible commits. To view more information about a particular commit in the history, such as the added and deleted statements, click on its hash id to open an informational modal. The graph also includes commit dots for "checking out" a commit in the history. Clicking the Commit dot will open the shapes graph at that commit in read-only mode.</p>
@@ -2079,7 +2326,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/commit_button.png" alt="commit button">
 </div>
-<div class="title">Figure 71. Commit Button</div>
+<div class="title">Figure 76. Commit Button</div>
 </div>
 <div class="paragraph">
 <p>Commits cannot be made when a Tag or Commit is checked out or you are behind the HEAD of the current Branch. If you are behind the HEAD of the current branch, an indicator wil be shown in the top action-bar with a button to checkout the latest commit.</p>
@@ -2088,7 +2335,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/pull_latest_changes.png" alt="pull latest changes">
 </div>
-<div class="title">Figure 72. Pull in Latest Changes Indicator</div>
+<div class="title">Figure 77. Pull in Latest Changes Indicator</div>
 </div>
 </div>
 <div class="sect4">
@@ -2100,7 +2347,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 73. Merge Branches button</div>
+<div class="title">Figure 78. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -2109,7 +2356,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_page.png" alt="merge page">
 </div>
-<div class="title">Figure 74. Merge View</div>
+<div class="title">Figure 79. Merge View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -2121,7 +2368,7 @@ In-app shapes graph editing features are coming soon. In this BETA version, upda
 <div class="content">
 <img src="images/shacl-editor/merge_conflicts_main.png" alt="merge conflicts main">
 </div>
-<div class="title">Figure 75. List of All Merge Conflicts</div>
+<div class="title">Figure 80. List of All Merge Conflicts</div>
 </div>
 <div class="paragraph">
 <p>When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the <b class="button">Back to List</b> button to go back to the list of all the conflicts or the <b class="button">Previous</b> or <b class="button">Next</b> buttons to iterate through the list of conflicts.</p>
@@ -2142,10 +2389,43 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/shacl-editor/merge_conflicts_resolution.png" alt="merge conflicts resolution">
 </div>
-<div class="title">Figure 76. Merge Conflict Resolution View</div>
+<div class="title">Figure 81. Merge Conflict Resolution View</div>
 </div>
 <div class="paragraph">
 <p>Once all conflicts have been resolved, the <b class="button">Submit with Resolutions</b> button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shapes_editor_reference">Shapes Editor Reference</h4>
+<div class="sect4">
+<h5 id="create_node_shape_button">Create Node Shape Button</h5>
+<div class="paragraph">
+<p>The Create Node Shape Button is visible in any Shapes Editor tab in the bottom right hand corner of the screen. To add a new node shape to the shapes graph, click on the <b class="button">Create Node Shape</b> button. This will open an overlay with fields for configuring the new node shape to be created.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/create_node_shape_button.png" alt="create node shape button">
+</div>
+<div class="title">Figure 82. Create Node Shape button</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/create_node_shape_modal.png" alt="create node shape modal">
+</div>
+<div class="title">Figure 83. Create Node Shape Modal</div>
+</div>
+<div class="paragraph">
+<p>The Create Node Shape modal contains fields to set the <span class="underline">Title</span> and <span class="underline">Description</span> of the new node shape, which populate the <code>dcterms:title</code> and <code>dcterms:description</code> annotations respectively. You can also set the new node shape&#8217;s target using the same experience as the Target section of a selected node shape.</p>
+</div>
+<div class="paragraph">
+<p>After creating the node shape, a snackbar will appear at the bottom allowing you to navigate directly to your new node shape.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/shacl-editor/new_snackbar.png" alt="new snackbar">
+</div>
+<div class="title">Figure 84. New Entity snackbar</div>
 </div>
 </div>
 </div>
@@ -2153,7 +2433,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="sect2">
 <h3 id="Publish">Publish (ENTERPRISE)</h3>
 <div class="paragraph">
-<p>The Publish Page is an <strong>Enterprise only</strong> feature that allows you to push versioned RDF data to external systems such as a <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> instance or an <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a> instance. This enables downstream processing and usage of ontologies, vocabularies, and shapes graphs to support full semantic solutions. The publish capability is extensible and custom publish targets can be easily added via the Extensible Publishing Framework.</p>
+<p>The Publish Page is an <strong>Enterprise only</strong> feature that allows you to push versioned RDF data to external systems such as a <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> instance or an <a href="https://altair.com/altair-graph-studio">Altair Graph Studio</a> instance. This enables downstream processing and usage of ontologies, vocabularies, and shapes graphs to support full semantic solutions. The publish capability is extensible and custom publish targets can be easily added via the Extensible Publishing Framework.</p>
 </div>
 <div class="paragraph">
 <p>To reach the Publish Page, click on the link in the left menu.</p>
@@ -2162,25 +2442,25 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_landing.png" alt="publish landing">
 </div>
-<div class="title">Figure 77. The Publish Page</div>
+<div class="title">Figure 85. The Publish Page</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Publish Page shows a filterable, searchable, and paginated list of all the current Versioned RDF Records in Mobi, including Ontology Records and Shapes Graph Records. The filters on the left contain all possible types of versioned RDF Records. The selected options in each filter group can be reset and all selected filter options will appear beneath the search bar.</p>
 </div>
 <div class="paragraph">
-<p>Each Record is displayed with a title, an icon representing the type of Record, the identifier IRI for the latest data in the Record, and the provenance data of the latest publish successfully completed. To publish a Record to an external system, click the checkbox found on the corresponding row and click the <b class="button">Publish Record</b> button, prompting a configuration modal to appear. This modal displays a list of all registered publish services compatible with the type of Record you selected. Each publish service comes with its own configuration options to customize how the data is sent to the external system.</p>
+<p>Each Record is displayed with a title, an icon representing the type of Record, the identifier IRI for the latest data in the Record, and the provenance data of the latest publish successfully completed, including which publish service was used. To publish a Record to an external system, click the checkbox found on the corresponding row and click the <b class="button">Publish Record</b> button, prompting a configuration modal to appear. This modal displays a list of all registered publish services compatible with the type of Record you selected. Each publish service comes with its own configuration options to customize how the data is sent to the external system.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_overlay.png" alt="publish overlay" width="40%">
 </div>
-<div class="title">Figure 78. The publish modal</div>
+<div class="title">Figure 86. The publish modal</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_modal_options.png" alt="publish modal options" width="40%">
 </div>
-<div class="title">Figure 79. The publish modal with registered services.</div>
+<div class="title">Figure 87. The publish modal with registered services.</div>
 </div>
 <div class="paragraph">
 <p>If no services are registered or no services are compatible with the type of Record you selected, an error message will be displayed on the publish modal.</p>
@@ -2189,16 +2469,22 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_overlay_no_services.png" alt="publish overlay no services" width="40%">
 </div>
-<div class="title">Figure 80. The publish modal with no registered services</div>
+<div class="title">Figure 88. The publish modal with no registered services</div>
 </div>
 <div class="paragraph">
-<p>To view more details about the publish history of a particular Versioned RDF Record, click on the Record in the Publish Landing Page. The Publish History page displays each publish executed for the Record as well as relevant metadata including the user who published, the head commit at the time of publishing, and the time of the publish.</p>
+<p>To view more details about the publish history of a particular Versioned RDF Record, click on the Record in the Publish Landing Page. The Publish History page displays each publish executed for the Record as well as relevant metadata including the publish service that was used, the user who published, the head commit at the time of publishing, and the time of the publish. In addition, each activity can be expanded to view all the request parameters that were chosen for that particular publish.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_records.png" alt="publish records">
 </div>
-<div class="title">Figure 81. Record of all publishes for a record</div>
+<div class="title">Figure 89. Record of all publishes for a record</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/publishing/publish_activity_params.png" alt="publish activity params">
+</div>
+<div class="title">Figure 90. Request parameters for specific publish activity</div>
 </div>
 <div class="sect3">
 <h4 id="graphdb_publishing">GraphDB Publishing</h4>
@@ -2221,7 +2507,7 @@ GraphDB repositories are configured with <a href="https://graphdb.ontotext.com/d
 <div class="content">
 <img src="images/publishing/publish_modal_graphdb.png" alt="publish modal graphdb" width="40%">
 </div>
-<div class="title">Figure 82. Publish to GraphDB</div>
+<div class="title">Figure 91. Publish to GraphDB</div>
 </div>
 <div class="paragraph">
 <p>After selecting the target GraphDB instance and repository (and optionally a target named graph), click <b class="button">Submit</b>, and Mobi Enterprise will publish the data to the external system.</p>
@@ -2230,16 +2516,16 @@ GraphDB repositories are configured with <a href="https://graphdb.ontotext.com/d
 <div class="content">
 <img src="images/publishing/graphdb_published_ontology.png" alt="graphdb published ontology">
 </div>
-<div class="title">Figure 83. A published ontology in GraphDB.</div>
+<div class="title">Figure 92. A published ontology in GraphDB.</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="anzo_publishing">Anzo Publishing</h4>
+<h4 id="graph_studio_publishing">Graph Studio Publishing</h4>
 <div class="paragraph">
-<p>Mobi Enterprise comes with three publish services for pushing ontologies, vocabularies, and shapes graphs to an external Anzo instance&#8217;s Catalog. All of these publish service will allow you to specify which configured Anzo instance to publish to.</p>
+<p>Mobi Enterprise comes with three publish services for pushing ontologies, vocabularies, and shapes graphs to an external Graph Studio instance&#8217;s Catalog. All of these publish service will allow you to specify which configured Graph Studio instance to publish to.</p>
 </div>
 <div class="paragraph">
-<p>The "Publish to Anzo as SKOS Concepts" service allows Mobi users to select whether to publish the concept hierarchy, the class hierarchy or both as SKOS vocabulary concepts.</p>
+<p>The "Publish to Graph Studio as SKOS Concepts" service allows Mobi users to select whether to publish the concept hierarchy, the class hierarchy or both as SKOS vocabulary concepts.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2257,10 +2543,10 @@ When publishing the concept hierarchy, all individuals who are instances of SKOS
 <div class="content">
 <img src="images/publishing/publish_modal_skos.png" alt="publish modal skos" width="40%">
 </div>
-<div class="title">Figure 84. SKOS Publish to Anzo</div>
+<div class="title">Figure 93. SKOS Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
-<p>The "Publish to Anzo as OWL Dataset/Model" service allows Mobi users to publish the entire contents of an Ontology Record to either an Anzo model or dataset.</p>
+<p>The "Publish to Graph Studio as OWL Dataset/Model" service allows Mobi users to publish the entire contents of an Ontology Record to either an Graph Studio model or dataset.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2269,7 +2555,7 @@ When publishing the concept hierarchy, all individuals who are instances of SKOS
 <div class="title">Warning</div>
 </td>
 <td class="content">
-When publishing large ontologies, it&#8217;s recommended to publish as an Anzo dataset rather than an Anzo model as the Anzo Model Editor does not support ontologies at that scale.
+When publishing large ontologies, it&#8217;s recommended to publish as an Graph Studio dataset rather than an Graph Studio model as the Graph Studio Model Editor does not support ontologies at that scale.
 </td>
 </tr>
 </table>
@@ -2278,31 +2564,31 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Anzo d
 <div class="content">
 <img src="images/publishing/publish_modal_owl.png" alt="publish modal owl" width="40%">
 </div>
-<div class="title">Figure 85. OWL Publish to Anzo</div>
+<div class="title">Figure 94. OWL Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
-<p>The "Publish Shapes Graph to Anzo" service allows Mobi users to create an Anzo dataset containing their shapes graph data for use in validation logic within Graphmarts.</p>
+<p>The "Publish Shapes Graph to Graph Studio" service allows Mobi users to create an Graph Studio dataset containing their shapes graph data for use in validation logic within Graphmarts.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_modal_shacl.png" alt="publish modal shacl">
 </div>
-<div class="title">Figure 86. SHACL Publish to Anzo</div>
+<div class="title">Figure 95. SHACL Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
-<p>After selecting either the entity types or target location, click <b class="button">Submit</b>, and Mobi Enterprise will push the ontology/vocabulary/shapes graph data to Anzo.</p>
+<p>After selecting either the entity types or target location, click <b class="button">Submit</b>, and Mobi Enterprise will push the ontology/vocabulary/shapes graph data to Graph Studio.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/published_dataset.png" alt="published dataset">
 </div>
-<div class="title">Figure 87. A published vocabulary dataset in the Anzo SDL interface.</div>
+<div class="title">Figure 96. A published vocabulary dataset in the Graph Studio SDL interface.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/published_model.png" alt="published model">
 </div>
-<div class="title">Figure 88. A published ontology model in the Anzo SDL interface.</div>
+<div class="title">Figure 97. A published ontology model in the Graph Studio SDL interface.</div>
 </div>
 </div>
 </div>
@@ -2318,7 +2604,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Anzo d
 <div class="content">
 <img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
 </div>
-<div class="title">Figure 89. The Merge Requests module</div>
+<div class="title">Figure 98. The Merge Requests module</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Merge Requests module displays a list of all currently open merge requests. The list can be searched and sorted by the issued date and title, and the list can also be filtered by multiple parameters: the request status, the creator, the assignees, or the attached Record. The selected options in each filter group can be reset and all selected filter options will appear beneath the search bar. The search bar, sort options, and the <a href="#create_a_merge_request">create a merge request</a> button are located in the top right corner of the page.</p>
@@ -2330,7 +2616,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Anzo d
 <div class="content">
 <img src="images/merge-requests/individual_request.png" alt="individual request">
 </div>
-<div class="title">Figure 90. An Individual Merge Request</div>
+<div class="title">Figure 99. An Individual Merge Request</div>
 </div>
 <div class="paragraph">
 <p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, a button to close the request, and a button to go back to the main list of merge requests.</p>
@@ -2360,7 +2646,7 @@ The comment editor supports GitHub flavored Markdown which you can find more inf
 <div class="content">
 <img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
 </div>
-<div class="title">Figure 91. Editing Merge Request Metadata</div>
+<div class="title">Figure 100. Editing Merge Request Metadata</div>
 </div>
 <div class="sect3">
 <h4 id="create_a_merge_request">Create a Merge Request</h4>
@@ -2383,7 +2669,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step1.png" alt="step1">
 </div>
-<div class="title">Figure 92. Creating a Merge Request: Step 1 - Select a Record</div>
+<div class="title">Figure 101. Creating a Merge Request: Step 1 - Select a Record</div>
 </div>
 <div class="paragraph">
 <p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click <b class="button">Next</b>.</p>
@@ -2392,7 +2678,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step2.png" alt="step2">
 </div>
-<div class="title">Figure 93. Creating a Merge Request: Step 2 - Select Branches</div>
+<div class="title">Figure 102. Creating a Merge Request: Step 2 - Select Branches</div>
 </div>
 <div class="paragraph">
 <p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click <b class="button">Submit</b> and a new Merge Request with your selections will be created.</p>
@@ -2401,7 +2687,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step3.png" alt="step3">
 </div>
-<div class="title">Figure 94. Creating a Merge Request: Step 3 - Request Metadata</div>
+<div class="title">Figure 103. Creating a Merge Request: Step 3 - Request Metadata</div>
 </div>
 </div>
 <div class="sect3">
@@ -2413,7 +2699,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/conflicts.png" alt="conflicts">
 </div>
-<div class="title">Figure 95. Conflicts on a Merge Request</div>
+<div class="title">Figure 104. Conflicts on a Merge Request</div>
 </div>
 <div class="paragraph">
 <p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance and governance tracking.</p>
@@ -2428,7 +2714,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/closed_mr.png" alt="closed mr">
 </div>
-<div class="title">Figure 96. A Closed Merge Request</div>
+<div class="title">Figure 105. A Closed Merge Request</div>
 </div>
 </div>
 </div>
@@ -2444,7 +2730,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
 </div>
-<div class="title">Figure 97. Mapping Tool button</div>
+<div class="title">Figure 106. Mapping Tool button</div>
 </div>
 <div class="paragraph">
 <p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
@@ -2461,7 +2747,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
 </div>
-<div class="title">Figure 98. Create Mapping Overlay</div>
+<div class="title">Figure 107. Create Mapping Overlay</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking <b class="button">Continue</b> brings you to the Edit Mapping Page.</p>
@@ -2470,7 +2756,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
 </div>
-<div class="title">Figure 99. File Upload Page for Creating a Mapping</div>
+<div class="title">Figure 108. File Upload Page for Creating a Mapping</div>
 </div>
 <div class="paragraph">
 <p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with the class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
@@ -2491,7 +2777,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
 </div>
-<div class="title">Figure 100. Edit Mapping Page Edit Tab</div>
+<div class="title">Figure 109. Edit Mapping Page Edit Tab</div>
 </div>
 <div class="paragraph">
 <p>When creating a mapping, the first thing you will see is the <a href="#source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking <b class="button">Add Class</b> opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
@@ -2525,7 +2811,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
-<div class="title">Figure 101. Create Property Mapping Overlay for a Data/Annotation Property</div>
+<div class="title">Figure 110. Create Property Mapping Overlay for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>If you select an object property, a select field appears containing the titles of all class mappings of the appropriate type along with an option to create a new class mapping. The list of class mappings displayed is determined by the rdfs:range that is set on the selected property and its super-properties. If no range has been set on the property or there is a range of <code>owl:Thing</code> a full list of class mappings becomes available alongside the ability to create a new class mapping with all classes within the imports closure being an option.</p>
@@ -2534,13 +2820,13 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
 </div>
-<div class="title">Figure 102. Create Property Mapping Overlay for an Object Property</div>
+<div class="title">Figure 111. Create Property Mapping Overlay for an Object Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
 </div>
-<div class="title">Figure 103. Language Selection for a Data/Annotation Property</div>
+<div class="title">Figure 112. Language Selection for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>Clicking the main <b class="button">Save</b> button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the <b class="button">Save</b> button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking <b class="button">Submit</b> in an overlay will save the current state of the mapping and run it.</p>
@@ -2573,7 +2859,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/save_run_options.png" alt="save run options">
 </div>
-<div class="title">Figure 104. Options for saving and running a mapping</div>
+<div class="title">Figure 113. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2585,13 +2871,13 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
 </div>
-<div class="title">Figure 105. File Upload Page for Editing a Mapping</div>
+<div class="title">Figure 114. File Upload Page for Editing a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
 </div>
-<div class="title">Figure 106. File Upload Page for Editing a Mapping with missing columns</div>
+<div class="title">Figure 115. File Upload Page for Editing a Mapping with missing columns</div>
 </div>
 </div>
 <div class="sect3">
@@ -2621,13 +2907,13 @@ To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
 </div>
-<div class="title">Figure 107. File Upload Page for Running a Mapping</div>
+<div class="title">Figure 116. File Upload Page for Running a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
 </div>
-<div class="title">Figure 108. File Upload Page for Running a Mapping with missing columns</div>
+<div class="title">Figure 117. File Upload Page for Running a Mapping with missing columns</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Run Mapping</b> will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
@@ -2648,7 +2934,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/run_options.png" alt="run options">
 </div>
-<div class="title">Figure 109. Options for saving and running a mapping</div>
+<div class="title">Figure 118. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2662,7 +2948,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
 </div>
-<div class="title">Figure 110. Source Ontology Overlay</div>
+<div class="title">Figure 119. Source Ontology Overlay</div>
 </div>
 <div class="paragraph">
 <p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. The criteria for incompatible mappings are as follows:</p>
@@ -2741,7 +3027,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
 </div>
-<div class="title">Figure 111. The Datasets Manager</div>
+<div class="title">Figure 120. The Datasets Manager</div>
 </div>
 <div class="paragraph">
 <p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The <b class="button">Upload Data</b> button allows you to upload graph data to the dataset from a file.</p>
@@ -2755,7 +3041,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
 </div>
-<div class="title">Figure 112. New Dataset Overlay</div>
+<div class="title">Figure 121. New Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository</span> field allows you to specity the identifier of the repository registered within AVM where the dataset and all associated named graphs will be stored. The default option is the system repository and should be used in most cases. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create the dataset with the provided metadata.</p>
@@ -2779,7 +3065,7 @@ The ability to create new repositories in Mobi is coming soon!
 <div class="content">
 <img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
 </div>
-<div class="title">Figure 113. Edit Dataset Overlay</div>
+<div class="title">Figure 122. Edit Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking <b class="button">Update</b> will update the dataset record with the new metadata.</p>
@@ -2834,7 +3120,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
 </div>
-<div class="title">Figure 114. The Discover Page</div>
+<div class="title">Figure 123. The Discover Page</div>
 </div>
 <div class="sect3">
 <h4 id="explore">Explore</h4>
@@ -2845,7 +3131,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_classes.png" alt="explore classes">
 </div>
-<div class="title">Figure 115. Explore tab with classes</div>
+<div class="title">Figure 124. Explore tab with classes</div>
 </div>
 <div class="paragraph">
 <p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking <b class="button">Explore Data</b> opens the instances view.</p>
@@ -2854,7 +3140,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_instances.png" alt="explore instances">
 </div>
-<div class="title">Figure 116. Explore Tab with instances</div>
+<div class="title">Figure 125. Explore Tab with instances</div>
 </div>
 <div class="paragraph">
 <p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking <b class="button">View <em>Class Name</em></b> opens the single instance view. Clicking <b class="button">Create <em>Class Name</em></b> opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
@@ -2863,7 +3149,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance.png" alt="explore single instance">
 </div>
-<div class="title">Figure 117. Explore Tab with single instance</div>
+<div class="title">Figure 126. Explore Tab with single instance</div>
 </div>
 <div class="paragraph">
 <p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking <b class="button">Edit</b> opens the single instance editor.</p>
@@ -2872,7 +3158,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
 </div>
-<div class="title">Figure 118. Explore Tab with single instance editor</div>
+<div class="title">Figure 127. Explore Tab with single instance editor</div>
 </div>
 <div class="paragraph">
 <p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#edit_iri_overlay">Edit IRI Overlay</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the <kbd>ENTER</kbd> key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
@@ -2902,7 +3188,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
 </div>
-<div class="title">Figure 119. Query tab</div>
+<div class="title">Figure 128. Query tab</div>
 </div>
 <div class="paragraph">
 <p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a <b class="button">Submit</b> button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking <b class="button">Submit</b> executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
@@ -2914,7 +3200,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_construct_query.png" alt="discover construct query">
 </div>
-<div class="title">Figure 120. Construct query</div>
+<div class="title">Figure 129. Construct query</div>
 </div>
 </div>
 </div>
@@ -2942,7 +3228,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/workflows_initial_view.png" alt="workflows initial view">
 </div>
-<div class="title">Figure 121. Workflows button</div>
+<div class="title">Figure 130. Workflows button</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Workflows module displays a searchable, filterable, sortable, and paginated table of all the configured workflows within the local Mobi repository along with the latest status of their executions (status, user who started the execution, start time, and running time). Each Workflow is displayed with its title and toggle-able active status which determines whether that workflow can be executed, including manually or automatically by a Trigger. The latest execution details will update automatically as workflows trigger across the system.</p>
@@ -2954,7 +3240,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/workflow_controls.png" alt="workflow controls">
 </div>
-<div class="title">Figure 122. Workflows Run, Download, and Delete Buttons</div>
+<div class="title">Figure 131. Workflows Run, Download, and Delete Buttons</div>
 </div>
 <div class="paragraph">
 <p>Click the icon next to the workflow title to open up the <a href="#individual_workflow_page">Individual Workflow Page</a> for that workflow.</p>
@@ -2968,7 +3254,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/new_workflow_form.png" alt="new workflow form">
 </div>
-<div class="title">Figure 123. New Workflow Record Form</div>
+<div class="title">Figure 132. New Workflow Record Form</div>
 </div>
 <div class="paragraph">
 <p>The <span class="underline">Workflow IRI</span> is the unique identifier for the new workflow. The editor pre-populates this field with a default namespace and a local name generated from the <span class="underline">Title</span> field. You can always override this behavior. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotations of both the new workflow record and the workflow object within the new workflow. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotations of both the new workflow record and the workflow object within the new workflow. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new workflow record. When the dialog is submitted, the new workflow will automatically be opened into the <a href="#individual_workflow_page">Individual Workflow Page</a>. New workflows are always initialized with no trigger and a single Test Action with a templated message.</p>
@@ -2986,7 +3272,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/upload_workflow_form.png" alt="upload workflow form">
 </div>
-<div class="title">Figure 124. Upload Workflow Record Form</div>
+<div class="title">Figure 133. Upload Workflow Record Form</div>
 </div>
 </div>
 <div class="sect3">
@@ -2998,13 +3284,13 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/individual_workflow_page.png" alt="individual workflow page">
 </div>
-<div class="title">Figure 125. Individual Workflow Page</div>
+<div class="title">Figure 134. Individual Workflow Page</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/fullscreen_individual_workflow_page.png" alt="fullscreen individual workflow page">
 </div>
-<div class="title">Figure 126. Full-Screen Individual Workflow Page</div>
+<div class="title">Figure 135. Full-Screen Individual Workflow Page</div>
 </div>
 <div class="paragraph">
 <p>The graphical display of the Workflow will display the Trigger, if set, as a yellow square and all configured Actions as green circles. Every workflow can have at most one Trigger and must have at least one Action. If a Trigger has not been configured for the workflow, "Default Trigger" will be displayed on the Trigger node. The nodes will display the configured title or type of the Trigger/Action and clicking on a node will bring up a summary of the configuration for the component.</p>
@@ -3013,7 +3299,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/component_details.png" alt="component details">
 </div>
-<div class="title">Figure 127. Workflow Component Details for an Action</div>
+<div class="title">Figure 136. Workflow Component Details for an Action</div>
 </div>
 <div class="paragraph">
 <p>The Workflow Execution History is presented in a filterable, paginated table with the latest executions displayed at the beginning. Each execution is displayed with its status, user who started the execution, start time, and running time and each row can be expanded to provide further details about each Action that was executed during the run. Each execution also has a button to open a page to view the detailed logs output by that run. The page will display metadata about the execution you are viewing along with a dropdown selector to load the overall execution logs or the logs output from an individual action. Each log file can also be downloaded for further investigation.</p>
@@ -3022,7 +3308,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/logs_viewer.png" alt="logs viewer">
 </div>
-<div class="title">Figure 128. Workflow Execution Log Viewer</div>
+<div class="title">Figure 137. Workflow Execution Log Viewer</div>
 </div>
 </div>
 <div class="sect3">
@@ -3046,7 +3332,7 @@ If the new version of the Workflow being uploaded is invalid, the modal will dis
 <div class="content">
 <img src="images/workflows/edit_workflow_page.png" alt="edit workflow page">
 </div>
-<div class="title">Figure 129. Individual Workflow Page in Edit Mode</div>
+<div class="title">Figure 138. Individual Workflow Page in Edit Mode</div>
 </div>
 <div class="paragraph">
 <p>In edit mode, the nodes and edges in the graphical display will have a menu that can be opened with a right click and hold so that each component can edited individually. The Trigger node menu will provide the options to remove any existing Trigger configuration (trash icon), to add/edit the Trigger configuration (pencil icon), or to add a new entry Action (plus icon). The Action node menu will provide the options to remove the Action configuration, edit the Action configuration, or add a new child Action. The edge menu will provide the option to remove the edge between nodes. To draw a new edge between nodes, click and drag from one node to another.</p>
@@ -3064,7 +3350,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 </table>
 </div>
 <table class="tableblock frame-none grid-none stretch">
-<caption class="title">Table 4. Edit Menus for Trigger and Actions</caption>
+<caption class="title">Table 5. Edit Menus for Trigger and Actions</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3095,13 +3381,13 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/workflows/edit_scheduled_trigger.png" alt="edit scheduled trigger">
 </div>
-<div class="title">Figure 130. Scheduled Trigger</div>
+<div class="title">Figure 139. Scheduled Trigger</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/edit_commit_to_branch_trigger.png" alt="edit commit to branch trigger">
 </div>
-<div class="title">Figure 131. Commit To Branch Trigger</div>
+<div class="title">Figure 140. Commit To Branch Trigger</div>
 </div>
 </div>
 <div class="sect4">
@@ -3123,13 +3409,13 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/workflows/add_test_action.png" alt="add test action">
 </div>
-<div class="title">Figure 132. Test Action</div>
+<div class="title">Figure 141. Test Action</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/add_http_request_action.png" alt="add http request action">
 </div>
-<div class="title">Figure 133. HTTP Request Action</div>
+<div class="title">Figure 142. HTTP Request Action</div>
 </div>
 </div>
 </div>
@@ -3146,7 +3432,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 134. My Account link</div>
+<div class="title">Figure 143. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -3176,7 +3462,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 135. Profile Tab</div>
+<div class="title">Figure 144. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3188,7 +3474,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 136. Groups Tab</div>
+<div class="title">Figure 145. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3200,7 +3486,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 137. Password Tab</div>
+<div class="title">Figure 146. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3212,7 +3498,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 138. Preferences Tab</div>
+<div class="title">Figure 147. Preferences Tab</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3240,7 +3526,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 139. Administration link</div>
+<div class="title">Figure 148. Administration link</div>
 </div>
 <div class="paragraph">
 <p>There are four main tabs of the Administration page:</p>
@@ -3273,7 +3559,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 140. Users Tab</div>
+<div class="title">Figure 149. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -3303,7 +3589,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 141. Create User Overlay</div>
+<div class="title">Figure 150. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3315,7 +3601,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 142. Groups Tab</div>
+<div class="title">Figure 151. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -3333,7 +3619,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 143. Create group overlay</div>
+<div class="title">Figure 152. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3345,7 +3631,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 144. Permissions Tab</div>
+<div class="title">Figure 153. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3371,31 +3657,35 @@ More Application Settings coming soon!
 <dd>
 <p>The namespace to be used when generating default IRIs for new ontologies/vocabularies in the <a href="#ontology-editor-guide">Ontology Editor</a>.</p>
 </dd>
+<dt class="hdlist1">Default Shapes Graph Namespace</dt>
+<dd>
+<p>The namespace to be used when generating default IRIs for new shapes graphs in the <a href="#shapes-editor-guide">Shapes Editor</a>.</p>
+</dd>
 </dl>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/user-management/application_settings_tab.png" alt="application settings tab">
 </div>
-<div class="title">Figure 145. Application Settings Tab</div>
+<div class="title">Figure 154. Application Settings Tab</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="publish-configs">Publish Configuration (ENTERPRISE)</h4>
 <div class="paragraph">
-<p>The Publish Configuration tab available in <strong>Enterprise only</strong> allows you to manage connections to external systems to be utilized within the <a href="#Publish">Publishing Tool</a>. This view is based on an extensible framework for introducing new types of external systems with their own unique requirements and supports multiples connections for each type. By default, Mobi Enterprise supports connections to <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a> and <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> systems. The left side of the tab displays the list of all configurations grouped by the type of external systems along with a button to create a new configuration. Every publish configuration is uniquely identified by its type and ID.</p>
+<p>The Publish Configuration tab available in <strong>Enterprise only</strong> allows you to manage connections to external systems to be utilized within the <a href="#Publish">Publishing Tool</a>. This view is based on an extensible framework for introducing new types of external systems with their own unique requirements and supports multiples connections for each type. By default, Mobi Enterprise supports connections to <a href="https://altair.com/altair-graph-studio">Altair Graph Studio</a> and <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> systems. The left side of the tab displays the list of all configurations grouped by the type of external systems along with a button to create a new configuration. Every publish configuration is uniquely identified by its type and ID.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/user-management/publish_config_tab.png" alt="publish config tab">
 </div>
-<div class="title">Figure 146. Publish Configuration Tab</div>
+<div class="title">Figure 155. Publish Configuration Tab</div>
 </div>
 <div class="paragraph">
 <p>The modal to create a new publish configuration will first display a select field with all registered types of publish configurations. Once an external system is selected, the modal will populate with all configuration options for that type of external system along with a button to test the connection to the external system before the configuration is saved.</p>
 </div>
 <table class="tableblock frame-none grid-none stretch">
-<caption class="title">Table 5. New Publish Configuration Modals</caption>
+<caption class="title">Table 6. New Publish Configuration Modals</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3411,7 +3701,7 @@ More Application Settings coming soon!
 <p>Clicking on a configuration in the left hand list will display all settings on the right side of the tab in an editable form. Each field is displayed with an information tooltip describing the purpose of the value. Any sensitive fields will be masked with dots and to update the value, the existing value must be cleared. Buttons to test the connection to the external system, save the updated form, and delete the configuration are at the bottom of the form.</p>
 </div>
 <div class="paragraph">
-<div class="title">Selected Anzo Publish Configuration</div>
+<div class="title">Selected Graph Studio Publish Configuration</div>
 <p><span class="image"><img src="images/user-management/selected_anzo_publish_config.png" alt="selected anzo publish config"></span></p>
 </div>
 <div class="paragraph">
@@ -3422,13 +3712,22 @@ More Application Settings coming soon!
 <div class="sect3">
 <h4 id="licensing">Licensing (ENTERPRISE)</h4>
 <div class="paragraph">
-<p>The Licensing tab available in <strong>Enterprise only</strong> allows you to view and update the current license of the server (see the section on <a href="#server-id-license-file">adding a license file</a>). The values displayed are pulled from the current license file contents on the installation server and any updates made will be persisted back to that file. The page displays the unique Server ID of the installation, the Owner of the license, the expiration date of the license, the policy attached to the license metadata (older licenses may not have this set), and the full license string that is stored within the license file. To update the license contents, click the pencil button shown on hover, replace the field contents with the complete new license string, and click the save icon.</p>
+<p>The Licensing tab available in <strong>Enterprise only</strong> allows you to view and update the current license of the server. The values displayed are pulled from the current license file contents on the installation server and any updates made will be persisted back to that file. The page displays the unique Server ID of the installation, the Owner of the license, the expiration date of the license, the policy attached to the license metadata (older licenses may not have this set), and the full license string that is stored within the license file. To update the license contents, click the pencil button shown on hover, replace the field contents with the complete new license string, and click the save icon.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/user-management/licensing_tab.png" alt="licensing tab">
 </div>
-<div class="title">Figure 147. Application Settings Tab</div>
+<div class="title">Figure 156. Application Settings Tab</div>
+</div>
+<div class="paragraph">
+<p>If your license is expiring within 7 days, a warning banner will be displayed at the bottom of the screen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/license_expiration_warning.png" alt="license expiration warning">
+</div>
+<div class="title">Figure 157. License Expiration Warning</div>
 </div>
 </div>
 <div class="sect3">
@@ -3452,7 +3751,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/connections_tab.png" alt="connections tab">
 </div>
-<div class="title">Figure 148. LDAP/SSO Tab</div>
+<div class="title">Figure 158. LDAP/SSO Tab</div>
 </div>
 <div class="paragraph">
 <p>If an LDAP configuration is set using the associated form, users can log into the application with the Users/Groups defined in your organization&#8217;s directory. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -3461,7 +3760,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/ldap_config.png" alt="ldap config">
 </div>
-<div class="title">Figure 149. LDAP Configuration Form</div>
+<div class="title">Figure 159. LDAP Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The LDAP form is separated into two sections. The "Connection" section contains the following fields:</p>
@@ -3572,7 +3871,7 @@ If a SAML or OAuth/OpenID configuration is present and not set to standalone, th
 <div class="content">
 <img src="images/user-management/saml_config.png" alt="saml config">
 </div>
-<div class="title">Figure 150. SAML Configuration Form</div>
+<div class="title">Figure 160. SAML Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The SAML form provides options to customize the connection from Mobi, acting as a Service Provider (SP), to a SAML Identity Property (IdP) and how to pull various user details out of the SAML responses. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -3655,7 +3954,7 @@ In SAML flows, the Identity Property (IdP) will often require the Reply URL, at 
 <div class="content">
 <img src="images/user-management/oauth_config.png" alt="oauth config">
 </div>
-<div class="title">Figure 151. OAuth/OpenID Configuration Form</div>
+<div class="title">Figure 161. OAuth/OpenID Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The OAuth/OpenID form provides options to customize the connection from Mobi to either a generic OAuth 2.0 Provider or an OpenID provider. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared. Certain fields are the same between both OAuth and OpenID configurations and others that are unique to one vs. the other. The form contains a radio button to allow you to specify which type of provider is configured.</p>
@@ -3751,7 +4050,7 @@ When removing the configuration, any uploaded files will not be removed from dis
 <p>The basic Mobi services can be configured using the following files:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. Mobi Service Configuration Files</caption>
+<caption class="title">Table 7. Mobi Service Configuration Files</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3815,7 +4114,7 @@ dataDir=path/to/directory</code></pre>
 <p>The configuration for user authentication, authorization, and management are stored in the following files in the <code>$MOBI_HOME/etc</code> directory:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Mobi Security Configuration Files</caption>
+<caption class="title">Table 8. Mobi Security Configuration Files</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4609,9 +4908,9 @@ scheduler.expression=0 0 * * * ?</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="anzo_publish_config">Anzo Publish Connection Configuration (ENTERPRISE)</h5>
+<h5 id="graph_studio_publish_config">Graph Studio Publish Connection Configuration (ENTERPRISE)</h5>
 <div class="paragraph">
-<p>To enable Publishing to an Anzo instance, you must configure Mobi Enterprise with connection details about an Anzo server. More than one Anzo connection can be configured at a time. To do this, create a file called <code>com.mobi.enterprise.anzo.connector.api-{The ID of the anzo config}.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory. The file must have the following fields.</p>
+<p>To enable Publishing to an Graph Studio instance, you must configure Mobi Enterprise with connection details about an Graph Studio server. More than one Graph Studio connection can be configured at a time. To do this, create a file called <code>com.mobi.enterprise.anzo.connector.api-{The ID of the Graph Studio config}.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory. The file must have the following fields.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4620,7 +4919,7 @@ scheduler.expression=0 0 * * * ?</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-The Publish integration requires an Anzo version of 5.4.7 or later.
+The Publish integration requires an Graph Studio version of 5.4.7 or later.
 </td>
 </tr>
 </table>
@@ -4643,55 +4942,55 @@ The Publish integration requires an Anzo version of 5.4.7 or later.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The identifier for the Anzo server within Mobi. Must match what is in the file name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The identifier for the Graph Studio server within Mobi. Must match what is in the file name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.hostname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host name of the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host name of the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The port for the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port for the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.ssl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to use SSL when connecting to the Anzo server. Most the time, this should be <code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to use SSL when connecting to the Graph Studio server. Most the time, this should be <code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.username</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account Mobi should use when connecting to the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account Mobi should use when connecting to the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account Mobi should use when connecting to the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account Mobi should use when connecting to the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeout.connect</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The connection timeout in number of milliseconds when communicating with the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The connection timeout in number of milliseconds when communicating with the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeout.read</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The read timeout in number of milliseconds when communicating with the Anzo server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The read timeout in number of milliseconds when communicating with the Graph Studio server.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>flds.datasource</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The URI of the Data Source that should be utilized when creating datasets on the Anzo server. If not specified will use the default Datasource URI.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URI of the Data Source that should be utilized when creating datasets on the Graph Studio server. If not specified will use the default Datasource URI.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http://cambridgesemantics.com/AnzoDataStore/LocalServerDefault</code></p></td>
 </tr>
@@ -4711,15 +5010,15 @@ anzo.password = 123</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the default Anzo Data Source does not meet your environment&#8217;s needs (eg. is not mounted to your AnzoGraph deployments), you can set the flds.datasource` property to a different Anzo Data Source within your installation with the following steps:</p>
+<p>If the default Graph Studio Data Source does not meet your environment&#8217;s needs (eg. is not mounted to your Altair Graph Lakehouse deployments), you can set the flds.datasource` property to a different Graph Studio Data Source within your installation with the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Within the Anzo Administration view, go to Connections &#8594; Anzo Data Store and click on the target Anzo Data Source.</p>
+<p>Within the Graph Studio Administration view, go to Connections &#8594; Data Store and click on the target Graph Studio Data Source.</p>
 </li>
 <li>
-<p>Click the copy button next to the Anzo Data Source&#8217;s URI in the right hand gray box.</p>
+<p>Click the copy button next to the Graph Studio Data Source&#8217;s URI in the right hand gray box.</p>
 </li>
 <li>
 <p>Edit the <code>flds.datasource</code> property in your <code>.cfg</code> file and the new value will automatically be used next time a publish is made.</p>
@@ -4801,15 +5100,15 @@ password = root</code></pre>
 <div class="sect4">
 <h5 id="workflow_engine_configuration">Workflow Engine Configuration</h5>
 <div class="paragraph">
-<p>The Workflows framework supports different implementations of the underlying engine used for actual execution of the defined Workflows. The chosen engine does not affect the Workflow RDF definition, but does affect how the execution logs will be structured. Workflows can thus be defined and managed by the platform, but execution of the Workflow requires a Workflow Engine to be installed and configured. By default, Mobi supports <a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a> as the Workflow Engine of choice.</p>
+<p>The Workflows framework supports different implementations of the underlying engine used for actual execution of the defined Workflows. The chosen engine does not affect the Workflow RDF definition, but does affect how the execution logs will be structured. Workflows can thus be defined and managed by the platform, but execution of the Workflow requires a Workflow Engine to be installed and configured. By default, Mobi supports <a href="https://docs.dagu.cloud/">Dagu</a> as the Workflow Engine of choice.</p>
 </div>
 <div class="sect5">
 <h6 id="dagu_workflow_engine">Dagu Workflow Engine</h6>
 <div class="paragraph">
-<p><a href="https://dagu.readthedocs.io/en/latest/index.html">Dagu</a> is a free and open source workflow engine that defines executions as Directed Acrylic Graphs (or DAGs) and supports interaction with Mobi via REST. To utilize Dagu in executing Workflows, you will need to install the software, and then configure Mobi&#8217;s connection to Dagu.</p>
+<p><a href="https://docs.dagu.cloud/">Dagu</a> is a free and open source workflow engine that defines executions as Directed Acrylic Graphs (or DAGs) and supports interaction with Mobi via REST. To utilize Dagu in executing Workflows, you will need to install the software, and then configure Mobi&#8217;s connection to Dagu.</p>
 </div>
 <div class="paragraph">
-<p>Install Dagu 1.13 according to their <a href="https://dagu.readthedocs.io/en/latest/installation.html">installation instructions</a>. <strong>It is recommended that you configure Dagu with <a href="https://dagu.readthedocs.io/en/latest/auth.html">Basic Authentication</a> enabled such that only authorized users can execute DAGs in your installation.</strong> Mobi supports interaction with Dagu both locally (i.e., on the same server) or remotely. The following table describes the recommended Dagu installation method based on the OS of the system Mobi is installed on and the desired Dagu location.</p>
+<p>Install Dagu 1.13 according to their <a href="https://docs.dagu.cloud/getting-started/installation">installation instructions</a>. <strong>It is recommended that you configure Dagu with <a href="https://docs.dagu.cloud/configurations/authentication">Basic Authentication</a> enabled such that only authorized users can execute DAGs in your installation.</strong> Mobi supports interaction with Dagu both locally (i.e., on the same server) or remotely. The following table describes the recommended Dagu installation method based on the OS of the system Mobi is installed on and the desired Dagu location.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4986,13 +5285,13 @@ backgroundColor=#99ffce</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 152. Mobi Login Screen with a banner</div>
+<div class="title">Figure 162. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 153. Mobi Home Page with a banner</div>
+<div class="title">Figure 163. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -5154,7 +5453,7 @@ emailTemplate = emailTemplate.html</code></pre>
  directory.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Relevant Karaf Configuration Files</caption>
+<caption class="title">Table 9. Relevant Karaf Configuration Files</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5259,7 +5558,10 @@ OPTIONS
 <h2 id="administration-guide">Administration Guide</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobi is made available as a compressed distribution package available <a href="https://mobi.inovexcorp.com/features/#download">here</a> or as an RPM package available <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:public-yum-prod-hosted">here</a>. Deployment consists of unpacking this distribution to an appropriate location on the filesystem and modifying included configuration files. Mobi comes pre-bundled with an open-source, file-based RDF database. By default, all data, logs, and configurations will be stored in the extracted file location. All Mobi logs are stored in <code>${MOBI_HOME}/data/log</code>.</p>
+<p>Mobi is made available as a compressed distribution package available <a href="https://mobi.inovexcorp.com/features/#download">here</a>, a Docker image <a href="https://hub.docker.com/r/inovexis/mobi/">here</a>, or as an RPM package available <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:public-yum-prod-hosted">here</a>. Mobi comes pre-bundled with an open-source, file-based RDF database. By default, all data, logs, and configurations will be stored in the extracted file location. All Mobi logs are stored in <code>${MOBI_HOME}/data/log</code>.</p>
+</div>
+<div class="paragraph">
+<p>For detailed instructions on deploying with Docker, please refer to <a href="#docker_deployments">Docker Deployments</a> in the Appendix.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5268,7 +5570,7 @@ OPTIONS
 <div class="title">Note</div>
 </td>
 <td class="content">
-The Enterprise edition of Mobi is provided with your license from the sales or support team as either a compressed distribution package or an RPM package. The installation process is the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#server-id-license-file">Server ID and License File (ENTERPRISE)</a> section for more details.
+The Enterprise edition of Mobi is provided with your license from the sales or support team as either a compressed distribution package or an RPM package. The installation process is the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#Server ID and License File (ENTERPRISE)">[Server ID and License File (ENTERPRISE)]</a> section for more details.
 </td>
 </tr>
 </table>
@@ -5410,10 +5712,25 @@ We recommend running Mobi on the default port 8443 and using firewall configurat
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+If you are running the enterprise variant of Mobi, you must ensure connectivity from your installation server to <a href="https://api.keygen.sh">Keygen</a> on port 443 for license validation. Otherwise, your distribution will not start.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="installing_mobi">Installing Mobi</h3>
+<div class="paragraph">
+<p>When using the distribution package, deployment consists of unpacking the distribution to an appropriate location on the filesystem and modifying included configuration files. With the RPM and Docker installation methods, the process will be more automated and configuration files can still be modified.</p>
+</div>
 <div class="sect3">
 <h4 id="pre_installation_configuration">Pre-Installation Configuration</h4>
 <div class="sect4">
@@ -5441,6 +5758,9 @@ This step is not required when installing Mobi via the RPM package.
 <li>
 <p>The service account must have read and write permissions for the Mobi installation directory. On Linux, this is typically <code>/opt/mobi/mobi-distribution-&lt;version&gt;</code>.</p>
 </li>
+<li>
+<p>When installing via Docker, the account needs to have read and write permissions for the directories that are mounted as volumes in the <code>docker-compose.yml</code> file.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -5456,6 +5776,18 @@ This step is not required when installing Mobi via the RPM package.
 <h5 id="install_java_17">Install Java 17</h5>
 <div class="paragraph">
 <p>Mobi requires the latest version of Java 1.17 to operate. Refer to <a href="http://www.oracle.com/technetwork/java/javase/" class="bare">http://www.oracle.com/technetwork/java/javase/</a> for details on how to download and install Java SE 1.17.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you are installing via Docker following <a href="#docker_deployments">these instructions</a>, then this step is not needed.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5495,6 +5827,21 @@ exit</code></pre>
 </div>
 <div class="sect3">
 <h4 id="install_mobi">Install Mobi</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you are running the enterprise variant of Mobi, be sure you have added your license file to either the <code>$MOBI_HOME/etc/</code> directory or to a <code>.mobi</code> directory in the home directory of the user running Mobi prior to starting the server for the first time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Follow the instructions in the <a href="#docker_deployments">Docker Deployments</a> Appendix to install Mobi via the Docker image.</p>
+</div>
 <div class="paragraph">
 <p>Follow the instructions below to install Mobi via the RPM package. These instructions assume that you have copied the Mobi RPM to the server.</p>
 </div>
@@ -5610,44 +5957,6 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi/latest
 sudo -u mobi bin/start</code></pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="server-id-license-file">Server ID and License File (ENTERPRISE)</h5>
-<div class="paragraph">
-<p>If you are running Mobi Enterprise, then the installation will have stopped immediately after attempting to start in the previous section. This is because Mobi Enterprise requires a valid license file to run. Follow the steps below to collect your Mobi Server ID and get a add a license file to your installation.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Starting the application from the previous section will output your unique server ID to the <code>$MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file. Open that file and copy the Server ID from the <code>serverId</code> property. It should look like the following.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">serverId = "{UUID}"</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Send this Server ID to the sales or support team so they can generate you a valid license file.</p>
-</li>
-<li>
-<p>Copy the provided license file to the <code>$MOBI_HOME/etc/</code> directory or to a <code>.mobi</code> directory in the home directory of the user running Mobi.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp license.lic $MOBI_HOME/etc/</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Now you can start the Mobi installation.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd latest
-./bin/start</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -5884,6 +6193,9 @@ systemctl enable mobi</code></pre>
 <p>Upgrades of the Mobi platform are performed via a backup/restore process where a <code>.zip</code> file is created of all the system data of the current installation and loaded into the new version installation. This process will handle any migration steps required when migrating to newer versions.</p>
 </div>
 <div class="paragraph">
+<p>If you installed AVM via Docker, follow the instructions in the <a href="#docker_deployments">Docker Deployments</a> Appendix to upgrade AVM via Docker.</p>
+</div>
+<div class="paragraph">
 <p>If you installed Mobi via the RPM package, the backup/restore process is performed for you as part of the upgrade.</p>
 </div>
 <div class="olist arabic">
@@ -5905,7 +6217,7 @@ systemctl enable mobi</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>To upgrade Mobi when installed directly with the distribution, the basic steps are outlined below and are applicable for any upgrades within major version (e.g. 2.1 to 2.4).</p>
+<p>To upgrade Mobi when installed directly with the distribution, the basic steps are outlined below and are applicable for any upgrades within major versions (e.g. 2.1 to 2.4).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6004,7 +6316,7 @@ If restoring from a version prior to 1.22, there are two files which are not inc
 </div>
 </li>
 <li>
-<p><strong>ENTERPRISE ONLY</strong> For Anzo publishing, no plugins are required to be deployed to a target Anzo system. Any pre-existing custom plugins (the previously required "AVM Ontology Loader" and "AVM Vocabulary Orchestration Service" plugins) should be removed from the Anzo installation.</p>
+<p><strong>ENTERPRISE ONLY</strong> For Graph Studio publishing, no plugins are required to be deployed to a target Graph Studio system. Any pre-existing custom plugins (the previously required "AVM Ontology Loader" and "AVM Vocabulary Orchestration Service" plugins) should be removed from the Graph Studio installation.</p>
 </li>
 </ul>
 </div>
@@ -6184,7 +6496,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 154. XML Example File</div>
+<div class="title">Figure 164. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -6195,7 +6507,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Output File">
 </div>
-<div class="title">Figure 155. XML Example Ontology File</div>
+<div class="title">Figure 165. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -6205,7 +6517,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 156. XML Example Data File</div>
+<div class="title">Figure 166. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -6218,7 +6530,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 157. JSON Example File</div>
+<div class="title">Figure 167. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -6228,7 +6540,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 158. JSON Example Ontology File</div>
+<div class="title">Figure 168. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -6238,7 +6550,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 159. JSON Example Data File</div>
+<div class="title">Figure 169. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -6251,7 +6563,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 160. CSV Example File</div>
+<div class="title">Figure 170. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -6261,7 +6573,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Output File">
 </div>
-<div class="title">Figure 161. CSV Example Ontology File</div>
+<div class="title">Figure 171. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -6271,7 +6583,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 162. CSV Example Data File</div>
+<div class="title">Figure 172. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -8834,7 +9146,7 @@ More Action types are coming soon!
 <div class="content">
 <img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
 </div>
-<div class="title">Figure 163. RDF Structure of Workflow Provenance</div>
+<div class="title">Figure 173. RDF Structure of Workflow Provenance</div>
 </div>
 <div class="ulist">
 <ul>
@@ -9882,7 +10194,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/core_publish_model.png" alt="core publish model">
 </div>
-<div class="title">Figure 164. Core Publish Framework</div>
+<div class="title">Figure 174. Core Publish Framework</div>
 </div>
 <div class="paragraph">
 <p>A <code>pub:PublishService</code> represents the capability of the platform to push data from Mobi to a certain type of external system with a human readable name and how many concurrent publishes can be made with the specific service. The instances of this class are what populate the dropdown in the Publish Configuration modal in the UI (see <a href="#Publish">Publish (ENTERPRISE)</a>). The <code>pub:PublishConfig</code> class represents an individual request to publish a Versioned RDF Record to an external system. Instances of this class are required to have a <code>pub:useService</code> predicate pointing to which Publish Service to use along with the IRI of the Versioned RDF Record to publish. It can also optionally have a pointer to a specific Commit of that Versioned RDF Record that should be published. In the absence of this predicate on an instance of <code>pub:PublishConfig</code>, the head Commit of the MASTER Branch will be used. If the Publish Service supports selection of a specific external system to publish to (using the <a href="#Publish Configuration">Publish Configuration UI</a>), a <code>pub:PublishConfig</code> can optionally reference the ID of that external system with the <code>config:hasId</code> property.</p>
@@ -9974,7 +10286,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_graphdb.png" alt="postman graphdb">
 </div>
-<div class="title">Figure 165. GraphDB Postman Request</div>
+<div class="title">Figure 175. GraphDB Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
@@ -9999,23 +10311,23 @@ public ActionDefinition createDefinition(NewAction action) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="anzo_publish_example">Anzo Publish Example</h3>
+<h3 id="graph_studio_publish_example">Graph Studio Publish Example</h3>
 <div class="paragraph">
-<p>There are three ways to publish Records to Anzo: an Ontology Record as a SKOS vocabulary within a Dataset, an Ontology Record as an OWL model, or a Shapes Graph Record within a Dataset. All utilize the same SHACL Property Shape for the property specifying which Anzo server to publish to (<code>config:hasId</code>). This property is required and must line up with the ID of an Anzo Configuration within the platform, i.e. instances of <code>http://mobi.com/config#AnzoConfiguration</code> (see <a href="#anzo_publish_config">Anzo Publish Connection Configuration</a>).</p>
+<p>There are three ways to publish Records to Graph Studio: an Ontology Record as a SKOS vocabulary within a Dataset, an Ontology Record as an OWL model, or a Shapes Graph Record within a Dataset. All utilize the same SHACL Property Shape for the property specifying which Graph Studio server to publish to (<code>config:hasId</code>). This property is required and must line up with the ID of an Graph Studio Configuration within the platform, i.e. instances of <code>http://mobi.com/config#AnzoConfiguration</code> (see <a href="#graph_studio_publish_config">Graph Studio Publish Connection Configuration</a>).</p>
 </div>
 <div class="paragraph">
-<p>The Anzo Publish OWL SHACL configurations define:</p>
+<p>The Graph Studio Publish OWL SHACL configurations define:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The Anzo OWL Publish Service (<code>anzoowl:AnzoOwlPublishService</code>) with an unlimited concurrency</p>
+<p>The Graph Studio OWL Publish Service (<code>anzoowl:AnzoOwlPublishService</code>) with an unlimited concurrency</p>
 </li>
 <li>
-<p>The Anzo OWL Publish Configuration (<code>anzoowl:AnzoOwlPublish</code>)</p>
+<p>The Graph Studio OWL Publish Configuration (<code>anzoowl:AnzoOwlPublish</code>)</p>
 </li>
 <li>
-<p>A property for whether to publish the data as an Anzo Model or an Anzo Dataset along constraints to make it a required field of one value, list the acceptable values of "As Model" or "As Dataset", and set the default to "As Model" (<code>anzoowl:publishMode</code>)</p>
+<p>A property for whether to publish the data as an Graph Studio Model or an Graph Studio Dataset along constraints to make it a required field of one value, list the acceptable values of "As Model" or "As Dataset", and set the default to "As Model" (<code>anzoowl:publishMode</code>)</p>
 </li>
 <li>
 <p>Required value for <code>pub:useService</code> of <code>anzoowl:AnzoOwlPublishService</code></p>
@@ -10026,15 +10338,15 @@ public ActionDefinition createDefinition(NewAction action) {
 </ul>
 </div>
 <div class="paragraph">
-<p>The Anzo Publish SKOS SHACL configurations define:</p>
+<p>The Graph Studio Publish SKOS SHACL configurations define:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The Anzo SKOS Publish Service (<code>anzoskos:AnzoSkosPublishService</code>) with an unlimited concurrency</p>
+<p>The Graph Studio SKOS Publish Service (<code>anzoskos:AnzoSkosPublishService</code>) with an unlimited concurrency</p>
 </li>
 <li>
-<p>The Anzo SKOS Publish Configuration (<code>anzoskos:AnzoSkosPublish</code>)</p>
+<p>The Graph Studio SKOS Publish Configuration (<code>anzoskos:AnzoSkosPublish</code>)</p>
 </li>
 <li>
 <p>A property for whether to publish whether to pull SKOS Concepts from the specified record and/or to transform the OWL Class hierarchy into SKOS concepts within the generated Anzo Dataset along constraints to ensure there&#8217;s at least one value, list the acceptable values of "Concepts" and "Classes", and set the default to "Concepts" (<code>anzoskos:publishMode</code>)</p>
@@ -10048,15 +10360,15 @@ public ActionDefinition createDefinition(NewAction action) {
 </ul>
 </div>
 <div class="paragraph">
-<p>The Anzo Publish SHACL SHACL configurations define:</p>
+<p>The Graph Studio Publish SHACL SHACL configurations define:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The Anzo SHACL Publish Service (<code>SHACL</code>) with an unlimited concurrency</p>
+<p>The Graph Studio SHACL Publish Service (<code>SHACL</code>) with an unlimited concurrency</p>
 </li>
 <li>
-<p>The Anzo SHACL Publish Configuration (<code>anzoshacl:AnzoShaclPublish</code>)</p>
+<p>The Graph Studio SHACL Publish Configuration (<code>anzoshacl:AnzoShaclPublish</code>)</p>
 </li>
 <li>
 <p>Required value for <code>pub:useService</code> of <code>anzoshacl:AnzoShaclPublishService</code></p>
@@ -10067,15 +10379,15 @@ public ActionDefinition createDefinition(NewAction action) {
 </ul>
 </div>
 <div class="sect3">
-<h4 id="anzo_publish_rest_request">Anzo Publish REST Request</h4>
+<h4 id="graph_studio_publish_rest_request">Graph Studio Publish REST Request</h4>
 <div class="paragraph">
-<p>Below is an example request to publish an Ontology Record as OWL to a configured Anzo instance:</p>
+<p>Below is an example request to publish an Ontology Record as OWL to a configured Graph Studio instance:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/postman_anzo_owl.png" alt="postman anzo owl">
 </div>
-<div class="title">Figure 166. Anzo OWL Postman Request</div>
+<div class="title">Figure 176. Graph Studio OWL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10089,21 +10401,21 @@ public ActionDefinition createDefinition(NewAction action) {
 
 &lt;http://mobi.com/ontologies/publish/anzo/owl#AnzoOwlPublish1722972802499&gt;
   a anzoowl:AnzoOwlPublish ; # The type of publish configuration
-  config:hasId "demo"^^xsd:string ; # The Anzo Configuration to publish to
+  config:hasId "demo"^^xsd:string ; # The Graph Studio Configuration to publish to
   pub:commit &lt;https://mobi.com/commits#c8687ca9a4baa3339ac8344788a408af6046bafd&gt; ; # The IRI of the Commit on the Record to publish
   pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
   pub:useService anzoowl:AnzoOwlPublishService ; # The PublishService to use, required to line up with the type of publish configuration
-  anzoowl:publishMode "As Model"^^xsd:string . # Publish to an Anzo model. If this value was "As Dataset", it would publish to an Anzo Dataset</code></pre>
+  anzoowl:publishMode "As Model"^^xsd:string . # Publish to an Graph Studio model. If this value was "As Dataset", it would publish to an Graph Studio Dataset</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Below is an example request to publish an Ontology Record as SKOS to a configured Anzo instance:</p>
+<p>Below is an example request to publish an Ontology Record as SKOS to a configured Graph Studio instance:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/postman_anzo_skos.png" alt="postman anzo skos">
 </div>
-<div class="title">Figure 167. Anzo SKOS Postman Request</div>
+<div class="title">Figure 177. Graph Studio SKOS Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10117,21 +10429,21 @@ public ActionDefinition createDefinition(NewAction action) {
 
 &lt;http://mobi.com/ontologies/publish/anzo/skos#AnzoSkosPublish1722973197969&gt;
   a anzoskos:AnzoSkosPublish ; # The type of publish configuration
-  config:hasId "demo"^^xsd:string ; # The Anzo Configuration to publish to
+  config:hasId "demo"^^xsd:string ; # The Graph Studio Configuration to publish to
   pub:commit &lt;https://mobi.com/commits#7932ffdabee02aed1063ac6f691b21f7bff2e0b3&gt; ; # The IRI of the Commit on the Record to publish
   pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
   pub:useService anzoskos:AnzoSkosPublishService ; # The PublishService to use, required to line up with the type of publish configuration
-  anzoskos:publishMode "Concepts"^^xsd:string, "Classes"^^xsd:string . # Publish both Concepts and Classes to an Anzo dataset as SKOS Concepts</code></pre>
+  anzoskos:publishMode "Concepts"^^xsd:string, "Classes"^^xsd:string . # Publish both Concepts and Classes to an Graph Studio dataset as SKOS Concepts</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Below is an example request to publish an Shapes Graph Record to a configured Anzo instance:</p>
+<p>Below is an example request to publish an Shapes Graph Record to a configured Graph Studio instance:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/postman_anzo_shacl.png" alt="postman anzo shacl">
 </div>
-<div class="title">Figure 168. Anzo SHACL Postman Request</div>
+<div class="title">Figure 178. Graph Studio SHACL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10145,7 +10457,7 @@ public ActionDefinition createDefinition(NewAction action) {
 
 &lt;http://mobi.solutions/ontologies/publish/anzo/shacl#AnzoShaclPublish1722973197969&gt;
   a anzoshacl:AnzoShaclPublish ; # The type of publish configuration
-  config:hasId "demo"^^xsd:string ; # The Anzo Configuration to publish to
+  config:hasId "demo"^^xsd:string ; # The Graph Studio Configuration to publish to
   pub:commit &lt;https://mobi.com/commits#7932ffdabee02aed1063ac6f691b21f7bff2e0b3&gt; ; # The IRI of the Commit on the Record to publish
   pub:record &lt;https://mobi.com/records#bc631ae0-6296-465e-a999-53c240df6878&gt; ; # The IRI of the Record to publish
   pub:useService anzoshacl:AnzoShaclPublishService . # The PublishService to use, required to line up with the type of publish configuration</code></pre>
@@ -10155,11 +10467,185 @@ public ActionDefinition createDefinition(NewAction action) {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="docker_deployments">Appendix H: Docker Deployments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi can be deployed using Docker.  The Mobi Docker image is available on DockerHub at <a href="https://hub.docker.com/r/inovexis/mobi" class="bare">https://hub.docker.com/r/inovexis/mobi</a>. As mentioned in <a href="#installing_the_docker_image">Installing the Docker Image</a> in the Quick Start Guide, Mobi can be run using the provided <code>docker-compose.yml</code> file. The compose file will start a container for Mobi and a container for Dagu to enable <a href="#workflows">Workflows</a>. This file can be customized to fit your needs.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">name: mobi
+services:
+  mobi:
+    container_name: mobi
+    image: inovexis/mobi:4.2.0 # image name with tag (It is recommended to pin a version and not use latest)
+    ports:
+      - "443:8443"
+    command: bash -c '/opt/mobi/mobi-distribution/docker/docker-start.sh'
+    volumes:
+      - ./data:/opt/mobi/mobi-distribution/data # persist data volume (triplestore, logs, policies, etc)
+      - ./etc:/opt/mobi/mobi-distribution/etc # persist etc volume (karaf configuration files)
+      - ./backups:/opt/mobi/mobi-distribution/backups # optional directory mount to access backups on host machine
+      - ./restore:/opt/mobi/mobi-distribution/restore # optional directory mount to restore a backup
+      - ./license:/root/.mobi # directory mount for enterprise license file. **ENTERPRISE ONLY**
+  dagu:
+    container_name: dagu
+    image: ghcr.io/dagu-org/dagu:1.13.1
+    command: sh -c "rm -f /home/dagu/.dagu/dags/hello_world.yaml &amp;&amp; exec dagu start-all"
+volumes:
+  data:
+  etc:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enterprise customers can contact the Mobi team for access to the Enterprise Docker image. Enterprise Mobi docker images are hosted on a private Docker registry.</p>
+</div>
+<div class="sect2">
+<h3 id="license_file_enterprise">License File (Enterprise)</h3>
+<div class="paragraph">
+<p>If you are running an Enterprise Mobi server, you will need to mount your license file into the container. You can do this by adding a directory mount to the <code>docker-compose.yml</code> file by adding the following line to the <code>volumes</code> section of the <code>mobi</code> service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">- ./license:/root/.mobi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then after starting the container, you can copy your license file into the <code>license</code> directory on your host machine. The license file should be named <code>license.lic</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="backing_up_data">Backing Up Data</h3>
+<div class="paragraph">
+<p>Prior to upgrading your Mobi instance, it is recommended to back up your data. You can do this by running <code>mobi:backup</code> from within the running Mobi container.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker exec -it mobi sh -c '/opt/mobi/mobi-distribution/bin/client mobi:backup'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a backup zip inside the container and made available in the <code>backups</code> directory on your host machine if you have mounted that directory in the <code>docker-compose.yml</code> file. The backup zip will be named with a timestamp such as <code>20250903Z10536561959724341860.zip</code> unless overridden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrading_versions">Upgrading Versions</h3>
+<div class="paragraph">
+<p>To upgrade to a newer version of Mobi, you can change the image tag in the <code>docker-compose.yml</code> file to the desired version.  For example, to upgrade to version 4.2.0, you would change the image line to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">image: inovexis/mobi:4.2.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you can run the following commands to stop the current container, remove it, pull the new image, and start a new container with the updated image.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker-compose down
+docker pull inovexis/mobi:4.2.0
+docker-compose up -d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will start a new container with the updated Mobi version. When a new Mobi version is detected, data in the <code>data</code> and <code>etc</code> volumes will be automatically zipped and stored in their respective volumes in case you need to revert to a previous version.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restoring_data_from_a_backup">Restoring Data from a Backup</h3>
+<div class="paragraph">
+<p>To restore a backup, place the backup zip file in the host <code>restore</code> directory mount that is specified in the <code>docker-compose.yml</code> file. The running Mobi container will automatically detect the backup file and restore it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reverting_to_a_previous_version">Reverting to a Previous Version</h3>
+<div class="paragraph">
+<p>On the chance that you need to revert to a previous version of Mobi, some data management will need to occur in the volumes to proceed. First, stop the running Mobi container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker-compose down</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="directory_mounted_etc_and_data_directories_default">Directory Mounted <code>etc</code> and <code>data</code> Directories (default)</h4>
+<div class="paragraph">
+<p>If you have mounted the <code>etc</code> and <code>data</code> directories on your host machine, you can navigate to these directories and find the zipped data from the previous version. Copy these zip files up a directory so that they are not in the mounted directories. Then remove the contents of the <code>etc</code> and <code>data</code> directories. Finally, unzip the backup files into their respective directories. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd etc
+cp etc_backup_VERSION_TIMESTAMP.zip ../
+rm -rf *
+mv ../etc_backup_VERSION_TIMESTAMP.zip .
+unzip etc_backup_VERSION_TIMESTAMP.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Repeat the same process for the <code>data</code> directory. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cd ../data hljs" data-lang="cd ../data">cp data_backup_VERSION_TIMESTAMP.zip ../
+rm -rf *
+mv ../data_backup_VERSION_TIMESTAMP.zip .
+unzip data_backup_VERSION_TIMESTAMP.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once both directories have been restored to the previous version, you can change the image tag in the <code>docker-compose.yml</code> file back to the previous version and start a new container using docker-compose.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="volume_mounted_etc_and_data_directories">Volume Mounted <code>etc</code> and <code>data</code> Directories</h4>
+<div class="paragraph">
+<p>If you have mounted the <code>etc</code> and <code>data</code> directories as volumes on your host machine,
+you will need to access the Docker volumes to retrieve the zipped data from the previous version. You can do this by creating a temporary container that mounts the volumes. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker run -it -v mobi_etc:/opt/test/etc -v mobi_data:/opt/test/data ubuntu:questing</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a temporary Ubuntu container with the <code>mobi_etc</code> and <code>mobi_data</code> volumes mounted to <code>/opt/test/etc</code> and <code>/opt/test/data</code> respectively. You can then navigate to these directories and find the zipped data from the previous version. Copy these zip files up a directory to <code>/opt/test/</code> so that they are not in the volume directories. Then remove the contents of the <code>etc</code> and <code>data</code> directories in the volumes. Finally, unzip the backup files into their respective directories. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd /opt/test/etc
+cp etc_backup_VERSION_TIMESTAMP.zip ../
+rm -rf *
+mv ../etc_backup_VERSION_TIMESTAMP.zip .
+apt-get update
+apt-get install unzip
+unzip ../etc_backup_VERSION_TIMESTAMP.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Repeat the same process for the <code>data</code> directory. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cd /opt/test/data hljs" data-lang="cd /opt/test/data">cp data_backup_VERSION_TIMESTAMP.zip ../
+rm -rf *
+mv ../data_backup_VERSION_TIMESTAMP.zip .
+unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once both volumes have been restored to the previous version, you can exit the temporary container and remove it. Then change the image tag in the <code>docker-compose.yml</code> file back to the previous version and start a new container using docker-compose.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.1<br>
-Last updated 2025-04-10 13:27:37 UTC
+Version 4.2<br>
+Last updated 2025-09-13 02:27:30 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
