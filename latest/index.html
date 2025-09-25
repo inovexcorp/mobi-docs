@@ -4417,14 +4417,26 @@ application will understand and replace
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Important</div>
 </td>
 <td class="content">
 In order for the <code>certFile</code> to ba valid format, it must contain the appropriate <code>-----BEGIN CERTIFICATE-----</code> header and <code>-----END CERTIFICATE-----</code> footer
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+In SAML flows, the Identity Property (IdP) will often require the Reply URL, at minimum, so that the IdP will know where to return the authorized user details. For Mobi, that Reply URL should be set to <code>$MOBI_HOST/mobirest/auth/saml</code>. An example value would look like <code>https://example.com/mobirest/auth/saml</code>.
 </td>
 </tr>
 </table>
@@ -4539,9 +4551,6 @@ emailAttribute=MBox
 groupAttribute=Groups</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In SAML flows, the Identity Property (IdP) will often require the Reply URL, at minimum, so that the IdP will know where to return the authorized user details. For Mobi, that Reply URL should be set to <code>$MOBI_HOST/mobirest/auth/saml</code>. An example value would look like <code>https://example.com/mobirest/auth/saml</code>.</p>
-</div>
 </div>
 <div class="sect5">
 <h6 id="default_saml_token_duration">Default SAML Token Duration</h6>
@@ -4586,6 +4595,18 @@ tokenDurationMins = 1440</code></pre>
 <h6 id="oauthopenid_configuration">OAuth/OpenID Configuration</h6>
 <div class="paragraph">
 <p>In order to configure Mobi to use OAuth or OpenID, you will need to create two files in the <code>$MOBI_HOME/etc</code> directory: <code>com.mobi.enterprise.auth.oauth.api.OAuthConfigProvider.cfg</code> and <code>com.mobi.enterprise.auth.oauth.impl.token.OAuthTokenLoginModuleProvider.cfg</code>. The latter must be an empty file. The former can be used to configure a generic OAuth 2.0 Provider or an OpenID Provider. For either, the file must have the following fields.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+In OAuth/OpenID flows, the OpenID Provider (OP) will often require specifying valid Redirect URIs, so that the OP will know what types of requests to accept. For Mobi, the Redirect URI should be set to <code>$MOBI_HOST/mobirest/auth/oauth/callback</code>. An example value would look like <code>https://example.com/mobirest/auth/oauth/callback</code>.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -10645,7 +10666,7 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 4.2<br>
-Last updated 2025-09-13 02:27:30 UTC
+Last updated 2025-09-25 14:54:08 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
