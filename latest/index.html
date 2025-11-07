@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Mobi User Manual</title>
 <link rel="stylesheet" href="./../foundation.css">
@@ -3995,11 +3995,27 @@ When removing the configuration, any uploaded files will not be removed from dis
 <p><strong>User Identifier Claim</strong>: An optional property to specify which claim in the returned JWT contains the user&#8217;s username. If configured with LDAP, these values must match the values for the LDAP <strong>User ID</strong> attribute. Defaults to using the <code>sub</code> of the JWT.</p>
 </li>
 <li>
-<p><strong>Standalone</strong>: Whether the SAML configuration should be used by itself or with a LDAP backend as well. If unchecked, an LDAP configuration is required. If checked, the following fields are shown:</p>
+<p><strong>Standalone</strong>: Whether the OAuth/OpenID configuration should be used by itself or with a LDAP backend as well. If unchecked, an LDAP configuration is required. If checked, the following fields are shown:</p>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Group Claim</strong>: The optional claim in the returned JTW that contains the groups the user is a part of. The values of this attribute will be used as the Group&#8217;s title in Mobi.</p>
+</li>
+<li>
+<p><strong>Use User Info</strong>: An optional checkbox only for OpenID connections to indicate whether Mobi should make a call to the UserInfo endpoint after retrieving the token to pull additional user details. If unchecked, the following fields are displayed:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>First Name Claim</strong>: The optional claim in the returned JWT that contains the first name of the authenticated user.</p>
+</li>
+<li>
+<p><strong>Last Name Claim</strong>: The optional claim in the returned JWT that contains the last name of the authenticated user.</p>
+</li>
+<li>
+<p><strong>Email Claim</strong>: The optional claim in the returned JWT that contains the email of the authenticated user.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -4608,6 +4624,18 @@ In OAuth/OpenID flows, the OpenID Provider (OP) will often require specifying va
 </tr>
 </table>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+If you are integrating with Azure AD, please see the special instructions in the <a href="#azure_ad_openid_setup">Azure AD OpenID Setup</a> section below.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4738,6 +4766,26 @@ keyFile=${karaf.etc}/NTs4oGbx1A-cROpjgUKdKtzTEkHUhhSwQ7xdhN6FdlQ_pub.pem</code><
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>openidConfigHostname</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>useUserInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional property to specify whether AVM should make a call to the UserInfo endpoint after retrieving the token to pull additional user details. Default is true. If false, will pull details directly from the claims of the JWT token. Only applicable if <code>standalone</code>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>firstNameClaim</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional property to specify which claim in the returned JWT contains the first name of the user. By default will use <code>given_name</code>. Only applicable if <code>useUserInfo</code> is false.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastNameClaim</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional property to specify which claim in the returned JWT contains the last name of the user. By default will use <code>family_name</code>. Only applicable if <code>useUserInfo</code> is false.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>emailNameClaim</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional property to specify which claim in the returned JWT contains the email of the user. By default will use <code>email</code>. Only applicable if <code>useUserInfo</code> is false.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -10666,7 +10714,7 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 4.2<br>
-Last updated 2025-09-25 14:54:08 UTC
+Last updated 2025-09-13 02:27:30 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
