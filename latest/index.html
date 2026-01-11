@@ -85,7 +85,7 @@
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 4.2</span>
+<span id="revnumber">version 4.3</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -122,6 +122,19 @@
 <ul class="sectlevel3">
 <li><a href="#creating_new_ontologies">Creating New Ontologies</a></li>
 <li><a href="#uploading_existing_ontologies">Uploading Existing Ontologies</a></li>
+<li><a href="#creating_ontology_with_ai">Creating an Ontology with AI (ENTERPRISE)</a>
+<ul class="sectlevel4">
+<li><a href="#getting_started">Getting Started</a></li>
+<li><a href="#conversation_phase">Conversation Phase</a></li>
+<li><a href="#drafting_evaluation_and_refinement">Drafting, Evaluation, and Refinement</a></li>
+<li><a href="#reviewing_the_generated_ontology">Reviewing the Generated Ontology</a></li>
+<li><a href="#uploading_to_ontology_editor">Uploading to Ontology Editor</a></li>
+<li><a href="#continuing_a_session">Continuing a Session</a></li>
+<li><a href="#providing_feedback_during_generation">Providing Feedback During Generation</a></li>
+<li><a href="#best_practices">Best Practices</a></li>
+<li><a href="#limitations">Limitations</a></li>
+</ul>
+</li>
 <li><a href="#editing_an_ontology">Editing an Ontology</a>
 <ul class="sectlevel4">
 <li><a href="#ontology_project_tab">Ontology Project Tab</a></li>
@@ -250,7 +263,9 @@
 <li><a href="#groups_2">Groups</a></li>
 <li><a href="#permissions">Permissions</a></li>
 <li><a href="#application_settings">Application Settings</a></li>
-<li><a href="#publish-configs">Publish Configuration (ENTERPRISE)</a></li>
+<li><a href="#publish-configs">Repositories</a></li>
+<li><a href="#logs">Logs</a></li>
+<li><a href="#publish_configuration_enterprise">Publish Configuration (ENTERPRISE)</a></li>
 <li><a href="#licensing">Licensing (ENTERPRISE)</a></li>
 <li><a href="#ldapsso">LDAP/SSO (ENTERPRISE)</a></li>
 </ul>
@@ -259,12 +274,14 @@
 <ul class="sectlevel3">
 <li><a href="#mobi">Mobi</a>
 <ul class="sectlevel4">
-<li><a href="#service_configuration">Service Configuration</a></li>
+<li><a href="#basic_service_configuration">Basic Service Configuration</a></li>
 <li><a href="#core_security_configuration">Core Security Configuration</a></li>
 <li><a href="#configure_default_authentication_token_jwt_duration">Configure Default Authentication Token (JWT) Duration</a></li>
+<li><a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a></li>
 <li><a href="#ldap_config">LDAP Configuration (ENTERPRISE)</a></li>
 <li><a href="#sso_configuration_enterprise">SSO Configuration (ENTERPRISE)</a></li>
 <li><a href="#password_encryption_configuration">Password Encryption Configuration</a></li>
+<li><a href="#ai_assistant_config">AI Assistant Configuration (ENTERPRISE)</a></li>
 <li><a href="#imports_resolver_configuration">Imports Resolver Configuration</a></li>
 <li><a href="#ontology_cache_configuration">Ontology Cache Configuration</a></li>
 <li><a href="#graph_studio_publish_config">Graph Studio Publish Connection Configuration (ENTERPRISE)</a></li>
@@ -958,7 +975,7 @@ sudo -u mobi bin/start</code></pre>
 <p>The right side of the Record View displays metadata, including the publisher&#8217;s username, the creation and modification dates, and associated keywords. The view includes a Statistics section that highlights key metrics relevant to the Record, providing a quick overview of its complexity. Each statistic is accompanied by a tooltip explaining its meaning, making it easier to understand the data. The statistics displayed are specifically tailored to the type of Record you are viewing. If no statistics are available for the Record type, the section will display the message "No statistics available.". Underneath all this is a button to open the Record in its associated module (ontologies in the <a href="#ontology-editor-guide">Ontology Editor</a>, etc.).</p>
 </div>
 <div class="paragraph">
-<p>Every Record type will contain an Overview tab where you can view a Markdown description of the Record that provides more detailed information than the description field. If the Record is a Versioned RDF Record, such as an Ontology Record or Mapping Record, the tabset will also include a tab displaying the list of its Branches. The Branches in the list are expandable to view the description and commit history of the Branch. The Activity tab will show a list of activities associated with the Record.</p>
+<p>Every Record type will contain an Overview tab where you can view a Markdown description of the Record that provides more detailed information than the description field. If the Record is a Versioned RDF Record, such as an Ontology Record or Mapping Record, the tabset will also include a tab displaying the list of its Branches. The Branches in the list are expandable to view the description and commit history of the Branch. You can also copy the Branch&#8217;s IRI from this tab. The Activity tab will show a list of activities associated with the Record.</p>
 </div>
 <div class="paragraph">
 <p>If you have the permission to manage the Record, clicking on the title, description, overview, and keywords fields will turn them into editable fields for easy updates. In addition, you will see a <b class="button">Manage</b> button which will navigate you to the Record Permissions page.</p>
@@ -1116,6 +1133,270 @@ Supported ontology file types are <code>.owl</code>, <code>.ttl</code>, <code>.x
 </div>
 </div>
 <div class="sect3">
+<h4 id="creating_ontology_with_ai">Creating an Ontology with AI (ENTERPRISE)</h4>
+<div class="paragraph">
+<p>The Ontology Editor provides an <em>Alpha</em> feature to generate ontologies using an AI assistant. Click the <b class="button">Create with AI</b> button in the records dropdown to open the AI Assistant interface. The assistant guides you through defining your ontology requirements using natural language, then automatically drafts an OWL 2 ontology based on your specifications. This feature is designed to help both newcomers and experienced ontologists quickly create well-structured ontologies.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The AI Assistant is currently in Alpha. Features and behavior may change in future releases.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ai-assistant/create_with_ai_button.png" alt="create with ai button" width="50%">
+</div>
+<div class="title">Figure 18. AI Assistant Button in Records Dropdown</div>
+</div>
+<div class="sect4">
+<h5 id="getting_started">Getting Started</h5>
+<div class="paragraph">
+<p>When you first open the AI Assistant, you will see a chat interface where you can begin describing your ontology requirements. The assistant will ask clarifying questions to understand your use case, domain, and the types of information you want to model.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ai-assistant/initial_view.png" alt="initial view">
+</div>
+<div class="title">Figure 19. AI Assistant Initial View</div>
+</div>
+<div class="paragraph">
+<p>The AI Assistant workflow consists of two main phases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Conversation Phase</strong> - Discuss your requirements with the assistant</p>
+</li>
+<li>
+<p><strong>Drafting, Evaluation, and Refinement</strong> - The assistant automatically generates, validates, evaluates, and refines your ontology</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="conversation_phase">Conversation Phase</h5>
+<div class="paragraph">
+<p>During the conversation phase, the assistant will help you define your ontology requirements. You should describe:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The knowledge domain you want to model</p>
+</li>
+<li>
+<p>Your experience level with ontology development</p>
+</li>
+<li>
+<p>Key classes (categories of things) you need</p>
+</li>
+<li>
+<p>Properties and relationships between classes</p>
+</li>
+<li>
+<p>Any specific use cases or competency questions</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ai-assistant/conversation.png" alt="conversation">
+</div>
+<div class="title">Figure 20. Conversation with AI Assistant</div>
+</div>
+<div class="paragraph">
+<p>The assistant will periodically summarize the requirements it has gathered and ask for confirmation. When the requirements are sufficiently defined, the assistant will indicate it is ready to proceed to drafting.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Be as specific as possible about your requirements. The more detail you provide, the better the generated ontology will match your needs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="drafting_evaluation_and_refinement">Drafting, Evaluation, and Refinement</h5>
+<div class="paragraph">
+<p>Once requirements are complete, the AI Assistant automatically drafts, evaluates, and refines your ontology. During these phases, a progress indicator shows the current status.</p>
+</div>
+<div class="paragraph">
+<p>The drafting phase creates an initial OWL 2 ontology based on your requirements, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Class definitions with appropriate annotations</p>
+</li>
+<li>
+<p>Object properties defining relationships between classes</p>
+</li>
+<li>
+<p>Data properties for attributes</p>
+</li>
+<li>
+<p>Property domains and ranges</p>
+</li>
+<li>
+<p>Ontology metadata (title, description, etc.)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ai-assistant/evaluation_progress.png" alt="evaluation progress">
+</div>
+<div class="title">Figure 21. Evaluation Progress</div>
+</div>
+<div class="paragraph">
+<p>After the initial draft is created, the AI Assistant evaluates the ontology against your stated requirements. If the evaluation identifies areas for improvement, the assistant refines the ontology by adding missing classes or properties, adjusting domains and ranges, improving annotations, and fixing structural issues. This process continues until the ontology meets the quality threshold or a maximum number of iterations is reached.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reviewing_the_generated_ontology">Reviewing the Generated Ontology</h5>
+<div class="paragraph">
+<p>When generation is complete, you can review the generated ontology directly in the AI Assistant interface. The ontology is displayed in <a href="https://www.w3.org/TR/turtle/">Turtle</a> format, allowing you to inspect the classes, properties, and structure before importing.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ai-assistant/ontology_preview.png" alt="ontology preview">
+</div>
+<div class="title">Figure 22. Generated Ontology Preview</div>
+</div>
+<div class="paragraph">
+<p>You can scroll through the generated ontology to verify it meets your requirements. If you are not satisfied with the result, you can provide additional feedback to the assistant to request changes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="uploading_to_ontology_editor">Uploading to Ontology Editor</h5>
+<div class="paragraph">
+<p>Once you are satisfied with the generated ontology, click the <b class="button">Upload to Ontology Editor</b> button in order to take advantage of the Ontology Editor&#8217;s semantic versioning and visualization capabilities.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ai-assistant/upload_button.png" alt="upload button">
+</div>
+<div class="title">Figure 23. Upload to Ontology Editor Button</div>
+</div>
+<div class="paragraph">
+<p>The ontology will be created in the Mobi catalog and opened in the Ontology Editor where you can continue development.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="continuing_a_session">Continuing a Session</h5>
+<div class="paragraph">
+<p>If you navigate away from the AI Assistant before completing your ontology, your session is preserved. When you return, you can continue your conversation by clicking <b class="button">Continue AI Session</b> in the Ontology Editor records dropdown.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ai-assistant/continue_session_button.png" alt="continue session button" width="50%">
+</div>
+<div class="title">Figure 24. Continue AI Session Button</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+AI Assistant sessions are preserved for a limited time. If your session expires, you will need to start a new conversation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="providing_feedback_during_generation">Providing Feedback During Generation</h5>
+<div class="paragraph">
+<p>If the generated ontology does not fully meet your requirements, you can provide feedback to request changes. Enter your feedback in the chat interface describing what modifications you would like. The assistant will refine the ontology based on your feedback.</p>
+</div>
+<div class="paragraph">
+<p>Common types of feedback include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Requesting additional classes or properties</p>
+</li>
+<li>
+<p>Asking for changes to property domains or ranges</p>
+</li>
+<li>
+<p>Requesting more detailed annotations</p>
+</li>
+<li>
+<p>Asking for removal of unnecessary elements</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="best_practices">Best Practices</h5>
+<div class="paragraph">
+<p>To get the best results from the AI Assistant:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Start with a clear goal</strong> - Know what domain you want to model and what questions the ontology should answer</p>
+</li>
+<li>
+<p><strong>Be specific about requirements</strong> - Describe the classes, properties, and relationships you need</p>
+</li>
+<li>
+<p><strong>Indicate your experience level</strong> - The assistant adjusts its recommendations based on your expertise</p>
+</li>
+<li>
+<p><strong>Review the summary</strong> - Confirm the assistant has correctly understood your requirements before proceeding to drafting</p>
+</li>
+<li>
+<p><strong>Provide feedback</strong> - If the generated ontology needs adjustments, describe what changes you need</p>
+</li>
+<li>
+<p><strong>Iterate if needed</strong> - Complex ontologies may require multiple rounds of feedback and refinement</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="limitations">Limitations</h5>
+<div class="paragraph">
+<p>The AI Assistant has the following limitations in the current Alpha release:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Generated ontologies are drafts and may require manual refinement</p>
+</li>
+<li>
+<p>Complex domain-specific requirements may not be fully captured</p>
+</li>
+<li>
+<p>The assistant does not have knowledge of existing ontologies in Mobi</p>
+</li>
+<li>
+<p>Session timeout may require restarting long conversations</p>
+</li>
+<li>
+<p>Generated ontologies follow common OWL 2 patterns but may not match all organization-specific conventions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="editing_an_ontology">Editing an Ontology</h4>
 <div class="paragraph">
 <p>The Ontology Editor provides an interface for developing <a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a> ontologies with additional features directed towards developing Simple Knowledge Organization System (<a href="https://www.w3.org/2004/02/skos/">SKOS</a>) vocabularies and extensions thereof, including support for (<a href="https://www.w3.org/TR/skos-reference/skos-xl.html">SKOS-XL</a>)</p>
@@ -1139,7 +1420,7 @@ To learn more about OWL ontologies, see the <a href="https://www.w3.org/TR/2012/
 <div class="content">
 <img src="images/ontology-editor/full_editor_ontology_view.png" alt="full editor ontology view">
 </div>
-<div class="title">Figure 18. Ontology Editor</div>
+<div class="title">Figure 25. Ontology Editor</div>
 </div>
 <div class="paragraph">
 <p>This section will describe the tools related to ontology development activities. These include:</p>
@@ -1190,7 +1471,7 @@ To learn more about OWL ontologies, see the <a href="https://www.w3.org/TR/2012/
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_project.png" alt="ontology editor tab project">
 </div>
-<div class="title">Figure 19. Ontology Editor Project Tab</div>
+<div class="title">Figure 26. Ontology Editor Project Tab</div>
 </div>
 <div class="paragraph">
 <p>The top of this tab contains the title of the ontology and its IRI. The IRI shown is the Version IRI, ontology IRI, or a blank node identifier. The IRI can be copied quickly by clicking on it.</p>
@@ -1226,7 +1507,7 @@ The serialized ontology is a representation of data stored in the repository and
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_overview.png" alt="ontology editor tab overview">
 </div>
-<div class="title">Figure 20. Ontology Editor Overview Tab</div>
+<div class="title">Figure 27. Ontology Editor Overview Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of this tab contains the list of all classes and their associated properties, including imports. Any properties that have no <code>rdfs:domain</code> are grouped into a folder in the hierarchy called "Properties". You can expand a class to view its properties by clicking the "+" icon or double-clicking the class name. Properties are displayed with a symbol representing the data type of the range property. If an entity has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the entity name. Imported classes and properties will appear grey and italicized. The list also includes a search bar that will filter the list to classes/properties with annotations or local names containing your search query and the ability to apply one or more filters. The <b class="button">Hide unused imports</b> filter will remove all imported entities from the list that are not used by any of the entities defined in the ontology. The <b class="button">Hide deprecated entities</b> filter will remove all entities annotated with the <code>owl:deprecated</code> property.
@@ -1263,7 +1544,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_classes.png" alt="ontology editor tab classes">
 </div>
-<div class="title">Figure 21. Ontology Editor Classes Tab</div>
+<div class="title">Figure 28. Ontology Editor Classes Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the classes, including imports, nested according to their <code>rdfs:subClassOf</code> property. That is, a class&#8217;s children are classes which are defined as subclasses of the particular class. Since classes can be defined as a subclass of multiple classes, they may appear several times within the hierarchy. If a class has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the class name. Imported classes will appear grey and italicized. The list also includes a search bar that will filter the list to classes with annotations or local names containing your search query and the ability to apply one or more filters. The <b class="button">Hide unused imports</b> filter will remove all imported classes from the list that are not used by any of the entities defined in the ontology. The <b class="button">Hide deprecated entities</b> filter will remove all classes annotated with the <code>owl:deprecated</code> property. Clicking on an item in the hierarchy will load that class&#8217;s information into the other sections in this tab. Double clicking on a class with children will toggle the display of the children.</p>
@@ -1284,7 +1565,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_properties.png" alt="ontology editor tab properties">
 </div>
-<div class="title">Figure 22. Ontology Editor Properties Tab</div>
+<div class="title">Figure 29. Ontology Editor Properties Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the data, object, and annotation properties, including imports. The data, object, and annotation properties are grouped into three separate folders within the hierarchy that will open and close when clicked. Properties are nested according to their <code>rdfs:subPropertyOf</code> property. That is, a property&#8217;s children are properties which are defined as subproperties of the particular property. Properties are displayed with a symbol representing the data type of the range property. If a property has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the property name.  Imported properties will appear grey and italicized. The list also includes a search bar that will filter the list to properties with annotations or local names containing your search query and the ability to apply one or more filters. The <b class="button">Hide unused imports</b> filter will remove all imported properties from the list that are not used by any of the entities defined in the ontology. The <b class="button">Hide deprecated entities</b> filter will remove all properties annotated with the <code>owl:deprecated</code> property. Clicking on an item in the hierarchy will load that property&#8217;s information into the other sections in this tab. Double clicking on a property with children will toggle the display of the children.</p>
@@ -1299,7 +1580,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/object_property_tab.png" alt="object property tab">
 </div>
-<div class="title">Figure 23. Object Property View</div>
+<div class="title">Figure 30. Object Property View</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1326,7 +1607,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_individuals.png" alt="ontology editor tab individuals">
 </div>
-<div class="title">Figure 24. Ontology Editor Individuals Tab</div>
+<div class="title">Figure 31. Ontology Editor Individuals Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a view of all individuals, including imports, nested under their classes based on the <code>rdfs:subClassOf</code> property. If an individual has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of the individual name. Imported individuals will appear grey and italicized. The list also includes a search bar that will filter the list to individuals with annotations or local names containing your search query and the ability to apply one or more filters. The <b class="button">Hide unused imports</b> filter will remove all imported individuals from the list that are not used by any of the entities defined in the ontology. The <b class="button">Hide deprecated entities</b> filter will remove all individual annotated with the <code>owl:deprecated</code> property. Clicking on an item in the list will load that individual&#8217;s information into the other sections in this tab.</p>
@@ -1341,7 +1622,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/edit_individual_types.png" alt="edit individual types" width="50%">
 </div>
-<div class="title">Figure 25. Edit Individual Types Overlay</div>
+<div class="title">Figure 32. Edit Individual Types Overlay</div>
 </div>
 </div>
 <div class="sect4">
@@ -1353,7 +1634,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_schemes.png" alt="ontology editor tab schemes">
 </div>
-<div class="title">Figure 26. Ontology Editor Schemes Tab</div>
+<div class="title">Figure 33. Ontology Editor Schemes Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the concept schemes, including imports. The top level items are the concept schemes, or subclasses of <code>skos:ConceptScheme</code>, and their children are all concepts, or subclasses of <code>skos:Concept</code>, within that scheme. This could be defined through the <code>skos:hasTopConcept</code>, <code>skos:topConceptOf</code>, or <code>skos:inScheme</code> properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concept schemes and concepts will appear grey and italicized. The list also includes a search bar that will filter the list to concepts/schemes with annotations or local names containing your search query and the ability to apply one or more filters. The <b class="button">Hide unused imports</b> filter will remove all imported schemes from the list that are not used by any of the entities defined in the ontology. The <b class="button">Hide deprecated entities</b> filter will remove all schemes annotated with the <code>owl:deprecated</code> property. Clicking on an item in the hierarchy will load that concept scheme&#8217;s or concept&#8217;s information in the other sections in this tab. Double clicking on a concept scheme with children will toggle the display of the children.</p>
@@ -1374,7 +1655,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_concepts.png" alt="ontology editor tab concepts">
 </div>
-<div class="title">Figure 27. Ontology Editor Concepts Tab</div>
+<div class="title">Figure 34. Ontology Editor Concepts Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a hierarchical view of the concepts, including imports. The concept hierarchy is determined using all of the SKOS broader and narrower properties. If a concept scheme or concept has been changed and those changes have not been committed, it will appear bold and an indicator will be shown on the right of its name. Imported concepts will appear grey and italicized.
@@ -1396,7 +1677,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/search_tab_dropdown.png" alt="search tab dropdown">
 </div>
-<div class="title">Figure 28. Search Tab Dropdown</div>
+<div class="title">Figure 35. Search Tab Dropdown</div>
 </div>
 <div class="sect5">
 <h6 id="find_view">Find View</h6>
@@ -1407,7 +1688,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_tab_search.png" alt="ontology editor tab search">
 </div>
-<div class="title">Figure 29. Ontology Editor Search Tab</div>
+<div class="title">Figure 36. Ontology Editor Search Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the Find view contains a simple search bar and a list of search results. To perform a search, type a string into the search bar and press the <kbd>ENTER</kbd> key. The results are separated by type headers which are collapsible. Each result is displayed with its display name. Properties are displayed with a symbol representing the data type of the range property. Clicking on a result will load that entity&#8217;s information into the right section of this tab. The right section displays the entity&#8217;s display name, IRI, types, and properties. The parts of the property values that match the search text will be highlighted. The right section also includes a <b class="button">Go To</b> button that will open the entity in the appropriate tab. Double clicking on an entity in the list will also open that entity in the appropriate tab.</p>
@@ -1422,7 +1703,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/search_tab_query.png" alt="search tab query">
 </div>
-<div class="title">Figure 30. Query View</div>
+<div class="title">Figure 37. Query View</div>
 </div>
 <div class="paragraph">
 <p>The bottom section displays the results of the most recently submitted SPARQL query (powered by <a href="https://triply.cc/docs/yasgui-api#yasr">YASR</a>). The section has separate tabs for rendering the query result set depending on the type of SPARQL query submitted. SELECT query results are displayed under the Table tab where the headers of the table are the variables specified in the SPARQL query. The Table comes with features such as filtering, page size, sorting and pagination. CONSTRUCT query results can be displayed under the Turtle, JSON-LD and RDF/XML tabs. The query results are limited to 500 triples/rows for rendering, but the entire result set can be downloaded using the button in the upper right corner of the bottom section.</p>
@@ -1431,7 +1712,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/search_tab_query_construct.png" alt="search tab query construct">
 </div>
-<div class="title">Figure 31. Construct Query</div>
+<div class="title">Figure 38. Construct Query</div>
 </div>
 </div>
 </div>
@@ -1444,28 +1725,22 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/visualization/pizza_graph.png" alt="pizza graph">
 </div>
-<div class="title">Figure 32. Pizza Ontology Graph</div>
+<div class="title">Figure 39. Pizza Ontology Graph</div>
 </div>
 <div class="paragraph">
 <p>The feature allows users to zoom, pan, select, drag, hover, and click nodes and links. There is also a help menu in the bottom left hand corner with shortcuts and helpful hints for using the tool.</p>
 </div>
 <div class="paragraph">
-<p>The number of classes displayed is limited to 500. Any in progress changes you have will not be rendered until they are committed. After initial graph calculation, the state of the graph will persist while users keep the ontology open. The graph will only be re-rendered when there is a new commit.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ontology-editor/visualization/warning_commit_inprogress.png" alt="warning commit inprogress">
-</div>
-<div class="title">Figure 33. Uncommitted changes state</div>
+<p>The number of classes displayed is limited to 500. In progress changes you have made will be rendered as well. After initial graph calculation, the state of the graph will persist while users keep the ontology open. The graph will only be re-rendered when there are new changes made.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/warning_over_node_limit.png" alt="warning over node limit">
 </div>
-<div class="title">Figure 34. Over the limit state</div>
+<div class="title">Figure 40. Over the limit state</div>
 </div>
 <div class="paragraph">
-<p>The side panel of the Visualization tab displays a searchable list of all the classes in the import closure (i.e. direct and imported) grouped by parent ontology. The checkboxes next to each class indicate whether a class is currently shown in the visualization and can be toggled to customize the displayed graph. Selecting the checkbox next to a class will update the graph by adding a new node with the class name, subclass relationships with other displayed classes, and object properties with other displayed classes. Deselecting the checkbox next to a class will remove these three things. Selecting a class in the side panel will highlight the node in the graph if displayed. Selecting a node in the graph will also highlight in the side panel. The side panel also includes a "Filter" dropdown with three options to help find the classes of interest in the list.</p>
+<p>The side panel of the Visualization tab displays a searchable list of all the classes in the import closure (i.e. direct and imported) grouped by parent ontology. The checkboxes next to each class indicate whether a class is currently shown in the visualization and can be toggled to customize the displayed graph. Selecting the checkbox next to a class will update the graph by adding a new node with the class name, subclass relationships with other displayed classes, and object properties with other displayed classes. Deselecting the checkbox next to a class will remove these three things. Selecting a class in the side panel will highlight the node in the graph if displayed. Selecting a node in the graph will also highlight in the side panel. Double clicking on a class in the side panel will open it in the <a href="#classes_tab">Classes Tab</a> for further review. The side panel also includes a "Filter" dropdown with three options to help find the classes of interest in the list.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1484,7 +1759,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/visualization/sidebard_imported_open.png" alt="sidebard imported open">
 </div>
-<div class="title">Figure 35. Side Panel: classes grouped by parent ontology</div>
+<div class="title">Figure 41. Side Panel: classes grouped by parent ontology</div>
 </div>
 <div class="paragraph">
 <p>The side panel can be hidden or shown with a button.</p>
@@ -1493,13 +1768,13 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_close_button.png" alt="sidepanel close button">
 </div>
-<div class="title">Figure 36. Side Panel Close Button</div>
+<div class="title">Figure 42. Side Panel Close Button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/sidepanel_open_button.png" alt="sidepanel open button">
 </div>
-<div class="title">Figure 37. Side Panel Open Button</div>
+<div class="title">Figure 43. Side Panel Open Button</div>
 </div>
 <div class="sect5">
 <h6 id="imported_ontologies_in_the_visual_graph">Imported Ontologies in the Visual Graph</h6>
@@ -1510,13 +1785,13 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/visualization/imported_ontology.png" alt="imported ontology">
 </div>
-<div class="title">Figure 38. Imported Ontologies</div>
+<div class="title">Figure 44. Imported Ontologies</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/visualization/update_imports.png" alt="update imports">
 </div>
-<div class="title">Figure 39. Refresh import</div>
+<div class="title">Figure 45. Refresh import</div>
 </div>
 </div>
 </div>
@@ -1554,7 +1829,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/branches_dropdown.png" alt="branches dropdown" width="40%">
 </div>
-<div class="title">Figure 40. Branches Dropdown</div>
+<div class="title">Figure 46. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To edit the metadata of a branch or tag that is not checked out, click the pencil icon next to it in the dropdown menu. You cannot edit the MASTER branch of an ontology. To delete a branch or tag, click on the delete icon next to the branch/tag in the dropdown menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -1569,7 +1844,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/upload_changes_button.png" alt="upload changes button">
 </div>
-<div class="title">Figure 41. Upload Changes button</div>
+<div class="title">Figure 47. Upload Changes button</div>
 </div>
 </div>
 <div class="sect4">
@@ -1584,7 +1859,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/ontology_editor_changes_page.png" alt="ontology editor changes page">
 </div>
-<div class="title">Figure 42. Changes Page</div>
+<div class="title">Figure 48. Changes Page</div>
 </div>
 <div class="paragraph">
 <p>The commit history graph displays of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the graph. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. The graph displays any Tags and Branches associated with visible commits. To view more information about a particular commit in the history, such as the added and deleted statements, click on its hash id to open an informational modal. The graph also includes commit dots for "checking out" a commit in the history. Clicking the Commit dot will open the ontology at that commit in read-only mode.</p>
@@ -1599,7 +1874,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/commit_button.png" alt="commit button">
 </div>
-<div class="title">Figure 43. Commit Button</div>
+<div class="title">Figure 49. Commit Button</div>
 </div>
 <div class="paragraph">
 <p>Commits cannot be made when a Tag or Commit is checked out or you are behind the HEAD of the current Branch. If you are behind the HEAD of the current branch, an indicator wil be shown in the top action-bar with a button to checkout the latest commit.</p>
@@ -1608,7 +1883,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/pull_latest_changes.png" alt="pull latest changes">
 </div>
-<div class="title">Figure 44. Pull in Latest Changes Indicator</div>
+<div class="title">Figure 50. Pull in Latest Changes Indicator</div>
 </div>
 </div>
 <div class="sect4">
@@ -1620,7 +1895,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 45. Merge Branches button</div>
+<div class="title">Figure 51. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -1629,7 +1904,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/merge_view.png" alt="merge view">
 </div>
-<div class="title">Figure 46. Merge Branches View</div>
+<div class="title">Figure 52. Merge Branches View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -1641,7 +1916,7 @@ The list also includes a search bar that will filter the list to concepts with a
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_main.png" alt="merge conflicts main">
 </div>
-<div class="title">Figure 47. List of All Merge Conflicts</div>
+<div class="title">Figure 53. List of All Merge Conflicts</div>
 </div>
 <div class="paragraph">
 <p>When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the <b class="button">Back to List</b> button to go back to the list of all the conflicts or the <b class="button">Previous</b> or <b class="button">Next</b> buttons to iterate through the list of conflicts.</p>
@@ -1662,7 +1937,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/ontology-editor/merge_conflicts_resolution.png" alt="merge conflicts resolution">
 </div>
-<div class="title">Figure 48. Merge Conflict Resolution View</div>
+<div class="title">Figure 54. Merge Conflict Resolution View</div>
 </div>
 <div class="paragraph">
 <p>Once all conflicts have been resolved, the <b class="button">Submit with Resolutions</b> button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.</p>
@@ -1677,7 +1952,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/ontology-editor/entity_history.png" alt="entity history">
 </div>
-<div class="title">Figure 49. Entity History view</div>
+<div class="title">Figure 55. Entity History view</div>
 </div>
 </div>
 </div>
@@ -1692,7 +1967,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/ontology-editor/edit_iri_overlay.png" alt="edit iri overlay">
 </div>
-<div class="title">Figure 50. Edit IRI overlay</div>
+<div class="title">Figure 56. Edit IRI overlay</div>
 </div>
 </div>
 <div class="sect4">
@@ -1704,7 +1979,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/ontology-editor/axiom_value_editor.png" alt="axiom value editor" width="50%">
 </div>
-<div class="title">Figure 51. Axiom Overlay Editor with an example</div>
+<div class="title">Figure 57. Axiom Overlay Editor with an example</div>
 </div>
 </div>
 <div class="sect4">
@@ -1728,7 +2003,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/property_value_display.png" alt="property value display">
 </div>
-<div class="title">Figure 52. A property value display with multiple values</div>
+<div class="title">Figure 58. A property value display with multiple values</div>
 </div>
 </div>
 <div class="sect4">
@@ -1740,13 +2015,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/ontology-editor/create_entity_button.png" alt="create entity button">
 </div>
-<div class="title">Figure 53. Create Entity button</div>
+<div class="title">Figure 59. Create Entity button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ontology-editor/new_snackbar.png" alt="new snackbar">
 </div>
-<div class="title">Figure 54. New Entity snackbar</div>
+<div class="title">Figure 60. New Entity snackbar</div>
 </div>
 </div>
 <div class="sect4">
@@ -1840,7 +2115,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/full_tool_initial_view.png" alt="The Vocabulary Linking Tool">
 </div>
-<div class="title">Figure 55. The Vocabulary Linking Tool</div>
+<div class="title">Figure 61. The Vocabulary Linking Tool</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Vocabulary Linking Tool shows a form on the left for selecting the vocabularies and a space for matched terms to be displayed. To select a vocabulary, you must select the Ontology Record and a Branch. All selected semantic relations you wish to add will be committed to the selected branches for both vocabularies.</p>
@@ -1852,7 +2127,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/config_modal.png" alt="The vocabulary linking configuration modal" width="50%">
 </div>
-<div class="title">Figure 56. The vocabulary linking configuration modal</div>
+<div class="title">Figure 62. The vocabulary linking configuration modal</div>
 </div>
 <div class="paragraph">
 <p>After you have selected 2 different ontologies, click on <b class="button">Analyze</b> and the right section of the view will update with the matched terms in a paginated list.</p>
@@ -1861,7 +2136,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/linking_results.png" alt="Example vocabulary linking results">
 </div>
-<div class="title">Figure 57. Example vocabulary linking results</div>
+<div class="title">Figure 63. Example vocabulary linking results</div>
 </div>
 <div class="paragraph">
 <p>The top of the results section shows a checkbox for selecting or deselecting all the results in addition to two dropdowns. One is for filtering the results based on whether terms have already been semantically linked. The other is for sorting the results based on the highest matched percentage of all the labels of each matched term pair.</p>
@@ -1873,13 +2148,13 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/matched_pair.png" alt="Example matched vocabulary terms">
 </div>
-<div class="title">Figure 58. Example pair of matched vocabulary terms</div>
+<div class="title">Figure 64. Example pair of matched vocabulary terms</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/vocabulary-linking/previously_linked.png" alt="Previously linked vocabulary matches">
 </div>
-<div class="title">Figure 59. Matched vocabulary terms that are already linked</div>
+<div class="title">Figure 65. Matched vocabulary terms that are already linked</div>
 </div>
 <div class="paragraph">
 <p>To mark which terms you wish to link, select which relation you wish to use from the select in the expanded section and check the box next to the pair. The options are “Exact Match”, “Close Match”, or “Related”.  Use the following as a reference for what each type of relation means:</p>
@@ -1915,7 +2190,7 @@ See the <a href="https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/">W3C Speci
 <div class="content">
 <img src="images/vocabulary-linking/success.png" alt="Successful linking" width="50%">
 </div>
-<div class="title">Figure 60. A success message linking vocabularies</div>
+<div class="title">Figure 66. A success message linking vocabularies</div>
 </div>
 </div>
 <div class="sect2">
@@ -1942,7 +2217,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/full_editor_initial_view.png" alt="full editor initial view">
 </div>
-<div class="title">Figure 61. The Shapes Editor</div>
+<div class="title">Figure 67. The Shapes Editor</div>
 </div>
 <div class="paragraph">
 <p>The main Shapes Editor page includes the same top action-bar as the <a href="#ontology-editor-guide">Ontology Editor</a> where all the actions related to opening and versioning the Shapes Graph Record are located. From the action-bar, users can create, filter, and open different Shapes Graph Records, branches, and tags as well as create branches/tags, merge branches, upload/download the shapes graph data, and make a new commit.</p>
@@ -1951,7 +2226,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/action_bar.png" alt="action bar" width="100%">
 </div>
-<div class="title">Figure 62. Shapes Editor Action-Bar</div>
+<div class="title">Figure 68. Shapes Editor Action-Bar</div>
 </div>
 <div class="paragraph">
 <p>The starting point for any action on the page when you first navigate to the editor is the records dropdown. From here, you can create new shapes graphs, open existing ones, delete shapes graphs you have permission to do so, and download the latest version from the head commit of the MASTER branch. Clicking on a shapes graph will open it in the editor. You can open more than one shapes graph open at a time for parallel development.</p>
@@ -1960,7 +2235,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/records_dropdown.png" alt="records dropdown" width="50%">
 </div>
-<div class="title">Figure 63. Shapes Editor Record Select</div>
+<div class="title">Figure 69. Shapes Editor Record Select</div>
 </div>
 <div class="paragraph">
 <p>When opening a Shapes Graph Record, the editor will load the previous branch and/or commit you were viewing. If you have not previously opened the shapes graph or in the case that the branch you were viewing no longer exists, the editor will load the HEAD commit of the shape graph&#8217;s MASTER branch. For an explanation of commits and branches, see the section on <a href="#shapes_graph_versioning">Shapes Graph Versioning</a>.</p>
@@ -1974,7 +2249,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/create_shapes.png" alt="create shapes" width="50%">
 </div>
-<div class="title">Figure 64. New Shapes Record Form</div>
+<div class="title">Figure 70. New Shapes Record Form</div>
 </div>
 <div class="paragraph">
 <p>Shapes graphs in Mobi will always include an OWL ontology object to capture high level information about the shapes graph, following best practices from the SHACL W3C specification (see <a href="https://www.w3.org/TR/shacl/#sparql-prefixes">this section</a> as an example).</p>
@@ -1995,7 +2270,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/upload_shapes.png" alt="upload shapes" width="50%">
 </div>
-<div class="title">Figure 65. Upload Shapes Record Form</div>
+<div class="title">Figure 71. Upload Shapes Record Form</div>
 </div>
 <div class="paragraph">
 <p>The status of each upload is recorded in the Upload Log which can be opened by clicking the button next to the records dropdown. Any errors will be detailed for each file. The file extension is used to guess the appropriate RDF Format to parse the file contents. If a parsing error occurs, the snackbar will display the error message relevant to guessed RDF Format.</p>
@@ -2004,7 +2279,7 @@ For the best development experience, we recommend separating your ontology and s
 <div class="content">
 <img src="images/shacl-editor/upload_log_button.png" alt="upload log button" width="50%">
 </div>
-<div class="title">Figure 66. Upload Log Button</div>
+<div class="title">Figure 72. Upload Log Button</div>
 </div>
 </div>
 <div class="sect3">
@@ -2028,7 +2303,7 @@ To learn more about SHACL shapes graphs, see the W3C Specification or check out 
 <div class="content">
 <img src="images/shacl-editor/shapes_details.png" alt="shapes details">
 </div>
-<div class="title">Figure 67. Shapes Editor</div>
+<div class="title">Figure 73. Shapes Editor</div>
 </div>
 <div class="paragraph">
 <p>The Shapes Editor contains various tabs supporting activities for shapes graph development, search, and version control.</p>
@@ -2055,7 +2330,7 @@ To learn more about SHACL shapes graphs, see the W3C Specification or check out 
 <div class="content">
 <img src="images/shacl-editor/project_tab.png" alt="project tab">
 </div>
-<div class="title">Figure 68. Shapes Editor Project Tab</div>
+<div class="title">Figure 74. Shapes Editor Project Tab</div>
 </div>
 <div class="paragraph">
 <p>The top of this tab contains the title of the shapes graph and its editable IRI. The IRI shown is the Version IRI, ontology IRI, or a blank node identifier. The IRI can be copied quickly by clicking on it.</p>
@@ -2079,7 +2354,7 @@ To learn more about SHACL shapes graphs, see the W3C Specification or check out 
 <div class="content">
 <img src="images/shacl-editor/node_shapes_tab.png" alt="node shapes tab">
 </div>
-<div class="title">Figure 69. Node Shapes Tab</div>
+<div class="title">Figure 75. Node Shapes Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a searchable list of all the node shapes, including imported ones, with metadata about them. The search bar will filter the list to node shapes with annotations or local names containing your search query. Clicking on an item in the hierarchy will load that node shape&#8217;s information into the other sections in this tab.</p>
@@ -2160,7 +2435,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/editing_target.png" alt="editing target">
 </div>
-<div class="title">Figure 70. Editing a Node Shape target</div>
+<div class="title">Figure 76. Editing a Node Shape target</div>
 </div>
 <div class="paragraph">
 <p>The Target for the selected node shape can be edited by clicking the pencil button next to the section title. This will turn the display editable, but changes will not be saved unless the save icon is clicked next to the section title. The options for a node shapes Target are:</p>
@@ -2188,7 +2463,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/constraints_list.png" alt="constraints list">
 </div>
-<div class="title">Figure 71. Constraints List</div>
+<div class="title">Figure 77. Constraints List</div>
 </div>
 <div class="paragraph">
 <p>The right side of the tab contains a list of all the constraints set on the selected node shape, separated by property shape. Each property shape is displayed with its title, property path being constrained, error message if set, and list of constraints. The property path will be displayed with the following syntax which is also described in the help icon next to the section header:</p>
@@ -2244,7 +2519,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/add_path_node_modal.png" alt="add path node modal">
 </div>
-<div class="title">Figure 72. Add Property to Path Modal</div>
+<div class="title">Figure 78. Add Property to Path Modal</div>
 </div>
 </div>
 </div>
@@ -2281,7 +2556,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/branches_dropdown.png" alt="branches dropdown" width="40%">
 </div>
-<div class="title">Figure 73. Branches Dropdown</div>
+<div class="title">Figure 79. Branches Dropdown</div>
 </div>
 <div class="paragraph">
 <p>To edit the metadata of a branch or tag that is not checked out, click the pencil icon next to it in the dropdown menu. You cannot edit the MASTER branch of a shapes graph. To delete a branch or tag, click on the delete icon next to the branch/tag in the dropdown menu. If a branch is deleted, all commits on that branch that are not part of another branch will be removed, as well as the branch itself. If a tag is deleted, the commit is not removed. Note that these actions cannot be undone.</p>
@@ -2296,7 +2571,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/upload_changes_button.png" alt="upload changes button">
 </div>
-<div class="title">Figure 74. Upload Changes button</div>
+<div class="title">Figure 80. Upload Changes button</div>
 </div>
 </div>
 <div class="sect4">
@@ -2311,7 +2586,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/changes_page.png" alt="changes page">
 </div>
-<div class="title">Figure 75. Changes Page</div>
+<div class="title">Figure 81. Changes Page</div>
 </div>
 <div class="paragraph">
 <p>The commit history graph displays of all the commits made in the history of the branch you are currently viewing. The username of the creator, ID, message, and date for each commit are displayed within the graph. The graph displays each commit connected to its parent commits continuing backwards until the initial commit. The graph displays any Tags and Branches associated with visible commits. To view more information about a particular commit in the history, such as the added and deleted statements, click on its hash id to open an informational modal. The graph also includes commit dots for "checking out" a commit in the history. Clicking the Commit dot will open the shapes graph at that commit in read-only mode.</p>
@@ -2326,7 +2601,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/commit_button.png" alt="commit button">
 </div>
-<div class="title">Figure 76. Commit Button</div>
+<div class="title">Figure 82. Commit Button</div>
 </div>
 <div class="paragraph">
 <p>Commits cannot be made when a Tag or Commit is checked out or you are behind the HEAD of the current Branch. If you are behind the HEAD of the current branch, an indicator wil be shown in the top action-bar with a button to checkout the latest commit.</p>
@@ -2335,7 +2610,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/pull_latest_changes.png" alt="pull latest changes">
 </div>
-<div class="title">Figure 77. Pull in Latest Changes Indicator</div>
+<div class="title">Figure 83. Pull in Latest Changes Indicator</div>
 </div>
 </div>
 <div class="sect4">
@@ -2347,7 +2622,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/merge_branches_button.png" alt="merge branches button">
 </div>
-<div class="title">Figure 78. Merge Branches button</div>
+<div class="title">Figure 84. Merge Branches button</div>
 </div>
 <div class="paragraph">
 <p>The merge view displays the name of the current (source) branch, a select box for the branch (target) you want to merge into, and a checkbox for whether you want the source branch to be deleted after it is merged. The view also shows an aggregated view of all changes made in the source branch that will be merged into the target branch along with a list of all the commits that will be added to the target branch from the source branch.</p>
@@ -2356,7 +2631,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/merge_page.png" alt="merge page">
 </div>
-<div class="title">Figure 79. Merge View</div>
+<div class="title">Figure 85. Merge View</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> will attempt to perform the merge. If there are no conflicts between the changes on both branches, a new commit will be created merging the two branches, and a success message will appear in the top right corner of the screen.</p>
@@ -2368,7 +2643,7 @@ The Node Shapes list will only contain node shapes with a defined IRI, not blank
 <div class="content">
 <img src="images/shacl-editor/merge_conflicts_main.png" alt="merge conflicts main">
 </div>
-<div class="title">Figure 80. List of All Merge Conflicts</div>
+<div class="title">Figure 86. List of All Merge Conflicts</div>
 </div>
 <div class="paragraph">
 <p>When resolving a conflict, the tool displays the changes to the entity from both branches. To resolve the conflict, select the version of the entity you wish to keep. You can either click the <b class="button">Back to List</b> button to go back to the list of all the conflicts or the <b class="button">Previous</b> or <b class="button">Next</b> buttons to iterate through the list of conflicts.</p>
@@ -2389,7 +2664,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/shacl-editor/merge_conflicts_resolution.png" alt="merge conflicts resolution">
 </div>
-<div class="title">Figure 81. Merge Conflict Resolution View</div>
+<div class="title">Figure 87. Merge Conflict Resolution View</div>
 </div>
 <div class="paragraph">
 <p>Once all conflicts have been resolved, the <b class="button">Submit with Resolutions</b> button will become active and you can complete the merge operation. Completing the merge will create a new commit that incorporates your conflict resolutions into the target branch, and displays a success message in the upper right corner of the screen.</p>
@@ -2407,13 +2682,13 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/shacl-editor/create_node_shape_button.png" alt="create node shape button">
 </div>
-<div class="title">Figure 82. Create Node Shape button</div>
+<div class="title">Figure 88. Create Node Shape button</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/shacl-editor/create_node_shape_modal.png" alt="create node shape modal">
 </div>
-<div class="title">Figure 83. Create Node Shape Modal</div>
+<div class="title">Figure 89. Create Node Shape Modal</div>
 </div>
 <div class="paragraph">
 <p>The Create Node Shape modal contains fields to set the <span class="underline">Title</span> and <span class="underline">Description</span> of the new node shape, which populate the <code>dcterms:title</code> and <code>dcterms:description</code> annotations respectively. You can also set the new node shape&#8217;s target using the same experience as the Target section of a selected node shape.</p>
@@ -2425,7 +2700,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/shacl-editor/new_snackbar.png" alt="new snackbar">
 </div>
-<div class="title">Figure 84. New Entity snackbar</div>
+<div class="title">Figure 90. New Entity snackbar</div>
 </div>
 </div>
 </div>
@@ -2442,7 +2717,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_landing.png" alt="publish landing">
 </div>
-<div class="title">Figure 85. The Publish Page</div>
+<div class="title">Figure 91. The Publish Page</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Publish Page shows a filterable, searchable, and paginated list of all the current Versioned RDF Records in Mobi, including Ontology Records and Shapes Graph Records. The filters on the left contain all possible types of versioned RDF Records. The selected options in each filter group can be reset and all selected filter options will appear beneath the search bar.</p>
@@ -2454,13 +2729,13 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_overlay.png" alt="publish overlay" width="40%">
 </div>
-<div class="title">Figure 86. The publish modal</div>
+<div class="title">Figure 92. The publish modal</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_modal_options.png" alt="publish modal options" width="40%">
 </div>
-<div class="title">Figure 87. The publish modal with registered services.</div>
+<div class="title">Figure 93. The publish modal with registered services.</div>
 </div>
 <div class="paragraph">
 <p>If no services are registered or no services are compatible with the type of Record you selected, an error message will be displayed on the publish modal.</p>
@@ -2469,7 +2744,7 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_overlay_no_services.png" alt="publish overlay no services" width="40%">
 </div>
-<div class="title">Figure 88. The publish modal with no registered services</div>
+<div class="title">Figure 94. The publish modal with no registered services</div>
 </div>
 <div class="paragraph">
 <p>To view more details about the publish history of a particular Versioned RDF Record, click on the Record in the Publish Landing Page. The Publish History page displays each publish executed for the Record as well as relevant metadata including the publish service that was used, the user who published, the head commit at the time of publishing, and the time of the publish. In addition, each activity can be expanded to view all the request parameters that were chosen for that particular publish.</p>
@@ -2478,13 +2753,13 @@ Currently the editor only supports accepting entire changes. Improvements to giv
 <div class="content">
 <img src="images/publishing/publish_records.png" alt="publish records">
 </div>
-<div class="title">Figure 89. Record of all publishes for a record</div>
+<div class="title">Figure 95. Record of all publishes for a record</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/publish_activity_params.png" alt="publish activity params">
 </div>
-<div class="title">Figure 90. Request parameters for specific publish activity</div>
+<div class="title">Figure 96. Request parameters for specific publish activity</div>
 </div>
 <div class="sect3">
 <h4 id="graphdb_publishing">GraphDB Publishing</h4>
@@ -2507,7 +2782,7 @@ GraphDB repositories are configured with <a href="https://graphdb.ontotext.com/d
 <div class="content">
 <img src="images/publishing/publish_modal_graphdb.png" alt="publish modal graphdb" width="40%">
 </div>
-<div class="title">Figure 91. Publish to GraphDB</div>
+<div class="title">Figure 97. Publish to GraphDB</div>
 </div>
 <div class="paragraph">
 <p>After selecting the target GraphDB instance and repository (and optionally a target named graph), click <b class="button">Submit</b>, and Mobi Enterprise will publish the data to the external system.</p>
@@ -2516,7 +2791,7 @@ GraphDB repositories are configured with <a href="https://graphdb.ontotext.com/d
 <div class="content">
 <img src="images/publishing/graphdb_published_ontology.png" alt="graphdb published ontology">
 </div>
-<div class="title">Figure 92. A published ontology in GraphDB.</div>
+<div class="title">Figure 98. A published ontology in GraphDB.</div>
 </div>
 </div>
 <div class="sect3">
@@ -2543,7 +2818,7 @@ When publishing the concept hierarchy, all individuals who are instances of SKOS
 <div class="content">
 <img src="images/publishing/publish_modal_skos.png" alt="publish modal skos" width="40%">
 </div>
-<div class="title">Figure 93. SKOS Publish to Graph Studio</div>
+<div class="title">Figure 99. SKOS Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
 <p>The "Publish to Graph Studio as OWL Dataset/Model" service allows Mobi users to publish the entire contents of an Ontology Record to either an Graph Studio model or dataset.</p>
@@ -2564,7 +2839,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Graph 
 <div class="content">
 <img src="images/publishing/publish_modal_owl.png" alt="publish modal owl" width="40%">
 </div>
-<div class="title">Figure 94. OWL Publish to Graph Studio</div>
+<div class="title">Figure 100. OWL Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
 <p>The "Publish Shapes Graph to Graph Studio" service allows Mobi users to create an Graph Studio dataset containing their shapes graph data for use in validation logic within Graphmarts.</p>
@@ -2573,7 +2848,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Graph 
 <div class="content">
 <img src="images/publishing/publish_modal_shacl.png" alt="publish modal shacl">
 </div>
-<div class="title">Figure 95. SHACL Publish to Graph Studio</div>
+<div class="title">Figure 101. SHACL Publish to Graph Studio</div>
 </div>
 <div class="paragraph">
 <p>After selecting either the entity types or target location, click <b class="button">Submit</b>, and Mobi Enterprise will push the ontology/vocabulary/shapes graph data to Graph Studio.</p>
@@ -2582,13 +2857,13 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Graph 
 <div class="content">
 <img src="images/publishing/published_dataset.png" alt="published dataset">
 </div>
-<div class="title">Figure 96. A published vocabulary dataset in the Graph Studio SDL interface.</div>
+<div class="title">Figure 102. A published vocabulary dataset in the Graph Studio SDL interface.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/publishing/published_model.png" alt="published model">
 </div>
-<div class="title">Figure 97. A published ontology model in the Graph Studio SDL interface.</div>
+<div class="title">Figure 103. A published ontology model in the Graph Studio SDL interface.</div>
 </div>
 </div>
 </div>
@@ -2604,7 +2879,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Graph 
 <div class="content">
 <img src="images/merge-requests/full_merge_requests_initial_view.png" alt="full merge requests initial view">
 </div>
-<div class="title">Figure 98. The Merge Requests module</div>
+<div class="title">Figure 104. The Merge Requests module</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Merge Requests module displays a list of all currently open merge requests. The list can be searched and sorted by the issued date and title, and the list can also be filtered by multiple parameters: the request status, the creator, the assignees, or the attached Record. The selected options in each filter group can be reset and all selected filter options will appear beneath the search bar. The search bar, sort options, and the <a href="#create_a_merge_request">create a merge request</a> button are located in the top right corner of the page.</p>
@@ -2616,7 +2891,7 @@ When publishing large ontologies, it&#8217;s recommended to publish as an Graph 
 <div class="content">
 <img src="images/merge-requests/individual_request.png" alt="individual request">
 </div>
-<div class="title">Figure 99. An Individual Merge Request</div>
+<div class="title">Figure 105. An Individual Merge Request</div>
 </div>
 <div class="paragraph">
 <p>The individual merge request view displays all information regarding the merge request. The top displays more metadata about the request including the request&#8217;s description and whether the source branch will be removed once the request is accepted. Below the metadata are a series of tabs containing the discussion on the request, the changes between the source and target branch, and commits that will be added from the source to the target branch. The bottom of the view contains a button to delete the request, a button to accept the request if it not already accepted, a button to close the request, and a button to go back to the main list of merge requests.</p>
@@ -2646,7 +2921,7 @@ The comment editor supports GitHub flavored Markdown which you can find more inf
 <div class="content">
 <img src="images/merge-requests/edit_merge_request.png" alt="edit merge request" width="50%">
 </div>
-<div class="title">Figure 100. Editing Merge Request Metadata</div>
+<div class="title">Figure 106. Editing Merge Request Metadata</div>
 </div>
 <div class="sect3">
 <h4 id="create_a_merge_request">Create a Merge Request</h4>
@@ -2669,7 +2944,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step1.png" alt="step1">
 </div>
-<div class="title">Figure 101. Creating a Merge Request: Step 1 - Select a Record</div>
+<div class="title">Figure 107. Creating a Merge Request: Step 1 - Select a Record</div>
 </div>
 <div class="paragraph">
 <p>The second step of creating a merge request is to pick the "source" and "target" branch from the attached record. The source branch will be the branch in the first select box and the target branch will be in the second select box. Once both are selected, you will see an aggregated view of all changes made in the source branch that will be merged into the target branch along with all the commits from the source branch that will be included in the target branch. Once you have selected the branches you want to merge, click <b class="button">Next</b>.</p>
@@ -2678,7 +2953,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step2.png" alt="step2">
 </div>
-<div class="title">Figure 102. Creating a Merge Request: Step 2 - Select Branches</div>
+<div class="title">Figure 108. Creating a Merge Request: Step 2 - Select Branches</div>
 </div>
 <div class="paragraph">
 <p>The third step of creating a merge request is to provide any metadata you want to include about the request. This includes the required <span class="underline">Title</span>, optional <span class="underline">Description</span>, any <span class="underline">Assignees</span> of the request, and whether the source branch should be removed when the request is accepted. Once you have provided the metadata you wish to include, click <b class="button">Submit</b> and a new Merge Request with your selections will be created.</p>
@@ -2687,7 +2962,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/step3.png" alt="step3">
 </div>
-<div class="title">Figure 103. Creating a Merge Request: Step 3 - Request Metadata</div>
+<div class="title">Figure 109. Creating a Merge Request: Step 3 - Request Metadata</div>
 </div>
 </div>
 <div class="sect3">
@@ -2699,7 +2974,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/conflicts.png" alt="conflicts">
 </div>
-<div class="title">Figure 104. Conflicts on a Merge Request</div>
+<div class="title">Figure 110. Conflicts on a Merge Request</div>
 </div>
 <div class="paragraph">
 <p>If a merge request is accepted, the merge will be preformed from the source into the target and the request will be moved into an Accepted state. All accepted merge requests are saved within the application for provenance and governance tracking.</p>
@@ -2714,7 +2989,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/merge-requests/closed_mr.png" alt="closed mr">
 </div>
-<div class="title">Figure 105. A Closed Merge Request</div>
+<div class="title">Figure 111. A Closed Merge Request</div>
 </div>
 </div>
 </div>
@@ -2730,7 +3005,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/full_mapping_tool_initial_view.png" alt="full mapping tool initial view">
 </div>
-<div class="title">Figure 106. Mapping Tool button</div>
+<div class="title">Figure 112. Mapping Tool button</div>
 </div>
 <div class="paragraph">
 <p>To use the Mapping Tool to map data, an ontology must be in the Mobi repository, but it does not have to be opened to access it. If there are no available ontologies, you will not be able to map delimited data. To upload an ontology go to the <a href="#ontology_editor">[ontology_editor]</a> and follow the steps for uploading ontologies or creating a new ontology.</p>
@@ -2747,7 +3022,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/create_mapping_overlay.png" alt="create mapping overlay" width="50%">
 </div>
-<div class="title">Figure 107. Create Mapping Overlay</div>
+<div class="title">Figure 113. Create Mapping Overlay</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Submit</b> brings you to the File Upload Page to continue the process of creating a mapping. You must upload a delimited file to use as a standard for the mapping. You can also check whether the file contains a header row and select the separator character if the file is CSV. The accepted file formats are <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, and <code>.xlsx</code>. Selecting a file in the form on the left loads a preview of the first 50 rows and columns of the delimited file into the table on the right. Clicking <b class="button">Continue</b> brings you to the Edit Mapping Page.</p>
@@ -2756,7 +3031,7 @@ If the record a request is attached to is deleted, that request is removed. If t
 <div class="content">
 <img src="images/mapping-tool/file_upload_create.png" alt="file upload create">
 </div>
-<div class="title">Figure 108. File Upload Page for Creating a Mapping</div>
+<div class="title">Figure 114. File Upload Page for Creating a Mapping</div>
 </div>
 <div class="paragraph">
 <p>The Edit Mapping Page contains three tabs: Edit, Preview, and Commits. The Edit tab contains a section for displaying the currently selected source ontology, the list of class mappings, and a list of property mappings for a particular class. For every row in the delimited data, an instance of a mapped class will be made according to each class mapping. Each created class instance will have a set of properties as defined by the property mappings associated with the class mapping. The values of data properties will have assigned datatypes based on the range of the mapped data property unless otherwise specified. The Preview tab allows you to map the first 10 rows of the selected delimited file using the current state of the mapping in a variety of different RDF serializations. Just like <a href="#ontology-editor-guide">ontologies</a>, mappings are versioned with commits which can be viewed in the Commits tab.</p>
@@ -2777,7 +3052,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/edit_mapping_edit.png" alt="edit mapping edit">
 </div>
-<div class="title">Figure 109. Edit Mapping Page Edit Tab</div>
+<div class="title">Figure 115. Edit Mapping Page Edit Tab</div>
 </div>
 <div class="paragraph">
 <p>When creating a mapping, the first thing you will see is the <a href="#source_ontology_overlay">Source Ontology Overlay</a>. This setting can always be changed by clicking the pencil button next to the ontology name in the Edit tab. The <span class="underline">Class</span> section contains a select box with all the class mappings, a button to delete a specific class mapping, and a button to create a new class mapping. Clicking <b class="button">Add Class</b> opens an overlay where you can select a class in the imports closure of the source ontology that has not been deprecated.</p>
@@ -2811,7 +3086,7 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_data.png" alt="create property mapping overlay data" width="50%">
 </div>
-<div class="title">Figure 110. Create Property Mapping Overlay for a Data/Annotation Property</div>
+<div class="title">Figure 116. Create Property Mapping Overlay for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>If you select an object property, a select field appears containing the titles of all class mappings of the appropriate type along with an option to create a new class mapping. The list of class mappings displayed is determined by the rdfs:range that is set on the selected property and its super-properties. If no range has been set on the property or there is a range of <code>owl:Thing</code> a full list of class mappings becomes available alongside the ability to create a new class mapping with all classes within the imports closure being an option.</p>
@@ -2820,13 +3095,13 @@ To learn about the structure of a mapping, refer to the <a href="#mobi_mappings"
 <div class="content">
 <img src="images/mapping-tool/create_property_mapping_overlay_object.png" alt="create property mapping overlay object" width="50%">
 </div>
-<div class="title">Figure 111. Create Property Mapping Overlay for an Object Property</div>
+<div class="title">Figure 117. Create Property Mapping Overlay for an Object Property</div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/mapping-tool/language_selection.png" alt="language selection" width="50%">
 </div>
-<div class="title">Figure 112. Language Selection for a Data/Annotation Property</div>
+<div class="title">Figure 118. Language Selection for a Data/Annotation Property</div>
 </div>
 <div class="paragraph">
 <p>Clicking the main <b class="button">Save</b> button at the bottom of either the Edit or Preview tab saves the current state of the mapping and brings you back to the Mapping Select Page. Clicking on the arrow to the right of the <b class="button">Save</b> button provides you options for running the mapping in addition to saving it. These options are downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively. Clicking <b class="button">Submit</b> in an overlay will save the current state of the mapping and run it.</p>
@@ -2859,7 +3134,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/save_run_options.png" alt="save run options">
 </div>
-<div class="title">Figure 113. Options for saving and running a mapping</div>
+<div class="title">Figure 119. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2871,13 +3146,13 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit.png" alt="file upload edit">
 </div>
-<div class="title">Figure 114. File Upload Page for Editing a Mapping</div>
+<div class="title">Figure 120. File Upload Page for Editing a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_edit_missing_columns.png" alt="file upload edit missing columns">
 </div>
-<div class="title">Figure 115. File Upload Page for Editing a Mapping with missing columns</div>
+<div class="title">Figure 121. File Upload Page for Editing a Mapping with missing columns</div>
 </div>
 </div>
 <div class="sect3">
@@ -2907,13 +3182,13 @@ To learn about datasets in Mobi, refer to the <a href="#datasets-manager-guide">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run.png" alt="file upload run">
 </div>
-<div class="title">Figure 116. File Upload Page for Running a Mapping</div>
+<div class="title">Figure 122. File Upload Page for Running a Mapping</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/mapping-tool/file_upload_run_missing_columns.png" alt="file upload run missing columns">
 </div>
-<div class="title">Figure 117. File Upload Page for Running a Mapping with missing columns</div>
+<div class="title">Figure 123. File Upload Page for Running a Mapping with missing columns</div>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Run Mapping</b> will provide you with options for downloading the mapped data, uploading the mapped data into a data within a Mobi repository, or committing the mapped data to a specific branch of an ontology. Each option will bring up an appropriate overlay for choosing a RDF format and file name, a dataset, or an ontology and branch respectively.</p>
@@ -2934,7 +3209,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/run_options.png" alt="run options">
 </div>
-<div class="title">Figure 118. Options for saving and running a mapping</div>
+<div class="title">Figure 124. Options for saving and running a mapping</div>
 </div>
 </div>
 <div class="sect3">
@@ -2948,7 +3223,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="content">
 <img src="images/mapping-tool/source_ontology_overlay.png" alt="source ontology overlay" width="50%">
 </div>
-<div class="title">Figure 119. Source Ontology Overlay</div>
+<div class="title">Figure 125. Source Ontology Overlay</div>
 </div>
 <div class="paragraph">
 <p>The left side of the overlay contains a searchable list of all the ontologies in the local Mobi repository and a select for the version of the ontology to use. For most ontologies, this will only contain the "Latest" value. However, if an ontology was previously selected for a mapping and that ontology has changed since then, there will be an option for the "Saved" version of the ontology. The right side of the overlay displays information about the ontology from its record in the <a href="#catalog-guide">Catalog</a> and a sample of the classes in that ontology. Setting the source ontology will remove any class and property mappings in the mapping that are incompatible. The criteria for incompatible mappings are as follows:</p>
@@ -3027,7 +3302,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/full_datasets_manager_initial_view.png" alt="full datasets manager initial view">
 </div>
-<div class="title">Figure 120. The Datasets Manager</div>
+<div class="title">Figure 126. The Datasets Manager</div>
 </div>
 <div class="paragraph">
 <p>The page displays a searchable paginated list of all the datasets within the local Mobi repository. Each dataset in the list displays a preview of the dataset metadata and a dropdown menu with upload data, edit, clear, and delete buttons. Deleting a dataset deletes the dataset, catalog record, and all associated data graphs. Clearing a dataset removes all associated data graphs except the system default named graph. Clearing a dataset does not remove the dataset or the catalog record. Editing a dataset allows to you to change some information about the dataset. The <b class="button">Upload Data</b> button allows you to upload graph data to the dataset from a file.</p>
@@ -3041,7 +3316,7 @@ To learn more about the structure of a dataset, refer to the <a href="#mobi_data
 <div class="content">
 <img src="images/datasets-manager/new_dataset_overlay.png" alt="new dataset overlay" width="50%">
 </div>
-<div class="title">Figure 121. New Dataset Overlay</div>
+<div class="title">Figure 127. New Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Create New Dataset overlay contains several sections. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotation of the new dataset record. The <span class="underline">Dataset IRI</span> field allows you to specify what the IRI of the new dataset should be. If not provided, the system will create a unique one for you. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotation of the new dataset record. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new dataset record. The <span class="underline">Repository</span> field allows you to specity the identifier of the repository registered within AVM where the dataset and all associated named graphs will be stored. The default option is the system repository and should be used in most cases. Finally, you can select which ontologies should be used as the basis for the data. Select an ontology from the searchable list of ontologies to add it to the dataset. To remove a selected ontology, click the x next to the ontology name. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will create the dataset with the provided metadata.</p>
@@ -3065,7 +3340,7 @@ The ability to create new repositories in Mobi is coming soon!
 <div class="content">
 <img src="images/datasets-manager/edit_dataset_overlay.png" alt="edit dataset overlay" width="50%">
 </div>
-<div class="title">Figure 122. Edit Dataset Overlay</div>
+<div class="title">Figure 128. Edit Dataset Overlay</div>
 </div>
 <div class="paragraph">
 <p>The Edit Dataset overlay allows you to modify information about the dataset. The <span class="underline">Title</span> field modifies the value of the <code>dcterms:title</code> annotation of the dataset record. The <span class="underline">Description</span> field modifies the value of the <code>dcterms:description</code> annotation of the dataset record. The <span class="underline">Keywords</span> field allows you to add/remove keywords attached to the dataset record. The ontologies area allows you to modify the ontologies associated with the dataset record; just as during creation. Clicking <b class="button">Update</b> will update the dataset record with the new metadata.</p>
@@ -3120,7 +3395,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/full_discover_page_initial_view.png" alt="full discover page initial view">
 </div>
-<div class="title">Figure 123. The Discover Page</div>
+<div class="title">Figure 129. The Discover Page</div>
 </div>
 <div class="sect3">
 <h4 id="explore">Explore</h4>
@@ -3131,7 +3406,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_classes.png" alt="explore classes">
 </div>
-<div class="title">Figure 124. Explore tab with classes</div>
+<div class="title">Figure 130. Explore tab with classes</div>
 </div>
 <div class="paragraph">
 <p>The Explore tab opens with a view of all the classes found within the selected dataset and a button to create a new instance. Each card displays the label and a brief description about a class, the number of instances defined as that class, a few of those instances, and a button to explore the instances themselves. Clicking <b class="button">Explore Data</b> opens the instances view.</p>
@@ -3140,7 +3415,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_instances.png" alt="explore instances">
 </div>
-<div class="title">Figure 125. Explore Tab with instances</div>
+<div class="title">Figure 131. Explore Tab with instances</div>
 </div>
 <div class="paragraph">
 <p>The instances view contains a paginated list of all the instances defined as a particular class. Each card displays the label, brief description about an instance, a button to explore the instance itself, and a button to delete the instance. The label is determined based on the values of the <code>rdfs:label</code>, <code>dc:title</code>, or <code>dcterms:title</code> properties on the instance. The description is based on the values of the <code>rdfs:comment</code>, <code>dc:description</code>, or <code>dcterms:description</code> properties on the instance. You can navigate back to the classes view using the breadcrumb trail in the top left. Clicking <b class="button">View <em>Class Name</em></b> opens the single instance view. Clicking <b class="button">Create <em>Class Name</em></b> opens the single instance editor. If the particular class has been deprecated in the ontology, you will not be able to create a new instance.</p>
@@ -3149,7 +3424,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance.png" alt="explore single instance">
 </div>
-<div class="title">Figure 126. Explore Tab with single instance</div>
+<div class="title">Figure 132. Explore Tab with single instance</div>
 </div>
 <div class="paragraph">
 <p>The single instance view displays the IRI, label, brief description, and list of all properties associated with the selected instance. Each property will only show one value by default; however, you can view more values, if there are any, by clicking the "Show More" link for that property. The instance view can also display any assertions on a reification of a property value statement by clicking on the small downward arrow on the right side of a property value. Clicking <b class="button">Edit</b> opens the single instance editor.</p>
@@ -3158,7 +3433,7 @@ The ability to save, publish, share and reuse SPARQL queries as part of applicat
 <div class="content">
 <img src="images/discover/explore_single_instance_editor.png" alt="explore single instance editor">
 </div>
-<div class="title">Figure 127. Explore Tab with single instance editor</div>
+<div class="title">Figure 133. Explore Tab with single instance editor</div>
 </div>
 <div class="paragraph">
 <p>The single instance editor displays the IRI and a list of all properties associated with the selected instance in an editable format. The IRI can be edited by clicking the pencil button next to the IRI which will open the <a href="#edit_iri_overlay">Edit IRI Overlay</a>. If the instance being edited does not have all the required properties set, as described by cardinality restrictions in the ontology, the instance cannot be saved. To add a another property value, type in the provided input and press the <kbd>ENTER</kbd> key. To remove a property value, click on the "X" button of the associated chip. To view a complete property value and add assertions to its reification, click on the associated chip.</p>
@@ -3188,7 +3463,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_query_editor_overview.png" alt="discover query editor overview">
 </div>
-<div class="title">Figure 128. Query tab</div>
+<div class="title">Figure 134. Query tab</div>
 </div>
 <div class="paragraph">
 <p>The Query tab provides a SPARQL query editor powered by the <a href="https://triply.cc/docs/yasgui/">YASGUI</a> SPARQL library. The top section of the page contains the query editor (powered by <a href="https://triply.cc/docs/yasgui-api#yasqe">YASQE</a>), a Dataset field and a <b class="button">Submit</b> button. The <span class="underline">Dataset</span> field contains a list of all available <a href="#datasets-manager-guides">datasets</a> within the Mobi repository. Selecting a dataset limits the query to search through the data within the selected dataset. Clicking <b class="button">Submit</b> executes the entered query against the Mobi repository, optionally limited by the selected dataset, and updates the bottom section with the results.</p>
@@ -3200,7 +3475,7 @@ Editing the instance IRI might break relationships within the dataset.
 <div class="content">
 <img src="images/discover/discover_construct_query.png" alt="discover construct query">
 </div>
-<div class="title">Figure 129. Construct query</div>
+<div class="title">Figure 135. Construct query</div>
 </div>
 </div>
 </div>
@@ -3228,7 +3503,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/workflows_initial_view.png" alt="workflows initial view">
 </div>
-<div class="title">Figure 130. Workflows button</div>
+<div class="title">Figure 136. Workflows button</div>
 </div>
 <div class="paragraph">
 <p>The initial view of the Workflows module displays a searchable, filterable, sortable, and paginated table of all the configured workflows within the local Mobi repository along with the latest status of their executions (status, user who started the execution, start time, and running time). Each Workflow is displayed with its title and toggle-able active status which determines whether that workflow can be executed, including manually or automatically by a Trigger. The latest execution details will update automatically as workflows trigger across the system.</p>
@@ -3240,7 +3515,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/workflow_controls.png" alt="workflow controls">
 </div>
-<div class="title">Figure 131. Workflows Run, Download, and Delete Buttons</div>
+<div class="title">Figure 137. Workflows Run, Download, and Delete Buttons</div>
 </div>
 <div class="paragraph">
 <p>Click the icon next to the workflow title to open up the <a href="#individual_workflow_page">Individual Workflow Page</a> for that workflow.</p>
@@ -3254,7 +3529,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/new_workflow_form.png" alt="new workflow form">
 </div>
-<div class="title">Figure 132. New Workflow Record Form</div>
+<div class="title">Figure 138. New Workflow Record Form</div>
 </div>
 <div class="paragraph">
 <p>The <span class="underline">Workflow IRI</span> is the unique identifier for the new workflow. The editor pre-populates this field with a default namespace and a local name generated from the <span class="underline">Title</span> field. You can always override this behavior. The <span class="underline">Title</span> field populates the <code>dcterms:title</code> annotations of both the new workflow record and the workflow object within the new workflow. The <span class="underline">Description</span> field populates the <code>dcterms:description</code> annotations of both the new workflow record and the workflow object within the new workflow. The <span class="underline">Keywords</span> field will attach the entered values as keywords to the new workflow record. When the dialog is submitted, the new workflow will automatically be opened into the <a href="#individual_workflow_page">Individual Workflow Page</a>. New workflows are always initialized with no trigger and a single Test Action with a templated message.</p>
@@ -3272,7 +3547,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/upload_workflow_form.png" alt="upload workflow form">
 </div>
-<div class="title">Figure 133. Upload Workflow Record Form</div>
+<div class="title">Figure 139. Upload Workflow Record Form</div>
 </div>
 </div>
 <div class="sect3">
@@ -3284,13 +3559,13 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/individual_workflow_page.png" alt="individual workflow page">
 </div>
-<div class="title">Figure 134. Individual Workflow Page</div>
+<div class="title">Figure 140. Individual Workflow Page</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/fullscreen_individual_workflow_page.png" alt="fullscreen individual workflow page">
 </div>
-<div class="title">Figure 135. Full-Screen Individual Workflow Page</div>
+<div class="title">Figure 141. Full-Screen Individual Workflow Page</div>
 </div>
 <div class="paragraph">
 <p>The graphical display of the Workflow will display the Trigger, if set, as a yellow square and all configured Actions as green circles. Every workflow can have at most one Trigger and must have at least one Action. If a Trigger has not been configured for the workflow, "Default Trigger" will be displayed on the Trigger node. The nodes will display the configured title or type of the Trigger/Action and clicking on a node will bring up a summary of the configuration for the component.</p>
@@ -3299,7 +3574,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/component_details.png" alt="component details">
 </div>
-<div class="title">Figure 136. Workflow Component Details for an Action</div>
+<div class="title">Figure 142. Workflow Component Details for an Action</div>
 </div>
 <div class="paragraph">
 <p>The Workflow Execution History is presented in a filterable, paginated table with the latest executions displayed at the beginning. Each execution is displayed with its status, user who started the execution, start time, and running time and each row can be expanded to provide further details about each Action that was executed during the run. Each execution also has a button to open a page to view the detailed logs output by that run. The page will display metadata about the execution you are viewing along with a dropdown selector to load the overall execution logs or the logs output from an individual action. Each log file can also be downloaded for further investigation.</p>
@@ -3308,7 +3583,7 @@ To learn more about the extensible interface and the structure of the configurat
 <div class="content">
 <img src="images/workflows/logs_viewer.png" alt="logs viewer">
 </div>
-<div class="title">Figure 137. Workflow Execution Log Viewer</div>
+<div class="title">Figure 143. Workflow Execution Log Viewer</div>
 </div>
 </div>
 <div class="sect3">
@@ -3332,7 +3607,7 @@ If the new version of the Workflow being uploaded is invalid, the modal will dis
 <div class="content">
 <img src="images/workflows/edit_workflow_page.png" alt="edit workflow page">
 </div>
-<div class="title">Figure 138. Individual Workflow Page in Edit Mode</div>
+<div class="title">Figure 144. Individual Workflow Page in Edit Mode</div>
 </div>
 <div class="paragraph">
 <p>In edit mode, the nodes and edges in the graphical display will have a menu that can be opened with a right click and hold so that each component can edited individually. The Trigger node menu will provide the options to remove any existing Trigger configuration (trash icon), to add/edit the Trigger configuration (pencil icon), or to add a new entry Action (plus icon). The Action node menu will provide the options to remove the Action configuration, edit the Action configuration, or add a new child Action. The edge menu will provide the option to remove the edge between nodes. To draw a new edge between nodes, click and drag from one node to another.</p>
@@ -3381,13 +3656,13 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/workflows/edit_scheduled_trigger.png" alt="edit scheduled trigger">
 </div>
-<div class="title">Figure 139. Scheduled Trigger</div>
+<div class="title">Figure 145. Scheduled Trigger</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/edit_commit_to_branch_trigger.png" alt="edit commit to branch trigger">
 </div>
-<div class="title">Figure 140. Commit To Branch Trigger</div>
+<div class="title">Figure 146. Commit To Branch Trigger</div>
 </div>
 </div>
 <div class="sect4">
@@ -3409,13 +3684,13 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/workflows/add_test_action.png" alt="add test action">
 </div>
-<div class="title">Figure 141. Test Action</div>
+<div class="title">Figure 147. Test Action</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/workflows/add_http_request_action.png" alt="add http request action">
 </div>
-<div class="title">Figure 142. HTTP Request Action</div>
+<div class="title">Figure 148. HTTP Request Action</div>
 </div>
 </div>
 </div>
@@ -3432,7 +3707,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/my_account_link.png" alt="my account link" width="50%">
 </div>
-<div class="title">Figure 143. My Account link</div>
+<div class="title">Figure 149. My Account link</div>
 </div>
 <div class="paragraph">
 <p>The My Account page contains four main tabs for configuring your account:</p>
@@ -3462,7 +3737,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/profile_tab.png" alt="profile tab">
 </div>
-<div class="title">Figure 144. Profile Tab</div>
+<div class="title">Figure 150. Profile Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3474,7 +3749,7 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 145. Groups Tab</div>
+<div class="title">Figure 151. Groups Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3486,31 +3761,29 @@ A Workflow must always have at least one Action. There can be no cycles between 
 <div class="content">
 <img src="images/my-account/password_tab.png" alt="password tab">
 </div>
-<div class="title">Figure 146. Password Tab</div>
+<div class="title">Figure 152. Password Tab</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="preferences">Preferences</h4>
 <div class="paragraph">
-<p>The Preferences tab will dynamically populate with user preference definitions added to the repository (see documentation <a href="#settings_framework">here</a>). These preferences are specific to your user.</p>
+<p>The Preferences tab will dynamically populate with user preference definitions added to the repository (see documentation <a href="#settings_framework">here</a>). These preferences are specific to your user. Preferences are grouped into clickable sections on the left.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/my-account/preferences_tab.png" alt="preferences tab">
 </div>
-<div class="title">Figure 147. Preferences Tab</div>
+<div class="title">Figure 153. Preferences Tab</div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-Default preferences coming soon!
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The "Editor Preferences" will customize your experience when editing records across the application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Default Annotation Preference</strong> - Controls which standard annotation set will be utilized when creating new entities within editors. The default value is the DC Terms annotation set (i.e. <code>dct:title</code> and <code>dct:description</code>)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3526,10 +3799,10 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/administration_link.png" alt="administration link" width="50%">
 </div>
-<div class="title">Figure 148. Administration link</div>
+<div class="title">Figure 154. Administration link</div>
 </div>
 <div class="paragraph">
-<p>There are four main tabs of the Administration page:</p>
+<p>There are six main tabs of the Administration page:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3545,6 +3818,12 @@ Default preferences coming soon!
 <li>
 <p><a href="#application_settings">Application Settings</a></p>
 </li>
+<li>
+<p><a href="#publish-configs">Repositories</a></p>
+</li>
+<li>
+<p><a href="#logs">Logs</a></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -3559,7 +3838,7 @@ Default preferences coming soon!
 <div class="content">
 <img src="images/user-management/users_tab.png" alt="users tab">
 </div>
-<div class="title">Figure 149. Users Tab</div>
+<div class="title">Figure 155. Users Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the users in Mobi. Each user is displayed using their first and last names, if available, or their username. If a user is an administrator, whether by having the admin role or by being a part of a group with the admin role, an indicator will be next to their username in the list. At the top of the list is a search bar that will filter the list of users based on their first name, last name, or username. Clicking on a user will load that user&#8217;s information into the right side of the section.</p>
@@ -3589,7 +3868,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_user_overlay.png" alt="create user overlay" width="50%">
 </div>
-<div class="title">Figure 150. Create User Overlay</div>
+<div class="title">Figure 156. Create User Overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3601,7 +3880,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/groups_tab.png" alt="groups tab">
 </div>
-<div class="title">Figure 151. Groups Tab</div>
+<div class="title">Figure 157. Groups Tab</div>
 </div>
 <div class="paragraph">
 <p>The left side of the tab contains a list of all the groups in Mobi. Next to each group title is an indicator of how many users are within that group. At the top of the list is a search bar that will filter the list of groups based on their title. Clicking on a group title will load that group&#8217;s information into the right side of the section.</p>
@@ -3619,7 +3898,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/create_group_overlay.png" alt="create group overlay" width="50%">
 </div>
-<div class="title">Figure 152. Create group overlay</div>
+<div class="title">Figure 158. Create group overlay</div>
 </div>
 </div>
 <div class="sect3">
@@ -3631,7 +3910,7 @@ The default Admin user can not be deleted.
 <div class="content">
 <img src="images/user-management/permissions_tab.png" alt="permissions tab">
 </div>
-<div class="title">Figure 153. Permissions Tab</div>
+<div class="title">Figure 159. Permissions Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -3667,11 +3946,71 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/application_settings_tab.png" alt="application settings tab">
 </div>
-<div class="title">Figure 154. Application Settings Tab</div>
+<div class="title">Figure 160. Application Settings Tab</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="publish-configs">Publish Configuration (ENTERPRISE)</h4>
+<h4 id="publish-configs">Repositories</h4>
+<div class="paragraph">
+<p>The Repositories tab presents a list of all the configured triple stores that Mobi is tracking. This includes the central <code>system</code> repository (which manages all platform data) and the <code>prov</code> repository (which manages all provenance related data). Each repository is color coded and labeled according to its type. And if a repository type supports it, the capacity will be represented for monitoring purposes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+More information about the available repository types and their configurations can be found <a href="#basic_service_configuration">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Management of repository configurations in the UI coming soon!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/repositories.png" alt="repositories">
+</div>
+<div class="title">Figure 161. Repositories Tab</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logs">Logs</h4>
+<div class="paragraph">
+<p>The Logs tab enables administrators the ability to review, search, and download the application logs. All logs are loaded from the default log directory of the distribution (<code>$MOBI_HOME/data/log</code>). The tab allows you to view the most recent 100 lines in a "Tail" view or paginate through the entire log file. You can also execute a search through the logs to find relevant results. The full log file can be downloaded from this view to better assist with any triage or parsing activities required. To select a different log file, click on the <span class="underline">FILENAME</span> field and select from the dropdown.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/logs_tail.png" alt="logs tail">
+</div>
+<div class="title">Figure 162. Logs Tab</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/logs_paginated.png" alt="logs paginated">
+</div>
+<div class="title">Figure 163. Logs Tab</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/logs_search.png" alt="logs search">
+</div>
+<div class="title">Figure 164. Logs Tab</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="publish_configuration_enterprise">Publish Configuration (ENTERPRISE)</h4>
 <div class="paragraph">
 <p>The Publish Configuration tab available in <strong>Enterprise only</strong> allows you to manage connections to external systems to be utilized within the <a href="#Publish">Publishing Tool</a>. This view is based on an extensible framework for introducing new types of external systems with their own unique requirements and supports multiples connections for each type. By default, Mobi Enterprise supports connections to <a href="https://altair.com/altair-graph-studio">Altair Graph Studio</a> and <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> systems. The left side of the tab displays the list of all configurations grouped by the type of external systems along with a button to create a new configuration. Every publish configuration is uniquely identified by its type and ID.</p>
 </div>
@@ -3679,7 +4018,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/publish_config_tab.png" alt="publish config tab">
 </div>
-<div class="title">Figure 155. Publish Configuration Tab</div>
+<div class="title">Figure 165. Publish Configuration Tab</div>
 </div>
 <div class="paragraph">
 <p>The modal to create a new publish configuration will first display a select field with all registered types of publish configurations. Once an external system is selected, the modal will populate with all configuration options for that type of external system along with a button to test the connection to the external system before the configuration is saved.</p>
@@ -3718,7 +4057,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/licensing_tab.png" alt="licensing tab">
 </div>
-<div class="title">Figure 156. Application Settings Tab</div>
+<div class="title">Figure 166. Application Settings Tab</div>
 </div>
 <div class="paragraph">
 <p>If your license is expiring within 7 days, a warning banner will be displayed at the bottom of the screen.</p>
@@ -3727,7 +4066,7 @@ More Application Settings coming soon!
 <div class="content">
 <img src="images/user-management/license_expiration_warning.png" alt="license expiration warning">
 </div>
-<div class="title">Figure 157. License Expiration Warning</div>
+<div class="title">Figure 167. License Expiration Warning</div>
 </div>
 </div>
 <div class="sect3">
@@ -3751,7 +4090,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/connections_tab.png" alt="connections tab">
 </div>
-<div class="title">Figure 158. LDAP/SSO Tab</div>
+<div class="title">Figure 168. LDAP/SSO Tab</div>
 </div>
 <div class="paragraph">
 <p>If an LDAP configuration is set using the associated form, users can log into the application with the Users/Groups defined in your organization&#8217;s directory. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -3760,7 +4099,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/ldap_config.png" alt="ldap config">
 </div>
-<div class="title">Figure 159. LDAP Configuration Form</div>
+<div class="title">Figure 169. LDAP Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The LDAP form is separated into two sections. The "Connection" section contains the following fields:</p>
@@ -3871,7 +4210,7 @@ If a SAML or OAuth/OpenID configuration is present and not set to standalone, th
 <div class="content">
 <img src="images/user-management/saml_config.png" alt="saml config">
 </div>
-<div class="title">Figure 160. SAML Configuration Form</div>
+<div class="title">Figure 170. SAML Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The SAML form provides options to customize the connection from Mobi, acting as a Service Provider (SP), to a SAML Identity Property (IdP) and how to pull various user details out of the SAML responses. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -3954,7 +4293,7 @@ In SAML flows, the Identity Property (IdP) will often require the Reply URL, at 
 <div class="content">
 <img src="images/user-management/oauth_config.png" alt="oauth config">
 </div>
-<div class="title">Figure 161. OAuth/OpenID Configuration Form</div>
+<div class="title">Figure 171. OAuth/OpenID Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The OAuth/OpenID form provides options to customize the connection from Mobi to either a generic OAuth 2.0 Provider or an OpenID provider. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared. Certain fields are the same between both OAuth and OpenID configurations and others that are unique to one vs. the other. The form contains a radio button to allow you to specify which type of provider is configured.</p>
@@ -4047,7 +4386,7 @@ When removing the configuration, any uploaded files will not be removed from dis
 <div class="ulist">
 <ul>
 <li>
-<p><strong>OpenID Configuration Hostname</strong>: The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value.</p>
+<p><strong>OpenID Configuration Hostname</strong>: The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value if not already present.</p>
 </li>
 </ul>
 </div>
@@ -4061,7 +4400,7 @@ When removing the configuration, any uploaded files will not be removed from dis
 <div class="sect3">
 <h4 id="mobi">Mobi</h4>
 <div class="sect4">
-<h5 id="service_configuration">Service Configuration</h5>
+<h5 id="basic_service_configuration">Basic Service Configuration</h5>
 <div class="paragraph">
 <p>The basic Mobi services can be configured using the following files:</p>
 </div>
@@ -4223,6 +4562,43 @@ tokenDurationMins = 1440</code></pre>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="licensing_config">Licensing Configuration (ENTERPRISE)</h5>
+<div class="paragraph">
+<p>By default, Mobi Enterprise will communicate with our central licensing service over HTTPS, loading the license file from either <code>$MOBI_HOME/etc/license.lic</code> or from <code>~/.mobi/license.lic</code> and passing it back for verification. If the deployment environment is air-gapped or requires there to be no outbound traffic, your sales or support representative can provide you with a checked out license and machine file such that the software can verify and validate your license and your host machine independently. To generate a machine file, you will need to provide your representative with the <code>serverId</code> that is auto-generated into the <code>com.mobi.platform.server.cfg</code> file in the <code>$MOBI_HOME/etc/</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>To enable offline/air-gapped support, you will need to update the <code>networkEnabled</code> flag to false in the <code>com.mobi.enterprise.licensing.api.LicensingManager.cfg</code> file in the <code>$MOBI_HOME/etc/</code> directory. Below are the default contents of the file for reference.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Docker deployments in offline/air-gapped mode is not currently supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># networkEnabled (Boolean)
+# Description: Whether network-based license validation is enabled.
+# If disabled, only offline validation will be used.
+networkEnabled = true
+
+# licenseFile (String)
+# Description: The optional location of the enterprise license file
+# licenseFile = /opt/license.lic
+
+# machineFile (String)
+# Description: The optional location of the machine-specific license file
+# machineFile = /opt/machine.lic</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -4764,7 +5140,7 @@ keyFile=${karaf.etc}/NTs4oGbx1A-cROpjgUKdKtzTEkHUhhSwQ7xdhN6FdlQ_pub.pem</code><
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>openidConfigHostname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The hostname of the OpenID provider. The standard <code>/.well-known/openid-configuration</code> path will be appended to this value if not already present.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
 </tr>
 <tr>
@@ -4916,6 +5292,78 @@ If the master password is changed while Mobi is not running, all previously encr
 </div>
 </div>
 <div class="sect4">
+<h5 id="ai_assistant_config">AI Assistant Configuration (ENTERPRISE)</h5>
+<div class="paragraph">
+<p>The Enterprise AI Assistant is an optional <em>Alpha</em> feature that allows users to generate ontologies through a conversational interface. To enable this feature, Mobi must be configured with connection details to a deployed AI Ontology Assistant service.</p>
+</div>
+<div class="paragraph">
+<p>To configure the AI Assistant, edit the <code>com.mobi.enterprise.ontology.assistant.rest.OntologyAssistantProxy.cfg</code> file in the <code>$MOBI_HOME/etc/</code> directory with the following properties.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Property Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Required</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable or disable the AI Assistant feature. Must be set to <code>true</code> to activate the service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>baseUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base URL where the AI Ontology Assistant service is running.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://localhost:8000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sseReadTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read timeout in milliseconds for Server-Sent Events connections. Lower values prevent thread exhaustion but may cause more reconnections.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>An example file would look like this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Enable AI Assistant
+enabled=true
+
+# AI Ontology Service URL
+baseUrl=http://localhost:8000
+
+# SSE Read Timeout (milliseconds)
+sseReadTimeout=60000</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The AI Ontology Assistant service must be deployed and accessible from the Mobi server before enabling this feature. Contact your administrator for service deployment details.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
 <h5 id="imports_resolver_configuration">Imports Resolver Configuration</h5>
 <div class="paragraph">
 <p>When resolving imported ontologies from the web, Mobi uses a default set of configuration for making those connections, but in some deployments it may be beneficial to tweak the timeouts utilized when making those external web connections. To customize the read and connection timeouts, create a file called <code>com.mobi.ontology.utils.imports.ImportsResolver.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory with the following fields.</p>
@@ -5035,14 +5483,20 @@ The Publish integration requires an Graph Studio version of 5.4.7 or later.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.username</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account Mobi should use when connecting to the Graph Studio server. <strong>NOTE:</strong> This account must have admin privileges in Graph Studio.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username of the account Mobi should use when connecting to the Graph Studio server. Either this and the <code>anzo.password</code> field must be present or the <code>anzo.auth.token</code> field. <strong>NOTE:</strong> This account must have admin privileges in Graph Studio.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account Mobi should use when connecting to the Graph Studio server.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2713;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the account Mobi should use when connecting to the Graph Studio server. Either this and the <code>anzo.username</code> field must be present or the <code>anzo.auth.token</code> field</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>anzo.auth.token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Bearer Token of the account Mobi should use when connecting to the Graph Studio server. Either this field must be present or the <code>anzo.username</code> and <code>anzo.password</code> fields. <strong>NOTE:</strong> This account must have admin privileges in Graph Studio.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -5354,13 +5808,13 @@ backgroundColor=#99ffce</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 162. Mobi Login Screen with a banner</div>
+<div class="title">Figure 172. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 163. Mobi Home Page with a banner</div>
+<div class="title">Figure 173. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -5639,7 +6093,7 @@ OPTIONS
 <div class="title">Note</div>
 </td>
 <td class="content">
-The Enterprise edition of Mobi is provided with your license from the sales or support team as either a compressed distribution package or an RPM package. The installation process is the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#Server ID and License File (ENTERPRISE)">[Server ID and License File (ENTERPRISE)]</a> section for more details.
+The Enterprise edition of Mobi is provided with your license from the sales or support team as either a compressed distribution package or an RPM package. The installation process is the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a> section for more details.
 </td>
 </tr>
 </table>
@@ -6565,7 +7019,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 164. XML Example File</div>
+<div class="title">Figure 174. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -6576,7 +7030,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Output File">
 </div>
-<div class="title">Figure 165. XML Example Ontology File</div>
+<div class="title">Figure 175. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -6586,7 +7040,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 166. XML Example Data File</div>
+<div class="title">Figure 176. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -6599,7 +7053,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 167. JSON Example File</div>
+<div class="title">Figure 177. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -6609,7 +7063,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 168. JSON Example Ontology File</div>
+<div class="title">Figure 178. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -6619,7 +7073,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 169. JSON Example Data File</div>
+<div class="title">Figure 179. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -6632,7 +7086,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 170. CSV Example File</div>
+<div class="title">Figure 180. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -6642,7 +7096,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Output File">
 </div>
-<div class="title">Figure 171. CSV Example Ontology File</div>
+<div class="title">Figure 181. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -6652,7 +7106,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 172. CSV Example Data File</div>
+<div class="title">Figure 182. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -7180,7 +7634,7 @@ GRAPH example:ng {
 <p>Mobi utilizes a custom framework for generating forms within the UI based on <a href="https://www.w3.org/TR/shacl/">SHACL Shapes Graphs</a> such that the forms can generate valid RDF conforming to the configured constraints. This framework is utilized in several key experiences within the Mobi web application, such as the <a href="#settings_framework">Settings Framework</a>, the <a href="#publish_framework_examples_enterprise">Publish Framework</a>, and the <a href="#workflows">Workflows</a>.</p>
 </div>
 <div class="paragraph">
-<p>All RDF examples will be provided in either <a href="https://www.w3.org/TR/turtle/">Turtle</a> format. The following prefixes will be used in the rest of this appendix:</p>
+<p>All RDF examples will be provided in <a href="https://www.w3.org/TR/turtle/">Turtle</a> format. The following prefixes will be used in the rest of this appendix:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -9215,7 +9669,7 @@ More Action types are coming soon!
 <div class="content">
 <img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
 </div>
-<div class="title">Figure 173. RDF Structure of Workflow Provenance</div>
+<div class="title">Figure 183. RDF Structure of Workflow Provenance</div>
 </div>
 <div class="ulist">
 <ul>
@@ -10263,7 +10717,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/core_publish_model.png" alt="core publish model">
 </div>
-<div class="title">Figure 174. Core Publish Framework</div>
+<div class="title">Figure 184. Core Publish Framework</div>
 </div>
 <div class="paragraph">
 <p>A <code>pub:PublishService</code> represents the capability of the platform to push data from Mobi to a certain type of external system with a human readable name and how many concurrent publishes can be made with the specific service. The instances of this class are what populate the dropdown in the Publish Configuration modal in the UI (see <a href="#Publish">Publish (ENTERPRISE)</a>). The <code>pub:PublishConfig</code> class represents an individual request to publish a Versioned RDF Record to an external system. Instances of this class are required to have a <code>pub:useService</code> predicate pointing to which Publish Service to use along with the IRI of the Versioned RDF Record to publish. It can also optionally have a pointer to a specific Commit of that Versioned RDF Record that should be published. In the absence of this predicate on an instance of <code>pub:PublishConfig</code>, the head Commit of the MASTER Branch will be used. If the Publish Service supports selection of a specific external system to publish to (using the <a href="#Publish Configuration">Publish Configuration UI</a>), a <code>pub:PublishConfig</code> can optionally reference the ID of that external system with the <code>config:hasId</code> property.</p>
@@ -10355,7 +10809,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_graphdb.png" alt="postman graphdb">
 </div>
-<div class="title">Figure 175. GraphDB Postman Request</div>
+<div class="title">Figure 185. GraphDB Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
@@ -10456,7 +10910,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_owl.png" alt="postman anzo owl">
 </div>
-<div class="title">Figure 176. Graph Studio OWL Postman Request</div>
+<div class="title">Figure 186. Graph Studio OWL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10484,7 +10938,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_skos.png" alt="postman anzo skos">
 </div>
-<div class="title">Figure 177. Graph Studio SKOS Postman Request</div>
+<div class="title">Figure 187. Graph Studio SKOS Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10512,7 +10966,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_shacl.png" alt="postman anzo shacl">
 </div>
-<div class="title">Figure 178. Graph Studio SHACL Postman Request</div>
+<div class="title">Figure 188. Graph Studio SHACL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -10582,6 +11036,18 @@ volumes:
 </div>
 <div class="paragraph">
 <p>Then after starting the container, you can copy your license file into the <code>license</code> directory on your host machine. The license file should be named <code>license.lic</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Offline/air-gapped licensing is not supported with Docker deployments. See the <a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a> section for more details.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -10713,8 +11179,8 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.2<br>
-Last updated 2026-01-07 15:09:53 UTC
+Version 4.3<br>
+Last updated 2026-01-11 19:40:58 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
