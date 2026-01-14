@@ -11027,8 +11027,15 @@ volumes:
 <div class="sect2">
 <h3 id="license_file_enterprise">License File (Enterprise)</h3>
 <div class="paragraph">
-<p>If you are running an Enterprise Mobi server, you will need to mount your license file into the container. You can do this by adding a directory mount to the <code>docker-compose.yml</code> file by adding the following line to the <code>volumes</code> section of the <code>mobi</code> service:</p>
+<p>If you are running an Enterprise Mobi server, you will need to adjust the process slightly.</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change the image name in the <code>docker-compose.yml</code> file to point to the Enterprise image at <code>nexus.inovexcorp.com/foundry-docker-prod-hosted/mobi-enterprise</code></p>
+</li>
+<li>
+<p>Mount your license file into the container. You can do this by adding a directory mount to the <code>docker-compose.yml</code> file by adding the following line to the <code>volumes</code> section of the <code>mobi</code> service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">- ./license:/root/.mobi</code></pre>
@@ -11036,6 +11043,9 @@ volumes:
 </div>
 <div class="paragraph">
 <p>Then after starting the container, you can copy your license file into the <code>license</code> directory on your host machine. The license file should be named <code>license.lic</code>.</p>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -11067,11 +11077,11 @@ Offline/air-gapped licensing is not supported with Docker deployments. See the <
 <div class="sect2">
 <h3 id="upgrading_versions">Upgrading Versions</h3>
 <div class="paragraph">
-<p>To upgrade to a newer version of Mobi, you can change the image tag in the <code>docker-compose.yml</code> file to the desired version.  For example, to upgrade to version 4.2.0, you would change the image line to:</p>
+<p>To upgrade to a newer version of Mobi, you can change the image tag in the <code>docker-compose.yml</code> file to the desired version.  For example, to upgrade to version 4.3.0, you would change the image line to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">image: inovexis/mobi:4.2.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">image: inovexis/mobi:4.3.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -11080,12 +11090,24 @@ Offline/air-gapped licensing is not supported with Docker deployments. See the <
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">docker-compose down
-docker pull inovexis/mobi:4.2.0
+docker pull inovexis/mobi:4.3.0
 docker-compose up -d</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This will start a new container with the updated Mobi version. When a new Mobi version is detected, data in the <code>data</code> and <code>etc</code> volumes will be automatically zipped and stored in their respective volumes in case you need to revert to a previous version.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+If you are running Mobi Enterprise, be sure to change the image name to <code>nexus.inovexcorp.com/foundry-docker-prod-hosted/mobi-enterprise:VERSION</code> when upgrading.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -11180,7 +11202,7 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 4.3<br>
-Last updated 2026-01-11 19:40:58 UTC
+Last updated 2026-01-11 19:41:02 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
