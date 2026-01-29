@@ -103,7 +103,7 @@
 <li><a href="#installing_from_the_rpm">Installing from the RPM</a>
 <ul class="sectlevel3">
 <li><a href="#prerequisites_2">Prerequisites</a></li>
-<li><a href="#distribution_installation_2">Distribution Installation</a></li>
+<li><a href="#package_installation">Package Installation</a></li>
 </ul>
 </li>
 </ul>
@@ -308,13 +308,26 @@
 </li>
 <li><a href="#installing_mobi">Installing Mobi</a>
 <ul class="sectlevel3">
-<li><a href="#pre_installation_configuration">Pre-Installation Configuration</a>
+<li><a href="#install_via_docker">Install via Docker</a>
 <ul class="sectlevel4">
-<li><a href="#create_service_account">Create Service Account</a></li>
-<li><a href="#install_java_17">Install Java 17</a></li>
+<li><a href="#prerequisites_3">Prerequisites</a></li>
+<li><a href="#install_mobi_docker_image">Install Mobi Docker Image</a></li>
 </ul>
 </li>
-<li><a href="#install_mobi">Install Mobi</a></li>
+<li><a href="#install_via_rpm">Install via RPM</a>
+<ul class="sectlevel4">
+<li><a href="#prerequisites_4">Prerequisites</a></li>
+<li><a href="#install_mobi_package">Install Mobi Package</a></li>
+</ul>
+</li>
+<li><a href="#install_via_distribution_tarball">Install via Distribution Tarball</a>
+<ul class="sectlevel4">
+<li><a href="#prerequisites_5">Prerequisites</a></li>
+<li><a href="#create_service_account">Create Service Account</a></li>
+<li><a href="#install_java_17">Install Java 17</a></li>
+<li><a href="#install_mobi_distribution_tarball">Install Mobi Distribution Tarball</a></li>
+</ul>
+</li>
 <li><a href="#post_installation_configuration">Post-Installation Configuration</a>
 <ul class="sectlevel4">
 <li><a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a></li>
@@ -328,6 +341,9 @@
 </li>
 <li><a href="#upgrading_mobi">Upgrading Mobi</a>
 <ul class="sectlevel3">
+<li><a href="#upgrading_via_docker">Upgrading via Docker</a></li>
+<li><a href="#upgrading_via_rpm">Upgrading via RPM</a></li>
+<li><a href="#upgrading_via_distribution_tarball">Upgrading via Distribution Tarball</a></li>
 <li><a href="#upgrading_to_mobi_4_x">Upgrading to Mobi 4.x</a></li>
 </ul>
 </li>
@@ -335,7 +351,7 @@
 </li>
 <li><a href="#developer_guide">Developer Guide</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites_3">Prerequisites</a></li>
+<li><a href="#prerequisites_6">Prerequisites</a></li>
 <li><a href="#build_from_source">Build from Source</a></li>
 <li><a href="#load_dataset_data">Load Dataset Data</a></li>
 <li><a href="#accessing_swagger_rest_api_documentation">Accessing Swagger REST API Documentation</a></li>
@@ -588,7 +604,7 @@
 <div class="sect3">
 <h4 id="distribution_installation">Distribution Installation</h4>
 <div class="paragraph">
-<p>Download the appropriate binary distribution for your system using our <a href="https://mobi.inovexcorp.com/features/#download">download site</a>.</p>
+<p>Download the appropriate binary distribution for your system using our <a href="https://mobi.solutions/what-is-mobi/download-mobi/">download site</a>.</p>
 </div>
 <div class="paragraph">
 <p>The Mobi distribution comes packaged as a <code>.zip</code> file for Windows and a <code>tar.gz</code> file for Linux/OSX. Extract this file to a new directory on your system. For example, in <code>C:\Mobi</code> - from now on this directory will be referenced as <code>$MOBI_HOME</code>.</p>
@@ -814,20 +830,47 @@ docker compose down</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If the package is not available in your OS, you can download and install Java SE 17 a number of ways. We suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> or <code>sudo rpm -Uvh jdk-17_linux-aarch64_bin.rpm</code> (depending on your OS) to install.</p>
+<p>If the package is not available in your OS, you can download and install Java SE 17 a number of ways. We suggest downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> or <code>sudo rpm -Uvh jdk-17_linux-aarch64_bin.rpm</code> (depending on your OS) to install.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="distribution_installation_2">Distribution Installation</h4>
+<h4 id="package_installation">Package Installation</h4>
 <div class="paragraph">
-<p>Download the latest RPM package from our hosted <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:public-raw-prod-hosted">Nexus repository</a>.</p>
+<p>To proceed you can either download the latest RPM package from our hosted <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:public-yum-prod-hosted">Nexus repository</a> and install it manually or you can configure the repository with your YUM client so you can install it directly. The instructions below show you how to configure the repository and install Mobi using <code>yum</code>.</p>
 </div>
 <div class="paragraph">
-<p>Install the rpm package using the following command:</p>
+<p>Create the repo file manually at <code>/etc/yum.repos.d/realmone-mobi.repo</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo rpm -i {path_to_rpm_package}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo tee /etc/yum.repos.d/realmone-public.repo &gt; /dev/null &lt;&lt;EOF
+[realmone_public]
+name=RealmOne Public Repository
+baseurl=http://nexus.inovexcorp.com/nexus/repository/public-yum-prod-hosted/
+enabled=1
+gpgcheck=1
+gpgkey=http://nexus.inovexcorp.com/nexus/repository/public-raw-prod-hosted/gpg/prod-public.key
+repo_gpgcheck=0
+priority=1
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once configured, clean and refresh YUM Cache.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum clean all
+sudo yum makecache</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now be able to list all available versions of the package and install Mobi using <code>yum</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum --showduplicates list mobi-community
+sudo yum install mobi-community</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -843,8 +886,8 @@ docker compose down</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi/latest
-sudo -u mobi bin/start</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi-community/latest
+sudo -u mobi-community bin/start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6093,7 +6136,7 @@ OPTIONS
 <div class="title">Note</div>
 </td>
 <td class="content">
-The Enterprise edition of Mobi is provided with your license from the sales or support team as either a compressed distribution package or an RPM package. The installation process is the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a> section for more details.
+The Enterprise edition of Mobi is provided via our <a href="https://nexus.inovexcorp.com/nexus/">Nexus Repository Manager</a> as a compressed distribution tarball, an RPM package, or a Docker image. Your sales or support representative will provide you credentials to access the appropriate repositories in Nexus along with your license. The main installation processes are the same as the Community edition, but the Enterprise edition requires a license file to start. See the <a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a> section for more details.
 </td>
 </tr>
 </table>
@@ -6104,6 +6147,18 @@ The Enterprise edition of Mobi is provided with your license from the sales or s
 <h4 id="hardware_requirements">Hardware Requirements</h4>
 <div class="paragraph">
 <p>We provide recommended hardware requirements as a guideline. These specifications are based on standard deployment environments. Larger production data or user requirements may require more powerful hardware configurations.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Due to a <a href="https://learn.microsoft.com/en-us/answers/questions/1293667/azure-container-app-ingress-decoding-url">known issue</a> with Azure Container Apps automatic-decoding of HTTP requests, Mobi deployments in Azure Container Apps is not supported at this time.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The table below provides a summary of the recommended hardware for production servers and the minimum requirements for test servers.</p>
@@ -6205,6 +6260,18 @@ compatibility, performance, and security.</p></td>
 <div class="paragraph">
 <p>The table below lists the TCP ports to open on the Mobi host.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+If you are running the enterprise variant of Mobi, you must ensure connectivity from your installation server to the Keygen API at <code>https://api.keygen.sh</code> on port 443 for license validation. Otherwise, your distribution will not start.  The alternative is to use an offline license file provided by your sales or support representative. See the <a href="#licensing_config">Licensing Configuration (ENTERPRISE)</a> section for more details.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -6223,29 +6290,8 @@ compatibility, performance, and security.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection. Mobi does not run on non-SSL ports by default.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-If you are running the enterprise variant of Mobi, you must ensure connectivity from your installation server to <a href="https://api.keygen.sh">Keygen</a> on port 443 for license validation. Otherwise, your distribution will not start.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>For more details configuring this port, or enabling HTTP access, see <a href="#change_the_default_web_port">Change the Default Web Port</a>.</p>
 </div>
 </div>
 </div>
@@ -6255,11 +6301,103 @@ If you are running the enterprise variant of Mobi, you must ensure connectivity 
 <p>When using the distribution package, deployment consists of unpacking the distribution to an appropriate location on the filesystem and modifying included configuration files. With the RPM and Docker installation methods, the process will be more automated and configuration files can still be modified.</p>
 </div>
 <div class="sect3">
-<h4 id="pre_installation_configuration">Pre-Installation Configuration</h4>
+<h4 id="install_via_docker">Install via Docker</h4>
 <div class="sect4">
-<h5 id="create_service_account">Create Service Account</h5>
+<h5 id="prerequisites_3">Prerequisites</h5>
 <div class="paragraph">
-<p>Before installing a Mobi distribution, create a service account on the host server. The account will be used to run Mobi.</p>
+<p>Before installing Mobi, create a service account on the host server. The account will be used to run the Mobi image.</p>
+</div>
+<div class="paragraph">
+<p>The service account should meet the following requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The account needs to have read and write permissions for the directories that are mounted as volumes in the <code>docker-compose.yml</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On a standard RHEL/CentOS system, this can be created using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo useradd -d /opt/mobi mobi</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="install_mobi_docker_image">Install Mobi Docker Image</h5>
+<div class="paragraph">
+<p>The <a href="#installing_the_docker_image">Quick Start Guide</a> has basic instructions to spin up the Mobi Community Docker Image. For more detailed instructions and how to install the Enterprise edition, follow the <a href="#docker_deployments">Docker Deployments</a> Appendix.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install_via_rpm">Install via RPM</h4>
+<div class="sect4">
+<h5 id="prerequisites_4">Prerequisites</h5>
+<div class="paragraph">
+<p>The Mobi package requires Java SE 17 to run. This can be installed via the <code>yum</code> package manager if available in your OS. An example command to install Java SE 17 is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install java-17-openjdk-devel</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the package is not available in your OS, you can download and install Java SE 17 a number of ways. We suggest downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> or <code>sudo rpm -Uvh jdk-17_linux-aarch64_bin.rpm</code> (depending on your OS) to install.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="install_mobi_package">Install Mobi Package</h5>
+<div class="paragraph">
+<p>The <a href="#installing_from_the_rpm">Quick Start Guide</a> has instructions on how to install the Mobi Community RPM package.</p>
+</div>
+<div class="paragraph">
+<p>If you are installing the <strong>Enterprise</strong> edition, see the important differences listed below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The packages are hosted in a separate <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:public-yum-prod-ent-hosted">Nexus repository</a> and require credentials. Please reach out to your sales or support representative for assistance.</p>
+</li>
+<li>
+<p>Use the following command to create the reference to the repository, replacing <code>{USERNAME}</code> and <code>{PASSWORD}</code> with your provided Nexus credentials.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo tee /etc/yum.repos.d/realmone-ent.repo &gt; /dev/null &lt;&lt;EOF
+[realmone_ent]
+name=RealmOne Enterprise Repository
+baseurl=https://{USERNAME}:{PASSWORD}@nexus.inovexcorp.com/nexus/repository/public-yum-prod-ent-hosted/
+enabled=1
+gpgcheck=1
+gpgkey=http://nexus.inovexcorp.com/nexus/repository/public-raw-prod-hosted/gpg/prod-public.key
+repo_gpgcheck=0
+priority=1
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The Enterprise edition of the RPM package is called <code>mobi-enterprise</code> instead of <code>mobi-community</code></p>
+</li>
+<li>
+<p>When starting and stopping the distribution, substitute in the instructions <code>mobi-community</code> for <code>mobi-enterprise</code> in the referenced commands (eg. <code>sudo -u mobi-community bin/start</code> becomes <code>sudo -u mobi-enterprise bin/start</code>)</p>
+</li>
+<li>
+<p>After installing the package, copy the license file you were provided by your sales or support representative to the auto-generated <code>/opt/mobi/latest/etc/</code> directory or to a <code>.mobi</code> directory in the auto-generated <code>/opt/mobi</code> directory. Mobi Enterprise will not start without this.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p /opt/mobi-enterprise/.mobi
+cp license.lic /opt/mobi-enterprise/.mobi/</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All Mobi prepackaged bundles, services, and required artifacts and dependencies will be automatically deployed by the runtime once started. The Mobi web application should now be accessible at <code><a href="https://localhost:8443/mobi/index.html" class="bare">https://localhost:8443/mobi/index.html</a></code> (or substitute <code>localhost</code> with the hostname/IP address of the machine running the process dependant on firewall configurations). The default login credentials are <code>admin:admin</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6268,10 +6406,52 @@ If you are running the enterprise variant of Mobi, you must ensure connectivity 
 <div class="title">Note</div>
 </td>
 <td class="content">
-This step is not required when installing Mobi via the RPM package.
+Due to the self-signed SSL certificate that Mobi comes with, your browser will likely show you a certificate warning when first loaded. This is safe to proceed past. See <a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a> for more details.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>To stop the Mobi server, you can either stop the systemd service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl stop mobi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can manually stop the distribution:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi-community/latest
+sudo -u mobi-community bin/stop</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+For Enterprise, those commands are <code>cd /opt/mobi-enterprise/latest</code> and <code>sudo -u mobi-enterprise bin/stop</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install_via_distribution_tarball">Install via Distribution Tarball</h4>
+<div class="sect4">
+<h5 id="prerequisites_5">Prerequisites</h5>
+
+</div>
+<div class="sect4">
+<h5 id="create_service_account">Create Service Account</h5>
+<div class="paragraph">
+<p>Before installing a Mobi distribution, create a service account on the host server. The account will be used to run Mobi.</p>
 </div>
 <div class="paragraph">
 <p>The service account should meet the following requirements:</p>
@@ -6280,9 +6460,6 @@ This step is not required when installing Mobi via the RPM package.
 <ul>
 <li>
 <p>The service account must have read and write permissions for the Mobi installation directory. On Linux, this is typically <code>/opt/mobi/mobi-distribution-&lt;version&gt;</code>.</p>
-</li>
-<li>
-<p>When installing via Docker, the account needs to have read and write permissions for the directories that are mounted as volumes in the <code>docker-compose.yml</code> file.</p>
 </li>
 </ul>
 </div>
@@ -6307,18 +6484,6 @@ This step is not required when installing Mobi via the RPM package.
 <div class="title">Note</div>
 </td>
 <td class="content">
-If you are installing via Docker following <a href="#docker_deployments">these instructions</a>, then this step is not needed.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
 If you are using a Red Hat system, you can install Java 17 with <code>sudo yum install java-17-openjdk</code> prior to version 8 and <code>sudo dnf install java-17-openjdk-devel</code> on versions 8+.
 </td>
 </tr>
@@ -6331,7 +6496,7 @@ If you are using a Red Hat system, you can install Java 17 with <code>sudo yum i
 <div class="title">Note</div>
 </td>
 <td class="content">
-On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. We suggest Downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> or <code>sudo rpm -Uvh jdk-17_linux-aarch64_bin.rpm</code> (depending on your OS) to install.
+On a standard RHEL/CentOS system, there is no package available via <code>yum</code> to install. We suggest downloading the Oracle installer from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">here</a> and running <code>sudo rpm -Uvh jdk-17_linux-x64_bin.rpm</code> or <code>sudo rpm -Uvh jdk-17_linux-aarch64_bin.rpm</code> (depending on your OS) to install.
 </td>
 </tr>
 </table>
@@ -6347,56 +6512,8 @@ exit</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="install_mobi">Install Mobi</h4>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-If you are running the enterprise variant of Mobi, be sure you have added your license file to either the <code>$MOBI_HOME/etc/</code> directory or to a <code>.mobi</code> directory in the home directory of the user running Mobi prior to starting the server for the first time.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Follow the instructions in the <a href="#docker_deployments">Docker Deployments</a> Appendix to install Mobi via the Docker image.</p>
-</div>
-<div class="paragraph">
-<p>Follow the instructions below to install Mobi via the RPM package. These instructions assume that you have copied the Mobi RPM to the server.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Install the rpm package</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo rpm -i {path_to_rpm_package}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>EITHER start Mobi with the auto-configured systemd service</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl start mobi</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>OR change into the installed directory and start up the server</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi/latest
-sudo -u mobi bin/start</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
+<div class="sect4">
+<h5 id="install_mobi_distribution_tarball">Install Mobi Distribution Tarball</h5>
 <div class="paragraph">
 <p>Follow the instructions below to install Mobi via the distribution. These instructions assume that you have copied the Mobi distribution to the server.</p>
 </div>
@@ -6412,10 +6529,22 @@ These instructions are prepared for a standard RHEL/CentOS deployment server.
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you are running the enterprise variant of Mobi, be sure you have added your license file to either the <code>$MOBI_HOME/etc/</code> directory or to a <code>.mobi</code> directory in the home directory of the user running Mobi prior to starting the server for the first time.
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Unpack Mobi to the installation parent directory (e.g. <strong>/opt/mobi</strong>)</p>
+<p>Unpack Mobi to the installation parent directory (e.g. <code>/opt/mobi</code>)</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo su - mobi
@@ -6464,22 +6593,6 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./bin/stop</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>If you installed via the RPM package, you can either stop the systemd service:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl stop mobi</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or you can manually stop the distribution:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /opt/mobi/latest
-sudo -u mobi bin/start</code></pre>
 </div>
 </div>
 </div>
@@ -6539,10 +6652,23 @@ All versions from 1.22 onwards have this line already added.
 <div class="title">Tip</div>
 </td>
 <td class="content">
-We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection. Mobi does not run on non-SSL ports by default.
+We recommend running Mobi on the default port 8443 and using firewall configuration or a proxy server for SSL (port 443) termination and redirection.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If required, Mobi can be configured to run on a non-SSL port by changing the following properties in <code>$MOBI_HOME/etc/org.ops4j.pax.web.cfg</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Enable HTTP (Unsecured)
+org.osgi.service.http.enabled=true
+# Disable HTTPS (Secured)
+org.osgi.service.http.secure.enabled=false
+# Set the HTTP port (Default is usually 8181)
+org.osgi.service.http.port=8181</code></pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -6715,9 +6841,26 @@ systemctl enable mobi</code></pre>
 <div class="paragraph">
 <p>Upgrades of the Mobi platform are performed via a backup/restore process where a <code>.zip</code> file is created of all the system data of the current installation and loaded into the new version installation. This process will handle any migration steps required when migrating to newer versions.</p>
 </div>
-<div class="paragraph">
-<p>If you installed AVM via Docker, follow the instructions in the <a href="#docker_deployments">Docker Deployments</a> Appendix to upgrade AVM via Docker.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+If restoring from a version prior to 1.22, there are two files which are not included in the backup whose contents will need to be manually updated in the new distribution. The <code>$NEW_MOBI_HOME/bin/setenv</code> file contains the Java Max and Min Memory settings that should be updated to the desired levels post upgrade (See <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>). The <code>$NEW_MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file holds a variable for the <span class="underline">hostName</span> of the application (See <a href="#set_the_host_name">Set the Host Name</a>). This will need to be manually updated to the previous value to support certain connections with other applications.
+</td>
+</tr>
+</table>
 </div>
+<div class="sect3">
+<h4 id="upgrading_via_docker">Upgrading via Docker</h4>
+<div class="paragraph">
+<p>If you installed Mobi via Docker, follow the instructions in the <a href="#docker_deployments">Docker Deployments</a> Appendix to upgrade Mobi via Docker.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="upgrading_via_rpm">Upgrading via RPM</h4>
 <div class="paragraph">
 <p>If you installed Mobi via the RPM package, the backup/restore process is performed for you as part of the upgrade.</p>
 </div>
@@ -6739,6 +6882,9 @@ systemctl enable mobi</code></pre>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="upgrading_via_distribution_tarball">Upgrading via Distribution Tarball</h4>
 <div class="paragraph">
 <p>To upgrade Mobi when installed directly with the distribution, the basic steps are outlined below and are applicable for any upgrades within major versions (e.g. 2.1 to 2.4).</p>
 </div>
@@ -6803,17 +6949,6 @@ The Mobi server can take several seconds to start up. If the <code>client</code>
 </tr>
 </table>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">
-If restoring from a version prior to 1.22, there are two files which are not included in the backup whose contents will need to be manually updated in the new distribution. The <code>$NEW_MOBI_HOME/bin/setenv</code> file contains the Java Max and Min Memory settings that should be updated to the desired levels post upgrade (See <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>). The <code>$NEW_MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file holds a variable for the <span class="underline">hostName</span> of the application (See <a href="#set_the_host_name">Set the Host Name</a>). This will need to be manually updated to the previous value to support certain connections with other applications.
-</td>
-</tr>
-</table>
 </div>
 <div class="sect3">
 <h4 id="upgrading_to_mobi_4_x">Upgrading to Mobi 4.x</h4>
@@ -6851,7 +6986,7 @@ If restoring from a version prior to 1.22, there are two files which are not inc
 <h2 id="developer_guide">Developer Guide</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites_3">Prerequisites</h3>
+<h3 id="prerequisites_6">Prerequisites</h3>
 <div class="paragraph">
 <p>To build the Mobi source code, you must have the following software and tools installed.</p>
 </div>
@@ -11002,7 +11137,7 @@ public ActionDefinition createDefinition(NewAction action) {
 services:
   mobi:
     container_name: mobi
-    image: inovexis/mobi:4.2.0 # image name with tag (It is recommended to pin a version and not use latest)
+    image: inovexis/mobi:4.3.0 # image name with tag (It is recommended to pin a version and not use the latest keyword)
     ports:
       - "443:8443"
     command: bash -c '/opt/mobi/mobi-distribution/docker/docker-start.sh'
@@ -11022,7 +11157,7 @@ volumes:
 </div>
 </div>
 <div class="paragraph">
-<p>Enterprise customers can contact the Mobi team for access to the Enterprise Docker image. Enterprise Mobi docker images are hosted on a private Docker registry.</p>
+<p>Enterprise Mobi Docker images are hosted in our <a href="https://nexus.inovexcorp.com/nexus/#browse/browse:foundry-docker-prod-hosted">Nexus Repository</a>. Please contact your sales and support representative to create you an account to access the images.</p>
 </div>
 <div class="sect2">
 <h3 id="license_file_enterprise">License File (Enterprise)</h3>
@@ -11033,6 +11168,14 @@ volumes:
 <ol class="arabic">
 <li>
 <p>Change the image name in the <code>docker-compose.yml</code> file to point to the Enterprise image at <code>nexus.inovexcorp.com/foundry-docker-prod-hosted/mobi-enterprise</code></p>
+</li>
+<li>
+<p>Ensure you can log into the Nexus repository from your Docker host machine. You can do this by running the following command and entering the Nexus username and password provided by your sales and support representative when prompted:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">docker login nexus.inovexcorp.com/foundry-docker-prod-hosted</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Mount your license file into the container. You can do this by adding a directory mount to the <code>docker-compose.yml</code> file by adding the following line to the <code>volumes</code> section of the <code>mobi</code> service:</p>
@@ -11202,7 +11345,7 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 4.3<br>
-Last updated 2026-01-11 19:41:02 UTC
+Last updated 2026-01-11 19:40:58 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
