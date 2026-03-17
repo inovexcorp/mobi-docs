@@ -334,6 +334,7 @@
 <li><a href="#set_the_host_name">Set the Host Name</a></li>
 <li><a href="#change_the_default_web_port">Change the Default Web Port</a></li>
 <li><a href="#configure_custom_ssl_certificates">Configure Custom SSL Certificates</a></li>
+<li><a href="#configuring_a_reverse_proxy">Configuring a Reverse Proxy</a></li>
 <li><a href="#installing_mobi_as_a_service">Installing Mobi as a Service</a></li>
 </ul>
 </li>
@@ -5409,7 +5410,7 @@ The AI Ontology Assistant service must be deployed and accessible from the Mobi 
 <div class="sect4">
 <h5 id="imports_resolver_configuration">Imports Resolver Configuration</h5>
 <div class="paragraph">
-<p>When resolving imported ontologies from the web, Mobi uses a default set of configuration for making those connections, but in some deployments it may be beneficial to tweak the timeouts utilized when making those external web connections. To customize the read and connection timeouts, create a file called <code>com.mobi.ontology.utils.imports.ImportsResolver.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory with the following fields.</p>
+<p>When resolving imported ontologies from the web, Mobi uses a default set of configuration for making those connections, but in some deployments it may be beneficial to tweak the timeouts utilized when making those external web connections. Furthermore, in air-gapped environments, it may be beneficial to disable web resolution for imports entirely. To customize these settings, create a file called <code>com.mobi.ontology.utils.imports.ImportsResolver.cfg</code> in the <code>$MOBI_HOME/etc/</code> directory with the following fields.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -5439,6 +5440,12 @@ The AI Ontology Assistant service must be deployed and accessible from the Mobi 
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10000</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disableWebImports</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to disable web resolution for imports entirely. If true, Mobi will not attempt to resolve any web ontology URIs and will only resolve imports that are already stored in the repository.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -5447,7 +5454,8 @@ The AI Ontology Assistant service must be deployed and accessible from the Mobi 
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">connectionTimeout = 5000
-readTimeout = 20000</code></pre>
+readTimeout = 20000
+disableWebImports = false</code></pre>
 </div>
 </div>
 </div>
@@ -6751,6 +6759,29 @@ integrity check</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect4">
+<h5 id="configuring_a_reverse_proxy">Configuring a Reverse Proxy</h5>
+<div class="paragraph">
+<p>In production environments, Mobi is often run behind a reverse proxy for SSL termination and redirection from port 443. If you are using a reverse proxy, be sure to configure the appropriate proxy settings in the <code>$MOBI_HOME/bin/setenv</code> file in the <code>EXTRA_JAVA_OPS</code> variable. The most common properties to set are <code>http.proxyHost</code>, <code>http.proxyPort</code>, <code>https.proxyHost</code>, and <code>https.proxyPort</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If your proxy requires authentication, you will also need to set <code>http.proxyUser</code>, <code>http.proxyPassword</code>, <code>https.proxyUser</code>, and <code>https.proxyPassword</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export EXTRA_JAVA_OPTS="-Dhttps.proxyHost=${HTTPS_PROXY_HOST} -Dhttps.proxyPort=${HTTPS_PROXY_PORT} -Dfile.encoding=UTF-8"</code></pre>
+</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="installing_mobi_as_a_service">Installing Mobi as a Service</h5>
@@ -11345,7 +11376,7 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 4.3<br>
-Last updated 2026-01-11 19:41:02 UTC
+Last updated 2026-01-11 19:40:58 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
