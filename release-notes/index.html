@@ -79,6 +79,7 @@
     <label class="menu-icon" for="menu-btn"><i class="fa fa-bars" aria-hidden="true"></i></label>
     <ul class="nav-items">
         <li><a href="../latest/index.html">User Manual</a></li>
+        <li><a href="../api-guide/index.html">API Guide</a></li>
         <li><a href="../release-notes/index.html">Release Notes</a></li>
         <li><a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">Help Desk</a></li>
     </ul>
@@ -87,7 +88,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#release_notes_for_mobi_4_3">Release Notes for Mobi 4.3</a>
+<li><a href="#release_notes_for_mobi_4_4">Release Notes for Mobi 4.4</a>
 <ul class="sectlevel2">
 <li><a href="#whats_new">What&#8217;s New</a></li>
 <li><a href="#detailed_notes">Detailed Notes</a>
@@ -95,9 +96,26 @@
 <li><a href="#general_improvements_and_fixes">General Improvements and Fixes</a></li>
 <li><a href="#catalog">Catalog</a></li>
 <li><a href="#ontology_editor">Ontology Editor</a></li>
+<li><a href="#shapes_editor">Shapes Editor</a></li>
+<li><a href="#mapping_tool">Mapping Tool</a></li>
+<li><a href="#datasets">Datasets</a></li>
+<li><a href="#new_webhooks">*NEW* Webhooks</a></li>
+<li><a href="#administration">Administration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#release_notes_for_mobi_4_3">Release Notes for Mobi 4.3</a>
+<ul class="sectlevel2">
+<li><a href="#whats_new_2">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_2">Detailed Notes</a>
+<ul class="sectlevel3">
+<li><a href="#general_improvements_and_fixes_2">General Improvements and Fixes</a></li>
+<li><a href="#catalog_2">Catalog</a></li>
+<li><a href="#ontology_editor_2">Ontology Editor</a></li>
 <li><a href="#publish_enterprise">Publish (ENTERPRISE)</a></li>
 <li><a href="#my_account">My Account</a></li>
-<li><a href="#administration">Administration</a></li>
+<li><a href="#administration_2">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes">Hotfixes</a>
@@ -110,16 +128,16 @@
 </li>
 <li><a href="#release_notes_for_mobi_4_2">Release Notes for Mobi 4.2</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_2">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_2">Detailed Notes</a>
+<li><a href="#whats_new_3">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_3">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_2">General Improvements and Fixes</a></li>
-<li><a href="#catalog_2">Catalog</a></li>
-<li><a href="#ontology_editor_2">Ontology Editor</a></li>
-<li><a href="#shapes_editor">Shapes Editor</a></li>
+<li><a href="#general_improvements_and_fixes_3">General Improvements and Fixes</a></li>
+<li><a href="#catalog_3">Catalog</a></li>
+<li><a href="#ontology_editor_3">Ontology Editor</a></li>
+<li><a href="#shapes_editor_2">Shapes Editor</a></li>
 <li><a href="#publish_enterprise_2">Publish (ENTERPRISE)</a></li>
-<li><a href="#mapping_tool">Mapping Tool</a></li>
-<li><a href="#administration_2">Administration</a></li>
+<li><a href="#mapping_tool_2">Mapping Tool</a></li>
+<li><a href="#administration_3">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_2">Hotfixes</a>
@@ -131,17 +149,17 @@
 </li>
 <li><a href="#release_notes_for_mobi_4_1">Release Notes for Mobi 4.1</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_3">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_3">Detailed Notes</a>
+<li><a href="#whats_new_4">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_4">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_3">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_3">Ontology Editor</a></li>
-<li><a href="#shapes_editor_2">Shapes Editor</a></li>
+<li><a href="#general_improvements_and_fixes_4">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_4">Ontology Editor</a></li>
+<li><a href="#shapes_editor_3">Shapes Editor</a></li>
 <li><a href="#publish_enterprise_3">Publish (ENTERPRISE)</a></li>
-<li><a href="#mapping_tool_2">Mapping Tool</a></li>
+<li><a href="#mapping_tool_3">Mapping Tool</a></li>
 <li><a href="#discover">Discover</a></li>
 <li><a href="#workflows">Workflows</a></li>
-<li><a href="#administration_3">Administration</a></li>
+<li><a href="#administration_4">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_3">Hotfixes</a>
@@ -155,19 +173,19 @@
 </li>
 <li><a href="#release_notes_for_mobi_4_0">Release Notes for Mobi 4.0</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_4">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_4">Detailed Notes</a>
+<li><a href="#whats_new_5">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_5">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_4">General Improvements and Fixes</a></li>
-<li><a href="#catalog_3">Catalog</a></li>
+<li><a href="#general_improvements_and_fixes_5">General Improvements and Fixes</a></li>
+<li><a href="#catalog_4">Catalog</a></li>
 <li><a href="#new_entity_search">*NEW* Entity Search</a></li>
-<li><a href="#ontology_editor_4">Ontology Editor</a></li>
-<li><a href="#shapes_editor_3">Shapes Editor</a></li>
+<li><a href="#ontology_editor_5">Ontology Editor</a></li>
+<li><a href="#shapes_editor_4">Shapes Editor</a></li>
 <li><a href="#merge_requests">Merge Requests</a></li>
 <li><a href="#publish_enterprise_4">Publish (ENTERPRISE)</a></li>
-<li><a href="#mapping_tool_3">Mapping Tool</a></li>
+<li><a href="#mapping_tool_4">Mapping Tool</a></li>
 <li><a href="#workflows_2">Workflows</a></li>
-<li><a href="#administration_4">Administration</a></li>
+<li><a href="#administration_5">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_4">Hotfixes</a>
@@ -179,19 +197,19 @@
 </li>
 <li><a href="#release_notes_for_mobi_3_1">Release Notes for Mobi 3.1</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_5">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_5">Detailed Notes</a>
+<li><a href="#whats_new_6">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_6">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_5">General Improvements and Fixes</a></li>
-<li><a href="#catalog_4">Catalog</a></li>
-<li><a href="#ontology_editor_5">Ontology Editor</a></li>
-<li><a href="#shapes_editor_4">Shapes Editor</a></li>
+<li><a href="#general_improvements_and_fixes_6">General Improvements and Fixes</a></li>
+<li><a href="#catalog_5">Catalog</a></li>
+<li><a href="#ontology_editor_6">Ontology Editor</a></li>
+<li><a href="#shapes_editor_5">Shapes Editor</a></li>
 <li><a href="#merge_requests_2">Merge Requests</a></li>
 <li><a href="#publish_enterprise_5">Publish (ENTERPRISE)</a></li>
-<li><a href="#mapping_tool_4">Mapping Tool</a></li>
+<li><a href="#mapping_tool_5">Mapping Tool</a></li>
 <li><a href="#discover_2">Discover</a></li>
 <li><a href="#workflows_3">Workflows</a></li>
-<li><a href="#administration_5">Administration</a></li>
+<li><a href="#administration_6">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_5">Hotfixes</a>
@@ -203,15 +221,15 @@
 </li>
 <li><a href="#release_notes_for_mobi_3_0">Release Notes for Mobi 3.0</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_6">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_6">Detailed Notes</a>
+<li><a href="#whats_new_7">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_7">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_6">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_6">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_7">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_7">Ontology Editor</a></li>
 <li><a href="#publish_enterprise_6">Publish (ENTERPRISE)</a></li>
-<li><a href="#shapes_editor_5">Shapes Editor</a></li>
+<li><a href="#shapes_editor_6">Shapes Editor</a></li>
 <li><a href="#merge_requests_3">Merge Requests</a></li>
-<li><a href="#mapping_tool_5">Mapping Tool</a></li>
+<li><a href="#mapping_tool_6">Mapping Tool</a></li>
 <li><a href="#workflows_4">Workflows</a></li>
 </ul>
 </li>
@@ -219,17 +237,17 @@
 </li>
 <li><a href="#release_notes_for_mobi_2_5">Release Notes for Mobi 2.5</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_7">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_7">Detailed Notes</a>
+<li><a href="#whats_new_8">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_8">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_7">General Improvements and Fixes</a></li>
-<li><a href="#catalog_5">Catalog</a></li>
-<li><a href="#ontology_editor_7">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_8">General Improvements and Fixes</a></li>
+<li><a href="#catalog_6">Catalog</a></li>
+<li><a href="#ontology_editor_8">Ontology Editor</a></li>
 <li><a href="#new_publish_enterprise">*NEW* Publish (ENTERPRISE)</a></li>
-<li><a href="#shapes_editor_6">Shapes Editor</a></li>
+<li><a href="#shapes_editor_7">Shapes Editor</a></li>
 <li><a href="#merge_requests_4">Merge Requests</a></li>
-<li><a href="#mapping_tool_6">Mapping Tool</a></li>
-<li><a href="#datasets">Datasets</a></li>
+<li><a href="#mapping_tool_7">Mapping Tool</a></li>
+<li><a href="#datasets_2">Datasets</a></li>
 <li><a href="#discover_3">Discover</a></li>
 <li><a href="#workflows_5">Workflows</a></li>
 </ul>
@@ -245,36 +263,36 @@
 </li>
 <li><a href="#release_notes_for_mobi_2_4">Release Notes for Mobi 2.4</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_8">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_8">Detailed Notes</a>
+<li><a href="#whats_new_9">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_9">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_8">General Improvements and Fixes</a></li>
+<li><a href="#general_improvements_and_fixes_9">General Improvements and Fixes</a></li>
 <li><a href="#home">Home</a></li>
-<li><a href="#catalog_6">Catalog</a></li>
-<li><a href="#ontology_editor_8">Ontology Editor</a></li>
+<li><a href="#catalog_7">Catalog</a></li>
+<li><a href="#ontology_editor_9">Ontology Editor</a></li>
 <li><a href="#link_enterprise">Link (ENTERPRISE)</a></li>
-<li><a href="#shapes_editor_7">Shapes Editor</a></li>
+<li><a href="#shapes_editor_8">Shapes Editor</a></li>
 <li><a href="#merge_requests_5">Merge Requests</a></li>
-<li><a href="#mapping_tool_7">Mapping Tool</a></li>
-<li><a href="#datasets_2">Datasets</a></li>
+<li><a href="#mapping_tool_8">Mapping Tool</a></li>
+<li><a href="#datasets_3">Datasets</a></li>
 <li><a href="#new_workflows">*NEW* Workflows</a></li>
-<li><a href="#administration_6">Administration</a></li>
+<li><a href="#administration_7">Administration</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_2_3">Release Notes for Mobi 2.3</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_9">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_9">Detailed Notes</a>
+<li><a href="#whats_new_10">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_10">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_9">General Improvements and Fixes</a></li>
+<li><a href="#general_improvements_and_fixes_10">General Improvements and Fixes</a></li>
 <li><a href="#home_2">Home</a></li>
-<li><a href="#catalog_7">Catalog</a></li>
-<li><a href="#ontology_editor_9">Ontology Editor</a></li>
-<li><a href="#shapes_editor_8">Shapes Editor</a></li>
+<li><a href="#catalog_8">Catalog</a></li>
+<li><a href="#ontology_editor_10">Ontology Editor</a></li>
+<li><a href="#shapes_editor_9">Shapes Editor</a></li>
 <li><a href="#merge_requests_6">Merge Requests</a></li>
-<li><a href="#mapping_tool_8">Mapping Tool</a></li>
+<li><a href="#mapping_tool_9">Mapping Tool</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_7">Hotfixes</a>
@@ -289,33 +307,33 @@
 </li>
 <li><a href="#release_notes_for_mobi_2_2">Release Notes for Mobi 2.2</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_10">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_10">Detailed Notes</a>
+<li><a href="#whats_new_11">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_11">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_10">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_10">Ontology Editor</a></li>
-<li><a href="#mapping_tool_9">Mapping Tool</a></li>
-<li><a href="#datasets_3">Datasets</a></li>
+<li><a href="#general_improvements_and_fixes_11">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_11">Ontology Editor</a></li>
+<li><a href="#mapping_tool_10">Mapping Tool</a></li>
+<li><a href="#datasets_4">Datasets</a></li>
 <li><a href="#discover_4">Discover</a></li>
-<li><a href="#administration_7">Administration</a></li>
+<li><a href="#administration_8">Administration</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_2_1">Release Notes for Mobi 2.1</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_11">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_11">Detailed Notes</a>
+<li><a href="#whats_new_12">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_12">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_11">General Improvements and Fixes</a></li>
-<li><a href="#catalog_8">Catalog</a></li>
-<li><a href="#ontology_editor_11">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_12">General Improvements and Fixes</a></li>
+<li><a href="#catalog_9">Catalog</a></li>
+<li><a href="#ontology_editor_12">Ontology Editor</a></li>
 <li><a href="#link_enterprise_2">Link (ENTERPRISE)</a></li>
-<li><a href="#shapes_editor_9">Shapes Editor</a></li>
+<li><a href="#shapes_editor_10">Shapes Editor</a></li>
 <li><a href="#merge_requests_7">Merge Requests</a></li>
-<li><a href="#mapping_tool_10">Mapping Tool</a></li>
-<li><a href="#datasets_4">Datasets</a></li>
-<li><a href="#administration_8">Administration</a></li>
+<li><a href="#mapping_tool_11">Mapping Tool</a></li>
+<li><a href="#datasets_5">Datasets</a></li>
+<li><a href="#administration_9">Administration</a></li>
 </ul>
 </li>
 <li><a href="#hotfixes_8">Hotfixes</a>
@@ -327,11 +345,11 @@
 </li>
 <li><a href="#release_notes_for_mobi_2_0">Release Notes for Mobi 2.0</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_12">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_12">Detailed Notes</a>
+<li><a href="#whats_new_13">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_13">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_12">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_12">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_13">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_13">Ontology Editor</a></li>
 <li><a href="#discover_5">Discover</a></li>
 </ul>
 </li>
@@ -346,15 +364,15 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_22">Release Notes for Mobi 1.22</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_13">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_13">Detailed Notes</a>
+<li><a href="#whats_new_14">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_14">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_13">General Improvements and Fixes</a></li>
-<li><a href="#catalog_9">Catalog</a></li>
-<li><a href="#ontology_editor_13">Ontology Editor</a></li>
-<li><a href="#shapes_editor_10">Shapes Editor</a></li>
+<li><a href="#general_improvements_and_fixes_14">General Improvements and Fixes</a></li>
+<li><a href="#catalog_10">Catalog</a></li>
+<li><a href="#ontology_editor_14">Ontology Editor</a></li>
+<li><a href="#shapes_editor_11">Shapes Editor</a></li>
 <li><a href="#merge_requests_8">Merge Requests</a></li>
-<li><a href="#mapping_tool_11">Mapping Tool</a></li>
+<li><a href="#mapping_tool_12">Mapping Tool</a></li>
 <li><a href="#discover_6">Discover</a></li>
 </ul>
 </li>
@@ -362,38 +380,22 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_21">Release Notes for Mobi 1.21</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_14">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_14">Detailed Notes</a>
-<ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_14">General Improvements and Fixes</a></li>
-<li><a href="#catalog_10">Catalog</a></li>
-<li><a href="#ontology_editor_14">Ontology Editor</a></li>
-<li><a href="#new_shapes_editor"><strong>NEW</strong> Shapes Editor</a></li>
-<li><a href="#merge_requests_9">Merge Requests</a></li>
-<li><a href="#mapping_tool_12">Mapping Tool</a></li>
-<li><a href="#datasets_5">Datasets</a></li>
-<li><a href="#administration_9">Administration</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#release_notes_for_mobi_1_20">Release Notes for Mobi 1.20</a>
-<ul class="sectlevel2">
 <li><a href="#whats_new_15">What&#8217;s New</a></li>
 <li><a href="#detailed_notes_15">Detailed Notes</a>
 <ul class="sectlevel3">
 <li><a href="#general_improvements_and_fixes_15">General Improvements and Fixes</a></li>
 <li><a href="#catalog_11">Catalog</a></li>
 <li><a href="#ontology_editor_15">Ontology Editor</a></li>
+<li><a href="#new_shapes_editor"><strong>NEW</strong> Shapes Editor</a></li>
+<li><a href="#merge_requests_9">Merge Requests</a></li>
 <li><a href="#mapping_tool_13">Mapping Tool</a></li>
-<li><a href="#discover_7">Discover</a></li>
-<li><a href="#my_account_2">My Account</a></li>
+<li><a href="#datasets_6">Datasets</a></li>
 <li><a href="#administration_10">Administration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#release_notes_for_mobi_1_19">Release Notes for Mobi 1.19</a>
+<li><a href="#release_notes_for_mobi_1_20">Release Notes for Mobi 1.20</a>
 <ul class="sectlevel2">
 <li><a href="#whats_new_16">What&#8217;s New</a></li>
 <li><a href="#detailed_notes_16">Detailed Notes</a>
@@ -401,16 +403,15 @@
 <li><a href="#general_improvements_and_fixes_16">General Improvements and Fixes</a></li>
 <li><a href="#catalog_12">Catalog</a></li>
 <li><a href="#ontology_editor_16">Ontology Editor</a></li>
-<li><a href="#merge_requests_10">Merge Requests</a></li>
 <li><a href="#mapping_tool_14">Mapping Tool</a></li>
-<li><a href="#discover_8">Discover</a></li>
-<li><a href="#my_account_3">My Account</a></li>
+<li><a href="#discover_7">Discover</a></li>
+<li><a href="#my_account_2">My Account</a></li>
 <li><a href="#administration_11">Administration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#release_notes_for_mobi_1_18">Release Notes for Mobi 1.18</a>
+<li><a href="#release_notes_for_mobi_1_19">Release Notes for Mobi 1.19</a>
 <ul class="sectlevel2">
 <li><a href="#whats_new_17">What&#8217;s New</a></li>
 <li><a href="#detailed_notes_17">Detailed Notes</a>
@@ -418,8 +419,25 @@
 <li><a href="#general_improvements_and_fixes_17">General Improvements and Fixes</a></li>
 <li><a href="#catalog_13">Catalog</a></li>
 <li><a href="#ontology_editor_17">Ontology Editor</a></li>
-<li><a href="#merge_requests_11">Merge Requests</a></li>
+<li><a href="#merge_requests_10">Merge Requests</a></li>
 <li><a href="#mapping_tool_15">Mapping Tool</a></li>
+<li><a href="#discover_8">Discover</a></li>
+<li><a href="#my_account_3">My Account</a></li>
+<li><a href="#administration_12">Administration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#release_notes_for_mobi_1_18">Release Notes for Mobi 1.18</a>
+<ul class="sectlevel2">
+<li><a href="#whats_new_18">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_18">Detailed Notes</a>
+<ul class="sectlevel3">
+<li><a href="#general_improvements_and_fixes_18">General Improvements and Fixes</a></li>
+<li><a href="#catalog_14">Catalog</a></li>
+<li><a href="#ontology_editor_18">Ontology Editor</a></li>
+<li><a href="#merge_requests_11">Merge Requests</a></li>
+<li><a href="#mapping_tool_16">Mapping Tool</a></li>
 <li><a href="#discover_9">Discover</a></li>
 <li><a href="#discover_10">Discover</a></li>
 </ul>
@@ -428,32 +446,17 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_17">Release Notes for Mobi 1.17</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_18">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_18">Detailed Notes</a>
-<ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_18">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_18">Ontology Editor</a></li>
-<li><a href="#catalog_14">Catalog</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#release_notes_for_mobi_1_16">Release Notes for Mobi 1.16</a>
-<ul class="sectlevel2">
 <li><a href="#whats_new_19">What&#8217;s New</a></li>
 <li><a href="#detailed_notes_19">Detailed Notes</a>
 <ul class="sectlevel3">
 <li><a href="#general_improvements_and_fixes_19">General Improvements and Fixes</a></li>
 <li><a href="#ontology_editor_19">Ontology Editor</a></li>
 <li><a href="#catalog_15">Catalog</a></li>
-<li><a href="#merge_requests_12">Merge Requests</a></li>
-<li><a href="#datasets_6">Datasets</a></li>
-<li><a href="#administration_12">Administration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#release_notes_for_mobi_1_15">Release Notes for Mobi 1.15</a>
+<li><a href="#release_notes_for_mobi_1_16">Release Notes for Mobi 1.16</a>
 <ul class="sectlevel2">
 <li><a href="#whats_new_20">What&#8217;s New</a></li>
 <li><a href="#detailed_notes_20">Detailed Notes</a>
@@ -461,6 +464,21 @@
 <li><a href="#general_improvements_and_fixes_20">General Improvements and Fixes</a></li>
 <li><a href="#ontology_editor_20">Ontology Editor</a></li>
 <li><a href="#catalog_16">Catalog</a></li>
+<li><a href="#merge_requests_12">Merge Requests</a></li>
+<li><a href="#datasets_7">Datasets</a></li>
+<li><a href="#administration_13">Administration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#release_notes_for_mobi_1_15">Release Notes for Mobi 1.15</a>
+<ul class="sectlevel2">
+<li><a href="#whats_new_21">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_21">Detailed Notes</a>
+<ul class="sectlevel3">
+<li><a href="#general_improvements_and_fixes_21">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_21">Ontology Editor</a></li>
+<li><a href="#catalog_17">Catalog</a></li>
 <li><a href="#merge_requests_13">Merge Requests</a></li>
 <li><a href="#dataset_manager">Dataset Manager</a></li>
 </ul>
@@ -469,14 +487,14 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_14">Release Notes for Mobi 1.14</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_21">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_21">Detailed Notes</a>
+<li><a href="#whats_new_22">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_22">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_21">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_21">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_22">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_22">Ontology Editor</a></li>
 <li><a href="#merge_requests_14">Merge Requests</a></li>
-<li><a href="#mapping_tool_16">Mapping Tool</a></li>
-<li><a href="#catalog_17">Catalog</a></li>
+<li><a href="#mapping_tool_17">Mapping Tool</a></li>
+<li><a href="#catalog_18">Catalog</a></li>
 <li><a href="#dataset_manager_2">Dataset Manager</a></li>
 </ul>
 </li>
@@ -484,51 +502,51 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_13">Release Notes for Mobi 1.13</a>
 <ul class="sectlevel2">
-<li><a href="#whats_new_22">What&#8217;s New</a></li>
-<li><a href="#detailed_notes_22">Detailed Notes</a>
+<li><a href="#whats_new_23">What&#8217;s New</a></li>
+<li><a href="#detailed_notes_23">Detailed Notes</a>
 <ul class="sectlevel3">
-<li><a href="#general_improvements_and_fixes_22">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_22">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_23">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_23">Ontology Editor</a></li>
 <li><a href="#merge_requests_15">Merge Requests</a></li>
-<li><a href="#mapping_tool_17">Mapping Tool</a></li>
+<li><a href="#mapping_tool_18">Mapping Tool</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_1_12">Release Notes for Mobi 1.12</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_23">General Improvements and Fixes</a></li>
+<li><a href="#general_improvements_and_fixes_24">General Improvements and Fixes</a></li>
 <li><a href="#security">Security</a></li>
 <li><a href="#merge_requests_16">Merge Requests</a></li>
-<li><a href="#ontology_editor_23">Ontology Editor</a></li>
-<li><a href="#mapping_tool_18">Mapping Tool</a></li>
+<li><a href="#ontology_editor_24">Ontology Editor</a></li>
+<li><a href="#mapping_tool_19">Mapping Tool</a></li>
 <li><a href="#discover_module">Discover Module</a></li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_1_11">Release Notes for Mobi 1.11</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_24">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_24">Ontology Editor</a></li>
+<li><a href="#general_improvements_and_fixes_25">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_25">Ontology Editor</a></li>
 <li><a href="#dataset_manager_3">Dataset Manager</a></li>
 <li><a href="#discover_module_2">Discover Module</a></li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_1_10">Release Notes for Mobi 1.10</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_25">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_25">Ontology Editor</a></li>
-<li><a href="#mapping_tool_19">Mapping Tool</a></li>
+<li><a href="#general_improvements_and_fixes_26">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_26">Ontology Editor</a></li>
+<li><a href="#mapping_tool_20">Mapping Tool</a></li>
 <li><a href="#dataset_manager_4">Dataset Manager</a></li>
 <li><a href="#discover_module_3">Discover Module</a></li>
 </ul>
 </li>
 <li><a href="#release_notes_for_mobi_1_9">Release Notes for Mobi 1.9</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_26">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_26">Ontology Editor</a></li>
-<li><a href="#mapping_tool_20">Mapping Tool</a></li>
+<li><a href="#general_improvements_and_fixes_27">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_27">Ontology Editor</a></li>
+<li><a href="#mapping_tool_21">Mapping Tool</a></li>
 <li><a href="#dataset_manager_5">Dataset Manager</a></li>
-<li><a href="#catalog_18">Catalog</a></li>
+<li><a href="#catalog_19">Catalog</a></li>
 <li><a href="#analytic_module">Analytic Module</a></li>
 <li><a href="#federation_services">Federation Services</a></li>
 <li><a href="#cli">CLI</a></li>
@@ -536,11 +554,11 @@
 </li>
 <li><a href="#release_notes_for_mobi_1_8">Release Notes for Mobi 1.8</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_27">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_27">Ontology Editor</a></li>
-<li><a href="#mapping_tool_21">Mapping Tool</a></li>
+<li><a href="#general_improvements_and_fixes_28">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_28">Ontology Editor</a></li>
+<li><a href="#mapping_tool_22">Mapping Tool</a></li>
 <li><a href="#discover_module_4">Discover Module</a></li>
-<li><a href="#datasets_7">Datasets</a></li>
+<li><a href="#datasets_8">Datasets</a></li>
 <li><a href="#federation_services_2">Federation Services</a></li>
 <li><a href="#api_updates">API Updates</a></li>
 <li><a href="#known_issues">Known Issues</a></li>
@@ -548,29 +566,29 @@
 </li>
 <li><a href="#release_notes_for_matonto_1_7">Release Notes for MatOnto 1.7</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_28">General Improvements and Fixes</a></li>
+<li><a href="#general_improvements_and_fixes_29">General Improvements and Fixes</a></li>
 <li><a href="#discover_module_5">Discover Module</a></li>
-<li><a href="#ontology_editor_28">Ontology Editor</a></li>
-<li><a href="#mapping_tool_22">Mapping Tool</a></li>
+<li><a href="#ontology_editor_29">Ontology Editor</a></li>
+<li><a href="#mapping_tool_23">Mapping Tool</a></li>
 <li><a href="#api_updates_2">API Updates</a></li>
 <li><a href="#known_issues_2">Known Issues</a></li>
 </ul>
 </li>
 <li><a href="#release_notes_for_matonto_1_6">Release Notes for MatOnto 1.6</a>
 <ul class="sectlevel2">
-<li><a href="#general_improvements_and_fixes_29">General Improvements and Fixes</a></li>
-<li><a href="#ontology_editor_29">Ontology Editor</a></li>
-<li><a href="#mapping_tool_23">Mapping Tool</a></li>
-<li><a href="#datasets_8">Datasets</a></li>
+<li><a href="#general_improvements_and_fixes_30">General Improvements and Fixes</a></li>
+<li><a href="#ontology_editor_30">Ontology Editor</a></li>
+<li><a href="#mapping_tool_24">Mapping Tool</a></li>
+<li><a href="#datasets_9">Datasets</a></li>
 </ul>
 </li>
 <li><a href="#release_notes_for_matonto_1_5">Release Notes for MatOnto 1.5</a>
 <ul class="sectlevel2">
-<li><a href="#datasets_9">Datasets</a></li>
-<li><a href="#ontology_editor_30">Ontology Editor</a></li>
-<li><a href="#mapping_tool_24">Mapping Tool</a></li>
+<li><a href="#datasets_10">Datasets</a></li>
+<li><a href="#ontology_editor_31">Ontology Editor</a></li>
+<li><a href="#mapping_tool_25">Mapping Tool</a></li>
 <li><a href="#sparql_query_editor">SPARQL Query Editor</a></li>
-<li><a href="#general_improvements_and_fixes_30">General Improvements and Fixes</a></li>
+<li><a href="#general_improvements_and_fixes_31">General Improvements and Fixes</a></li>
 <li><a href="#known_issues_3">Known Issues</a></li>
 </ul>
 </li>
@@ -586,13 +604,195 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="release_notes_for_mobi_4_4">Release Notes for Mobi 4.4</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi 4.4 was released on July 2, 2026. This release includes a brand new backend framework for configuring Webhooks, sweeping improvements to API and Swagger documentation for consistency, fully customizable IRI templates in the Mapping Tool, and many more improvements and bug fixes.</p>
+</div>
+<div class="sect2">
+<h3 id="whats_new">What&#8217;s New</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve introduced a brand new backend framework for configuring Webhooks with support for event topic subscriptions, retry logic, and callback support to report success/failures of external pipelines</p>
+</li>
+<li>
+<p>We&#8217;ve made sweeping improvements to API and Swagger documentation for consistency and clarity across all modules</p>
+</li>
+<li>
+<p>We&#8217;ve added the ability to fully customize IRI templates in the Mapping Tool when generating new entities from mappings</p>
+</li>
+<li>
+<p>We&#8217;ve added the ability to configure log levels within the Administration UI</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="detailed_notes">Detailed Notes</h3>
+<div class="sect3">
+<h4 id="general_improvements_and_fixes">General Improvements and Fixes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Upgraded Apache CXF from 3.4.3 to 3.6.11, addressing <a href="https://nvd.nist.gov/vuln/detail/cve-2022-46364">CVE-2022-46364</a></p>
+</li>
+<li>
+<p>Updated published Docker images to support both ARM64 and AMD64 architectures</p>
+</li>
+<li>
+<p>Updated all API endpoints to use the same error JSON response structure rather than adding error details to the status text</p>
+</li>
+<li>
+<p>Updated the <code>setenv</code> and <code>setenv.bat</code> scripts to support externally set environment variables for JVM options with default fallbacks</p>
+</li>
+<li>
+<p>Revamped the Swagger documentation for all modules with clear descriptions, tags, expected error codes, optional/required parameters, etc.</p>
+</li>
+<li>
+<p>Added a link to the hosted Swagger Documentation to the Help menu in the bottom left of the sidebar</p>
+</li>
+<li>
+<p>Added support for the <code>application/sparql-results+json</code> MIME type on SPARQL endpoints</p>
+</li>
+<li>
+<p>Changed HTTP Error Code for authenticated, but unauthorized requests from 401 to 403 to be more accurate</p>
+</li>
+<li>
+<p>Fixed multiple locations where incorrect HTTP Error codes were returned for invalid system states or bad requests</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="catalog">Catalog</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Adjusted the structure of permission controls for Records to improve user experience</p>
+</li>
+<li>
+<p>Updated access controls on certain Catalog REST endpoints to align with Record Policy permissions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ontology_editor">Ontology Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added backend event topic for the creation of Tags</p>
+</li>
+<li>
+<p>Added the ability to click to go to an entity from the Show Changes display</p>
+</li>
+<li>
+<p>Added standard namespace prefixes to downloaded ontology files and previews</p>
+</li>
+<li>
+<p>Added the ability for administrators to disable resolution of web imports in air-gapped environments</p>
+</li>
+<li>
+<p>Increased the width of the Add Commit modal</p>
+</li>
+<li>
+<p>Increased the width of the Add Object Property Value modal</p>
+</li>
+<li>
+<p>Fixed an issue where the incorrect datatype was assigned to saved values when switching between properties in the Ontology property Overlay</p>
+</li>
+<li>
+<p>Fixed an issue where HTML was displayed when viewing an entity&#8217;s See History page</p>
+</li>
+<li>
+<p>Fixed an issue where removing an invalid ontology import while on a branch would cause the editor to improperly display previously removed triples</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shapes_editor">Shapes Editor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added backend event topic for the creation of Tags</p>
+</li>
+<li>
+<p>Added standard namespace prefixes to downloaded shapes graph files and previews</p>
+</li>
+<li>
+<p>Added the ability for administrators to disable resolution of web imports in air-gapped environments</p>
+</li>
+<li>
+<p>Increased the Add Commit modal size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mapping_tool">Mapping Tool</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the ability to fully customize the IRI templates for generated entities from mappings, including the ability to set them to static IRIs</p>
+</li>
+<li>
+<p>Added standard namespace prefixes to downloaded mapping and mapping result files and previews</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="datasets">Datasets</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed an issue where large RDF files uploaded to datasets would fail with non-descriptive error messages due to poor memory management</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="new_webhooks">*NEW* Webhooks</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added new Record type for configuring Webhooks to send HTTP requests to external systems when certain events occur within the platform</p>
+</li>
+<li>
+<p>Included system for capturing callbacks from external systems that were initiated from individual webhook executions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="administration">Administration</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the repository IRI to the return payload of the <code>/repositories</code> endpoint</p>
+</li>
+<li>
+<p>Added the ability to configure log levels within the Administration UI</p>
+</li>
+<li>
+<p>Adjusted the structure of permission controls for the application to improve user experience</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="release_notes_for_mobi_4_3">Release Notes for Mobi 4.3</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Mobi 4.3 was released on January 9, 2026. This release includes a brand new alpha version of an AI assistant for creating new ontologies, a user preference for default annotations, administration improvements in the UI, support for offline/air-gapped <strong>Enterprise</strong> licensing, and many more improvements and bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new">What&#8217;s New</h3>
+<h3 id="whats_new_2">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -611,9 +811,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes">Detailed Notes</h3>
+<h3 id="detailed_notes_2">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_2">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -623,7 +823,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog">Catalog</h4>
+<h4 id="catalog_2">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -636,7 +836,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor">Ontology Editor</h4>
+<h4 id="ontology_editor_2">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -684,7 +884,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration">Administration</h4>
+<h4 id="administration_2">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -744,7 +944,7 @@
 <p>Mobi 4.2 was released on September 12, 2025. This release includes a brand new in-app editing experience for SHACL shapes graphs, storage of full <strong>Enterprise</strong> publish requests along their provenance, API-based <strong>Enterprise</strong> licensing, improved containerization support, mapping tool performance enhancements, and many more improvements and bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_2">What&#8217;s New</h3>
+<h3 id="whats_new_3">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -766,9 +966,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_2">Detailed Notes</h3>
+<h3 id="detailed_notes_3">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_2">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_3">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -802,7 +1002,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_2">Catalog</h4>
+<h4 id="catalog_3">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -812,7 +1012,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_2">Ontology Editor</h4>
+<h4 id="ontology_editor_3">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -828,7 +1028,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor">Shapes Editor</h4>
+<h4 id="shapes_editor_2">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -909,7 +1109,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool">Mapping Tool</h4>
+<h4 id="mapping_tool_2">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -925,7 +1125,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_2">Administration</h4>
+<h4 id="administration_3">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -975,7 +1175,7 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </table>
 </div>
 <div class="sect2">
-<h3 id="whats_new_3">What&#8217;s New</h3>
+<h3 id="whats_new_4">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -991,9 +1191,9 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_3">Detailed Notes</h3>
+<h3 id="detailed_notes_4">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_3">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_4">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1064,7 +1264,7 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_3">Ontology Editor</h4>
+<h4 id="ontology_editor_4">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1074,7 +1274,7 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_2">Shapes Editor</h4>
+<h4 id="shapes_editor_3">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1094,7 +1294,7 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_2">Mapping Tool</h4>
+<h4 id="mapping_tool_3">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1142,7 +1342,7 @@ Due to the new Centralized SPARQL endpoint and access control structures, the po
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_3">Administration</h4>
+<h4 id="administration_4">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1239,7 +1439,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </table>
 </div>
 <div class="sect2">
-<h3 id="whats_new_4">What&#8217;s New</h3>
+<h3 id="whats_new_5">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1261,9 +1461,9 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_4">Detailed Notes</h3>
+<h3 id="detailed_notes_5">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_4">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_5">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1285,7 +1485,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_3">Catalog</h4>
+<h4 id="catalog_4">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1353,7 +1553,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_4">Ontology Editor</h4>
+<h4 id="ontology_editor_5">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1366,7 +1566,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_3">Shapes Editor</h4>
+<h4 id="shapes_editor_4">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1435,7 +1635,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_3">Mapping Tool</h4>
+<h4 id="mapping_tool_4">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1467,7 +1667,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_4">Administration</h4>
+<h4 id="administration_5">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1502,7 +1702,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 <p>Mobi 3.1 was released on August 30, 2024. This release includes a new <strong>Enterprise</strong> UI for configuring LDAP and SSO integrations, the <strong>Enterprise</strong> ability to publish all types of Versioned RDF Records (including shapes graphs), concurrent workflow executions, and many more improvements and bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_5">What&#8217;s New</h3>
+<h3 id="whats_new_6">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1518,9 +1718,9 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_5">Detailed Notes</h3>
+<h3 id="detailed_notes_6">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_5">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_6">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1533,7 +1733,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_4">Catalog</h4>
+<h4 id="catalog_5">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1546,7 +1746,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_5">Ontology Editor</h4>
+<h4 id="ontology_editor_6">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1577,7 +1777,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_4">Shapes Editor</h4>
+<h4 id="shapes_editor_5">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1625,7 +1825,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_4">Mapping Tool</h4>
+<h4 id="mapping_tool_5">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1667,7 +1867,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_5">Administration</h4>
+<h4 id="administration_6">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1702,7 +1902,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 <p>Mobi 3.0 was released on June 8, 2024. This major release includes a unified versioned RDF editing experience across ontologies and shapes graphs, a brand new UI for managing automated workflows for CI/CD-like processes, additional enterprise integrations with partner products, and much more.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_6">What&#8217;s New</h3>
+<h3 id="whats_new_7">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1712,15 +1912,15 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 <p>We&#8217;ve added a whole new module for managing Workflows to achieve CI/CD governance for your semantic artifacts</p>
 </li>
 <li>
-<p>We&#8217;ve added <em>enterprise only</em> integrations with the popular <a href="https://cambridgesemantics.com/anzo-platform/">Anzo Platform</a> to publish ontologies and vocabularies for use in your enterprise knowledge graphs</p>
+<p>We&#8217;ve added <em>enterprise only</em> integrations with the popular <a href="https://help.altair.com/graphstudio/userdoc/Home.htm/">Graph Studio Platform</a> (formerly Anzo) to publish ontologies and vocabularies for use in your enterprise knowledge graphs</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_6">Detailed Notes</h3>
+<h3 id="detailed_notes_7">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_6">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_7">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1754,7 +1954,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_6">Ontology Editor</h4>
+<h4 id="ontology_editor_7">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1789,7 +1989,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 <div class="ulist">
 <ul>
 <li>
-<p>Added support for publishing SKOS vocabularies and OWL ontologies to an <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a> instance</p>
+<p>Added support for publishing SKOS vocabularies and OWL ontologies to an <a href="https://help.altair.com/graphstudio/userdoc/Home.htm">Graph Studio</a> instance</p>
 </li>
 <li>
 <p>Fixed an issue where the username of displayed users was not displayed on hover</p>
@@ -1798,7 +1998,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_5">Shapes Editor</h4>
+<h4 id="shapes_editor_6">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1851,7 +2051,7 @@ For <strong>Enterprise</strong> deployments utilizing the revamped publish to An
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_5">Mapping Tool</h4>
+<h4 id="mapping_tool_6">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1907,7 +2107,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </table>
 </div>
 <div class="sect2">
-<h3 id="whats_new_7">What&#8217;s New</h3>
+<h3 id="whats_new_8">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1920,9 +2120,9 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_7">Detailed Notes</h3>
+<h3 id="detailed_notes_8">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_7">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_8">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1947,7 +2147,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_5">Catalog</h4>
+<h4 id="catalog_6">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1960,7 +2160,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_7">Ontology Editor</h4>
+<h4 id="ontology_editor_8">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1998,7 +2198,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_6">Shapes Editor</h4>
+<h4 id="shapes_editor_7">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2027,7 +2227,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_6">Mapping Tool</h4>
+<h4 id="mapping_tool_7">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2055,7 +2255,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets">Datasets</h4>
+<h4 id="datasets_2">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2136,7 +2336,7 @@ This version includes a critical fix to reduce duplication of system policies on
 <p>Mobi 2.4 was released on October 6, 2023. This release includes the infrastructure for a new workflows feature, merge request support for Shapes Graph Records, major performance enhancements for the mapping tool, a SPARQL query UI within the Ontology Editor, and many more improvements and bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_8">What&#8217;s New</h3>
+<h3 id="whats_new_9">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2155,9 +2355,9 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_8">Detailed Notes</h3>
+<h3 id="detailed_notes_9">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_8">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_9">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2189,7 +2389,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_6">Catalog</h4>
+<h4 id="catalog_7">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2202,7 +2402,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_8">Ontology Editor</h4>
+<h4 id="ontology_editor_9">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2246,7 +2446,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_7">Shapes Editor</h4>
+<h4 id="shapes_editor_8">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2278,7 +2478,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_7">Mapping Tool</h4>
+<h4 id="mapping_tool_8">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2300,7 +2500,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets_2">Datasets</h4>
+<h4 id="datasets_3">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2335,7 +2535,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_6">Administration</h4>
+<h4 id="administration_7">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2354,7 +2554,7 @@ This version includes a critical fix to reduce duplication of system policies on
 <p>Mobi 2.3 was released on July 3, 2023. This release includes major performance enhancements for ontology/vocabulary uploads and deletions, a revamped commit history graph, frontend framework upgrades, and a variety of bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_9">What&#8217;s New</h3>
+<h3 id="whats_new_10">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2370,9 +2570,9 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_9">Detailed Notes</h3>
+<h3 id="detailed_notes_10">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_9">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_10">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2410,7 +2610,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_7">Catalog</h4>
+<h4 id="catalog_8">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2423,7 +2623,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_9">Ontology Editor</h4>
+<h4 id="ontology_editor_10">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2475,7 +2675,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_8">Shapes Editor</h4>
+<h4 id="shapes_editor_9">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2504,7 +2704,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_8">Mapping Tool</h4>
+<h4 id="mapping_tool_9">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2596,7 +2796,7 @@ This version includes a critical fix to reduce duplication of system policies on
 <p>Mobi 2.2 was released on April 10, 2023. This release includes brand new filter functionality for the Ontology Visualization tool inside the editor, improvements to the build process for the frontend code, and a variety of bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_10">What&#8217;s New</h3>
+<h3 id="whats_new_11">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2612,9 +2812,9 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_10">Detailed Notes</h3>
+<h3 id="detailed_notes_11">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_10">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_11">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2642,7 +2842,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_10">Ontology Editor</h4>
+<h4 id="ontology_editor_11">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2676,7 +2876,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_9">Mapping Tool</h4>
+<h4 id="mapping_tool_10">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2686,7 +2886,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets_3">Datasets</h4>
+<h4 id="datasets_4">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2706,7 +2906,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_7">Administration</h4>
+<h4 id="administration_8">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2728,7 +2928,7 @@ This version includes a critical fix to reduce duplication of system policies on
 <p>Mobi 2.1 was released on December 16, 2022. This release includes more intuitive changes displays, multiple improvements for "solutioneers" building on top of Mobi, and a variety of performance enhancements and bug fixes.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_11">What&#8217;s New</h3>
+<h3 id="whats_new_12">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2741,9 +2941,9 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_11">Detailed Notes</h3>
+<h3 id="detailed_notes_12">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_11">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_12">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2768,7 +2968,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_8">Catalog</h4>
+<h4 id="catalog_9">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2781,7 +2981,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_11">Ontology Editor</h4>
+<h4 id="ontology_editor_12">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2816,7 +3016,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_9">Shapes Editor</h4>
+<h4 id="shapes_editor_10">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2848,7 +3048,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_10">Mapping Tool</h4>
+<h4 id="mapping_tool_11">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2861,7 +3061,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets_4">Datasets</h4>
+<h4 id="datasets_5">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2871,7 +3071,7 @@ This version includes a critical fix to reduce duplication of system policies on
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_8">Administration</h4>
+<h4 id="administration_9">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2921,7 +3121,7 @@ For those upgrading from 1.x to 2.0, follow our <a href="https://inovexirad.atla
 </table>
 </div>
 <div class="sect2">
-<h3 id="whats_new_12">What&#8217;s New</h3>
+<h3 id="whats_new_13">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2958,9 +3158,9 @@ With the latest version of Karaf, the password properties in <code>$MOBI_HOME/et
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_12">Detailed Notes</h3>
+<h3 id="detailed_notes_13">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_12">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_13">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2997,7 +3197,7 @@ With the latest version of Karaf, the password properties in <code>$MOBI_HOME/et
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_12">Ontology Editor</h4>
+<h4 id="ontology_editor_13">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3098,7 +3298,7 @@ With the latest version of Karaf, the password properties in <code>$MOBI_HOME/et
 <p>Mobi 1.22 was released on June 22, 2022. This release includes extensive application of Dataset policies throughout the platform, full policy management in the Catalog, enhanced access control on Shapes Graph Records, and a prepackaged default trust store for secure SSL communications. It also includes various bug fixes and improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_13">What&#8217;s New</h3>
+<h3 id="whats_new_14">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3126,9 +3326,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_13">Detailed Notes</h3>
+<h3 id="detailed_notes_14">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_13">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_14">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3144,7 +3344,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_9">Catalog</h4>
+<h4 id="catalog_10">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3154,7 +3354,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_13">Ontology Editor</h4>
+<h4 id="ontology_editor_14">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3173,7 +3373,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="shapes_editor_10">Shapes Editor</h4>
+<h4 id="shapes_editor_11">Shapes Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3199,7 +3399,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_11">Mapping Tool</h4>
+<h4 id="mapping_tool_12">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3234,7 +3434,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.21 released on February 15, 2022. This release features the full release of the Ontology Visualization feature in the Ontology Editor, access control policies on datasets, a UI for defining the default IRI when creating new ontologies, and a brand new beta release of a Shapes Editor for Shapes Constraint Language (SHACL) files. It also includes various bug fixes and improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_14">What&#8217;s New</h3>
+<h3 id="whats_new_15">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3250,9 +3450,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_14">Detailed Notes</h3>
+<h3 id="detailed_notes_15">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_14">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_15">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3265,7 +3465,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_10">Catalog</h4>
+<h4 id="catalog_11">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3275,7 +3475,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_14">Ontology Editor</h4>
+<h4 id="ontology_editor_15">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3320,7 +3520,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_12">Mapping Tool</h4>
+<h4 id="mapping_tool_13">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3330,7 +3530,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets_5">Datasets</h4>
+<h4 id="datasets_6">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3340,7 +3540,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_9">Administration</h4>
+<h4 id="administration_10">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3359,7 +3559,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.20 was released on October 11, 2021. This release features a beta for Ontology Visualization in the Ontology Editor, updated <code>dct:modified</code> dates on Records, Record filtering by keyword in the Catalog, UPDATE query CLI support, and an extension to the Settings framework to support application wide settings. It also includes updates to policy handling, such as the filtering Records based on the user&#8217;s ability to view the Record. Additionally, this release includes SPARQL query endpoint compliance, a REST interface for ETL, Basic Authentication on REST endpoints, Reflexive/Irreflexive property support, and various bug fixes and improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_15">What&#8217;s New</h3>
+<h3 id="whats_new_16">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3387,9 +3587,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_15">Detailed Notes</h3>
+<h3 id="detailed_notes_16">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_15">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_16">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3432,7 +3632,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_11">Catalog</h4>
+<h4 id="catalog_12">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3448,7 +3648,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_15">Ontology Editor</h4>
+<h4 id="ontology_editor_16">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3488,7 +3688,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_13">Mapping Tool</h4>
+<h4 id="mapping_tool_14">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3518,7 +3718,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_10">Administration</h4>
+<h4 id="administration_11">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3537,7 +3737,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.19 was released on May 7, 2021. This release includes improved performance for various actions within the Ontology Editor, support for uploading compressed ontology files, and new features for an improved editing and viewing experience. It also features a new <a href="https://www.w3.org/TR/shacl/">SHACL</a> based framework for setting user preferences in the UI, fully interactive Swagger documentation for our extensive REST APIs, and numerous bug fixes and improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_16">What&#8217;s New</h3>
+<h3 id="whats_new_17">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3553,9 +3753,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_16">Detailed Notes</h3>
+<h3 id="detailed_notes_17">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_16">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_17">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3589,7 +3789,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_12">Catalog</h4>
+<h4 id="catalog_13">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3605,7 +3805,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_16">Ontology Editor</h4>
+<h4 id="ontology_editor_17">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3682,7 +3882,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_14">Mapping Tool</h4>
+<h4 id="mapping_tool_15">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3718,7 +3918,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_11">Administration</h4>
+<h4 id="administration_12">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3737,7 +3937,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.18 was released on November 3, 2020. This release includes improved performance when viewing the differences of a specific commit or between two commits. It also has a brand new SPARQL query editor that supports CONSTRUCT queries as well, expressive syntax error displays on ontology uploads, support for encrypting passwords stored in service configuration files, and updates to several underlying libraries between the backend and frontend.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_17">What&#8217;s New</h3>
+<h3 id="whats_new_18">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3756,9 +3956,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_17">Detailed Notes</h3>
+<h3 id="detailed_notes_18">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_17">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_18">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3783,7 +3983,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_13">Catalog</h4>
+<h4 id="catalog_14">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3793,7 +3993,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_17">Ontology Editor</h4>
+<h4 id="ontology_editor_18">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3852,7 +4052,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_15">Mapping Tool</h4>
+<h4 id="mapping_tool_16">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3903,7 +4103,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.17 was released on August 5, 2020. This release includes major performance improvements, allowing the Ontology Editor to support much larger ontologies than it could before. It also has a new "Active Entity" filter in each of the ontology tabs that will optionally filter out imported entities from the hierarchy view, configurable token duration for account logins, a limit on the amount of data shown in the Preview Block of the Ontology Editor, and now defaults to using the Repository Implementation for the ontology API.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_18">What&#8217;s New</h3>
+<h3 id="whats_new_19">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3919,9 +4119,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_18">Detailed Notes</h3>
+<h3 id="detailed_notes_19">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_18">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_19">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3943,7 +4143,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_18">Ontology Editor</h4>
+<h4 id="ontology_editor_19">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4010,7 +4210,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_14">Catalog</h4>
+<h4 id="catalog_15">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4029,7 +4229,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.16 was released on October 7, 2019. This release includes a Webpack and Typescript frontend, a new implementation of the backend ontology API, better SKOS and SKOS-XL vocabulary support, and various other performance improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_19">What&#8217;s New</h3>
+<h3 id="whats_new_20">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4045,9 +4245,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_19">Detailed Notes</h3>
+<h3 id="detailed_notes_20">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_19">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_20">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4090,7 +4290,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_19">Ontology Editor</h4>
+<h4 id="ontology_editor_20">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4148,7 +4348,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_15">Catalog</h4>
+<h4 id="catalog_16">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4171,7 +4371,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="datasets_6">Datasets</h4>
+<h4 id="datasets_7">Datasets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4184,7 +4384,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="administration_12">Administration</h4>
+<h4 id="administration_13">Administration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4206,7 +4406,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.15 was released on March 28, 2019. This release includes a redesigned Catalog, new Ontology Editor usability features, and several performance and API improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_20">What&#8217;s New</h3>
+<h3 id="whats_new_21">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4225,9 +4425,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_20">Detailed Notes</h3>
+<h3 id="detailed_notes_21">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_20">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_21">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4261,7 +4461,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_20">Ontology Editor</h4>
+<h4 id="ontology_editor_21">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4295,7 +4495,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_16">Catalog</h4>
+<h4 id="catalog_17">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4346,7 +4546,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.14 was released on January 18, 2019. This release includes several new features for ontology versioning, tools for creating better review and ingest workflows with merge requests and the mapping tool, and major performance improvements.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_21">What&#8217;s New</h3>
+<h3 id="whats_new_22">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4371,9 +4571,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_21">Detailed Notes</h3>
+<h3 id="detailed_notes_22">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_21">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_22">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4401,7 +4601,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_21">Ontology Editor</h4>
+<h4 id="ontology_editor_22">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4472,7 +4672,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_16">Mapping Tool</h4>
+<h4 id="mapping_tool_17">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4500,7 +4700,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="catalog_17">Catalog</h4>
+<h4 id="catalog_18">Catalog</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4529,7 +4729,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.13 was released on October 10, 2018. This release includes a completely refreshed user experience, ontology access control, new tools for creating ontologies and vocabularies, and enhanced features for ontology review workflows.</p>
 </div>
 <div class="sect2">
-<h3 id="whats_new_22">What&#8217;s New</h3>
+<h3 id="whats_new_23">What&#8217;s New</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4548,9 +4748,9 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="detailed_notes_22">Detailed Notes</h3>
+<h3 id="detailed_notes_23">Detailed Notes</h3>
 <div class="sect3">
-<h4 id="general_improvements_and_fixes_22">General Improvements and Fixes</h4>
+<h4 id="general_improvements_and_fixes_23">General Improvements and Fixes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4593,7 +4793,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="ontology_editor_22">Ontology Editor</h4>
+<h4 id="ontology_editor_23">Ontology Editor</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4649,7 +4849,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect3">
-<h4 id="mapping_tool_17">Mapping Tool</h4>
+<h4 id="mapping_tool_18">Mapping Tool</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4683,7 +4883,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.12 was released on May 18, 2018. This release includes new features for collaborating and reviewing changes to ontologies as well as a new policy-based security architecture.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_23">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_24">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4731,7 +4931,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_23">Ontology Editor</h3>
+<h3 id="ontology_editor_24">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4783,7 +4983,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_18">Mapping Tool</h3>
+<h3 id="mapping_tool_19">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4811,7 +5011,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.11 was released on January 24, 2017. This release features improvements to ontology version control, data management and exploration, and numerous bug fixes and performance improvements across the platform.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_24">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_25">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4839,7 +5039,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_24">Ontology Editor</h3>
+<h3 id="ontology_editor_25">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4922,7 +5122,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.10 was released on November 27, 2017. This release features improvements to vocabulary editing, new instance management tools, and numerous bug fixes across the platform.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_25">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_26">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4941,7 +5141,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_25">Ontology Editor</h3>
+<h3 id="ontology_editor_26">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4981,7 +5181,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_19">Mapping Tool</h3>
+<h3 id="mapping_tool_20">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5046,7 +5246,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.9 was released on October 20, 2017. This release features new provenance, search, and visualization features as well as numerous bug fixes across the platform.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_26">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_27">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5068,7 +5268,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_26">Ontology Editor</h3>
+<h3 id="ontology_editor_27">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5108,7 +5308,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_20">Mapping Tool</h3>
+<h3 id="mapping_tool_21">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5140,7 +5340,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="catalog_18">Catalog</h3>
+<h3 id="catalog_19">Catalog</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5197,7 +5397,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>Mobi 1.8 was released on August 27, 2017. This release features the official rebranding of the MatOnto platform as Mobi. Key features include improved support for OWL Restrictions, new support for local ontology imports, new features for instance data editing and creation, and a new "Search" tool within the Discover Module.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_27">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_28">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5216,7 +5416,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_27">Ontology Editor</h3>
+<h3 id="ontology_editor_28">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5259,7 +5459,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_21">Mapping Tool</h3>
+<h3 id="mapping_tool_22">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5297,7 +5497,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="datasets_7">Datasets</h3>
+<h3 id="datasets_8">Datasets</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5354,7 +5554,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>MatOnto was 1.7 released on June 5, 2017. This release includes many bug fixes and performance improvements for the Ontology Editor and mapping tool as well as a new Discover Module for exploring datasets.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_28">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_29">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5380,7 +5580,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_28">Ontology Editor</h3>
+<h3 id="ontology_editor_29">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5405,7 +5605,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_22">Mapping Tool</h3>
+<h3 id="mapping_tool_23">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5482,7 +5682,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>MatOnto 1.6 was released on May 8, 2017. This release includes many bug fixes and performance improvements for the Ontology Editor as well as various improvements to the mapping tool and user management page.</p>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_29">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_30">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5507,7 +5707,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_29">Ontology Editor</h3>
+<h3 id="ontology_editor_30">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5571,7 +5771,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_23">Mapping Tool</h3>
+<h3 id="mapping_tool_24">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5608,7 +5808,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="datasets_8">Datasets</h3>
+<h3 id="datasets_9">Datasets</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5626,7 +5826,7 @@ All system level policies will be reset to their defaults on a restore into this
 <p>MatOnto 1.5 was released on April 4, 2017. This release contains the first features for MatOnto datasets and many improvements to the Ontology Editor user experience.</p>
 </div>
 <div class="sect2">
-<h3 id="datasets_9">Datasets</h3>
+<h3 id="datasets_10">Datasets</h3>
 <div class="paragraph">
 <p>A new feature in 1.5, MatOnto Datasets provide collections of RDF graphs that can be managed and queried independently of other data stored within MatOnto repositories.</p>
 </div>
@@ -5645,7 +5845,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="ontology_editor_30">Ontology Editor</h3>
+<h3 id="ontology_editor_31">Ontology Editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5685,7 +5885,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="mapping_tool_24">Mapping Tool</h3>
+<h3 id="mapping_tool_25">Mapping Tool</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5714,7 +5914,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 </div>
 <div class="sect2">
-<h3 id="general_improvements_and_fixes_30">General Improvements and Fixes</h3>
+<h3 id="general_improvements_and_fixes_31">General Improvements and Fixes</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5738,7 +5938,7 @@ All system level policies will be reset to their defaults on a restore into this
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-05-29 15:21:48 UTC
+Last updated 2026-07-09 19:52:23 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>

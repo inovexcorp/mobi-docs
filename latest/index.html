@@ -79,13 +79,14 @@
     <label class="menu-icon" for="menu-btn"><i class="fa fa-bars" aria-hidden="true"></i></label>
     <ul class="nav-items">
         <li><a href="../latest/index.html">User Manual</a></li>
+        <li><a href="../api-guide/index.html">API Guide</a></li>
         <li><a href="../release-notes/index.html">Release Notes</a></li>
         <li><a href="https://inovexirad.atlassian.net/servicedesk/customer/portal/1" target="_blank">Help Desk</a></li>
     </ul>
 </div><div id="header">
 <h1>Mobi User Manual</h1>
 <div class="details">
-<span id="revnumber">version 4.3</span>
+<span id="revnumber">version 4.4</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -355,7 +356,7 @@
 <li><a href="#prerequisites_6">Prerequisites</a></li>
 <li><a href="#build_from_source">Build from Source</a></li>
 <li><a href="#load_dataset_data">Load Dataset Data</a></li>
-<li><a href="#accessing_swagger_rest_api_documentation">Accessing Swagger REST API Documentation</a></li>
+<li><a href="#using_the_rest_api">Using the REST API</a></li>
 <li><a href="#translating_documents">Translating Documents</a>
 <ul class="sectlevel3">
 <li><a href="#utilizing_the_mobi_shell">Utilizing the Mobi Shell</a></li>
@@ -494,21 +495,6 @@
 <li><a href="#waction">w:Action</a></li>
 </ul>
 </li>
-<li><a href="#creating_and_using_workflows">Creating and Using Workflows</a>
-<ul class="sectlevel3">
-<li><a href="#create_a_workflow">Create a Workflow</a></li>
-<li><a href="#activatedeactivate_a_workflow">Activate/Deactivate a Workflow</a></li>
-<li><a href="#update_a_workflow_definition">Update a Workflow Definition</a></li>
-<li><a href="#manually_initiate_a_workflow_execution">Manually Initiate a Workflow Execution</a></li>
-<li><a href="#retrieving_workflow_provenance_and_logs">Retrieving Workflow Provenance and Logs</a>
-<ul class="sectlevel4">
-<li><a href="#retrieve_workflow_activity">Retrieve Workflow Activity</a></li>
-<li><a href="#retrieve_all_workflow_activities">Retrieve All Workflow Activities</a></li>
-<li><a href="#retrieve_specific_workflow_activity_logs">Retrieve Specific Workflow Activity Logs</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a href="#extending_workflows">Extending Workflows</a>
 <ul class="sectlevel3">
 <li><a href="#triggeraction_rdf_definition">Trigger/Action RDF Definition</a></li>
@@ -523,7 +509,19 @@
 </li>
 </ul>
 </li>
-<li><a href="#publish_framework_examples_enterprise">Appendix G: Publish Framework Examples (ENTERPRISE)</a>
+<li><a href="#webhooks">Appendix G: Webhooks</a>
+<ul class="sectlevel2">
+<li><a href="#webhook_rdf_definition">Webhook RDF Definition</a>
+<ul class="sectlevel3">
+<li><a href="#webwebhookconfiguration">web:WebhookConfiguration</a></li>
+<li><a href="#webwebhookexecutionactivity">web:WebhookExecutionActivity</a></li>
+<li><a href="#webwebhookcallback">web:WebhookCallback</a></li>
+</ul>
+</li>
+<li><a href="#event-topics">Event Topics</a></li>
+</ul>
+</li>
+<li><a href="#publish_framework_examples_enterprise">Appendix H: Publish Framework Examples (ENTERPRISE)</a>
 <ul class="sectlevel2">
 <li><a href="#core_publish_definitions">Core Publish Definitions</a></li>
 <li><a href="#graphdb_publish_example">GraphDB Publish Example</a>
@@ -538,7 +536,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#docker_deployments">Appendix H: Docker Deployments</a>
+<li><a href="#docker_deployments">Appendix I: Docker Deployments</a>
 <ul class="sectlevel2">
 <li><a href="#license_file_enterprise">License File (Enterprise)</a></li>
 <li><a href="#backing_up_data">Backing Up Data</a></li>
@@ -1031,7 +1029,7 @@ sudo -u mobi-community bin/start</code></pre>
 <p>The Record Permissions page enables you to specify which users and groups can perform various actions against a record, such as viewing, deleting, modifying, and managing. <strong>Modify</strong> refers to the ability to affect the data represented by the record while <strong>Manage</strong> refers to the ability to edit the Record metadata. Versioned RDF Records like ontologies and mappings will also provide the ability to restrict who can modify the MASTER branch. Each type of Record has its own default permissions that get set uploaded or created.</p>
 </div>
 <div class="paragraph">
-<p>Permissions can be set to allow all authenticated users (the Everyone slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the Everyone permission, find a user or group in the search box underneath the appropriate box, and select it. To remove a user or group from the permission, click the X button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.  You can also click on the back button if you want to go back to the Record View.</p>
+<p>Permissions can be set to allow all authenticated users (the Everyone slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the Everyone permission, find a user or group in the appropriate search box, and select it. To remove a user or group from the permission, click the X button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.  You can also click on the back button if you want to go back to the Record View.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3295,7 +3293,7 @@ For more information about running a mapping into an ontology, refer to <a href=
 <div class="sect4">
 <h5 id="iri_template_overlay">IRI Template Overlay</h5>
 <div class="paragraph">
-<p>The IRI Template overlay provides you a way to edit each portion of the IRI template of a class mapping. The template will be used to generate the IRIs for each instance created by a class mapping.</p>
+<p>The IRI Template overlay provides you a way to edit the template that will be populated to generate an IRI for each row being processed by a class mapping.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -3303,7 +3301,10 @@ For more information about running a mapping into an ontology, refer to <a href=
 </div>
 </div>
 <div class="paragraph">
-<p>The <span class="underline">Begins with</span> field (required) is the beginning of the IRI. This is more commonly known as the namespace. The <span class="underline">Then</span> field (required) is the next character in the IRI. This value can be thought of the separator between the namespace and local name (described below). The provided values for the <span class="underline">Then</span> field are "&#35;", "/", and ":". The <span class="underline">Ends with</span> dropdown field (required) is the last part of the IRI. This value is commonly known as the local name. The values in this dropdown are "UUID", which represents generating a unique identifier as the local name for each generated instance of each row, and the title of each column, which represents using the value of that column as the local name for each generated instance of each row. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will save the IRI template.</p>
+<p>The <span class="underline">IRI Template</span> field (required) will display the full IRI template saved for the particular class mapping. Anything within <code>${}</code> is treated as a replacement pattern, where a value from one of the columns of the source file will be injected into the generated IRI. This replacement pattern can also contain "UUID" which represents generating a unique identifier as the local name for each generated instance of each row. Replacement patterns (one or more) can be injected into any part of the IRI template and can every be used to represent the entire IRI itself (in cases where a column of the source file contains full IRIs). Once you type <code>${</code> into the IRI Template field, a dropdown will appear with the column titles and "UUID" as options for the replacement pattern for you to select from.</p>
+</div>
+<div class="paragraph">
+<p>Beneath the IRI Template field is an example of how the IRI will be generated based on the current template using the first row of the source file. If this value does not generate a valid IRI, an error message will appear. Clicking <b class="button">Cancel</b> will close the overlay. Clicking <b class="button">Submit</b> will save the IRI template.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3948,7 +3949,7 @@ The default Admin user can not be deleted.
 <div class="sect3">
 <h4 id="permissions">Permissions</h4>
 <div class="paragraph">
-<p>The Permissions tab allows you to set high level access control for common actions in the application, such as creating Ontology Records and querying the system repository.  Permissions can be set to allow all authenticated users (the <span class="underline">Everyone</span> slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the <span class="underline">Everyone</span> permission, find a user or group in the search box underneath the appropriate box, and select it. To remove a user or group from the permission, click the <code>X</code> button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.</p>
+<p>The Permissions tab allows you to set high level access control for common actions in the application, such as creating Ontology Records and querying the system repository. Permissions can be set to allow all authenticated users (the <span class="underline">Everyone</span> slider) or limit access to specific users and groups. To set the permission to a user or group, unselect the <span class="underline">Everyone</span> permission, find a user or group in the appropriate search box, and select it. To remove a user or group from the permission, click the <code>X</code> button next to the username or group title. After you have finished making the changes you want, make sure to click the save button in the bottom right.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4032,7 +4033,7 @@ Management of repository configurations in the UI coming soon!
 <div class="sect3">
 <h4 id="logs">Logs</h4>
 <div class="paragraph">
-<p>The Logs tab enables administrators the ability to review, search, and download the application logs. All logs are loaded from the default log directory of the distribution (<code>$MOBI_HOME/data/log</code>). The tab allows you to view the most recent 100 lines in a "Tail" view or paginate through the entire log file. You can also execute a search through the logs to find relevant results. The full log file can be downloaded from this view to better assist with any triage or parsing activities required. To select a different log file, click on the <span class="underline">FILENAME</span> field and select from the dropdown.</p>
+<p>The Logs tab enables administrators the ability to review, search, and download the application logs as well as configure the log levels for various packages in the platform.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4040,17 +4041,38 @@ Management of repository configurations in the UI coming soon!
 </div>
 <div class="title">Figure 162. Logs Tab</div>
 </div>
+<div class="paragraph">
+<p>All logging in the platform is configured as individual "loggers". A logger configuration is made up of a Java package name and a log level. There is a ROOT logger that applies to all packages and then there can be more specific loggers for specific packages or subpackages that will override the ROOT logger. The log level for a logger determines which log messages will be captured in the logs for any code within that package. The levels, in order of most to least verbose, are: Trace, Debug, Info, Warn, and Error. By default, the root logger is set to "Warn". To change a logger&#8217;s log level, you can use the dropdown in the list and to remove the logger configuration entirely, click the trash icon on the right of the logger&#8217;s row in the list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/user-management/log_level_list.png" alt="log level list">
+</div>
+<div class="title">Figure 163. Logger Configuration</div>
+</div>
+<div class="paragraph">
+<p>To create a new logger, click the <b class="button">Add Logger</b> button. The Add Logger modal will appear with a text field to enter the package name for the logger and a dropdown to select the log level for that logger. The package name can be as specific or general as you&#8217;d like. For example, if you want to capture all logs for any code within the <code>com.mobi.ontology</code> package and its subpackages, you can create a logger with the package name <code>com.mobi.ontology</code>. If you only want to capture logs for code within the <code>com.mobi.ontology.api</code> package, you can create a logger with the package name <code>com.mobi.ontology.api</code>. Once you have entered the package name and selected the log level, click <b class="button">Submit</b> to create the new logger configuration.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/user-management/log_level_modal.png" alt="log level modal" width="50%">
+</div>
+<div class="title">Figure 164. Add Logger Modal</div>
+</div>
+<div class="paragraph">
+<p>All logs are loaded from the default log directory of the distribution (<code>$MOBI_HOME/data/log</code>). The tab allows you to view the most recent 100 lines in a "Tail" view or paginate through the entire log file. You can also execute a search through the logs to find relevant results. The full log file can be downloaded from this view to better assist with any triage or parsing activities required. To select a different log file, click on the <span class="underline">FILENAME</span> field and select from the dropdown.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/user-management/logs_paginated.png" alt="logs paginated">
 </div>
-<div class="title">Figure 163. Logs Tab</div>
+<div class="title">Figure 165. Logs Tab</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/user-management/logs_search.png" alt="logs search">
 </div>
-<div class="title">Figure 164. Logs Tab</div>
+<div class="title">Figure 166. Logs Tab</div>
 </div>
 </div>
 <div class="sect3">
@@ -4062,7 +4084,7 @@ Management of repository configurations in the UI coming soon!
 <div class="content">
 <img src="images/user-management/publish_config_tab.png" alt="publish config tab">
 </div>
-<div class="title">Figure 165. Publish Configuration Tab</div>
+<div class="title">Figure 167. Publish Configuration Tab</div>
 </div>
 <div class="paragraph">
 <p>The modal to create a new publish configuration will first display a select field with all registered types of publish configurations. Once an external system is selected, the modal will populate with all configuration options for that type of external system along with a button to test the connection to the external system before the configuration is saved.</p>
@@ -4101,7 +4123,7 @@ Management of repository configurations in the UI coming soon!
 <div class="content">
 <img src="images/user-management/licensing_tab.png" alt="licensing tab">
 </div>
-<div class="title">Figure 166. Application Settings Tab</div>
+<div class="title">Figure 168. Application Settings Tab</div>
 </div>
 <div class="paragraph">
 <p>If your license is expiring within 7 days, a warning banner will be displayed at the bottom of the screen.</p>
@@ -4110,7 +4132,7 @@ Management of repository configurations in the UI coming soon!
 <div class="content">
 <img src="images/user-management/license_expiration_warning.png" alt="license expiration warning">
 </div>
-<div class="title">Figure 167. License Expiration Warning</div>
+<div class="title">Figure 169. License Expiration Warning</div>
 </div>
 </div>
 <div class="sect3">
@@ -4134,7 +4156,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/connections_tab.png" alt="connections tab">
 </div>
-<div class="title">Figure 168. LDAP/SSO Tab</div>
+<div class="title">Figure 170. LDAP/SSO Tab</div>
 </div>
 <div class="paragraph">
 <p>If an LDAP configuration is set using the associated form, users can log into the application with the Users/Groups defined in your organization&#8217;s directory. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -4143,7 +4165,7 @@ To learn about the available LDAP and SSO configuration files, see <a href="#lda
 <div class="content">
 <img src="images/user-management/ldap_config.png" alt="ldap config">
 </div>
-<div class="title">Figure 169. LDAP Configuration Form</div>
+<div class="title">Figure 171. LDAP Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The LDAP form is separated into two sections. The "Connection" section contains the following fields:</p>
@@ -4254,7 +4276,7 @@ If a SAML or OAuth/OpenID configuration is present and not set to standalone, th
 <div class="content">
 <img src="images/user-management/saml_config.png" alt="saml config">
 </div>
-<div class="title">Figure 170. SAML Configuration Form</div>
+<div class="title">Figure 172. SAML Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The SAML form provides options to customize the connection from Mobi, acting as a Service Provider (SP), to a SAML Identity Property (IdP) and how to pull various user details out of the SAML responses. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared.</p>
@@ -4337,7 +4359,7 @@ In SAML flows, the Identity Property (IdP) will often require the Reply URL, at 
 <div class="content">
 <img src="images/user-management/oauth_config.png" alt="oauth config">
 </div>
-<div class="title">Figure 171. OAuth/OpenID Configuration Form</div>
+<div class="title">Figure 173. OAuth/OpenID Configuration Form</div>
 </div>
 <div class="paragraph">
 <p>The OAuth/OpenID form provides options to customize the connection from Mobi to either a generic OAuth 2.0 Provider or an OpenID provider. The form also allows you to remove the configuration. The changes will immediately go into effect once the form is saved/cleared. Certain fields are the same between both OAuth and OpenID configurations and others that are unique to one vs. the other. The form contains a radio button to allow you to specify which type of provider is configured.</p>
@@ -5859,13 +5881,13 @@ backgroundColor=#99ffce</code></pre>
 <div class="content">
 <img src="images/configuration/login-banner.png" alt="login banner">
 </div>
-<div class="title">Figure 172. Mobi Login Screen with a banner</div>
+<div class="title">Figure 174. Mobi Login Screen with a banner</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/configuration/home-banner.png" alt="home banner">
 </div>
-<div class="title">Figure 173. Mobi Home Page with a banner</div>
+<div class="title">Figure 175. Mobi Home Page with a banner</div>
 </div>
 <div class="sect5">
 <h6 id="multi_line_html_template">Multi-Line HTML Template</h6>
@@ -6612,7 +6634,7 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <div class="sect4">
 <h5 id="change_the_default_java_heap_size">Change the Default Java Heap Size</h5>
 <div class="paragraph">
-<p>Set the max heap size in <code>$MOBI_HOME/bin/setenv</code> (e.g. <code>JAVA_MAX_MEM=4G</code>). In version 1.21, to include the <code>JAVA_MAX_MEM</code> and <code>JAVA_MIN_MEM</code> variables in the Mobi startup, add the following line beneath them in the <code>setenv</code> file.</p>
+<p>The max and min heap size for the platform are configured using the <code>JAVA_MAX_MEM</code> and <code>JAVA_MIN_MEM</code> environment variables. The <code>$MOBI_HOME/bin/setenv</code> file (and <code>$MOBI_HOME/bin/setenv.bat</code> file) contain default settings for these variables which can either be overwritten in those file or set externally.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6621,15 +6643,17 @@ Due to the self-signed SSL certificate that Mobi comes with, your browser will l
 <div class="title">Note</div>
 </td>
 <td class="content">
-All versions from 1.22 onwards have this line already added.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Versions 1.22 to 4.3 require updating the variables within the files in order to specify the heap sizes. Versions 1.21 and below require both updating the files and adding the following additional line to include the variables in the startup.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JAVA_OPTS="-Xms${JAVA_MIN_MEM} -Xmx${JAVA_MAX_MEM}"</code></pre>
 </div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -6763,7 +6787,7 @@ integrity check</p></td>
 <div class="sect4">
 <h5 id="configuring_a_reverse_proxy">Configuring a Reverse Proxy</h5>
 <div class="paragraph">
-<p>In production environments, Mobi is often run behind a reverse proxy for SSL termination and redirection from port 443. If you are using a reverse proxy, be sure to configure the appropriate proxy settings in the <code>$MOBI_HOME/bin/setenv</code> file in the <code>EXTRA_JAVA_OPS</code> variable. The most common properties to set are <code>http.proxyHost</code>, <code>http.proxyPort</code>, <code>https.proxyHost</code>, and <code>https.proxyPort</code>.</p>
+<p>In production environments, Mobi is often run behind a reverse proxy for SSL termination and redirection from port 443. If you are using a reverse proxy, be sure to configure the appropriate proxy settings via the <code>EXTRA_JAVA_OPS</code> environment variable. This can be set via the <code>$MOBI_HOME/bin/setenv</code> file (and <code>$MOBI_HOME/bin/setenv.bat</code> file) or set externally. The most common properties to set are <code>http.proxyHost</code>, <code>http.proxyPort</code>, <code>https.proxyHost</code>, and <code>https.proxyPort</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6879,7 +6903,7 @@ systemctl enable mobi</code></pre>
 <div class="title">Warning</div>
 </td>
 <td class="content">
-If restoring from a version prior to 1.22, there are two files which are not included in the backup whose contents will need to be manually updated in the new distribution. The <code>$NEW_MOBI_HOME/bin/setenv</code> file contains the Java Max and Min Memory settings that should be updated to the desired levels post upgrade (See <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>). The <code>$NEW_MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file holds a variable for the <span class="underline">hostName</span> of the application (See <a href="#set_the_host_name">Set the Host Name</a>). This will need to be manually updated to the previous value to support certain connections with other applications.
+If restoring from a version prior to 1.22, there are two files which are not included in the backup whose contents will need to be manually updated in the new distribution. Be sure to set the Java Max and Min Memory settings either via the <code>$NEW_MOBI_HOME/bin/setenv</code> file or via environment variables post upgrade (See <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>). The <code>$NEW_MOBI_HOME/etc/com.mobi.platform.server.cfg</code> file holds a variable for the <span class="underline">hostName</span> of the application (See <a href="#set_the_host_name">Set the Host Name</a>). This will need to be manually updated to the previous value to support certain connections with other applications.
 </td>
 </tr>
 </table>
@@ -7112,14 +7136,9 @@ The Mobi server can take several seconds to start up. If the <code>client</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="accessing_swagger_rest_api_documentation">Accessing Swagger REST API Documentation</h3>
+<h3 id="using_the_rest_api">Using the REST API</h3>
 <div class="paragraph">
-<p>Every installation of Mobi provides <a href="https://swagger.io/">Swagger</a> Documentation for the full suite of Mobi REST APIs. This documentation is provided as a standard Swagger YAML file as well as a fully interactive hosted version. The Swagger YAML file can be downloaded at <code>$MOBI_HOST/swagger-ui/mobi-swagger.yaml</code>. To reach the Swagger Documentation UI, navigate to <code>$MOBI_HOST/swagger-ui/index.html</code>. For example, in a default deployment these URLs would look like <a href="https://localhost:8443/swagger-ui/mobi-swagger.yaml" class="bare">https://localhost:8443/swagger-ui/mobi-swagger.yaml</a> and <a href="https://localhost:8443/swagger-ui/index.html" class="bare">https://localhost:8443/swagger-ui/index.html</a>, respectively. If the browser session is already logged into Mobi, there is no need to click the Authorize button.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/developer-guide/swagger-docs.png" alt="Swagger REST API Documentation">
-</div>
+<p>To read more into the REST API, please refer to the <a href="/mobi-docs/api-guide/index.html">API Guide</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -7127,7 +7146,7 @@ The Mobi server can take several seconds to start up. If the <code>client</code>
 <div class="paragraph">
 <p>Files in the xml, json, or csv formats can be transformed into an ontology and corresponding instance data using Mobi&#8217;s
 document translation tool. This experimental feature can be utilized via REST endpoint, the <a href="#mobi-shell-guide">Mobi shell</a>,
-or from the <a href="#accessing_swagger_rest_api_documentation">Swagger UI</a>, with all methods providing users configuration
+or from the <a href="#Accessing Swagger REST API Documentation">Swagger UI</a>, with all methods providing users configuration
 options to alter the generated files.</p>
 </div>
 <div class="sect3">
@@ -7185,7 +7204,7 @@ properties.</p>
 <div class="content">
 <img src="images/developer-guide/XML_input_file.png" alt="XML Input File">
 </div>
-<div class="title">Figure 174. XML Example File</div>
+<div class="title">Figure 176. XML Example File</div>
 </div>
 <div class="paragraph">
 <p>When generating the ontology, each element is simultaneously treated as a class and object property if it
@@ -7196,7 +7215,7 @@ to the one below.</p>
 <div class="content">
 <img src="images/developer-guide/XML_ont_file.png" alt="XML Ontology Output File">
 </div>
-<div class="title">Figure 175. XML Example Ontology File</div>
+<div class="title">Figure 177. XML Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is composed of elements that have been deemed a class and that have literal values attached to it.
@@ -7206,7 +7225,7 @@ Each instance is given a unique IRI based on the namespace of the ontology with 
 <div class="content">
 <img src="images/developer-guide/XML_data_file.png" alt="XML Data Output File">
 </div>
-<div class="title">Figure 176. XML Example Data File</div>
+<div class="title">Figure 178. XML Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -7219,7 +7238,7 @@ classes and object properties.</p>
 <div class="content">
 <img src="images/developer-guide/JSON_file_input.png" alt="JSON Input File">
 </div>
-<div class="title">Figure 177. JSON Example File</div>
+<div class="title">Figure 179. JSON Example File</div>
 </div>
 <div class="paragraph">
 <p>An output ontology is then generated using the passed in IRI or a UUID as the namespace. Classes and object properties
@@ -7229,7 +7248,7 @@ relating these classes are created based on the keys present in the input file.<
 <div class="content">
 <img src="images/developer-guide/JSON_ont_output.png" alt="JSON Ontology Output File">
 </div>
-<div class="title">Figure 178. JSON Example Ontology File</div>
+<div class="title">Figure 180. JSON Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>The generated data file is created by utilizing the literal values of each key object. For each instance of a JSON
@@ -7239,7 +7258,7 @@ object there is in the input file an RDF entity is created with the same namespa
 <div class="content">
 <img src="images/developer-guide/JSON_data_output.png" alt="JSON Data Output File">
 </div>
-<div class="title">Figure 179. JSON Example Data File</div>
+<div class="title">Figure 181. JSON Example Data File</div>
 </div>
 </div>
 <div class="sect4">
@@ -7252,7 +7271,7 @@ singular class is generated per file, with the name of the file being used as th
 <div class="content">
 <img src="images/developer-guide/CSV_input_file.png" alt="CSV Input File">
 </div>
-<div class="title">Figure 180. CSV Example File</div>
+<div class="title">Figure 182. CSV Example File</div>
 </div>
 <div class="paragraph">
 <p>Each column header is treated as a different datatype property, with the translator parsing a certain number of rows to
@@ -7262,7 +7281,7 @@ determine the range of the property.</p>
 <div class="content">
 <img src="images/developer-guide/CSV_ont_output.png" alt="CSV Ontology Output File">
 </div>
-<div class="title">Figure 181. CSV Example Ontology File</div>
+<div class="title">Figure 183. CSV Example Ontology File</div>
 </div>
 <div class="paragraph">
 <p>When creating the instance data, each row within the file is treated as an instance of the class with
@@ -7272,7 +7291,7 @@ the cell values being the object of the triples generated by the datatype proper
 <div class="content">
 <img src="images/developer-guide/CSV_data_output.png" alt="CSV Data Output File">
 </div>
-<div class="title">Figure 182. CSV Example Data File</div>
+<div class="title">Figure 184. CSV Example Data File</div>
 </div>
 </div>
 </div>
@@ -9378,8 +9397,8 @@ permissions for a given Record</p>
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
 @prefix w: &lt;http://mobi.solutions/ontologies/workflows#&gt;.
-@prefix : &lt;http://mobi.solutions/test#&gt;.
-@base &lt;http://mobi.solutions/test&gt;.
+@prefix : &lt;https://mobi.solutions/test#&gt;.
+@base &lt;https://mobi.solutions/test&gt;.
 
 :WorkflowA a w:Workflow ;
     w:hasAction :TestActionA .
@@ -9505,329 +9524,6 @@ More Action types are coming soon!
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating_and_using_workflows">Creating and Using Workflows</h3>
-<div class="paragraph">
-<p>Complete management and execution of Workflows can be accomplished through Mobi&#8217;s extensive REST API suite. Common flows when maintaining Workflows are described below. The described REST requests can be performed via a REST API client like <a href="https://www.postman.com/">Postman</a> or using the provided <a href="#Swagger Documentation">Accessing Swagger REST API Documentation</a> from the installation. If you are using a separate software like Postman, be sure to authenticate either using Basic Auth or the dedicated POST <code>$MOBI_HOST/mobirest/session</code> endpoint, passing the <code>username</code> and <code>password</code> as query parameters.</p>
-</div>
-<div class="sect3">
-<h4 id="create_a_workflow">Create a Workflow</h4>
-<div class="paragraph">
-<p>To create a workflow, follow the steps below.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a file containing the RDF definition of your Workflow. An example file is shown below.</p>
-<div class="listingblock">
-<div class="title">workflow.ttl</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt;.
-@prefix w: &lt;http://mobi.solutions/ontologies/workflows#&gt;.
-@prefix : &lt;http://mobi.solutions/test#&gt;.
-@base &lt;http://mobi.solutions/test&gt;.
-
-:WorkflowA a w:Workflow ;
-    w:hasAction :TestActionA .
-
-:TestActionA a w:TestAction, w:Action ;
-    w:testMessage "This is a test." .</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Send a POST REST request to <code>$MOBI_HOST/mobirest/workflows</code> with the following form data contents. The response from this endpoint will include the IRI of the newly created Workflow Record, which will the unique identifier for your Workflow needed for any further requests.</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Parameter</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>file</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The required binary RDF file containing your workflow definition</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The required title for the Workflow Record you are creating</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An optional description for the Workflow Record you are creating</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>markdown</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An optional markdown overview of the Workflow Record you are creating</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>keywords</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An optional list of keywords to associate with the Workflow Record you are creating</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>Once created, the Workflow Record will appear in the Catalog UI in the application so record metadata and permissions can be adjusted from there.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="activatedeactivate_a_workflow">Activate/Deactivate a Workflow</h4>
-<div class="paragraph">
-<p>When a Workflow Record is first created, it is inactive to start, meaning that even manually initiating an execution will not succeed. This is done to ensure that all required edits to the Workflow can be performed without fear of it executing before the changes are complete. To activate a Workflow and enable it to run, you will need to update the Workflow Record metadata following the steps below.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will return the full JSON-LD of your Workflow&#8217;s metadata, which should look like below.</p>
-<div class="listingblock">
-<div class="title">Example Workflow Record JSON-LD</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
-    {
-        "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc",
-        "@type": [
-            "http://www.w3.org/2002/07/owl#Thing",
-            "http://mobi.solutions/ontologies/workflows#WorkflowRecord",
-            "http://mobi.com/ontologies/catalog#VersionedRecord",
-            "http://mobi.com/ontologies/catalog#VersionedRDFRecord",
-            "http://mobi.com/ontologies/catalog#Record"
-        ],
-        "http://mobi.com/ontologies/catalog#branch": [
-            {
-                "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
-            }
-        ],
-        "http://mobi.com/ontologies/catalog#catalog": [
-            {
-                "@id": "http://mobi.com/catalog-local"
-            }
-        ],
-        "http://mobi.com/ontologies/catalog#masterBranch": [
-            {
-                "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
-            }
-        ],
-        "http://mobi.solutions/ontologies/workflows#active": [
-            {
-                "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-                "@value": "true"
-            }
-        ],
-        "http://mobi.solutions/ontologies/workflows#latestActivity": [
-            {
-                "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a"
-            }
-        ],
-        "http://mobi.solutions/ontologies/workflows#workflowIRI": [
-            {
-                "@id": "http://test.com/workflows-example#WorkflowB"
-            }
-        ],
-        "http://purl.org/dc/terms/issued": [
-            {
-                "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                "@value": "2023-09-15T08:55:30.954519-04:00"
-            }
-        ],
-        "http://purl.org/dc/terms/modified": [
-            {
-                "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                "@value": "2023-09-15T08:57:28.801002-04:00"
-            }
-        ],
-        "http://purl.org/dc/terms/publisher": [
-            {
-                "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-            }
-        ],
-        "http://purl.org/dc/terms/title": [
-            {
-                "@value": "Workflow B"
-            }
-        ]
-    }
-]</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Copy the returned JSON-LD. Send a PUT REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. The paste the Record JSON-LD into the body of the request and change the <code>@value</code> value of <code>http://mobi.solutions/ontologies/workflows#active</code> to the desired activation state (<code>true</code> for active and <code>false</code> for inactive).</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="update_a_workflow_definition">Update a Workflow Definition</h4>
-<div class="paragraph">
-<p>Workflows are managed by Workflow Records, which are types of Versioned RDF Records. This means that all changes to the definition of the Workflow must go through the standard graph-versioning flow in order for the changes to be recognized by the system. Thus, to update the definition of a Workflow, you will need to first create an In Progress Commit with the changes and then commit those changes to the MASTER branch. This can be done by either uploading a new version of the workflow as a file or manually creating an in progress commit with the added and deleted triples. Regardless of which option you choose, you will need to follow steps similar to those below.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Make a GET REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/branches/master</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will return the full JSON-LD of the MASTER Branch of the Workflow Record. We will need both the IRI of the Branch and the IRI of the head Commit for the subsequent requests. An example response is shown below.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a",
-    "@type": [
-        "http://www.w3.org/2002/07/owl#Thing",
-        "http://mobi.com/ontologies/catalog#Branch"
-    ],
-    "http://mobi.com/ontologies/catalog#head": [
-        {
-            "@id": "https://mobi.com/commits#d78190647e4e9b2e8555c036349fbf8928417c50"
-        }
-    ],
-    "http://purl.org/dc/terms/description": [
-        {
-            "@value": "The master branch."
-        }
-    ],
-    "http://purl.org/dc/terms/issued": [
-        {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2023-09-15T08:55:30.955812-04:00"
-        }
-    ],
-    "http://purl.org/dc/terms/modified": [
-        {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2023-09-15T08:55:31.003336-04:00"
-        }
-    ],
-    "http://purl.org/dc/terms/publisher": [
-        {
-            "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-        }
-    ],
-    "http://purl.org/dc/terms/title": [
-        {
-            "@value": "MASTER"
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Make a GET REST request to <code>$MOBI_HOST/mobirest/commits/ENCODED_COMMIT_IRI/resource</code> where <code>ENCODED_COMMIT_IRI</code> is replaced by the URL encoded version of the IRI of the head Commit retrieved from the last call. This will return the compiled RDF of the latest/current version of the Workflow definition. An example response is below.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
-    {
-        "@id": "http://test.com/workflows-example#WorkflowB",
-        "@type": [
-            "http://mobi.solutions/ontologies/workflows#Workflow"
-        ],
-        "http://mobi.solutions/ontologies/workflows#hasAction": [
-            {
-                "@id": "http://test.com/workflows-example#WorkflowBAction"
-            }
-        ]
-    },
-    {
-        "@id": "http://test.com/workflows-example#WorkflowBAction",
-        "@type": [
-            "http://mobi.solutions/ontologies/workflows#Action",
-            "http://mobi.solutions/ontologies/workflows#TestAction"
-        ],
-        "http://mobi.solutions/ontologies/workflows#testMessage": [
-            {
-                "@value": "This is a test from Workflow B"
-            }
-        ]
-    }
-]</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Here you can either manually update the In Progress Commit with the added and deleted statements or upload a new version of the workflow.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>To manually update the In Progress Commit, make a PUT REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/in-progress-commit</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record with the following form data contents. If successful, the endpoint will return an empty 200 response.</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Parameter</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>additions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The new desired Workflow definition in JSON-LD RDF format</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deletions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The contents of the previous compiled resource call with the full JSON-LD of the current Workflow RDF definition</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>To upload a new version of the workflow, make a PUT REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record with the following form data contents. If successful, the endpoint will return an empty 200 response. If the Workflow definition is invalid, the endpoint will return a 400 response with the Turtle serialization of the SHACL validation report in the body.</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Parameter</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>file</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The file with the new version of the Workflow definition.</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Make a POST REST request to <code>$MOBI_HOST/mobirest/catalogs/http%3A%2F%2Fmobi.com%2Fcatalog-local/records/ENCODED_RECORD_IRI/branches/ENCODED_BRANCH_IRI/commits</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ENCODED_BRANCH_IRI</code> is replaced the URL encoded version of the IRI of the MASTER Branch of the Workflow Record. This will commit the changes you created/uploaded in the previous call to the system and update the associated trigger service if appropriate. The response from this endpoint will be the IRI of the newly created Commit.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="manually_initiate_a_workflow_execution">Manually Initiate a Workflow Execution</h4>
-<div class="paragraph">
-<p>Workflows can be configured with automated triggers that will initiate executions, but a Workflow can always be triggered manually following the steps below.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Send a POST REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record. This will initiate an execution of the target Workflow in an asynchronous process and provide the IRI of the generated <code>w:WorkflowExecutionActivity</code> in the response to be used in subsequent calls to fetch the status and logs.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="retrieving_workflow_provenance_and_logs">Retrieving Workflow Provenance and Logs</h4>
 <div class="paragraph">
 <p>As Workflows are executed, provenance is tracked for each execution along with logs with more details about the complete workflow execution and each individual action. The RDF structure of this data can be summarized in the image below, with the key classes described underneath.</p>
 </div>
@@ -9835,7 +9531,7 @@ More Action types are coming soon!
 <div class="content">
 <img src="images/workflows/provenance_rdf.png" alt="provenance rdf">
 </div>
-<div class="title">Figure 183. RDF Structure of Workflow Provenance</div>
+<div class="title">Figure 185. RDF Structure of Workflow Provenance</div>
 </div>
 <div class="ulist">
 <ul>
@@ -9849,301 +9545,6 @@ More Action types are coming soon!
 <p><code>w:ActionExecution</code> - Represents an individual execution of a single <code>w:Action</code> within a Workflow. They will have properties for the start/end time, a boolean indicating the success of the action, a relationship to the <code>w:Action</code> that was executed, and a relationship to the <code>vfs:BinaryFile</code> for the log file generated by the individual <code>w:Action</code>.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>This can all be retrieved via various REST endpoints provided by the platform. Common scenarios are described below with the appropriate REST endpoints.</p>
-</div>
-<div class="sect4">
-<h5 id="retrieve_workflow_activity">Retrieve Workflow Activity</h5>
-<div class="paragraph">
-<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions/ACTIVITY_ID</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ACTIVITY_ID</code> is either replaced by <code>latest</code>, to get the latest execution details, or the URL encoded version of the IRI of a specific <code>w:WorkflowExecutionActivity</code>. The response will be the full JSON-LD of the <code>w:WorkflowExecutionActivity</code> requested. An example response is shown below.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example Workflow Activity JSON-LD</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a",
-    "@type": [
-        "http://www.w3.org/ns/prov#Activity",
-        "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
-        "http://www.w3.org/2002/07/owl#Thing"
-    ],
-    "http://mobi.solutions/ontologies/workflows#logs": [
-        {
-            "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.14:42:49.158.cbfd8c5c.log"
-        }
-    ],
-    "http://mobi.solutions/ontologies/workflows#succeeded": [
-        {
-            "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-            "@value": "true"
-        }
-    ],
-    "http://www.w3.org/ns/prov#endedAtTime": [
-        {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2023-09-15T14:42:59.176399-04:00"
-        }
-    ],
-    "http://www.w3.org/ns/prov#startedAtTime": [
-        {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2023-09-15T14:42:48.974369-04:00"
-        }
-    ],
-    "http://www.w3.org/ns/prov#used": [
-        {
-            "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
-        }
-    ],
-    "http://www.w3.org/ns/prov#wasAssociatedWith": [
-        {
-            "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="retrieve_all_workflow_activities">Retrieve All Workflow Activities</h5>
-<div class="paragraph">
-<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/provenance</code> and provide the URL encoded version of the IRI of the target Workflow Record as the value of the <code>entity</code> query parameters. The response will be a JSON object containing a key called <code>activities</code>, which will include a sorted array of all the provenance activities about the target Workflow Record, including all <code>w:WorkflowExecutionActivity</code> and the initial creation activity. An example response is shown below.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example Full Workflow Activities</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "activities": [
-        {
-            "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a",
-            "@type": [
-                "http://www.w3.org/ns/prov#Activity",
-                "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
-                "http://www.w3.org/2002/07/owl#Thing"
-            ],
-            "http://mobi.solutions/ontologies/workflows#logs": [
-                {
-                    "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.14:42:49.158.cbfd8c5c.log"
-                }
-            ],
-            "http://mobi.solutions/ontologies/workflows#succeeded": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-                    "@value": "true"
-                }
-            ],
-            "http://www.w3.org/ns/prov#endedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T14:42:59.176399-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#startedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T14:42:48.974369-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#used": [
-                {
-                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
-                }
-            ],
-            "http://www.w3.org/ns/prov#wasAssociatedWith": [
-                {
-                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-                }
-            ]
-        },
-        {
-            "@id": "http://mobi.com/activities/86c8db82-066d-4531-8526-2f6c39556567",
-            "@type": [
-                "http://www.w3.org/ns/prov#Activity",
-                "http://mobi.solutions/ontologies/workflows#WorkflowExecutionActivity",
-                "http://www.w3.org/2002/07/owl#Thing"
-            ],
-            "http://mobi.solutions/ontologies/workflows#logs": [
-                {
-                    "@id": "https://mobi.solutions/workflows/log-files/agent_98d3918e09cf5791eee7ad55c6ac67cadbab484e.20230915.13:19:53.994.67ebcf55.log"
-                }
-            ],
-            "http://mobi.solutions/ontologies/workflows#succeeded": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-                    "@value": "true"
-                }
-            ],
-            "http://www.w3.org/ns/prov#endedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T09:20:04.09355-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#startedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T09:19:53.86763-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#used": [
-                {
-                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
-                }
-            ],
-            "http://www.w3.org/ns/prov#wasAssociatedWith": [
-                {
-                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-                }
-            ]
-        },
-        {
-            "@id": "http://mobi.com/activities/f2df2cde-7eec-4fb7-aa22-4e4ec6cabfd8",
-            "@type": [
-                "http://www.w3.org/ns/prov#Activity",
-                "http://mobi.com/ontologies/prov#CreateActivity",
-                "http://www.w3.org/2002/07/owl#Thing"
-            ],
-            "http://www.w3.org/ns/prov#atLocation": [
-                {
-                    "@value": "9832af45-7488-3b7c-928e-0618de48a3e3"
-                }
-            ],
-            "http://www.w3.org/ns/prov#endedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T08:55:31.854546-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#generated": [
-                {
-                    "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc"
-                }
-            ],
-            "http://www.w3.org/ns/prov#startedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T08:55:30.942226-04:00"
-                }
-            ],
-            "http://www.w3.org/ns/prov#wasAssociatedWith": [
-                {
-                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-                }
-            ]
-        }
-    ],
-    "entities": [
-        {
-            "@id": "https://mobi.com/records#19ee2b35-aa29-4a86-a0b1-892633b1d0bc",
-            "@type": [
-                "http://www.w3.org/2002/07/owl#Thing",
-                "http://www.w3.org/ns/prov#Entity",
-                "http://mobi.solutions/ontologies/workflows#WorkflowRecord",
-                "http://mobi.com/ontologies/catalog#VersionedRecord",
-                "http://mobi.com/ontologies/catalog#VersionedRDFRecord",
-                "http://mobi.com/ontologies/catalog#Record"
-            ],
-            "http://mobi.com/ontologies/catalog#branch": [
-                {
-                    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
-                }
-            ],
-            "http://mobi.com/ontologies/catalog#catalog": [
-                {
-                    "@id": "http://mobi.com/catalog-local"
-                }
-            ],
-            "http://mobi.com/ontologies/catalog#masterBranch": [
-                {
-                    "@id": "https://mobi.com/branches#19b8cc92-00a9-4594-b759-8565d2f0537a"
-                }
-            ],
-            "http://mobi.solutions/ontologies/workflows#active": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-                    "@value": "true"
-                }
-            ],
-            "http://mobi.solutions/ontologies/workflows#latestActivity": [
-                {
-                    "@id": "http://mobi.com/activities/2001f136-5a37-47f2-95b0-ec3f083d634a"
-                }
-            ],
-            "http://mobi.solutions/ontologies/workflows#workflowIRI": [
-                {
-                    "@id": "http://test.com/workflows-example#WorkflowB"
-                }
-            ],
-            "http://purl.org/dc/terms/issued": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T08:55:30.954519-04:00"
-                }
-            ],
-            "http://purl.org/dc/terms/modified": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T08:57:28.801002-04:00"
-                }
-            ],
-            "http://purl.org/dc/terms/publisher": [
-                {
-                    "@id": "http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997"
-                }
-            ],
-            "http://purl.org/dc/terms/title": [
-                {
-                    "@value": "Workflow B"
-                }
-            ],
-            "http://www.w3.org/ns/prov#atLocation": [
-                {
-                    "@value": "system"
-                }
-            ],
-            "http://www.w3.org/ns/prov#generatedAtTime": [
-                {
-                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "@value": "2023-09-15T08:55:31.853903-04:00"
-                }
-            ]
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="retrieve_specific_workflow_activity_logs">Retrieve Specific Workflow Activity Logs</h5>
-<div class="paragraph">
-<p>Send a GET REST request to <code>$MOBI_HOST/mobirest/workflows/ENCODED_RECORD_IRI/executions/ENCODED_ACTIVITY_IRI/logs</code> where <code>ENCODED_RECORD_IRI</code> is replaced by the URL encoded version of the IRI of the target Workflow Record and <code>ENCODED_ACTIVITY_IRI</code> is replaced by the URL encoded version of the IRI of a specific <code>w:WorkflowExecutionActivity</code>. The response will be a preview of the plain text contents of the logs file generated by the overall Workflow execution in question. An example response is shown below.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example Workflow Execution Logs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">2023/09/15 14:42:49 server is running at "/tmp/@dagu-98d3918e09cf5791eee7ad55c6ac67cadbab484e-4c93e3159bb697634261e271087fbeb1.sock"
-2023/09/15 14:42:49 start running: http://test.com/workflows-example#WorkflowBAction
-2023/09/15 14:42:49 http://test.com/workflows-example#WorkflowBAction finished
-2023/09/15 14:42:49 schedule finished.
-2023/09/15 14:42:49
-Summary -&gt;
-+--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| REQUESTID                            | NAME                                     | STARTED AT          | FINISHED AT         |   STATUS | PARAMS                                                                                                                                                                                                 | ERROR |
-+--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| cbfd8c5c-56e3-4861-aefc-f3b833336322 | 98d3918e09cf5791eee7ad55c6ac67cadbab484e | 2023-09-15 14:42:49 | 2023-09-15 14:42:49 | finished | "https://localhost:8443" "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb2JpLmNvbVwvIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2OTQ4ODk3NjksInNjb3BlIjoic2VsZiBcLyoifQ.aEpjpZZMW5mucXQSQ35fU7_aVxj5_yj-hU_fH7mbFZQ" |       |
-+--------------------------------------+------------------------------------------+---------------------+---------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-Details -&gt;
-+---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+
-| # | STEP                                              | STARTED AT          | FINISHED AT         | STATUS   | COMMAND                             | ERROR |
-+---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+
-| 1 | http://test.com/workflows-example#WorkflowBAction | 2023-09-15 14:42:49 | 2023-09-15 14:42:49 | finished | echo This is a test from Workflow B |       |
-+---+---------------------------------------------------+---------------------+---------------------+----------+-------------------------------------+-------+</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to retrieve the log file itself, you can hit the same endpoint, but with an <code>Accept</code> header of <code>application/octet-stream</code> and the endpoint will download the entire log file contents.</p>
-</div>
 </div>
 </div>
 </div>
@@ -10806,10 +10207,278 @@ public ActionDefinition createDefinition(NewAction action) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="publish_framework_examples_enterprise">Appendix G: Publish Framework Examples (ENTERPRISE)</h2>
+<h2 id="webhooks">Appendix G: Webhooks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobi Enterprise comes with an extensible framework for publishing versioned RDF managed by records (including ontologies, vocabularies, and shapes graphs) to external systems. This framework is built on top of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework and utilizes the SHACL definitions to validate publish requests. Mobi Enterprise comes with the ability to publish to <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> and to <a href="https://cambridgesemantics.com/anzo-platform/">Anzo</a>.</p>
+<p>Mobi supports event-triggered communication with external systems through webhooks. Webhooks allow Mobi to send real-time data to a specified URL when certain events occur, enabling seamless integration with other applications and services and enabling powerful automation use cases. Webhooks are defined using a simple RDF schema and managed via the Mobi Catalog as Unversioned Records. The framework provides a flexible and extensible way to define, manage, and trigger webhooks based on various events within the Mobi platform in addition to receiving callbacks from external systems to create a closed-loop integration.</p>
+</div>
+<div class="paragraph">
+<p>A Webhook is made up of a single configuration object that defines the event to listen for, the target URL to send the data to, the HTTP method to use, and any additional parameters or headers required for the request. When the specified event occurs, Mobi will automatically send an HTTP request to the target URL with a payload containing relevant information about the event. The payload will be a JSON object with keys for each property of the event that triggered the webhook. The payload will also include a unique identifier for the webhook execution activity, which can be used to track the status of the webhook request and used to perform a callback request.</p>
+</div>
+<div class="sect2">
+<h3 id="webhook_rdf_definition">Webhook RDF Definition</h3>
+<div class="paragraph">
+<p>All webhooks managed by the system must follow the same general structure that is validated via SHACL constraints. The following prefixes will be used in the rest of this appendix. All RDF examples will be provided in either <a href="https://www.w3.org/TR/turtle/">Turtle</a> or JSON-LD format:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Prefix</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Namespace</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owl:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2002/07/owl#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prov:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/ns/prov#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rdfs:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2000/01/rdf-schema#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xsd:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://www.w3.org/2001/XMLSchema#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mcat:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">http://mobi.com/ontologies/catalog#</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">https://mobi.solutions/ontologies/webhooks#</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Complete example of a compliant Webhook RDF definition is shown below in Turtle format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt;.
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix web: &lt;https://mobi.solutions/ontologies/webhooks#&gt;.
+@prefix : &lt;https://mobi.solutions/test#&gt;.
+
+:WebhookConfigurationA a web:WebhookConfiguration ;
+    web:url "https://webhook.site/bea4adf7-86e3-4d2c-a4c6-3ad90f28b7cf" ;
+    web:httpMethod "GET" ;
+    web:eventFilter "(event.topics=com/mobi/catalog/version)" ;
+    web:active true .</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="webwebhookconfiguration">web:WebhookConfiguration</h4>
+<div class="paragraph">
+<p>Every Webhook RDF definition must have exactly one instance of the <code>web:WebhookConfiguration</code> class with a unique subject IRI. This class defines the configuration for a webhook, including the target URL, HTTP method, event filter, and active status. Details on the specific properties of the <code>web:WebhookConfiguration</code> class are provided below. The <code>web:url</code>, <code>web:httpMethod</code>, <code>web:eventFilter</code>, and <code>web:active</code> properties are required, while the <code>web:secretToken</code> and <code>web:hasRequestHeader</code> properties are optional.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Field</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Example Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target URL to which the webhook payload will be sent when the specified event occurs. This URL must be a valid HTTP or HTTPS endpoint that can accept incoming requests.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>https://webhook.site/bea4adf7-86e3-4d2c-a4c6-3ad90f28b7cf</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:httpMethod</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The HTTP method to use when sending the webhook request. Supports "GET" and "POST".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:eventFilter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A filter to determine which events should trigger the webhook. This is formatted as an LDAP filter expression using OSGi event topics. The topics to listen for are specified in the filter along with any additional criteria on the specific properties of each event. See <a href="#event-topics">Event Topics</a> to read more about the event topics available in the platform currently.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(event.topics=com/mobi/catalog/version)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:active</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the Webhook is active.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:secretToken</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional Bearer token that can be used to authenticate the webhook request. If provided, this token will be included in the <code>Authorization</code> header of the HTTP request.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web:hasRequestHeader</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional list of additional HTTP headers to include in the webhook request. Each header is represented as an instance of the <code>web:RequestHeader</code> class, which defines the header name and value with the <code>web:hasHeaderName</code> and <code>web:hasHeaderValue</code> properties respectively.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;https://mobi.solutions/test#RequestHeaderA&gt;</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="webwebhookexecutionactivity">web:WebhookExecutionActivity</h4>
+<div class="paragraph">
+<p>Every time a Webhook is triggered, an instance of the <code>web:WebhookExecutionActivity</code> class is created to represent the execution of the webhook. This class captures details about the execution, including the request, the response, and any errors encountered during the request. Webhooks have a retry mechanism that will attempt to resend the webhook request if the initial request fails. The <code>web:WebhookExecutionActivity</code> will capture each request attempt as an instance of <code>web:ConnectionAttempt</code>, which includes the request and response details for that attempt. The <code>web:hasConnectionAttempt</code> property is used to link the <code>web:WebhookExecutionActivity</code> to its associated connection attempts.</p>
+</div>
+<div class="paragraph">
+<p>A full example of a <code>web:WebhookExecutionActivity</code> instance is shown below in Turtle format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix web: &lt;https://mobi.solutions/ontologies/webhooks#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+&lt;http://mobi.com/activities/ae4eb510-ace4-4dc1-91be-5c641abc8ce8&gt;
+  a prov:Activity, web:WebhookExecutionActivity, owl:Thing ;
+  web:hasConnectionAttempt &lt;https://mobi.solutions/webhooks/attempt/7389c2c1-54ab-4021-b5db-d1694a3aae6c&gt; ;
+  web:requestBody "{\"activityIRI\":\"http://mobi.com/activities/ae4eb510-ace4-4dc1-91be-5c641abc8ce8\",\"event\":{\"type\":\"http://mobi.com/ontologies/catalog#Version\",\"version\":\"https://mobi.solutions/ontologies/Test/V0\",\"record\":\"https://mobi.com/records#8051e9b6-a32d-411d-988d-014f94bdc536\",\"event.topics\":\"com/mobi/catalog/version\"}}"^^xsd:string ;
+  web:requestMethod "GET"^^xsd:string ;
+  web:requestUrl &lt;https://webhook.site/eac32363-3e88-46f1-9e46-215626eac344&gt; ;
+  web:succeeded true ;
+  prov:endedAtTime "2026-06-25T20:21:34.799989-04:00"^^xsd:dateTime ;
+  prov:startedAtTime "2026-06-25T20:21:34.191272-04:00"^^xsd:dateTime ;
+  prov:used &lt;https://mobi.com/records#5b580258-178e-499e-8361-7d334d7ddada&gt; ;
+  prov:wasAssociatedWith &lt;http://mobi.com/users/d033e22ae348aeb5660fc2140aec35850c4da997&gt; .
+
+&lt;https://mobi.solutions/webhooks/attempt/7389c2c1-54ab-4021-b5db-d1694a3aae6c&gt;
+  a web:ConnectionAttempt, owl:Thing ;
+  web:hasResponseHeader &lt;https://mobi.solutions/webhooks/headers/c9a5b9c2-39e5-4413-9377-e6569983a85f&gt;, &lt;https://mobi.solutions/webhooks/headers/c0f9eaa4-d3e9-426a-be5d-4bfcc1204c20&gt;, &lt;https://mobi.solutions/webhooks/headers/047d8e25-67f2-4e1a-90ff-4b16eafc174f&gt;, &lt;https://mobi.solutions/webhooks/headers/e9200489-b038-4eee-872c-a5d2bd8c1c8c&gt;, &lt;https://mobi.solutions/webhooks/headers/7f01085b-9cab-45a2-a424-d34849069e7f&gt;, &lt;https://mobi.solutions/webhooks/headers/144cd6d7-9f12-4a89-8d7d-e1d3ad52b083&gt;, &lt;https://mobi.solutions/webhooks/headers/9f699e6d-07f8-4b8b-b0fc-9037c1ed6d27&gt;, &lt;https://mobi.solutions/webhooks/headers/996e5366-b6e2-46ac-b73e-591823ac1e4d&gt; ;
+  web:requestTimestamp "2026-06-25T20:21:34.199083-04:00"^^xsd:dateTime ;
+  web:responseBody "This URL has no default content configured. &lt;a href=\"https://webhook.site/#!/edit/eac32363-3e88-46f1-9e46-215626eac344\"&gt;Change response in Webhook.site&lt;/a&gt;."^^xsd:string ;
+  web:responseStatus "200"^^xsd:string ;
+  web:responseTimestamp "2026-06-25T20:21:34.797262-04:00"^^xsd:dateTime .
+
+&lt;https://mobi.solutions/webhooks/headers/c9a5b9c2-39e5-4413-9377-e6569983a85f&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "server"^^xsd:string ;
+  web:hasHeaderValue "nginx"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/c0f9eaa4-d3e9-426a-be5d-4bfcc1204c20&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "content-type"^^xsd:string ;
+  web:hasHeaderValue "text/html; charset=UTF-8"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/047d8e25-67f2-4e1a-90ff-4b16eafc174f&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "transfer-encoding"^^xsd:string ;
+  web:hasHeaderValue "chunked"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/e9200489-b038-4eee-872c-a5d2bd8c1c8c&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "x-request-id"^^xsd:string ;
+  web:hasHeaderValue "4c5ce272-dd32-466c-9a00-23f80e56fdad"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/7f01085b-9cab-45a2-a424-d34849069e7f&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "x-token-id"^^xsd:string ;
+  web:hasHeaderValue "eac32363-3e88-46f1-9e46-215626eac344"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/144cd6d7-9f12-4a89-8d7d-e1d3ad52b083&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "content-security-policy"^^xsd:string ;
+  web:hasHeaderValue "signup-to-remove-csp-header 'webhook.site/register'; base-uri 'self'; form-action 'none'; script-src 'none'; worker-src 'none'; frame-src 'none';"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/9f699e6d-07f8-4b8b-b0fc-9037c1ed6d27&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "cache-control"^^xsd:string ;
+  web:hasHeaderValue "no-cache, private"^^xsd:string .
+
+&lt;https://mobi.solutions/webhooks/headers/996e5366-b6e2-46ac-b73e-591823ac1e4d&gt;
+  a web:Header, owl:Thing ;
+  web:hasHeaderName "date"^^xsd:string ;
+  web:hasHeaderValue "Fri, 26 Jun 2026 00:21:36 GMT"^^xsd:string .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="webwebhookcallback">web:WebhookCallback</h4>
+<div class="paragraph">
+<p>When a Webhook is triggered and the target URL is sent the event payload, it includes the IRI of the generated <code>web:WebhookExecutionActivity</code> which can be passed back to the platform via a callback POST request to the <code>/webhooks/{ENCODED_ACTIVITY_IRI}/callback</code> endpoint where <code>ENCODED_ACTIVITY_IRI</code> is the base64-encoded IRI of the <code>web:WebhookExecutionActivity</code> IRI. This allows the external system to provide feedback on the execution of the webhook, such as whether it was successful or if there were any errors encountered. This is captured alongside the <code>web:WebhookExecutionActivity</code> instance as an instance of <code>web:WebhookCallback</code> and can be used to track the status of the webhook request and perform any necessary follow-up actions. The <code>web:WebhookExecutionActivity</code> will refer to the <code>web:WebhookCallback</code> instance via the <code>web:hasCallback</code> property.</p>
+</div>
+<div class="paragraph">
+<p>A full example of a <code>web:WebhookCallback</code> instance is shown below in Turtle format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix web: &lt;https://mobi.solutions/ontologies/webhooks#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+&lt;https://mobi.solutions/webhooks/callback/37eade1d-1812-42cf-9c84-7888c0f886e6&gt; a
+  web:WebhookCallback, owl:Thing;
+  web:callbackFireTime "2026-06-26T13:58:22.811089-04:00"^^xsd:dateTime;
+  web:callbackBody "success!!!";
+  web:callbackIssuer "[0:0:0:0:0:0:0:1]" .</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="event-topics">Event Topics</h3>
+<div class="paragraph">
+<p>The following table lists the event topics currently available in the Mobi platform that can be used to trigger webhooks. Each topic corresponds to a specific event or action within the platform, and can be used in the <code>web:eventFilter</code> property of a <code>web:WebhookConfiguration</code> to specify which events should trigger the webhook.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Event Topic</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Fields</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com/mobi/catalog/version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Triggered when a new Version/Tag of a Versioned RDF Record is created in the Catalog.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code> - The type of the created Version. Either <code>mcat:Version</code> or <code>mcat:Tag</code>.<br>
+<code>version</code> - The IRI of the created Version.<br>
+<code>versionTitle</code> - The title of the created Version.<br>
+<code>record</code> - The IRI of the Versioned RDF Record with the created Version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com/mobi/catalog/commit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Triggered when a new Commit is created for a Versioned RDF Record in the Catalog.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit</code> - The IRI of the created Commit.<br>
+<code>branch</code> - The IRI of the Branch the Commit was created on.<br>
+<code>record</code> - The IRI of the Versioned RDF Record with the created Version.<br>
+<code>user</code> - The IRI of the User who created the Commit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com/mobi/workflows/START</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Triggered when a Workflow is triggered.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>workflow</code> - The IRI of the Workflow Record that was triggered.<br>
+<code>trigger</code> - The IRI of the Workflow&#8217;s Trigger that was fired.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publish_framework_examples_enterprise">Appendix H: Publish Framework Examples (ENTERPRISE)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobi Enterprise comes with an extensible framework for publishing versioned RDF managed by records (including ontologies, vocabularies, and shapes graphs) to external systems. This framework is built on top of the <a href="#shacl_web_forms">SHACL Web Forms</a> Framework and utilizes the SHACL definitions to validate publish requests. Mobi Enterprise comes with the ability to publish to <a href="https://www.ontotext.com/products/graphdb">GraphDB</a> and to <a href="https://altair.com/altair-graph-studio">Altair Graph Studio</a> (formerly Anzo).</p>
 </div>
 <div class="paragraph">
 <p>The publish framework has a generic POST <code>$MOBI_HOST/mobirest/publish</code> endpoint as the entrypoint for all publish activities. The body of a request to the endpoint should be a JSON-LD serialization of a collection of RDF that defines the inputs for the publish as defined by the publish service configuration.</p>
@@ -10883,7 +10552,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/core_publish_model.png" alt="core publish model">
 </div>
-<div class="title">Figure 184. Core Publish Framework</div>
+<div class="title">Figure 186. Core Publish Framework</div>
 </div>
 <div class="paragraph">
 <p>A <code>pub:PublishService</code> represents the capability of the platform to push data from Mobi to a certain type of external system with a human readable name and how many concurrent publishes can be made with the specific service. The instances of this class are what populate the dropdown in the Publish Configuration modal in the UI (see <a href="#Publish">Publish (ENTERPRISE)</a>). The <code>pub:PublishConfig</code> class represents an individual request to publish a Versioned RDF Record to an external system. Instances of this class are required to have a <code>pub:useService</code> predicate pointing to which Publish Service to use along with the IRI of the Versioned RDF Record to publish. It can also optionally have a pointer to a specific Commit of that Versioned RDF Record that should be published. In the absence of this predicate on an instance of <code>pub:PublishConfig</code>, the head Commit of the MASTER Branch will be used. If the Publish Service supports selection of a specific external system to publish to (using the <a href="#Publish Configuration">Publish Configuration UI</a>), a <code>pub:PublishConfig</code> can optionally reference the ID of that external system with the <code>config:hasId</code> property.</p>
@@ -10975,7 +10644,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_graphdb.png" alt="postman graphdb">
 </div>
-<div class="title">Figure 185. GraphDB Postman Request</div>
+<div class="title">Figure 187. GraphDB Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in turtle is below (See comments for explanation of fields):</p>
@@ -11076,7 +10745,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_owl.png" alt="postman anzo owl">
 </div>
-<div class="title">Figure 186. Graph Studio OWL Postman Request</div>
+<div class="title">Figure 188. Graph Studio OWL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -11104,7 +10773,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_skos.png" alt="postman anzo skos">
 </div>
-<div class="title">Figure 187. Graph Studio SKOS Postman Request</div>
+<div class="title">Figure 189. Graph Studio SKOS Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -11132,7 +10801,7 @@ public ActionDefinition createDefinition(NewAction action) {
 <div class="content">
 <img src="images/publishing/postman_anzo_shacl.png" alt="postman anzo shacl">
 </div>
-<div class="title">Figure 188. Graph Studio SHACL Postman Request</div>
+<div class="title">Figure 190. Graph Studio SHACL Postman Request</div>
 </div>
 <div class="paragraph">
 <p>The body of the request represented in Turtle is below (See comments for explanation of fields):</p>
@@ -11157,10 +10826,10 @@ public ActionDefinition createDefinition(NewAction action) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="docker_deployments">Appendix H: Docker Deployments</h2>
+<h2 id="docker_deployments">Appendix I: Docker Deployments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobi can be deployed using Docker.  The Mobi Docker image is available on DockerHub at <a href="https://hub.docker.com/r/inovexis/mobi" class="bare">https://hub.docker.com/r/inovexis/mobi</a>. As mentioned in <a href="#installing_the_docker_image">Installing the Docker Image</a> in the Quick Start Guide, Mobi can be run using the provided <code>docker-compose.yml</code> file. The compose file will start a container for Mobi and a container for Dagu to enable <a href="#workflows">Workflows</a>. This file can be customized to fit your needs.</p>
+<p>Mobi can be deployed using Docker.  The Mobi Docker image is available on DockerHub at <a href="https://hub.docker.com/r/inovexis/mobi" class="bare">https://hub.docker.com/r/inovexis/mobi</a>. As mentioned in <a href="#installing_the_docker_image">Installing the Docker Image</a> in the Quick Start Guide, Mobi can be run using the provided <code>docker-compose.yml</code> file. The compose file will start a container for Mobi and a container for Dagu to enable <a href="#workflows">Workflows</a>. This file can be customized to fit your needs. For example, if you need to adjust any of the settings in the <code>setenv</code> file such as the maximum and minimum heap size (see <a href="#change_the_default_java_heap_size">Change the Default Java Heap Size</a>), you can provide the appropriate environment variables in the compose file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11375,8 +11044,8 @@ unzip ../data_backup_VERSION_TIMESTAMP.zip</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.3<br>
-Last updated 2026-01-11 19:41:02 UTC
+Version 4.4<br>
+Last updated 2026-07-09 19:52:23 UTC
 </div>
 </div>
 <script src="../highlight/highlight.min.js"></script>
